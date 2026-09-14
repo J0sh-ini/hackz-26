@@ -1,0 +1,363 @@
+@import './tokens.css';
+@import './scanlines.css';
+
+/* CSS Reset & Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important; /* HARD RULE: Sharp corners everywhere */
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  scroll-behavior: auto; /* Handled smoothly by Lenis */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Custom Selection */
+::selection {
+  background-color: var(--accent-green);
+  color: #050505;
+}
+
+/* Minimalist Dark Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-green-dim);
+}
+
+/* Typography Base */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+p {
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+.section-padding {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
+/* Monospace Section Header Label */
+.section-meta {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent-green);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-title {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+/* Terminal Divider Line */
+.terminal-divider {
+  width: 100%;
+  border-top: 1px solid var(--border-default);
+  margin: 0;
+  position: relative;
+}
+
+/* Interactive Touch Target Minimum Size */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Button Diagonal Fill & Staggered Rolling Text */
+.cyber-btn {
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Diagonal Fill: expands from top-left (0,0) across to bottom-right */
+.btn-diagonal-fill {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  clip-path: polygon(0 0, 0 0, 0 0);
+  transition: clip-path 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cyber-btn:hover .btn-diagonal-fill,
+.cyber-btn:focus-visible .btn-diagonal-fill {
+  clip-path: polygon(0 0, 230% 0, 0 230%);
+}
+
+/* Staggered Rolling Text Characters */
+.roll-char-slot {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  height: 1.25em;
+  line-height: 1.25em;
+  vertical-align: middle;
+}
+
+.roll-char {
+  display: inline-block;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.roll-char-primary {
+  transform: translateY(0%);
+}
+
+.roll-char-secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(100%);
+}
+
+.cyber-btn:hover .roll-char-primary,
+.cyber-btn:focus-visible .roll-char-primary,
+.subtle-roll-link:hover .roll-char-primary,
+.subtle-roll-link:focus-visible .roll-char-primary,
+.nav-link-item:hover .roll-char-primary,
+.nav-link-item:focus-visible .roll-char-primary,
+.mobile-nav-item:hover .roll-char-primary,
+.mobile-nav-item:focus-visible .roll-char-primary {
+  transform: translateY(-100%);
+}
+
+.cyber-btn:hover .roll-char-secondary,
+.cyber-btn:focus-visible .roll-char-secondary,
+.subtle-roll-link:hover .roll-char-secondary,
+.subtle-roll-link:focus-visible .roll-char-secondary,
+.nav-link-item:hover .roll-char-secondary,
+.nav-link-item:focus-visible .roll-char-secondary,
+.mobile-nav-item:hover .roll-char-secondary,
+.mobile-nav-item:focus-visible .roll-char-secondary {
+  transform: translateY(0%);
+}
+
+/* Subtle Link Diagonal Fill & Underline */
+.subtle-roll-link {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+}
+
+.subtle-link-fill {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-color: rgba(0, 255, 65, 0.07);
+  border-bottom: 1px solid var(--accent-green);
+  clip-path: polygon(0 0, 0 0, 0 0);
+  transition: clip-path 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+
+.subtle-roll-link:hover .subtle-link-fill,
+.subtle-roll-link:focus-visible .subtle-link-fill {
+  clip-path: polygon(0 0, 230% 0, 0 230%);
+}
+
+/* Nav Item Hover & Responsiveness */
+.nav-link-item:hover,
+.mobile-nav-item:hover {
+  color: var(--accent-green) !important;
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .mobile-hamburger {
+    display: flex !important;
+  }
+  .hero-cta-btn,
+  .hero-sub-btn {
+    width: 100% !important;
+  }
+}
+
+/* About Section Responsiveness */
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .about-decorative-glyph {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-stats-row {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+/* Tracks Grid Responsiveness */
+@media (max-width: 1024px) {
+  .tracks-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .tracks-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Sponsors Grid Responsiveness */
+@media (max-width: 860px) {
+  .sponsors-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
+
+/* Prizes Podium Responsiveness */
+@media (max-width: 768px) {
+  .prizes-podium-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .podium-card {
+    order: initial !important;
+  }
+}
+
+/* Timeline Single-Column Left-Aligned Responsiveness */
+@media (max-width: 768px) {
+  .timeline-center-line-wrapper {
+    left: 16px !important;
+    transform: none !important;
+  }
+  .timeline-node-marker {
+    left: 16px !important;
+    transform: translateX(-50%) !important;
+  }
+  .timeline-item-wrapper {
+    justify-content: flex-start !important;
+    padding-left: 44px !important;
+  }
+  .timeline-card {
+    width: 100% !important;
+  }
+}
+
+/* Get Involved Responsiveness */
+@media (max-width: 768px) {
+  .get-involved-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  .get-involved-btn {
+    width: 100% !important;
+  }
+}
+
+/* Contact Grid Responsiveness */
+@media (max-width: 860px) {
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+}
+
+
+
+
+
+
+
+
+
