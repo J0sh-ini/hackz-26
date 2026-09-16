@@ -1,122 +1,151 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import React, { useEffect } from 'react';
+import Lenis from 'lenis';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-function App() {
-  const [count, setCount] = useState(0)
+import { NoiseOverlay } from './components/ambient/NoiseOverlay';
+import { NodeNetwork } from './components/ambient/NodeNetwork';
+import { Navbar } from './components/layout/Navbar';
+import { Hero } from './components/sections/Hero';
+import { StatsMarquee } from './components/sections/StatsMarquee';
+import { About } from './components/sections/About';
+import { Tracks } from './components/sections/Tracks';
+import { Sponsors } from './components/sections/Sponsors';
+import { Prizes } from './components/sections/Prizes';
+import { Timeline } from './components/sections/Timeline';
+import { GetInvolved } from './components/sections/GetInvolved';
+import { Faq } from './components/sections/Faq';
+import { Contact } from './components/sections/Contact';
+import { Footer } from './components/layout/Footer';
+
+gsap.registerPlugin(ScrollTrigger);
+
+export const App: React.FC = () => {
+  useEffect(() => {
+    // Only init Lenis on non-touch devices or where appropriate
+    const isMobile = window.innerWidth < 768;
+
+    const lenis = new Lenis({
+      duration: isMobile ? 0.9 : 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      smoothWheel: true,
+      syncTouch: false,
+    });
+
+    const updateLenis = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+
+    gsap.ticker.add(updateLenis);
+    gsap.ticker.lagSmoothing(0);
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    // Global in-page smooth scroll interceptor for all hash links and CTAs
+    const handleAnchorClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement).closest('a');
+      if (!anchor) return;
+
+      const href = anchor.getAttribute('href');
+      if (href && href.startsWith('#') && href.length > 1) {
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+          e.preventDefault();
+          lenis.scrollTo(targetElement, {
+            offset: -64,
+            duration: 1.2,
+          });
+          window.history.pushState(null, '', href);
+        }
+      } else if (href === '#') {
+        e.preventDefault();
+        lenis.scrollTo(0, { duration: 1.2 });
+      }
+    };
+
+    document.addEventListener('click', handleAnchorClick);
+
+    return () => {
+      document.removeEventListener('click', handleAnchorClick);
+      gsap.ticker.remove(updateLenis);
+      lenis.destroy();
+    };
+  }, []);
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div style={{ position: 'relative', width: '100%', minHeight: '100vh', backgroundColor: 'var(--bg-page)' }}>
+      {/* Global Grain Texture Overlay */}
+      <NoiseOverlay />
 
-      <div className="ticks"></div>
+      {/* Ambient Floating Cyber Node Network */}
+      <NodeNetwork opacity={0.3} />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      {/* Persistent Navigation Bar */}
+      <Navbar />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
-}
+      {/* Main Content Layout */}
+      <main>
+        {/* [01] Hero Section */}
+        <Hero />
 
-export default App
+        {/* [02] Marquee Stats Strip */}
+        <StatsMarquee />
+
+        {/* [03] About Section */}
+        <About />
+
+        {/* Terminal Divider
+        <div className="container">
+          <SectionDivider label="TRACKS PROTOCOL" />
+        </div> */}
+
+        {/* [04] Mission Tracks */}
+        <Tracks />
+
+        {/* Terminal Divider
+        <div className="container">
+          <SectionDivider label="STRATEGIC PARTNERS" />
+        </div> */}
+
+        {/* [05] Sponsors */}
+        <Sponsors />
+
+        {/* [06] Prizes Bounty */}
+        <Prizes />
+
+        {/* [07] Sequence of Events Timeline */}
+        <Timeline />
+
+        {/* Terminal Divider
+        <div className="container">
+          <SectionDivider label="DEPLOYMENT FORCES" />
+        </div> */}
+
+        {/* [08] Get Involved CTAs */}
+        <GetInvolved />
+
+        {/* Terminal Divider
+        <div className="container">
+          <SectionDivider label="KNOWLEDGE BASE" />
+        </div> */}
+
+        {/* [09] FAQs Accordion */}
+        <Faq />
+
+        {/* Terminal Divider
+        <div className="container">
+          <SectionDivider label="TRANSMISSION LINKS" />
+        </div> */}
+
+        {/* [10] Contact & Socials */}
+        <Contact />
+      </main>
+
+      {/* [11] Footer */}
+      <Footer />
+    </div>
+  );
+};
