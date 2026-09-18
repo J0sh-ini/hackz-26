@@ -76,6 +76,8 @@ const Shuffle: React.FC<ShuffleProps> = ({
       else document.fonts.ready.then(() => setFontsLoaded(true));
     } else setFontsLoaded(true);
   }, []);
+  
+  style["fontFamily"] = "Jetbrains Mono, monospace";
 
   const scrollTriggerStart = useMemo(() => {
     const startPct = (1 - threshold) * 100;

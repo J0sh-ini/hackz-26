@@ -68,7 +68,7 @@ export const About: React.FC = () => {
         >
           {/* Left Column: Circuit Board SVG Illustration with Anime.js createMotionPath & random active wire pulses */}
           <motion.div
-            className="flex items-center justify-center relative select-none max-[992px]:hidden"
+            className="flex items-center justify-center relative select-none"
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -103,12 +103,12 @@ export const About: React.FC = () => {
             >
               {ABOUT_PARAGRAPHS.map((text, idx) => (
                 <span key={idx} style={{ color: 'var(--text-secondary)' }}>
-
-                  <Shuffle text={text} style={{
+                  {text}
+                  {/* <Shuffle text={text} style={{
                     fontSize: 'clamp(15px, 2.5vw, 17px)',
                     color: '#c5c5c5',
                     lineHeight: 1.7,
-                  }} />
+                  }} /> */}
                   </span>
               ))}
             </div>

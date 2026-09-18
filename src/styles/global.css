@@ -87,9 +87,9 @@
     --accent-cyan:          var(--color-accent-green-mint);
     --accent-magenta:       var(--color-accent-green-bright);
     --accent-red:           var(--color-accent-green);
-    --font-display: var(--font-family-display);
-    --font-heading:  var(--font-family-heading);
-    --font-body:     var(--font-family-body);
+    /* --font-display: var(--font-family-display); */
+    /* --font-heading:  var(--font-family-heading); */
+    /* --font-body:     var(--font-family-body); */
     --font-mono:     var(--font-family-mono);
     --header-height:   var(--spacing-header-height);
     --container-max:   var(--spacing-container-max);
@@ -120,6 +120,7 @@
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+    font-family: var(--font-mono);
   }
 
   ::selection {

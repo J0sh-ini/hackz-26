@@ -49,10 +49,10 @@ const RoleCard: React.FC<RoleCardProps> = ({
       <div
         style={{
           position: 'absolute',
-          top: '-20px',
-          right: '-10px',
+          top: '-1vh',
+          right: '-1vw',
           fontFamily: 'var(--font-mono)',
-          fontSize: '110px',
+          fontSize: 'clamp(50px, 4vw, 100px)',
           fontWeight: 800,
           color: 'var(--accent-green)',
           opacity: 0.03,

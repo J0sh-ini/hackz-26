@@ -91,7 +91,7 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
         stroke: ['rgba(0, 255, 65, 0.22)', '#39ff14', 'rgba(0, 255, 65, 0.22)'],
         strokeWidth: [1.6, 2.6, 1.6],
         duration: duration + 400,
-        ease: 'inOutQuad',
+        ease: 'linear',
       });
 
       // 2. Line drawing animation following the motion path values with animejs svg.createDrawable
@@ -101,14 +101,14 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
           draw: ['0 0', '0 1'],
           opacity: [1, 0.9, 0],
           duration,
-          ease: 'inOutQuad',
+          ease: 'linear',
         });
       } catch (err) {
         // Fallback smooth stroke dash/opacity if createDrawable needs standard proxy
         animate(activeTraceEl, {
           opacity: [0, 1, 0],
           duration,
-          ease: 'inOutQuad',
+          ease: 'linear',
         });
       }
 
@@ -119,7 +119,7 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
           animate(packetEl, {
             ...svg.createMotionPath(baseWireEl),
             duration,
-            ease: 'inOutQuad',
+            ease: 'linear',
             onComplete: () => {
               if (isDestroyed) return;
               packetEl.style.opacity = '0';
@@ -204,7 +204,7 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
       className={`relative w-full max-w-[420px] mx-auto flex flex-col items-center justify-center select-none ${className}`}
     >
       {/* HUD Telemetry Sub-badge */}
-      <div
+      {/* <div
         style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '10px',

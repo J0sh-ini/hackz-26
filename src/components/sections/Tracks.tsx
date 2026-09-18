@@ -132,7 +132,7 @@ export const Tracks: React.FC = () => {
                 <ScrambleText text={track.name} as="h3" className="text-[22px] font-bold mb-3" />
 
                 {/* Description */}
-                {/* <p
+                <p
                   style={{
                     fontFamily: 'var(--font-body)',
                     fontSize: '14px',
@@ -142,9 +142,9 @@ export const Tracks: React.FC = () => {
                   }}
                 >
                   {track.description}
-                </p> */}
-                <Shuffle text={track.description} className="text-[14px] text-left flex-grow" />
-
+                </p>
+                {/* <Shuffle text={track.description} className="text-[14px] text-left flex-grow" /> */}
+                
                 {/* Bottom Animating Bar */}
                 <motion.div
                   initial={{ width: 0 }}
