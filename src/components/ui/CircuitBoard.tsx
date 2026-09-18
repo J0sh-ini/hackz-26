@@ -201,7 +201,7 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
 
   return (
     <div
-      className={`relative w-full max-w-[420px] mx-auto flex flex-col items-center justify-center select-none ${className}`}
+      className={`bg-black relative w-full max-w-[420px] mx-auto flex flex-col items-center justify-center select-none ${className}`}
     >
       {/* HUD Telemetry Sub-badge */}
       {/* <div

@@ -78,10 +78,9 @@ export const App: React.FC = () => {
   return (
     <div style={{ position: 'relative', width: '100%', minHeight: '100vh', backgroundColor: 'var(--bg-page)' }}>
       {/* Global Grain Texture Overlay */}
-      <NoiseOverlay />
+      {/* <NoiseOverlay /> */}
 
       {/* Ambient Floating Cyber Node Network */}
-      <NodeNetwork opacity={0.3} />
 
       {/* Persistent Navigation Bar */}
       <Navbar />
@@ -89,7 +88,12 @@ export const App: React.FC = () => {
       {/* Main Content Layout */}
       <main>
         {/* [01] Hero Section */}
+        <div>
+
         <Hero />
+        </div>
+    <div>
+      <NodeNetwork opacity={1} />
 
         {/* [02] Marquee Stats Strip */}
         <StatsMarquee />
@@ -100,14 +104,14 @@ export const App: React.FC = () => {
         {/* Terminal Divider
         <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4">
           <SectionDivider label="TRACKS PROTOCOL" />
-        </div> */}
+          </div> */}
 
         {/* [04] Mission Tracks */}
         <Tracks />
 
         {/* Terminal Divider
         <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4">
-          <SectionDivider label="STRATEGIC PARTNERS" />
+        <SectionDivider label="STRATEGIC PARTNERS" />
         </div> */}
 
         {/* [05] Sponsors */}
@@ -121,7 +125,7 @@ export const App: React.FC = () => {
 
         {/* Terminal Divider
         <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4">
-          <SectionDivider label="DEPLOYMENT FORCES" />
+        <SectionDivider label="DEPLOYMENT FORCES" />
         </div> */}
 
         {/* [08] Get Involved CTAs */}
@@ -129,7 +133,7 @@ export const App: React.FC = () => {
 
         {/* Terminal Divider
         <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4">
-          <SectionDivider label="KNOWLEDGE BASE" />
+        <SectionDivider label="KNOWLEDGE BASE" />
         </div> */}
 
         {/* [09] FAQs Accordion */}
@@ -137,11 +141,12 @@ export const App: React.FC = () => {
 
         {/* Terminal Divider
         <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4">
-          <SectionDivider label="TRANSMISSION LINKS" />
+        <SectionDivider label="TRANSMISSION LINKS" />
         </div> */}
 
         {/* [10] Contact & Socials */}
         <Contact />
+        </div>
       </main>
 
       {/* [11] Footer */}

@@ -7,7 +7,7 @@ import { Button } from '../ui/Button';
 import { GlitchText } from '../ui/GlitchText';
 import { EVENT_LINKS } from '../../data/contact';
 import ScrambleText from '../ambient/ScrambleText';
-import Shuffle from '../ambient/Shuffle'
+import TextType from '../ui/TextType'
 export const Hero: React.FC = () => {
   const [isGlitching, setIsGlitching] = useState<boolean>(true);
 
@@ -48,13 +48,14 @@ export const Hero: React.FC = () => {
         alignItems: 'center',
         textAlign: 'center',
         overflow: 'hidden',
+        zIndex: 2,
         backgroundColor: 'var(--bg-page)',
         paddingTop: 'var(--header-height)',
         paddingBottom: '40px',
       }}
     >
       {/* Background Matrix Rain */}
-      <MatrixCanvas opacity={0.65} />
+      <MatrixCanvas opacity={0.6} />
 
       {/* Scanline Overlay & CRT Vignette */}
       <Scanlines opacity={0.22} />
@@ -166,7 +167,8 @@ export const Hero: React.FC = () => {
             marginBottom: '28px',
           }}
         >
-          <Shuffle text="24-Hour National Tech Marathon: Innovate, Create, Dominate!"/>
+          <p>24-Hour National Tech Marathon:</p>
+          <TextType text=" Innovate, Create, Dominate!" loop={true} cursorBlinkDuration={1} initialDelay={1000}/>
         </motion.p>
 
         {/* Date / Venue Sharp Pill */}
@@ -179,7 +181,7 @@ export const Hero: React.FC = () => {
             alignItems: 'center',
             gap: '10px',
             padding: '10px 20px',
-            backgroundColor: 'var(--bg-card)',
+            // backgroundColor: 'var(--bg-card)',
             border: '1px solid var(--border-default)',
             fontFamily: 'var(--font-mono)',
             fontSize: 'clamp(11px, 2.5vw, 13px)',

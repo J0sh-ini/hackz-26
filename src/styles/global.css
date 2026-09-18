@@ -8,7 +8,7 @@
    ─────────────────────────────────────────────────────────────────────────── */
 @theme {
   /* Backgrounds */
-  --color-bg-page:          #050505;
+  --color-bg-page:          #000;
   --color-bg-section-alt:   #0a0a0a;
   --color-bg-card:          #0d0d0d;
   --color-bg-card-hover:    #111111;
