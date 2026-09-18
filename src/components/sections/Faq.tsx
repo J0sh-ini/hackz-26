@@ -14,21 +14,21 @@ export const Faq: React.FC = () => {
   return (
     <section
       id="faq"
-      className="section-padding"
+      className="py-[100px] max-md:py-16 relative"
       style={{
         position: 'relative',
         backgroundColor: 'var(--bg-page)',
         borderTop: '1px solid var(--border-default)',
       }}
     >
-      <div className="container" style={{ maxWidth: '860px' }}>
+      <div className="w-full max-w-[860px] mx-auto px-6 max-md:px-4">
         {/* Header */}
         <div style={{ marginBottom: '56px' }}>
-          <div className="section-meta">
+          <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
             <span>// 07</span>
             <span>DEBRIEF & INTEL</span>
           </div>
-          <h2 className="section-title">FREQUENTLY ASKED QUESTIONS</h2>
+          <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">FREQUENTLY ASKED QUESTIONS</h2>
           <p style={{ fontSize: '15px' }}>
             Everything you need to know regarding participation eligibility, marathon protocols, team formation, and registration guidelines.
           </p>
@@ -151,3 +151,5 @@ export const Faq: React.FC = () => {
     </section>
   );
 };
+
+

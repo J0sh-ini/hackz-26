@@ -84,7 +84,7 @@ export const Prizes: React.FC = () => {
     <section
       id="prizes"
       ref={sectionRef}
-      className="section-padding"
+      className="py-[100px] max-md:py-16 relative"
       style={{
         position: 'relative',
         backgroundColor: 'var(--bg-deep-green)',
@@ -93,14 +93,14 @@ export const Prizes: React.FC = () => {
         overflow: 'hidden',
       }}
     >
-      <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+      <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4" style={{ position: 'relative', zIndex: 10 }}>
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-          <div className="section-meta" style={{ justifyContent: 'center' }}>
+          <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2" style={{ justifyContent: 'center' }}>
             <span>// 04</span>
             <span>REWARDS & HONORS</span>
           </div>
-          <h2 className="section-title">WHAT'S AT STAKE</h2>
+          <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">WHAT'S AT STAKE</h2>
           <p style={{ maxWidth: '600px', margin: '0 auto', fontSize: '16px' }}>
             Compete for a combined bounty pool engineered to reward disruptive engineering, technical prowess, and innovative design.
           </p>
@@ -141,14 +141,7 @@ export const Prizes: React.FC = () => {
 
         {/* Podium Blocks Row */}
         <div
-          className="prizes-podium-grid"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '24px',
-            alignItems: 'stretch',
-            marginBottom: '48px',
-          }}
+          className="grid grid-cols-3 gap-6 items-stretch mb-12 max-md:grid-cols-1 max-md:gap-4"
         >
           {PODIUM_PRIZES.map((podium) => (
             <motion.div
@@ -333,3 +326,5 @@ export const Prizes: React.FC = () => {
     </section>
   );
 };
+
+

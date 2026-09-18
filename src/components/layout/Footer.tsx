@@ -12,16 +12,7 @@ export const Footer: React.FC = () => {
         paddingBottom: '28px',
       }}
     >
-      <div
-        className="container"
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: '16px',
-        }}
-      >
+      <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4 flex items-center justify-between flex-wrap gap-4 max-sm:flex-col max-sm:items-center max-sm:text-center">
         {/* Left */}
         <div
           style={{

@@ -7,7 +7,7 @@ export const Sponsors: React.FC = () => {
   return (
     <section
       id="sponsors"
-      className="section-padding"
+      className="py-[100px] max-md:py-16 relative"
       style={{
         position: 'relative',
         backgroundColor: 'var(--bg-page)',
@@ -15,14 +15,14 @@ export const Sponsors: React.FC = () => {
         overflow: 'hidden',
       }}
     >
-      <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+      <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4" style={{ position: 'relative', zIndex: 10 }}>
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-          <div className="section-meta" style={{ justifyContent: 'center' }}>
+          <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2" style={{ justifyContent: 'center' }}>
             <span>// 03</span>
             <span>STRATEGIC ALLIANCES</span>
           </div>
-          <h2 className="section-title">BACKED BY</h2>
+          <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">BACKED BY</h2>
           <p style={{ maxWidth: '600px', margin: '0 auto', fontSize: '15px' }}>
             Empowered by industry pioneers driving global financial software infrastructure and collegiate developer opportunity.
           </p>
@@ -30,15 +30,7 @@ export const Sponsors: React.FC = () => {
 
         {/* Balanced 2-Column Sponsor Grid */}
         <div
-          className="sponsors-grid"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1.1fr 1fr',
-            gap: '32px',
-            alignItems: 'stretch',
-            maxWidth: '1080px',
-            margin: '0 auto',
-          }}
+          className="grid grid-cols-[1.1fr_1fr] gap-8 items-stretch max-w-[1080px] mx-auto max-[860px]:grid-cols-1 max-[860px]:gap-6"
         >
           {/* Card 1: TEMENOS (Exclusive Sponsor) */}
           <motion.div
@@ -446,3 +438,5 @@ export const Sponsors: React.FC = () => {
     </section>
   );
 };
+
+

@@ -105,7 +105,7 @@ const RoleCard: React.FC<RoleCardProps> = ({
           variant="outline"
           href={btnHref}
           isExternal
-          className="get-involved-btn"
+          className="w-full sm:w-auto"
         >
           {btnText}
         </Button>
@@ -118,7 +118,7 @@ export const GetInvolved: React.FC = () => {
   return (
     <section
       id="get-involved"
-      className="section-padding"
+      className="py-[100px] max-md:py-16 relative"
       style={{
         position: 'relative',
         backgroundColor: 'var(--bg-page)',
@@ -126,14 +126,14 @@ export const GetInvolved: React.FC = () => {
         overflow: 'hidden',
       }}
     >
-      <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+      <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4" style={{ position: 'relative', zIndex: 10 }}>
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-          <div className="section-meta" style={{ justifyContent: 'center' }}>
+          <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2 justify-center">
             <span>// 06</span>
             <span>JOIN THE OPERATIONS</span>
           </div>
-          <h2 className="section-title">GET INVOLVED</h2>
+          <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">GET INVOLVED</h2>
           <p style={{ maxWidth: '560px', margin: '0 auto', fontSize: '15px' }}>
             Contribute your expertise or logistical power to ensure HackZ '24 runs with precision and impact.
           </p>
@@ -141,12 +141,7 @@ export const GetInvolved: React.FC = () => {
 
         {/* Two Side-by-Side Action Blocks with completely decoupled hover scopes */}
         <div
-          className="get-involved-grid"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '32px',
-          }}
+          className="grid grid-cols-2 gap-8 max-md:grid-cols-1 max-md:gap-5"
         >
           {/* Mentor Block */}
           <RoleCard
@@ -174,3 +169,5 @@ export const GetInvolved: React.FC = () => {
     </section>
   );
 };
+
+

@@ -98,7 +98,7 @@ export const App: React.FC = () => {
         <About />
 
         {/* Terminal Divider
-        <div className="container">
+        <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4">
           <SectionDivider label="TRACKS PROTOCOL" />
         </div> */}
 
@@ -106,7 +106,7 @@ export const App: React.FC = () => {
         <Tracks />
 
         {/* Terminal Divider
-        <div className="container">
+        <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4">
           <SectionDivider label="STRATEGIC PARTNERS" />
         </div> */}
 
@@ -120,7 +120,7 @@ export const App: React.FC = () => {
         <Timeline />
 
         {/* Terminal Divider
-        <div className="container">
+        <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4">
           <SectionDivider label="DEPLOYMENT FORCES" />
         </div> */}
 
@@ -128,7 +128,7 @@ export const App: React.FC = () => {
         <GetInvolved />
 
         {/* Terminal Divider
-        <div className="container">
+        <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4">
           <SectionDivider label="KNOWLEDGE BASE" />
         </div> */}
 
@@ -136,7 +136,7 @@ export const App: React.FC = () => {
         <Faq />
 
         {/* Terminal Divider
-        <div className="container">
+        <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4">
           <SectionDivider label="TRANSMISSION LINKS" />
         </div> */}
 

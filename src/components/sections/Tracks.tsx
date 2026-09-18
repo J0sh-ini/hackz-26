@@ -26,7 +26,7 @@ export const Tracks: React.FC = () => {
   return (
     <section
       id="tracks"
-      className="section-padding"
+      className="py-[100px] max-md:py-16 relative"
       style={{
         position: 'relative',
         backgroundColor: 'var(--bg-page)',
@@ -34,14 +34,14 @@ export const Tracks: React.FC = () => {
         overflow: 'hidden',
       }}
     >
-      <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+      <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4 relative" style={{ zIndex: 10 }}>
         {/* Header */}
         <div style={{ marginBottom: '52px' }}>
-          <div className="section-meta">
+          <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
             <span>// 02</span>
             <span>CHALLENGE DOMAINS</span>
           </div>
-          <h2 className="section-title">MISSION TRACKS</h2>
+          <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">MISSION TRACKS</h2>
           <p style={{ maxWidth: '640px', fontSize: '16px' }}>
             Choose an operational theater. Each domain addresses pressing technical, industrial, and societal challenges requiring scalable, high-impact prototypes.
           </p>
@@ -49,16 +49,11 @@ export const Tracks: React.FC = () => {
 
         {/* Tracks Grid */}
         <motion.div
-          className="tracks-grid"
+          className="grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '24px',
-          }}
         >
           {TRACKS.map((track: Track) => {
             const isSpecial = track.isSpecial;
@@ -173,3 +168,4 @@ export const Tracks: React.FC = () => {
     </section>
   );
 };
+

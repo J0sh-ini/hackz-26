@@ -50,7 +50,7 @@ export const About: React.FC = () => {
   return (
     <section
       id="about"
-      className="section-padding"
+      className="py-[100px] max-md:py-16 relative"
       style={{
         position: 'relative',
         backgroundColor: 'var(--bg-page)',
@@ -58,32 +58,18 @@ export const About: React.FC = () => {
         overflow: 'hidden',
       }}
     >
-      <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+      <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4 relative" style={{ zIndex: 10 }}>
         {/* Two Column Layout */}
         <div
-          className="about-grid"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1.5fr',
-            gap: '64px',
-            alignItems: 'center',
-            marginBottom: '64px',
-          }}
+          className="grid grid-cols-[1fr_1.5fr] gap-16 items-center mb-16 max-[992px]:grid-cols-1 max-[992px]:gap-8"
         >
           {/* Left Column: Circuit Board SVG Illustration (Desktop only, fades in softly) */}
           <motion.div
-            className="about-decorative-glyph"
+            className="flex items-center justify-center relative select-none max-[992px]:hidden"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 0.3 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: 'easeOut' }}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'relative',
-              userSelect: 'none',
-            }}
             aria-hidden="true"
           >
             <svg
@@ -194,12 +180,12 @@ export const About: React.FC = () => {
 
           {/* Right Column: Content Stack */}
           <div>
-            <div className="section-meta">
+            <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
               <span>// 01</span>
               <span>ABOUT THE MARATHON</span>
             </div>
 
-            <h2 className="section-title" style={{ color: 'var(--text-primary)' }}>
+            <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6" style={{ color: 'var(--text-primary)' }}>
               WHAT IS HACKZ'24?
             </h2>
 
@@ -236,12 +222,7 @@ export const About: React.FC = () => {
         {/* 3 Sharp Metric Boxes with GSAP Countup on Scroll Entry */}
         <div
           ref={statsRowRef}
-          className="about-stats-row"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '24px',
-          }}
+          className="grid grid-cols-3 gap-6 max-sm:grid-cols-1 max-sm:gap-4"
         >
           {/* Stat 1: 24 HRS */}
           <motion.div
@@ -388,3 +369,4 @@ export const About: React.FC = () => {
     </section>
   );
 };
+

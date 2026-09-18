@@ -7,7 +7,7 @@ export const Contact: React.FC = () => {
   return (
     <section
       id="contact"
-      className="section-padding"
+      className="py-[100px] max-md:py-16 relative"
       style={{
         position: 'relative',
         backgroundColor: 'var(--bg-page)',
@@ -23,14 +23,14 @@ export const Contact: React.FC = () => {
         ]}
       />
 
-      <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+      <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4" style={{ position: 'relative', zIndex: 10 }}>
         {/* Header */}
         <div style={{ marginBottom: '56px' }}>
-          <div className="section-meta">
+          <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
             <span>// 08</span>
             <span>DIRECT COMMS</span>
           </div>
-          <h2 className="section-title">REACH OUT</h2>
+          <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">REACH OUT</h2>
           <p style={{ maxWidth: '600px', fontSize: '15px' }}>
             Have logistical queries, sponsorship inquiries, or technical questions? Establish contact with the student organizing committee.
           </p>
@@ -38,12 +38,7 @@ export const Contact: React.FC = () => {
 
         {/* Two-Column Grid */}
         <div
-          className="contact-grid"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1.2fr 1fr',
-            gap: '64px',
-          }}
+          className="grid grid-cols-[1.2fr_1fr] gap-16 max-[860px]:grid-cols-1 max-[860px]:gap-10"
         >
           {/* Left Column: Student Coordinators */}
           <div>
@@ -282,3 +277,5 @@ export const Contact: React.FC = () => {
     </section>
   );
 };
+
+

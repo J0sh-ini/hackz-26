@@ -57,15 +57,7 @@ export const Navbar: React.FC = () => {
         zIndex: 1000,
       }}
     >
-      <div
-        className="container"
-        style={{
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
+      <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4 h-full flex items-center justify-between">
         {/* Brand / Logo */}
         <a
           href="#"
@@ -85,14 +77,7 @@ export const Navbar: React.FC = () => {
         </a>
 
         {/* Desktop Nav Links */}
-        <nav
-          className="desktop-nav"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '24px',
-          }}
-        >
+        <nav className="hidden md:flex items-center gap-6">
           {NAV_LINKS.map((link) => {
             const isActive = activeSection === link.href.substring(1);
             return (
@@ -143,20 +128,8 @@ export const Navbar: React.FC = () => {
         <button
           onClick={toggleMobileMenu}
           aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
-          className="mobile-hamburger"
-          style={{
-            display: 'none',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '44px',
-            height: '44px',
-            gap: '5px',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: 0,
-          }}
+          className="flex md:hidden flex-col justify-center items-center w-11 h-11 gap-[5px] cursor-pointer p-0"
+          style={{ background: 'none', border: 'none' }}
         >
           <span
             style={{

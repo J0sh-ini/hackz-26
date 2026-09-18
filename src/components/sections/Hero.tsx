@@ -61,7 +61,7 @@ export const Hero: React.FC = () => {
 
       {/* Hero Content Stack */}
       <div
-        className="container"
+        className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4"
         style={{
           position: 'relative',
           zIndex: 10,
@@ -212,7 +212,7 @@ export const Hero: React.FC = () => {
             variant="primary"
             href={EVENT_LINKS.registration}
             isExternal
-            className="hero-cta-btn"
+            className="w-full sm:w-auto"
           >
             [ REGISTER NOW ]
           </Button>
@@ -220,7 +220,7 @@ export const Hero: React.FC = () => {
           <Button
             variant="outline"
             href="#about"
-            className="hero-sub-btn"
+            className="w-full sm:w-auto"
           >
             EXPLORE DETAILS ↓
           </Button>
