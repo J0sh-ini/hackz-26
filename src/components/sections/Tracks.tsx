@@ -57,7 +57,7 @@ export const Tracks: React.FC = () => {
         >
           {TRACKS.map((track: Track) => {
             const isSpecial = track.isSpecial;
-            const accent = track.accentColor || (isSpecial ? 'var(--accent-amber)' : 'var(--accent-green)');
+            const accent = track.accentColor || (isSpecial ? 'var(--accent-green-volt)' : 'var(--accent-green)');
 
             return (
               <motion.div

@@ -4,7 +4,7 @@ import { RollingText } from './RollingText';
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'outline' | 'amber';
+  variant?: 'primary' | 'outline' | 'amber' | 'volt';
   href?: string;
   onClick?: () => void;
   className?: string;
@@ -24,7 +24,7 @@ export const Button: React.FC<ButtonProps> = ({
   style,
 }) => {
   const isPrimary = variant === 'primary';
-  const isAmber = variant === 'amber';
+  const isVolt = variant === 'volt' || variant === 'amber';
 
   const baseStyles: React.CSSProperties = {
     position: 'relative',
@@ -57,12 +57,12 @@ export const Button: React.FC<ButtonProps> = ({
         hoverTextColor: '#050505',
       };
     }
-    if (isAmber) {
+    if (isVolt) {
       return {
-        baseBg: '#140f04',
-        borderColor: 'var(--accent-amber)',
-        fillColor: 'var(--accent-amber)',
-        textColor: 'var(--accent-amber)',
+        baseBg: '#07150a',
+        borderColor: 'var(--accent-green-volt)',
+        fillColor: 'var(--accent-green-volt)',
+        textColor: 'var(--accent-green-volt)',
         hoverTextColor: '#050505',
       };
     }

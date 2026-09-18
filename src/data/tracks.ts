@@ -15,7 +15,7 @@ export const TRACKS: Track[] = [
     number: '[01]',
     name: 'Blockchain',
     description: 'Decentralized architectures, smart contract security, Web3 infrastructure, and trustless verification protocols.',
-    accentColor: '#00f0ff',
+    accentColor: '#00ff88',
     iconType: 'blockchain',
   },
   {
@@ -23,7 +23,7 @@ export const TRACKS: Track[] = [
     number: '[02]',
     name: 'FinTech',
     description: 'Next-gen algorithmic finance, automated fraud mitigation, zero-knowledge payments, and high-frequency settlement.',
-    accentColor: '#ff6b00',
+    accentColor: '#10f290',
     iconType: 'fintech',
   },
   {
@@ -31,7 +31,7 @@ export const TRACKS: Track[] = [
     number: '[03]',
     name: 'MedX',
     description: 'AI-assisted clinical telemetry, secure biomedical diagnostics, telemetry streaming, and privacy-preserving electronic health records.',
-    accentColor: '#b026ff',
+    accentColor: '#39ff14',
     iconType: 'medx',
   },
   {
@@ -47,7 +47,7 @@ export const TRACKS: Track[] = [
     number: '[05]',
     name: 'Women Safety',
     description: 'Autonomous emergency dispatch, covert threat alerting mechanisms, localized safe-transit routing, and rapid guardian coordination.',
-    accentColor: '#ff2a85',
+    accentColor: '#70ff00',
     iconType: 'safety',
   },
   {
@@ -57,7 +57,7 @@ export const TRACKS: Track[] = [
     description: 'Leading Women\'s Team special track. Dedicated systems catalyzing female leadership, digital financial autonomy, and equal opportunity.',
     isSpecial: true,
     specialLabel: '[SPECIAL PRIZE]',
-    accentColor: '#f5a623',
+    accentColor: '#84ff00',
     iconType: 'empowerment',
   },
 ];

@@ -50,7 +50,7 @@
 
 .glitch-text::before {
   left: -2px;
-  color: #ff3b3b;
+  color: #39ff14;
   clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
   opacity: 0;
   transition: opacity 0.15s ease;
@@ -58,7 +58,7 @@
 
 .glitch-text::after {
   left: 2px;
-  color: #00e5ff;
+  color: #00ff88;
   clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
   opacity: 0;
   transition: opacity 0.15s ease;

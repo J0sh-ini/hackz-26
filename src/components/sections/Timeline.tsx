@@ -156,7 +156,7 @@ export const Timeline: React.FC = () => {
               const isLast = idx === TIMELINE_EVENTS.length - 1;
 
               const nodeColor = isActive
-                ? 'var(--accent-amber)'
+                ? 'var(--accent-green-bright)'
                 : 'var(--accent-green)';
 
               return (
@@ -187,7 +187,7 @@ export const Timeline: React.FC = () => {
                       justifyContent: 'center',
                       zIndex: 5,
                       boxShadow: isActive
-                        ? '0 0 12px rgba(245, 166, 35, 0.7)'
+                        ? '0 0 14px rgba(57, 255, 20, 0.75)'
                         : isLast
                         ? '0 0 14px rgba(0, 255, 65, 0.8)'
                         : '0 0 8px rgba(0, 255, 65, 0.4)',
@@ -200,7 +200,7 @@ export const Timeline: React.FC = () => {
                         backgroundColor: nodeColor,
                         transform: 'rotate(45deg)',
                         boxShadow: isActive
-                          ? '0 0 8px var(--accent-amber)'
+                          ? '0 0 8px var(--accent-green-bright)'
                           : '0 0 8px var(--accent-green)',
                       }}
                     />
@@ -212,17 +212,17 @@ export const Timeline: React.FC = () => {
                     style={{
                       width: '44%',
                       backgroundColor: isActive
-                        ? '#0f140e'
+                        ? '#08170c'
                         : isLast
                         ? '#0b140e'
                         : 'var(--bg-card)',
                       border: isActive
-                        ? '1px solid rgba(245, 166, 35, 0.4)'
+                        ? '1px solid rgba(57, 255, 20, 0.45)'
                         : isLast
                         ? '1px solid rgba(0, 255, 65, 0.35)'
                         : '1px solid var(--border-default)',
                       borderLeft: isActive
-                        ? '3px solid var(--accent-amber)'
+                        ? '3px solid var(--accent-green-bright)'
                         : isLast
                         ? '3px solid var(--accent-green)'
                         : undefined,
@@ -237,7 +237,7 @@ export const Timeline: React.FC = () => {
                         style={{
                           fontFamily: 'var(--font-mono)',
                           fontSize: '12px',
-                          color: isActive ? 'var(--accent-amber)' : 'var(--accent-green)',
+                          color: isActive ? 'var(--accent-green-bright)' : 'var(--accent-green)',
                           fontWeight: 700,
                           letterSpacing: '0.12em',
                         }}

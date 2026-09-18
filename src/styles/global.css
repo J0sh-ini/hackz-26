@@ -24,16 +24,23 @@
   --color-text-secondary:   #6e6e6e;
   --color-text-muted:       #444444;
 
-  /* Accent colors */
-  --color-accent-green:        #00ff41;
-  --color-accent-green-dim:    #00b32c;
-  --color-accent-amber:        #f5a623;
-  --color-accent-orange:       #ff6b00;
-  --color-accent-purple:       #b026ff;
-  --color-accent-purple-light: #c084fc;
-  --color-accent-cyan:         #00f0ff;
-  --color-accent-magenta:      #ff2a85;
-  --color-accent-red:          #ff3b3b;
+  /* Accent colors - Electric Green spectrum & variations */
+  --color-accent-green:         #00ff41; /* Core Signature Electric Green */
+  --color-accent-green-bright:  #39ff14; /* High-voltage Neon Lime */
+  --color-accent-green-volt:    #84ff00; /* Radiant Chartreuse Volt */
+  --color-accent-green-mint:    #00ff88; /* Cyber Mint Green */
+  --color-accent-green-emerald: #10f290; /* Digital Emerald Green */
+  --color-accent-green-light:   #a3ffb8; /* Luminescent Mint / Light Green */
+  --color-accent-green-dim:     #00b32c; /* Deep Matrix / Emerald Green */
+
+  /* Legacy compatibility remapped strictly to Electric Green variations */
+  --color-accent-amber:         #84ff00;
+  --color-accent-orange:        #39ff14;
+  --color-accent-purple:        #00ff88;
+  --color-accent-purple-light:  #a3ffb8;
+  --color-accent-cyan:          #00ff88;
+  --color-accent-magenta:       #70ff00;
+  --color-accent-red:           #00ff41;
 
   /* Fonts */
   --font-family-display: 'JetBrains Mono', monospace;
@@ -62,15 +69,24 @@
     --text-primary:     var(--color-text-primary);
     --text-secondary:   var(--color-text-secondary);
     --text-muted:       var(--color-text-muted);
-    --accent-green:        var(--color-accent-green);
-    --accent-green-dim:    var(--color-accent-green-dim);
-    --accent-amber:        var(--color-accent-amber);
-    --accent-orange:       var(--color-accent-orange);
-    --accent-purple:       var(--color-accent-purple);
-    --accent-purple-light: var(--color-accent-purple-light);
-    --accent-cyan:         var(--color-accent-cyan);
-    --accent-magenta:      var(--color-accent-magenta);
-    --accent-red:          var(--color-accent-red);
+
+    /* Electric Green Palette */
+    --accent-green:         var(--color-accent-green);
+    --accent-green-bright:  var(--color-accent-green-bright);
+    --accent-green-volt:    var(--color-accent-green-volt);
+    --accent-green-mint:    var(--color-accent-green-mint);
+    --accent-green-emerald: var(--color-accent-green-emerald);
+    --accent-green-light:   var(--color-accent-green-light);
+    --accent-green-dim:     var(--color-accent-green-dim);
+
+    /* Remapped legacy variables */
+    --accent-amber:         var(--color-accent-green-volt);
+    --accent-orange:        var(--color-accent-green-bright);
+    --accent-purple:        var(--color-accent-green-mint);
+    --accent-purple-light:  var(--color-accent-green-light);
+    --accent-cyan:          var(--color-accent-green-mint);
+    --accent-magenta:       var(--color-accent-green-bright);
+    --accent-red:           var(--color-accent-green);
     --font-display: var(--font-family-display);
     --font-heading:  var(--font-family-heading);
     --font-body:     var(--font-family-body);

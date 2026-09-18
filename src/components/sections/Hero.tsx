@@ -141,10 +141,10 @@ export const Hero: React.FC = () => {
             textShadow: '0 0 12px rgba(0, 0, 0, 0.8)',
           }}
         >
-          <span style={{ color: 'var(--accent-orange)', textShadow: '0 0 10px rgba(255, 107, 0, 0.4)' }}>Zap.</span>
-          <span style={{ color: 'var(--accent-purple)', textShadow: '0 0 10px rgba(176, 38, 255, 0.4)' }}>Zen.</span>
-          <span style={{ color: 'var(--accent-amber)', textShadow: '0 0 10px rgba(245, 166, 35, 0.4)' }}>Zest.</span>
-          <span style={{ color: 'var(--accent-green)', textShadow: '0 0 10px rgba(0, 255, 65, 0.4)' }}>HackZ</span>
+          <span style={{ color: 'var(--accent-green-bright)', textShadow: '0 0 10px rgba(57, 255, 20, 0.45)' }}>Zap.</span>
+          <span style={{ color: 'var(--accent-green-mint)', textShadow: '0 0 10px rgba(0, 255, 136, 0.4)' }}>Zen.</span>
+          <span style={{ color: 'var(--accent-green-volt)', textShadow: '0 0 10px rgba(132, 255, 0, 0.4)' }}>Zest.</span>
+          <span style={{ color: 'var(--accent-green)', textShadow: '0 0 12px rgba(0, 255, 65, 0.5)' }}>HackZ</span>
         </motion.div>
 
         {/* Tagline */}
