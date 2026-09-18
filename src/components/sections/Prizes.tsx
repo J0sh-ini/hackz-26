@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+import ScrambleText from '../ambient/ScrambleText';
+import Shuffle from '../ambient/Shuffle';
 gsap.registerPlugin(ScrollTrigger);
 
 const PODIUM_PRIZES = [
@@ -100,13 +101,15 @@ export const Prizes: React.FC = () => {
             <span>// 04</span>
             <span>REWARDS & HONORS</span>
           </div>
-          <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">WHAT'S AT STAKE</h2>
-          <p style={{ maxWidth: '600px', margin: '0 auto', fontSize: '16px' }}>
+          {/* <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">WHAT'S AT STAKE</h2> */}
+          <ScrambleText text="WHAT'S AT STAKE" as="h2" className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6" from="random" easing="linear"/>
+          {/* <p style={{ maxWidth: '600px', margin: '0 auto', fontSize: '16px' }}>
             Compete for a combined bounty pool engineered to reward disruptive engineering, technical prowess, and innovative design.
-          </p>
-        </div>
+          </p> */}
+            <Shuffle text="Compete for a combined bounty pool engineered to reward disruptive engineering, technical prowess, and innovative design."  style={{ maxWidth: '600px', margin: '0 auto', fontSize: '16px', lineHeight: '1.5' }} />
+          </div>
 
-        {/* Massive Countup Number Banner */}
+          {/* Massive Countup Number Banner */}
         <div
           ref={counterRef}
           style={{

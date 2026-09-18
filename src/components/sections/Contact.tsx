@@ -2,7 +2,8 @@ import React from 'react';
 import { CONTACT_PEOPLE, CONTACT_EMAILS, SOCIAL_LINKS, EVENT_LINKS } from '../../data/contact';
 import { FloatingDecorations } from '../ambient/FloatingDecorations';
 import { RollingText } from '../ui/RollingText';
-
+import ScrambleText from '../ambient/ScrambleText';
+import TextType from '../ui/TextType';
 export const Contact: React.FC = () => {
   return (
     <section
@@ -27,10 +28,12 @@ export const Contact: React.FC = () => {
         {/* Header */}
         <div style={{ marginBottom: '56px' }}>
           <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
-            <span>// 08</span>
-            <span>DIRECT COMMS</span>
+            {/* <span>// 08</span>
+            <span>DIRECT COMMS</span> */}
+            <ScrambleText text="DIRECT COMMS" as="span" className="text-[13px] text-accent-green uppercase tracking-[0.15em]" from="random" easing="linear"/>
           </div>
-          <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">REACH OUT</h2>
+          {/* <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">REACH OUT</h2> */}
+          <ScrambleText text="REACH OUT" as="h2" className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6" from="random" easing="linear"/>
           <p style={{ maxWidth: '600px', fontSize: '15px' }}>
             Have logistical queries, sponsorship inquiries, or technical questions? Establish contact with the student organizing committee.
           </p>
@@ -74,7 +77,9 @@ export const Contact: React.FC = () => {
                       color: 'var(--text-primary)',
                     }}
                   >
-                    {person.name}
+                    {/* {person.name}
+                     */}
+                    <TextType text={person.name} as="span" className="font-heading text-[16px] font-semibold" typingSpeed={30}  pauseDuration={1000} loop={false} startOnVisible={true} />
                   </span>
 
                   <a
@@ -93,12 +98,13 @@ export const Contact: React.FC = () => {
                   >
                     <span className="subtle-link-fill" aria-hidden="true" />
                     <span style={{ position: 'relative', zIndex: 2 }}>
-                      <RollingText
+                      {/* <RollingText
                         text={person.phone}
                         baseColor="var(--text-secondary)"
                         hoverColor="var(--accent-green)"
                         stagger={0.015}
-                      />
+                      /> */}
+                      <TextType text={person.phone} as="span" className="font-mono text-[14px] text-text-secondary" typingSpeed={30}  pauseDuration={1000} loop={false} startOnVisible={true} />
                     </span>
                   </a>
                 </div>

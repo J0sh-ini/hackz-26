@@ -6,7 +6,8 @@ import { BlinkingCursor } from '../ambient/BlinkingCursor';
 import { Button } from '../ui/Button';
 import { GlitchText } from '../ui/GlitchText';
 import { EVENT_LINKS } from '../../data/contact';
-
+import ScrambleText from '../ambient/ScrambleText';
+import Shuffle from '../ambient/Shuffle'
 export const Hero: React.FC = () => {
   const [isGlitching, setIsGlitching] = useState<boolean>(true);
 
@@ -86,7 +87,9 @@ export const Hero: React.FC = () => {
             alignItems: 'center',
           }}
         >
-          <span>// CSEA-CEG PRESENTS</span>
+          {/* <span>// CSEA-CEG PRESENTS</span>
+           */}
+           <ScrambleText text="CSEA-CEG PRESENTS" as="span" className="text-[14px] text-accent-green font-mono tracking-[0.18em]" from="random" easing="linear"/>
           <BlinkingCursor />
         </motion.div>
 
@@ -163,7 +166,7 @@ export const Hero: React.FC = () => {
             marginBottom: '28px',
           }}
         >
-          24-Hour National Tech Marathon: Innovate, Create, Dominate!
+          <Shuffle text="24-Hour National Tech Marathon: Innovate, Create, Dominate!"/>
         </motion.p>
 
         {/* Date / Venue Sharp Pill */}
@@ -187,11 +190,14 @@ export const Hero: React.FC = () => {
             justifyContent: 'center',
           }}
         >
-          <span style={{ color: 'var(--accent-green)', fontWeight: 700 }}>
+          {/* <span style={{ color: 'var(--accent-green)', fontWeight: 700 }}>
             NOV 23–24, 2024
           </span>
           <span style={{ color: 'var(--text-secondary)' }}>&middot;</span>
-          <span>CEG CAMPUS, ANNA UNIVERSITY</span>
+          <span>CEG CAMPUS, ANNA UNIVERSITY</span> */}
+          <ScrambleText text="NOV 23–24, 2024" as="span" className="text-[clamp(11px,2.5vw,13px)] text-accent-green font-mono tracking-[0.08em]" from="random" easing="linear"/>
+          <span style={{ color: 'var(--text-secondary)' }}>&middot;</span>
+          <ScrambleText text="CEG CAMPUS, ANNA UNIVERSITY" as="span" className="text-[clamp(11px,2.5vw,13px)] text-text-primary font-mono tracking-[0.08em]" from="random" easing="linear"/>
         </motion.div>
 
         {/* CTAs */}
@@ -214,7 +220,7 @@ export const Hero: React.FC = () => {
             isExternal
             className="w-full sm:w-auto"
           >
-            [ REGISTER NOW ]
+             [ REGISTER NOW ]
           </Button>
 
           <Button

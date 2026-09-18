@@ -73,7 +73,7 @@ export const Navbar: React.FC = () => {
           }}
         >
           <span style={{ color: 'var(--text-secondary)' }}>&gt;</span>
-          <span>HackZ '24</span>
+          <span>HackZ'26</span>
         </a>
 
         {/* Desktop Nav Links */}

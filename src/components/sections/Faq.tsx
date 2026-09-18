@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { FAQS, FaqItem } from '../../data/faq';
-
+import  ScrambleText  from '../ambient/ScrambleText';
+import TextType from '../ui/TextType';
+import FoldText from '../ui/FoldText';
 export const Faq: React.FC = () => {
   const [openId, setOpenId] = useState<string | null>(null);
 
@@ -25,10 +27,12 @@ export const Faq: React.FC = () => {
         {/* Header */}
         <div style={{ marginBottom: '56px' }}>
           <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
-            <span>// 07</span>
-            <span>DEBRIEF & INTEL</span>
+            {/* <span>// 07</span>
+            <span>DEBRIEF & INTEL</span> */}
+            <ScrambleText text="DEBRIEF & INTEL" as="span" className="text-[13px] text-accent-green uppercase tracking-[0.15em]" from="random" easing="linear"/>
           </div>
-          <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">FREQUENTLY ASKED QUESTIONS</h2>
+          {/* <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">FREQUENTLY ASKED QUESTIONS</h2> */}
+          <ScrambleText text="FREQUENTLY ASKED QUESTIONS" as="h2" className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6" from="random" easing="linear"/>
           <p style={{ fontSize: '15px' }}>
             Everything you need to know regarding participation eligibility, marathon protocols, team formation, and registration guidelines.
           </p>
@@ -98,7 +102,8 @@ export const Faq: React.FC = () => {
                               transition: 'color 0.15s ease',
                             }}
                           >
-                            {item.question}
+                            {/* {item.question} */}
+                            <TextType text={item.question} as="span" className="font-heading text-[clamp(15px,2.5vw,17px)] font-semibold" typingSpeed={30}  pauseDuration={1000} loop={false} startOnVisible={true} />
                           </span>
 
                           <span
@@ -134,7 +139,14 @@ export const Faq: React.FC = () => {
                                   color: '#a8a8a8',
                                 }}
                               >
-                                {item.answer}
+                                {/* {item.answer} */}
+                                <FoldText text={item.answer} style={{
+                                  padding: '0 8px 20px 8px',
+                                  fontFamily: 'var(--font-body)',
+                                  fontSize: '14px',
+                                  lineHeight: 1.65,
+                                  color: '#a8a8a8',
+                                }}/>
                               </div>
                             </motion.div>
                           )}

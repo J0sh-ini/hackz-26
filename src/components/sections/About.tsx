@@ -3,11 +3,13 @@ import { motion } from 'motion/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CircuitBoard } from '../ui/CircuitBoard';
+import ScrambleText from '../ambient/ScrambleText';
+import Shuffle from '../ambient/Shuffle';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ABOUT_PARAGRAPHS = [
-  "HackZ '24 is a dynamic 24-hour hackathon initiated by CSEA that brings together the brightest minds to solve real-world challenges through technology and innovation.",
+  "HackZ'26 is a dynamic 24-hour hackathon initiated by CSEA that brings together the brightest minds to solve real-world challenges through technology and innovation.",
   "Open to engineering students across India, it encourages collaboration and out-of-the-box thinking, fostering an environment of continuous learning and rapid architectural prototyping.",
   "Participants work in multidisciplinary teams to solve industry-relevant problems, with the opportunity to engineer impactful solutions that can be scaled and deployed in the real world."
 ];
@@ -79,12 +81,14 @@ export const About: React.FC = () => {
           {/* Right Column: Content Stack */}
           <div>
             <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
-              <span>// 01</span>
-              <span>ABOUT THE MARATHON</span>
+              {/* <span>// 01</span>
+              <span>ABOUT THE MARATHON</span> */}
+              <ScrambleText text="ABOUT THE MARATHON" as="span" className="text-[13px] text-accent-green font-mono tracking-[0.15em]" from="random" easing="linear"/>
             </div>
 
             <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6" style={{ color: 'var(--text-primary)' }}>
-              WHAT IS HACKZ'24?
+              <ScrambleText text="HACKZ'26" as="span" className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6" from="random" easing="linear"/>
+
             </h2>
 
             {/* Body Text with Vertical Border Accent */}
@@ -98,20 +102,14 @@ export const About: React.FC = () => {
               }}
             >
               {ABOUT_PARAGRAPHS.map((text, idx) => (
-                <motion.p
-                  key={idx}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{ duration: 0.45, delay: idx * 0.08, ease: 'easeOut' }}
-                  style={{
+                <span key={idx} style={{ color: 'var(--text-secondary)' }}>
+
+                  <Shuffle text={text} style={{
                     fontSize: 'clamp(15px, 2.5vw, 17px)',
                     color: '#c5c5c5',
                     lineHeight: 1.7,
-                  }}
-                >
-                  {text}
-                </motion.p>
+                  }} />
+                  </span>
               ))}
             </div>
           </div>

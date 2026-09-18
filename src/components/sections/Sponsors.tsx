@@ -2,7 +2,8 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { EVENT_LINKS } from '../../data/contact';
 import { RollingText } from '../ui/RollingText';
-
+import ScrambleText from '../ambient/ScrambleText';
+import Shuffle from '../ambient/Shuffle';
 export const Sponsors: React.FC = () => {
   return (
     <section
@@ -22,11 +23,19 @@ export const Sponsors: React.FC = () => {
             <span>// 03</span>
             <span>STRATEGIC ALLIANCES</span>
           </div>
-          <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">BACKED BY</h2>
-          <p style={{ maxWidth: '600px', margin: '0 auto', fontSize: '15px' }}>
+          {/* <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">BACKED BY</h2> */}
+          <span>
+          <ScrambleText
+            text="BACKED BY"
+            className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6"
+            as="h2"
+          />
+          </span>
+          {/* <p style={{ maxWidth: '600px', margin: '0 auto', fontSize: '15px' }}>
             Empowered by industry pioneers driving global financial software infrastructure and collegiate developer opportunity.
-          </p>
-        </div>
+          </p> */}
+          <Shuffle text="Empowered by industry pioneers driving global financial software infrastructure and collegiate developer opportunity." style={{ maxWidth: '600px', margin: '0 auto', fontSize: '15px',lineHeight: '1.5' }}/>
+        </div> 
 
         {/* Balanced 2-Column Sponsor Grid */}
         <div
@@ -61,17 +70,9 @@ export const Sponsors: React.FC = () => {
                 backgroundColor: 'rgba(0, 255, 65, 0.02)',
               }}
             >
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '11px',
-                  fontWeight: 700,
-                  letterSpacing: '0.15em',
-                  color: 'var(--accent-green)',
-                }}
-              >
-                [ EXCLUSIVE SPONSOR ]
-              </span>
+              
+                <ScrambleText text="[ EXCLUSIVE SPONSOR ]" className="text-[11px] font-mono text-accent-green tracking-[0.15em]" as="span"/>
+             
 
               <span
                 style={{

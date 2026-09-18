@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { EVENT_LINKS } from '../../data/contact';
 import { Button } from '../ui/Button';
 import { ScrambleTitle } from '../ui/ScrambleTitle';
-
+import ScrambleText from '../ambient/ScrambleText';
 interface RoleCardProps {
   roleTag: string;
   watermark: string;
@@ -130,12 +130,14 @@ export const GetInvolved: React.FC = () => {
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '56px' }}>
           <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2 justify-center">
-            <span>// 06</span>
-            <span>JOIN THE OPERATIONS</span>
+            {/* <span>// 06</span>
+            <span>JOIN THE OPERATIONS</span> */}
+            <ScrambleText text="JOIN THE OPERATIONS" as="span" className="text-[13px] text-accent-green uppercase tracking-[0.15em]" from="random" easing="linear"/>
           </div>
-          <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">GET INVOLVED</h2>
+          {/* <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">GET INVOLVED</h2> */}
+          <ScrambleText text="GET INVOLVED" as="h2" className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6" from="random" easing="linear"/>
           <p style={{ maxWidth: '560px', margin: '0 auto', fontSize: '15px' }}>
-            Contribute your expertise or logistical power to ensure HackZ '24 runs with precision and impact.
+            Contribute your expertise or logistical power to ensure HackZ'26 runs with precision and impact.
           </p>
         </div>
 

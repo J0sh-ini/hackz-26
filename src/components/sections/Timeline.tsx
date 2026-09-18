@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TIMELINE_EVENTS, TimelineEvent } from '../../data/timeline';
-
+import ScrambleText from '../ambient/ScrambleText';
 gsap.registerPlugin(ScrollTrigger);
 
 export const Timeline: React.FC = () => {
@@ -74,7 +74,8 @@ export const Timeline: React.FC = () => {
             <span>// 05</span>
             <span>OPERATIONAL ROADMAP</span>
           </div>
-          <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">SEQUENCE OF EVENTS</h2>
+          {/* <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">SEQUENCE OF EVENTS</h2> */}
+          <ScrambleText text="SEQUENCE OF EVENTS" as="h2" className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6" from="random" easing="linear"/>
           <p style={{ maxWidth: '580px', margin: '0 auto', fontSize: '15px' }}>
             A synchronized progression from nationwide ideation review to the intensive 24-hour on-campus prototype deployment.
           </p>

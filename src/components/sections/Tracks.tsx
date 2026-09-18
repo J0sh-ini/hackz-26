@@ -2,7 +2,8 @@ import React from 'react';
 import { motion, type Variants } from 'motion/react';
 import { TRACKS, Track } from '../../data/tracks';
 import { TrackIcon } from '../ui/TrackIcon';
-
+import ScrambleText from '../ambient/ScrambleText';
+import Shuffle from '../ambient/Shuffle';
 const containerVariants: Variants = {
   hidden: {},
   visible: {
@@ -38,13 +39,10 @@ export const Tracks: React.FC = () => {
         {/* Header */}
         <div style={{ marginBottom: '52px' }}>
           <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
-            <span>// 02</span>
-            <span>CHALLENGE DOMAINS</span>
+          <ScrambleText text="CHALLENGE DOMAINS"/>
           </div>
-          <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">MISSION TRACKS</h2>
-          <p style={{ maxWidth: '640px', fontSize: '16px' }}>
-            Choose an operational theater. Each domain addresses pressing technical, industrial, and societal challenges requiring scalable, high-impact prototypes.
-          </p>
+          <ScrambleText text="MISSION TRACKS" as="h2" className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6"/>
+          <Shuffle text="Choose an operational theater. Each domain addresses pressing technical, industrial, and societal challenges requiring scalable, high-impact prototypes."  className="max-w-[640px] text-[16px] text-left" />
         </div>
 
         {/* Tracks Grid */}
@@ -119,7 +117,7 @@ export const Tracks: React.FC = () => {
                 </div>
 
                 {/* Track Title */}
-                <h3
+                {/* <h3
                   style={{
                     fontFamily: 'var(--font-heading)',
                     fontSize: '22px',
@@ -130,10 +128,11 @@ export const Tracks: React.FC = () => {
                   }}
                 >
                   {track.name}
-                </h3>
+                </h3> */}
+                <ScrambleText text={track.name} as="h3" className="text-[22px] font-bold mb-3" />
 
                 {/* Description */}
-                <p
+                {/* <p
                   style={{
                     fontFamily: 'var(--font-body)',
                     fontSize: '14px',
@@ -143,7 +142,8 @@ export const Tracks: React.FC = () => {
                   }}
                 >
                   {track.description}
-                </p>
+                </p> */}
+                <Shuffle text={track.description} className="text-[14px] text-left flex-grow" />
 
                 {/* Bottom Animating Bar */}
                 <motion.div

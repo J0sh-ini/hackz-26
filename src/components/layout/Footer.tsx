@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
             letterSpacing: '0.05em',
           }}
         >
-          HackZ '24 — CSEA-CEG
+          HackZ'26 — CSEA-CEG
         </div>
 
         {/* Center */}
@@ -33,7 +33,7 @@ export const Footer: React.FC = () => {
             color: 'var(--text-muted)',
           }}
         >
-          &copy; 2024 CSEA. All rights reserved.
+          &copy; 2026 CSEA. All rights reserved.
         </div>
 
         {/* Right */}
