@@ -40,7 +40,63 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
   const activeWiresRef = useRef<Set<number>>(new Set());
   const packetPoolIndexRef = useRef<number>(0);
   const activateWireRef = useRef<((idx: number) => void) | null>(null);
-  const [activeWireCount, setActiveWireCount] = useState<number>(0);
+  const [isPaused, setIsPaused] = useState<boolean>(false);
+  const isPausedRef = useRef<boolean>(false);
+  const [pauseMessage, setPauseMessage] = useState<string | null>(null);
+
+  // Manage pause sequence and warning message popups
+  useEffect(() => {
+    isPausedRef.current = isPaused;
+
+    if (!isPaused) {
+      setPauseMessage(null);
+      return;
+    }
+
+    // 1. Clear all active wires and reset strokes/packets immediately
+    activeWiresRef.current.clear();
+    const container = containerRef.current;
+    if (container) {
+      container.querySelectorAll<SVGPathElement>('.circuit-wires-base path').forEach((el) => {
+        el.style.stroke = 'rgba(0, 255, 65, 0.22)';
+        el.style.strokeWidth = '1.6px';
+      });
+      container.querySelectorAll<SVGPathElement>('.circuit-wires-active path').forEach((el) => {
+        el.style.opacity = '0';
+      });
+      container.querySelectorAll<HTMLElement>('.circuit-packet').forEach((el) => {
+        el.style.opacity = '0';
+      });
+    }
+
+    // Step 1: "Pausing HackZ Main Core ........." (wait 3 sec)
+    setPauseMessage('Pausing HackZ Main Core .........');
+
+    // Step 2: "Energy Overload ........" (wait 2 sec)
+    const timer1 = window.setTimeout(() => {
+      setPauseMessage('Energy Overload ........');
+    }, 3000);
+
+    // Step 3: "Error: Failed to Stop HackZ ..." (wait 2 sec then disappears and auto plays)
+    const timer2 = window.setTimeout(() => {
+      setPauseMessage('Error: Failed to Stop HackZ .......');
+    }, 5000);
+    const timer3 = window.setTimeout(() => {
+      setPauseMessage('Reinitailizing HackZ Main Core .......');
+    }, 7000);
+    // After 7 seconds total (3 + 2 + 2), message disappears and animation resumes
+    const timer4 = window.setTimeout(() => {
+      setPauseMessage(null);
+      setIsPaused(false);
+    }, 9000);
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+      clearTimeout(timer4);
+    };
+  }, [isPaused]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -63,11 +119,10 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
 
     // Function to activate a specific random circuit wire using animejs createMotionPath & createDrawable
     const activateWire = (wireIdx: number) => {
-      if (isDestroyed) return;
+      if (isDestroyed || isPausedRef.current) return;
       if (activeWiresRef.current.has(wireIdx)) return;
 
       activeWiresRef.current.add(wireIdx);
-      setActiveWireCount(activeWiresRef.current.size);
 
       const wire = CIRCUIT_WIRES[wireIdx];
       const baseWireEl = container.querySelector<SVGPathElement>(`#${wire.id}`);
@@ -84,35 +139,100 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
         return;
       }
 
-      const duration = 1200 + Math.floor(Math.random() * 600);
+      const duration = 850 + Math.floor(Math.random() * 850);
 
-      // 1. Activate wire base stroke with brighter neon green
+      // Function to execute the return trace back to starting point after 0.5s pause
+      const startReturnTrace = () => {
+        if (isDestroyed || isPausedRef.current) {
+          activeWiresRef.current.delete(wireIdx);
+          return;
+        }
+
+        // 1. Light up base wire on return
+        animate(baseWireEl, {
+          stroke: ['rgba(0, 255, 65, 0.22)', '#39ff14', 'rgba(0, 255, 65, 0.22)'],
+          strokeWidth: [1.6, 2.4, 1.6],
+          duration,
+          ease: 'linear',
+        });
+
+        // 2. Line drawing animation tracing back from endpoint to start
+        activeTraceEl.style.opacity = '1';
+        try {
+          const drawables = svg.createDrawable(activeTraceEl);
+          animate(drawables, {
+            draw: ['1 1', '0 1'],
+            duration,
+            ease: 'linear',
+            onComplete: () => {
+              activeTraceEl.style.opacity = '0';
+            },
+          });
+        } catch {
+          animate(activeTraceEl, {
+            opacity: [1, 0],
+            duration,
+            ease: 'linear',
+          });
+        }
+
+        // 3. Move packet in reverse back to starting point
+        if (packetEl) {
+          packetEl.style.opacity = '1';
+          try {
+            animate(packetEl, {
+              ...svg.createMotionPath(baseWireEl),
+              reversed: true,
+              duration,
+              ease: 'linear',
+              onComplete: () => {
+                if (isDestroyed) return;
+                packetEl.style.opacity = '0';
+                activeTraceEl.style.opacity = '0';
+                activeWiresRef.current.delete(wireIdx);
+              },
+            });
+          } catch {
+            packetEl.style.opacity = '0';
+            activeTraceEl.style.opacity = '0';
+            activeWiresRef.current.delete(wireIdx);
+          }
+        } else {
+          setTimeout(() => {
+            if (isDestroyed) return;
+            activeTraceEl.style.opacity = '0';
+            activeWiresRef.current.delete(wireIdx);
+          }, duration);
+        }
+      };
+
+      // ── Step 1: Forward transmission to endpoint ──
+      // 1. Light up base wire
       animate(baseWireEl, {
-        stroke: ['rgba(0, 255, 65, 0.22)', '#39ff14', 'rgba(0, 255, 65, 0.22)'],
-        strokeWidth: [1.6, 2.6, 1.6],
-        duration: duration + 400,
+        stroke: ['rgba(0, 255, 65, 0.22)', '#39ff14'],
+        strokeWidth: [1.6, 2.4],
+        duration,
         ease: 'linear',
       });
 
-      // 2. Line drawing animation following the motion path values with animejs svg.createDrawable
+      // 2. Line drawing forward from start to endpoint
+      activeTraceEl.style.opacity = '1';
       try {
         const drawables = svg.createDrawable(activeTraceEl);
         animate(drawables, {
           draw: ['0 0', '0 1'],
-          opacity: [1, 0.9, 0],
           duration,
           ease: 'linear',
         });
-      } catch (err) {
-        // Fallback smooth stroke dash/opacity if createDrawable needs standard proxy
+      } catch {
         animate(activeTraceEl, {
-          opacity: [0, 1, 0],
+          opacity: [0, 1],
           duration,
           ease: 'linear',
         });
       }
 
-      // 3. Animate packet along the circuit wire using animejs svg.createMotionPath
+      // 3. Move packet forward to endpoint
       if (packetEl) {
         packetEl.style.opacity = '1';
         try {
@@ -122,32 +242,47 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
             ease: 'linear',
             onComplete: () => {
               if (isDestroyed) return;
+
+              // Reached endpoint: hide green line and packet immediately
+              activeTraceEl.style.opacity = '0';
               packetEl.style.opacity = '0';
 
-              // 4. Flash terminal contact pad on packet arrival
+              // Dim base wire back to idle
+              animate(baseWireEl, {
+                stroke: 'rgba(0, 255, 65, 0.22)',
+                strokeWidth: 1.6,
+                duration: 150,
+                ease: 'linear',
+              });
+
+              // Pulse terminal pad on arrival
               if (padEl) {
                 animate(padEl, {
                   r: [wire.padRadius, wire.padRadius * 1.7, wire.padRadius],
                   fill: ['#00ff41', '#ffffff', '#39ff14', '#00ff41'],
-                  duration: 450,
+                  duration: 400,
                   ease: 'outBack',
                 });
               }
 
-              activeWiresRef.current.delete(wireIdx);
-              setActiveWireCount(activeWiresRef.current.size);
+              // Wait 0.5 second before tracing back to start
+              setTimeout(startReturnTrace, 800);
             },
           });
-        } catch (err) {
-          // If motionpath throws on detached element
+        } catch {
+          activeTraceEl.style.opacity = '0';
           packetEl.style.opacity = '0';
-          activeWiresRef.current.delete(wireIdx);
-          setActiveWireCount(activeWiresRef.current.size);
+          setTimeout(startReturnTrace, 800);
         }
       } else {
         setTimeout(() => {
-          activeWiresRef.current.delete(wireIdx);
-          setActiveWireCount(activeWiresRef.current.size);
+          activeTraceEl.style.opacity = '0';
+          if (isDestroyed)
+            {
+              
+              return;
+            } 
+          setTimeout(startReturnTrace, 800);
         }, duration);
       }
     };
@@ -156,13 +291,13 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
 
     // Trigger random wire activations at random time intervals
     const scheduleNextActivation = () => {
-      if (isDestroyed) return;
+      if (isDestroyed || isPausedRef.current) return;
 
       // Random delay between 400ms and 1100ms
       const delay = 450 + Math.random() * 650;
 
       timerId = window.setTimeout(() => {
-        if (isDestroyed) return;
+        if (isDestroyed || isPausedRef.current) return;
 
         // Choose 1 or 2 random wires that are not currently active
         const availableWires = CIRCUIT_WIRES.map((_, i) => i).filter(
@@ -177,7 +312,7 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
           if (Math.random() < 0.4 && availableWires.length > 1) {
             const secondIndex = (randomIndex + 1 + Math.floor(Math.random() * (availableWires.length - 1))) % availableWires.length;
             setTimeout(() => {
-              if (!isDestroyed) activateWire(availableWires[secondIndex]);
+              if (!isDestroyed && !isPausedRef.current) activateWire(availableWires[secondIndex]);
             }, 120);
           }
         }
@@ -187,7 +322,7 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
     };
 
     // Initial burst of activations
-    activateWire(0);
+    setTimeout(() => activateWire(0), 300);
     setTimeout(() => activateWire(4), 250);
     setTimeout(() => activateWire(10), 500);
 
@@ -197,7 +332,7 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
       isDestroyed = true;
       if (timerId) clearTimeout(timerId);
     };
-  }, []);
+  }, [isPaused]);
 
   return (
     <div
@@ -266,6 +401,16 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
             </feMerge>
           </filter>
 
+          {/* Intense red glow for paused LED & chip */}
+          <filter id="circuit-pulse-glow-red" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+
           {/* Wire active aura */}
           <filter id="wire-neon-glow" x="-30%" y="-30%" width="160%" height="160%">
             <feGaussianBlur stdDeviation="2.5" result="blur" />
@@ -279,6 +424,12 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
           <radialGradient id="chip-bg-gradient" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="#082212" />
             <stop offset="100%" stopColor="#020a05" />
+          </radialGradient>
+
+          {/* Radial gradient for central microcontroller when paused (red) */}
+          <radialGradient id="chip-bg-gradient-red" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#2e0a0a" />
+            <stop offset="100%" stopColor="#0d0202" />
           </radialGradient>
         </defs>
 
@@ -320,11 +471,9 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
         {/* ── Central Microcontroller Package ────────────────────────────────── */}
         <g
           className="central-mcu-chip"
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: 'pointer', transition: 'all 0.3s ease' }}
           onClick={() => {
-            const available = CIRCUIT_WIRES.map((_, i) => i);
-            const picks = available.sort(() => 0.5 - Math.random()).slice(0, 3);
-            picks.forEach((idx, i) => setTimeout(() => activateWireRef.current?.(idx), i * 140));
+            setIsPaused((prev) => !prev);
           }}
         >
           {/* Outer ceramic casing */}
@@ -333,9 +482,10 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
             y="120"
             width="100"
             height="100"
-            fill="url(#chip-bg-gradient)"
-            stroke="var(--accent-green)"
+            fill={isPaused ? 'url(#chip-bg-gradient-red)' : 'url(#chip-bg-gradient)'}
+            stroke={isPaused ? '#ff3344' : 'var(--accent-green)'}
             strokeWidth="2"
+            style={{ transition: 'stroke 0.3s ease, fill 0.3s ease' }}
           />
 
           {/* Inner silicon die border */}
@@ -344,11 +494,12 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
             y="135"
             width="70"
             height="70"
-            fill="#030d06"
-            stroke="var(--accent-green)"
+            fill={isPaused ? '#180303' : '#030d06'}
+            stroke={isPaused ? '#ff3344' : 'var(--accent-green)'}
             strokeWidth="1"
             strokeDasharray="4 4"
             opacity="0.8"
+            style={{ transition: 'stroke 0.3s ease, fill 0.3s ease' }}
           />
 
           {/* Chip Center Branding */}
@@ -356,11 +507,12 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
             x="190"
             y="168"
             textAnchor="middle"
-            fill="var(--accent-green)"
+            fill={isPaused ? '#ff3344' : 'var(--accent-green)'}
             fontFamily="var(--font-mono)"
             fontSize="10"
             fontWeight="800"
             letterSpacing="0.12em"
+            style={{ transition: 'fill 0.3s ease' }}
           >
             HACKZ
           </text>
@@ -368,18 +520,25 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
             x="190"
             y="182"
             textAnchor="middle"
-            fill="var(--accent-green-bright)"
+            fill={isPaused ? '#ff6677' : 'var(--accent-green-bright)'}
             fontFamily="var(--font-mono)"
             fontSize="8"
             fontWeight="600"
             letterSpacing="0.16em"
             opacity="0.9"
+            style={{ transition: 'fill 0.3s ease' }}
           >
-            MAIN_CORE
+            {isPaused ? 'PAUSED' : 'MAIN_CORE'}
           </text>
 
           {/* Pin 1 Notch Index Indicator */}
-          <circle cx="147" cy="127" r="2.5" fill="var(--accent-green-bright)" />
+          <circle
+            cx="147"
+            cy="127"
+            r="2.5"
+            fill={isPaused ? '#ff3344' : 'var(--accent-green-bright)'}
+            style={{ transition: 'fill 0.3s ease' }}
+          />
 
           {/* Status Heartbeat LED */}
           <circle
@@ -387,15 +546,36 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
             cx="190"
             cy="195"
             r="3"
-            fill="#39ff14"
-            filter="url(#circuit-pulse-glow)"
+            fill={isPaused ? '#ff0033' : '#39ff14'}
+            filter={isPaused ? 'url(#circuit-pulse-glow-red)' : 'url(#circuit-pulse-glow)'}
+            style={{ transition: 'fill 0.3s ease' }}
           />
 
           {/* Ground & Power corner vias */}
-          <circle cx="152" cy="142" r="1.8" fill="var(--accent-green-dim)" />
-          <circle cx="228" cy="142" r="1.8" fill="var(--accent-green-dim)" />
-          <circle cx="152" cy="198" r="1.8" fill="var(--accent-green-dim)" />
-          <circle cx="228" cy="198" r="1.8" fill="var(--accent-green-dim)" />
+          <circle
+            cx="152"
+            cy="142"
+            r="1.8"
+            fill={isPaused ? 'rgba(255, 60, 60, 0.5)' : 'var(--accent-green-dim)'}
+          />
+          <circle
+            cx="228"
+            cy="142"
+            r="1.8"
+            fill={isPaused ? 'rgba(255, 60, 60, 0.5)' : 'var(--accent-green-dim)'}
+          />
+          <circle
+            cx="152"
+            cy="198"
+            r="1.8"
+            fill={isPaused ? 'rgba(255, 60, 60, 0.5)' : 'var(--accent-green-dim)'}
+          />
+          <circle
+            cx="228"
+            cy="198"
+            r="1.8"
+            fill={isPaused ? 'rgba(255, 60, 60, 0.5)' : 'var(--accent-green-dim)'}
+          />
         </g>
 
         {/* ── Surface Mount Components & Peripheral Capacitors ─────────────── */}
@@ -480,6 +660,66 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
           }}
         />
       ))}
+
+      {/* ── Warning & Telemetry Speech Popup Bubble ───────────────────────── */}
+      {pauseMessage && (
+        <div
+          className="pointer-events-none transition-all duration-300 animate-bounce"
+          style={{
+            position: 'absolute',
+            top: '27%',
+            left: '50%',
+            transform: 'translate(-50%, -100%)',
+            zIndex: 40,
+            backgroundColor: 'rgba(20, 3, 5, 0.94)',
+            border: '1px solid #ff3344',
+            borderRadius: '6px',
+            padding: '5px 10px',
+            boxShadow: '0 0 16px rgba(255, 0, 50, 0.5), inset 0 0 8px rgba(255, 50, 50, 0.2)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          <span
+            style={{
+              display: 'inline-block',
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              backgroundColor: '#ff0033',
+              boxShadow: '0 0 8px #ff0033',
+            }}
+          />
+          <span
+            style={{
+              fontFamily: 'var(--font-mono, monospace)',
+              fontSize: '10px',
+              fontWeight: '700',
+              color: '#ff4455',
+              letterSpacing: '0.04em',
+            }}
+          >
+            {pauseMessage}
+          </span>
+
+          {/* Bubble pointer beak pointing down to MCU chip */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '-5px',
+              left: '50%',
+              transform: 'translateX(-50%) rotate(45deg)',
+              width: '8px',
+              height: '8px',
+              backgroundColor: 'rgba(20, 3, 5, 0.94)',
+              borderRight: '1px solid #ff3344',
+              borderBottom: '1px solid #ff3344',
+            }}
+          />
+        </div>
+      )}
       </div>
     </div>
   );
