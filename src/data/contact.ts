@@ -13,7 +13,7 @@ export const CONTACT_PEOPLE: ContactPerson[] = [
 
 export const CONTACT_EMAILS = [
   'hackz.csea@gmail.com',
-  'cseaceg25@gmail.com',
+  'cseaceg26@gmail.com',
 ];
 
 export const SOCIAL_LINKS = [
