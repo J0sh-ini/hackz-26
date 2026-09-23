@@ -57,8 +57,9 @@ export const Navbar: React.FC = () => {
         zIndex: 1000,
       }}
     >
-      <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4 h-full flex items-center justify-between">
-        {/* Brand / Logo */}
+       {/* Brand / Logo */}
+        
+
         <a
           href="#"
           style={{
@@ -67,17 +68,19 @@ export const Navbar: React.FC = () => {
             fontWeight: 700,
             color: 'var(--accent-green)',
             letterSpacing: '0.05em',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-          }}
+            display: 'inline-block',
+            maxWidth:'100%',
+            position: 'absolute',
+            }}
         >
-          <span style={{ color: 'var(--text-secondary)' }}>&gt;</span>
-          <span>HackZ'26</span>
+          {/* <span style={{ color: 'var(--text-secondary)' }}>&gt;</span>
+          <span>HackZ'26</span> */}
+          <img src="/hackz-logo.webp" alt="HackZ'26"  style={{ maxWidth: '100%', height: 'var(--header-height)' ,display: 'block' }} />
+          
         </a>
-
-        {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-6">
+      <div className="relative w-full max-w-[1200px] mx-auto px-6 max-md:px-4 h-full flex items-center justify-between">
+        {/* Desktop Nav Links (Centered) */}
+        <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
           {NAV_LINKS.map((link) => {
             const isActive = activeSection === link.href.substring(1);
             return (
@@ -108,7 +111,10 @@ export const Navbar: React.FC = () => {
               </a>
             );
           })}
+        </nav>
 
+        {/* Desktop Register Button (Right corner) */}
+        <div className="hidden md:flex items-center ml-auto">
           <Button
             variant="outline"
             href={EVENT_LINKS.registration}
@@ -117,18 +123,17 @@ export const Navbar: React.FC = () => {
               padding: '8px 16px',
               minHeight: '38px',
               fontSize: '12px',
-              marginLeft: '8px',
             }}
           >
             [ REGISTER ]
           </Button>
-        </nav>
+        </div>
 
         {/* Mobile Hamburger Button */}
         <button
           onClick={toggleMobileMenu}
           aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
-          className="flex md:hidden flex-col justify-center items-center w-11 h-11 gap-[5px] cursor-pointer p-0"
+          className="flex md:hidden flex-col justify-center items-center w-11 h-11 gap-[5px] cursor-pointer p-0 ml-auto"
           style={{ background: 'none', border: 'none' }}
         >
           <span
