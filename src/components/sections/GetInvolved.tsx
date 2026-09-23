@@ -4,6 +4,7 @@ import { EVENT_LINKS } from '../../data/contact';
 import { Button } from '../ui/Button';
 import { ScrambleTitle } from '../ui/ScrambleTitle';
 import ScrambleText from '../ambient/ScrambleText';
+import {useNavigate} from 'react-router-dom';
 interface RoleCardProps {
   roleTag: string;
   watermark: string;
@@ -12,6 +13,7 @@ interface RoleCardProps {
   btnText: string;
   btnHref: string;
   slideX: number;
+  isExternal?: boolean;
 }
 
 const RoleCard: React.FC<RoleCardProps> = ({
@@ -22,9 +24,10 @@ const RoleCard: React.FC<RoleCardProps> = ({
   btnText,
   btnHref,
   slideX,
+  isExternal = true,
 }) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
-
+  const navigate = useNavigate();
   return (
     <motion.div
       initial={{ opacity: 0, x: slideX }}
@@ -44,6 +47,7 @@ const RoleCard: React.FC<RoleCardProps> = ({
         justifyContent: 'space-between',
         minHeight: '320px',
       }}
+      onClick={() => navigate("volunteer")}
     >
       {/* Atmospheric oversized text background */}
       <div
@@ -104,7 +108,7 @@ const RoleCard: React.FC<RoleCardProps> = ({
         <Button
           variant="outline"
           href={btnHref}
-          isExternal
+          isExternal={isExternal}
           className="w-full sm:w-auto"
         >
           {btnText}
@@ -163,8 +167,10 @@ export const GetInvolved: React.FC = () => {
             title="Become a Volunteer"
             description="Join the on-site operations team at CEG Campus. Coordinate participant hospitality, technical infrastructure, and seamless stage administration."
             btnText="APPLY AS VOLUNTEER →"
-            btnHref={EVENT_LINKS.volunteerForm}
+            btnHref="#volunteer-form"
+            isExternal={false}
             slideX={60}
+        
           />
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CONTACT_PEOPLE, CONTACT_EMAILS, SOCIAL_LINKS, EVENT_LINKS } from '../../data/contact';
+import { CONTACT_PEOPLE, CONTACT_EMAILS, EVENT_LINKS } from '../../data/contact';
 import { FloatingDecorations } from '../ambient/FloatingDecorations';
 import { RollingText } from '../ui/RollingText';
 import ScrambleText from '../ambient/ScrambleText';

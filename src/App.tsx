@@ -3,21 +3,11 @@ import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import { NoiseOverlay } from './components/ambient/NoiseOverlay';
-import { NodeNetwork } from './components/ambient/NodeNetwork';
 import { Navbar } from './components/layout/Navbar';
-import { Hero } from './components/sections/Hero';
-import { StatsMarquee } from './components/sections/StatsMarquee';
-import { About } from './components/sections/About';
-import { Tracks } from './components/sections/Tracks';
-import { Sponsors } from './components/sections/Sponsors';
-import { Prizes } from './components/sections/Prizes';
-import { Timeline } from './components/sections/Timeline';
-import { GetInvolved } from './components/sections/GetInvolved';
-import { Faq } from './components/sections/Faq';
-import { Contact } from './components/sections/Contact';
 import { Footer } from './components/layout/Footer';
-
+import { BrowserRouter, Route,Routes } from 'react-router-dom';
+import HomePage from './components/pages/HomePage';
+import VolunteerForm from './components/pages/VolunteerForm';
 gsap.registerPlugin(ScrollTrigger);
 
 export const App: React.FC = () => {
@@ -83,74 +73,16 @@ export const App: React.FC = () => {
       {/* Ambient Floating Cyber Node Network */}
 
       {/* Persistent Navigation Bar */}
+      <BrowserRouter>
       <Navbar />
-
-      {/* Main Content Layout */}
-      <main>
-        {/* [01] Hero Section */}
-        <div>
-
-        <Hero />
-        </div>
-    <div>
-      <NodeNetwork opacity={1} />
-
-        {/* [02] Marquee Stats Strip */}
-        <StatsMarquee />
-
-        {/* [03] About Section */}
-        <About />
-
-        {/* Terminal Divider
-        <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4">
-          <SectionDivider label="TRACKS PROTOCOL" />
-          </div> */}
-
-        {/* [04] Mission Tracks */}
-        <Tracks />
-
-        {/* Terminal Divider
-        <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4">
-        <SectionDivider label="STRATEGIC PARTNERS" />
-        </div> */}
-
-        {/* [05] Sponsors */}
-        <Sponsors />
-
-        {/* [06] Prizes Bounty */}
-        <Prizes />
-
-        {/* [07] Sequence of Events Timeline */}
-        <Timeline />
-
-        {/* Terminal Divider
-        <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4">
-        <SectionDivider label="DEPLOYMENT FORCES" />
-        </div> */}
-
-        {/* [08] Get Involved CTAs */}
-        <GetInvolved />
-
-        {/* Terminal Divider
-        <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4">
-        <SectionDivider label="KNOWLEDGE BASE" />
-        </div> */}
-
-        {/* [09] FAQs Accordion */}
-        <Faq />
-
-        {/* Terminal Divider
-        <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4">
-        <SectionDivider label="TRANSMISSION LINKS" />
-        </div> */}
-
-        {/* [10] Contact & Socials */}
-        <Contact />
-        </div>
-      </main>
-
-      {/* [11] Footer */}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/volunteer" element={<VolunteerForm />} />
+        </Routes>
       <Footer />
+      </BrowserRouter>
+      
+      {/* [11] Footer */}
     </div>
   );
 };

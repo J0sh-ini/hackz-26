@@ -108,7 +108,7 @@
     background-color: var(--bg-page);
     color: var(--text-primary);
     font-family: var(--font-body);
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;

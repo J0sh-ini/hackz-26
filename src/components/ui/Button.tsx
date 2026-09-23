@@ -11,6 +11,8 @@ interface ButtonProps {
   isExternal?: boolean;
   fullWidth?: boolean;
   style?: React.CSSProperties;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -22,8 +24,9 @@ export const Button: React.FC<ButtonProps> = ({
   isExternal = false,
   fullWidth = false,
   style,
+  type = 'button',
+  disabled = false,
 }) => {
-  const isPrimary = variant === 'primary';
   const isVolt = variant === 'volt' || variant === 'amber';
 
   const baseStyles: React.CSSProperties = {
@@ -130,10 +133,16 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <motion.button
+      type={type}
+      disabled={disabled}
       onClick={onClick}
-      style={combinedStyles}
+      style={{
+        ...combinedStyles,
+        opacity: disabled ? 0.5 : 1,
+        cursor: disabled ? 'not-allowed' : 'pointer',
+      }}
       className={`cyber-btn ${className}`}
-      whileTap={{ scale: 0.96 }}
+      whileTap={disabled ? undefined : { scale: 0.96 }}
     >
       {content}
     </motion.button>

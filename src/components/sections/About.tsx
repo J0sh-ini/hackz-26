@@ -4,7 +4,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CircuitBoard } from '../ui/CircuitBoard';
 import ScrambleText from '../ambient/ScrambleText';
-import Shuffle from '../ambient/Shuffle';
 
 gsap.registerPlugin(ScrollTrigger);
 

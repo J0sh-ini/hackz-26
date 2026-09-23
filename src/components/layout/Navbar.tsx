@@ -3,6 +3,8 @@ import { AnimatePresence, motion } from 'motion/react';
 import { EVENT_LINKS } from '../../data/contact';
 import { Button } from '../ui/Button';
 import { RollingText } from '../ui/RollingText';
+import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const NAV_LINKS = [
   { label: 'About', href: '#about' },
@@ -17,7 +19,7 @@ const NAV_LINKS = [
 export const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const handleScroll = () => {
       const sections = NAV_LINKS.map((link) => link.href.substring(1));
@@ -60,8 +62,8 @@ export const Navbar: React.FC = () => {
        {/* Brand / Logo */}
         
 
-        <a
-          href="#"
+        <Link
+          to="/"
           style={{
             fontFamily: 'var(--font-mono)',
             fontSize: '18px',
@@ -77,16 +79,16 @@ export const Navbar: React.FC = () => {
           <span>HackZ'26</span> */}
           <img src="/hackz-logo.webp" alt="HackZ'26"  style={{ maxWidth: '100%', height: 'var(--header-height)' ,display: 'block' }} />
           
-        </a>
+        </Link>
       <div className="relative w-full max-w-[1200px] mx-auto px-6 max-md:px-4 h-full flex items-center justify-between">
         {/* Desktop Nav Links (Centered) */}
         <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
           {NAV_LINKS.map((link) => {
             const isActive = activeSection === link.href.substring(1);
             return (
-              <a
+              <Link
                 key={link.href}
-                href={link.href}
+                to={'/'+link.href}
                 style={{
                   fontFamily: 'var(--font-heading)',
                   fontSize: '14px',
@@ -108,25 +110,40 @@ export const Navbar: React.FC = () => {
                     stagger={0.015}
                   />
                 </span>
-              </a>
+              </Link>
             );
           })}
         </nav>
 
         {/* Desktop Register Button (Right corner) */}
-        <div className="hidden md:flex items-center ml-auto">
+        <div className="hidden md:flex items-end ml-auto gap-3">
           <Button
-            variant="outline"
-            href={EVENT_LINKS.registration}
-            isExternal
-            style={{
-              padding: '8px 16px',
-              minHeight: '38px',
-              fontSize: '12px',
-            }}
-          >
-            [ REGISTER ]
-          </Button>
+                  variant="primary"
+                  onClick={() => {
+                    closeMobileMenu();
+                    navigate('/#get-involved');
+                  }}  
+                  style={{
+                    padding: '8px 16px',
+                    minHeight: '38px',
+                    fontSize: '12px',
+                    minWidth: '120px',
+                  }}
+                >
+                JOIN THE TEAM
+                </Button>
+                  <Button
+                    variant="outline"
+                    href={EVENT_LINKS.registration}
+                    isExternal
+                    style={{
+                      padding: '8px 16px',
+                      minHeight: '38px',
+                      fontSize: '12px',
+                    }}
+                  >
+                    [ REGISTER ]
+                  </Button>
         </div>
 
         {/* Mobile Hamburger Button */}
@@ -198,9 +215,9 @@ export const Navbar: React.FC = () => {
               }}
             >
               {NAV_LINKS.map((link) => (
-                <a
+                <Link
                   key={link.href}
-                  href={link.href}
+                  to={'/'+link.href}
                   onClick={closeMobileMenu}
                   style={{
                     fontFamily: 'var(--font-heading)',
@@ -227,7 +244,7 @@ export const Navbar: React.FC = () => {
                       stagger={0.015}
                     />
                   </span>
-                </a>
+                </Link>
               ))}
               <div style={{ marginTop: '24px' }}>
                 <Button
@@ -238,6 +255,16 @@ export const Navbar: React.FC = () => {
                   onClick={closeMobileMenu}
                 >
                   [ REGISTER NOW ]
+                </Button>
+                <Button
+                  variant="primary"
+                  onClick={() => {
+                    closeMobileMenu();
+                    navigate('/#get-involved');
+                  }}  
+                  fullWidth
+                >
+                  JOIN US
                 </Button>
               </div>
             </nav>
