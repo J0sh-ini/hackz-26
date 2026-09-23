@@ -8,6 +8,7 @@ import { GlitchText } from '../ui/GlitchText';
 import { EVENT_LINKS } from '../../data/contact';
 import ScrambleText from '../ambient/ScrambleText';
 import TextType from '../ui/TextType'
+import {GlitchSvg} from '../ui/GlitchSvg';
 export const Hero: React.FC = () => {
   const [isGlitching, setIsGlitching] = useState<boolean>(true);
 
@@ -92,6 +93,8 @@ export const Hero: React.FC = () => {
         >
           {/* <span>// CSEA-CEG PRESENTS</span>
            */}
+           <GlitchSvg>
+
           <div className="flex items-center  md:w-[15vw] w-45 justify-center gap-2 mb-3">
                     <svg viewBox="76 74 1086 650" className="h-full w-auto filter drop-shadow-[0_0_15px_rgba(13, 122, 52, 1)]">
                       <g transform="translate(0,944) scale(0.1,-0.1)">
@@ -159,6 +162,7 @@ export const Hero: React.FC = () => {
                       </g>
           </svg>
           </div>
+           </GlitchSvg>
            <div>
             
             <ScrambleText text="PRESENTS" as="span" className="text-[14px] text-accent-green font-mono tracking-[0.18em]" from="random" easing="linear"/>

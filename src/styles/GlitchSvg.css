@@ -1,0 +1,52 @@
+.glitch-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-layer {
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-red,
+.glitch-blue {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.9;
+  mix-blend-mode: screen;
+}
+
+.glitch-red {
+  animation-name: glitch-heavy-1;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  filter: drop-shadow(-5px 0 red);
+}
+
+.glitch-blue {
+  animation-name: glitch-heavy-2;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  filter: drop-shadow(5px 0 cyan);
+}
+
+@keyframes glitch-heavy-1 {
+  0% { clip-path: inset(10% 0 70% 0); transform: translate(-15px, 4px) skewX(15deg); }
+  20% { clip-path: inset(80% 0 5% 0); transform: translate(12px, -6px) skewX(-15deg); }
+  40% { clip-path: inset(30% 0 40% 0); transform: translate(-20px, 8px) skewX(20deg); }
+  60% { clip-path: inset(60% 0 20% 0); transform: translate(15px, -4px) skewX(-20deg); }
+  80% { clip-path: inset(15% 0 60% 0); transform: translate(-12px, 6px) skewX(10deg); }
+  100% { clip-path: inset(45% 0 35% 0); transform: translate(10px, -8px) skewX(-10deg); }
+}
+
+@keyframes glitch-heavy-2 {
+  0% { clip-path: inset(25% 0 50% 0); transform: translate(18px, -5px) skewX(-20deg); }
+  20% { clip-path: inset(5% 0 80% 0); transform: translate(-15px, 8px) skewX(15deg); }
+  40% { clip-path: inset(65% 0 15% 0); transform: translate(14px, -10px) skewX(-15deg); }
+  60% { clip-path: inset(35% 0 45% 0); transform: translate(-18px, 6px) skewX(20deg); }
+  80% { clip-path: inset(75% 0 5% 0); transform: translate(12px, -5px) skewX(-10deg); }
+  100% { clip-path: inset(10% 0 75% 0); transform: translate(-10px, 4px) skewX(10deg); }
+}
