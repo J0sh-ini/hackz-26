@@ -48,15 +48,7 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   const getVariantConfig = () => {
-    if (isPrimary) {
-      return {
-        baseBg: '#09150d',
-        borderColor: 'var(--accent-green)',
-        fillColor: 'var(--accent-green)',
-        textColor: 'var(--accent-green)',
-        hoverTextColor: '#050505',
-      };
-    }
+   
     if (isVolt) {
       return {
         baseBg: '#07150a',

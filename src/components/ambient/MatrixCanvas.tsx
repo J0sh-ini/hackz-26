@@ -20,7 +20,7 @@ export const MatrixCanvas: React.FC<MatrixCanvasProps> = ({ opacity = 0.85 }) =>
     // Characters array heavily featuring bits (0, 1) and hacker symbols (#, $, *, etc.)
     const bitChars = ['0', '1', '0', '1', '1', '0', '0', '1','✡'];
     const symbolChars = ['#', '$', '*', '+', '-', '<', '>', '/', '\\', '=', '&', '%', '^', '~', '!', '?', '|', '{', '}', '[', ']', '@', ':'];
-    const hexChars = ['A', 'B', 'C', 'D', 'E', 'F', 'X', 'Z','LS'];
+    const hexChars = ['A', 'H', 'C', 'K', 'Z','LS','JI','26'];
     const matrixKatakana = ['ｦ', 'ｱ', 'ｳ', 'ｴ', 'ｵ', 'ｶ', 'ｷ', 'ｹ', 'ｺ', 'ｻ', 'ｼ', 'ｽ', 'ｾ', 'ｿ', 'ﾀ', 'ﾂ', 'ﾃ', 'ﾅ', 'ﾆ', 'ﾇ', 'ﾈ', 'ﾊ', 'ﾋ', 'ﾎ', 'ﾏ', 'ﾐ', 'ﾑ', 'ﾒ', 'ﾓ', 'ﾔ', 'ﾕ', 'ﾗ', 'ﾘ', 'ﾜ'];
 
     // Weighted pool: ~45% bits (0, 1), ~30% symbols (#, $, *, etc.), ~15% katakana, ~10% hex

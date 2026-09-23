@@ -121,6 +121,7 @@
     overflow-x: hidden;
     position: relative;
     font-family: var(--font-mono);
+    box-sizing: border-box;
   }
 
   ::selection {
