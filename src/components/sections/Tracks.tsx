@@ -2,8 +2,8 @@ import React from 'react';
 import { motion, type Variants } from 'motion/react';
 import { TRACKS, Track } from '../../data/tracks';
 import { TrackIcon } from '../ui/TrackIcon';
-import ScrambleText from '../ambient/ScrambleText';
-import Shuffle from '../ambient/Shuffle';
+import ScrambleText from '../ui/ScrambleText';
+import Shuffle from '../ui/Shuffle';
 const containerVariants: Variants = {
   hidden: {},
   visible: {
@@ -142,9 +142,7 @@ export const Tracks: React.FC = () => {
                   }}
                 >
                   {track.description}
-                </p>
-                {/* <Shuffle text={track.description} className="text-[14px] text-left flex-grow" /> */}
-                
+                </p>                
                 {/* Bottom Animating Bar */}
                 <motion.div
                   initial={{ width: 0 }}

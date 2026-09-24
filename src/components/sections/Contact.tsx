@@ -1,7 +1,7 @@
 import React from 'react';
 import { CONTACT_PEOPLE, CONTACT_EMAILS, EVENT_LINKS } from '../../data/contact';
 import { RollingText } from '../ui/RollingText';
-import ScrambleText from '../ambient/ScrambleText';
+import ScrambleText from '../ui/ScrambleText';
 import TextType from '../ui/TextType';
 export const Contact: React.FC = () => {
   return (

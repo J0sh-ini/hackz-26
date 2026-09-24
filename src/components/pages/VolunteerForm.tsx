@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '../ui/Button';
-import ScrambleText from '../ambient/ScrambleText';
+import ScrambleText from '../ui/ScrambleText';
 
 // Google Form configuration matching the official HackZ volunteer form
 const GFORM_ACTION_URL =

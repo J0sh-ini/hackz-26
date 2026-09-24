@@ -2,8 +2,8 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { EVENT_LINKS } from '../../data/contact';
 import { RollingText } from '../ui/RollingText';
-import ScrambleText from '../ambient/ScrambleText';
-import Shuffle from '../ambient/Shuffle';
+import ScrambleText from '../ui/ScrambleText';
+import Shuffle from '../ui/Shuffle';
 export const Sponsors: React.FC = () => {
   return (
     <section

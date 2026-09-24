@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { MatrixCanvas } from '../ambient/MatrixCanvas';
-import { Scanlines } from '../ambient/Scanlines';
 import { BlinkingCursor } from '../ambient/BlinkingCursor';
 import { Button } from '../ui/Button';
 import { GlitchText } from '../ui/GlitchText';
 import { EVENT_LINKS } from '../../data/contact';
-import ScrambleText from '../ambient/ScrambleText';
+import ScrambleText from '../ui/ScrambleText';
 import TextType from '../ui/TextType'
 import {GlitchSvg} from '../ui/GlitchSvg';
 export const Hero: React.FC = () => {
@@ -58,8 +57,7 @@ export const Hero: React.FC = () => {
       {/* Background Matrix Rain */}
       <MatrixCanvas opacity={0.6} />
 
-      {/* Scanline Overlay & CRT Vignette */}
-      <Scanlines opacity={0.22} />
+
       <div className="crt-vignette" />
 
       {/* Hero Content Stack */}

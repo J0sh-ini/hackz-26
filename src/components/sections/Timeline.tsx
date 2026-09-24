@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TIMELINE_EVENTS, TimelineEvent } from '../../data/timeline';
-import ScrambleText from '../ambient/ScrambleText';
+import ScrambleText from '../ui/ScrambleText';
 gsap.registerPlugin(ScrollTrigger);
 
 export const Timeline: React.FC = () => {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Button } from '../ui/Button';
 import { ScrambleTitle } from '../ui/ScrambleTitle';
-import ScrambleText from '../ambient/ScrambleText';
+import ScrambleText from '../ui/ScrambleText';
 import {useNavigate} from 'react-router-dom';
 interface RoleCardProps {
   roleTag: string;

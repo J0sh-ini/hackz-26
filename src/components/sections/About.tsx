@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CircuitBoard } from '../ui/CircuitBoard';
-import ScrambleText from '../ambient/ScrambleText';
+import ScrambleText from '../ui/ScrambleText';
 
 gsap.registerPlugin(ScrollTrigger);
 

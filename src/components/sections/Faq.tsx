@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { FAQS, FaqItem } from '../../data/faq';
-import  ScrambleText  from '../ambient/ScrambleText';
+import  ScrambleText  from '../ui/ScrambleText';
 import TextType from '../ui/TextType';
 import FoldText from '../ui/FoldText';
 export const Faq: React.FC = () => {

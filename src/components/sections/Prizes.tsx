@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import ScrambleText from '../ambient/ScrambleText';
-import Shuffle from '../ambient/Shuffle';
+import ScrambleText from '../ui/ScrambleText';
+import Shuffle from '../ui/Shuffle';
 gsap.registerPlugin(ScrollTrigger);
 
 const PODIUM_PRIZES = [
