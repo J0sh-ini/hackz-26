@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '../ui/Button';
 import ScrambleText from '../ambient/ScrambleText';
@@ -36,6 +36,10 @@ interface FormErrors {
 }
 
 export const VolunteerForm: React.FC = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [formData, setFormData] = useState<VolunteerFormData>({
     email: '',
     name: '',
@@ -129,18 +133,18 @@ export const VolunteerForm: React.FC = () => {
     }
   };
 
-  const resetForm = () => {
-    setFormData({
-      email: '',
-      name: '',
-      rollno: '',
-      year: '',
-      department: '',
-      phone: '',
-    });
-    setErrors({});
-    setStatus('idle');
-  };
+  // const resetForm = () => {
+  //   setFormData({
+  //     email: '',
+  //     name: '',
+  //     rollno: '',
+  //     year: '',
+  //     department: '',
+  //     phone: '',
+  //   });
+  //   setErrors({});
+  //   setStatus('idle');
+  // };
 
   return (
     <section

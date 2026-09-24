@@ -8,6 +8,7 @@ import { Footer } from './components/layout/Footer';
 import { BrowserRouter, Route,Routes } from 'react-router-dom';
 import HomePage from './components/pages/HomePage';
 import VolunteerForm from './components/pages/VolunteerForm';
+import MentorForm from './components/pages/MentorForm';
 gsap.registerPlugin(ScrollTrigger);
 
 export const App: React.FC = () => {
@@ -78,6 +79,7 @@ export const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/volunteer" element={<VolunteerForm />} />
+          <Route path="/mentor" element={<MentorForm />} />
         </Routes>
       <Footer />
       </BrowserRouter>

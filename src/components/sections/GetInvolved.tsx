@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { EVENT_LINKS } from '../../data/contact';
 import { Button } from '../ui/Button';
 import { ScrambleTitle } from '../ui/ScrambleTitle';
 import ScrambleText from '../ambient/ScrambleText';
@@ -11,7 +10,8 @@ interface RoleCardProps {
   title: string;
   description: string;
   btnText: string;
-  btnHref: string;
+  btnHref?: string;
+  onClick?: () => void;
   slideX: number;
   isExternal?: boolean;
 }
@@ -23,11 +23,11 @@ const RoleCard: React.FC<RoleCardProps> = ({
   description,
   btnText,
   btnHref,
+  onClick,
   slideX,
   isExternal = true,
 }) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  const navigate = useNavigate();
   return (
     <motion.div
       initial={{ opacity: 0, x: slideX }}
@@ -36,6 +36,7 @@ const RoleCard: React.FC<RoleCardProps> = ({
       transition={{ duration: 0.5, ease: 'easeOut' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={onClick}
       style={{
         backgroundColor: 'var(--bg-card)',
         border: '1px solid var(--border-default)',
@@ -46,8 +47,8 @@ const RoleCard: React.FC<RoleCardProps> = ({
         flexDirection: 'column',
         justifyContent: 'space-between',
         minHeight: '320px',
+        cursor: onClick ? 'pointer' : 'default',
       }}
-      onClick={() => navigate("volunteer")}
     >
       {/* Atmospheric oversized text background */}
       <div
@@ -108,6 +109,7 @@ const RoleCard: React.FC<RoleCardProps> = ({
         <Button
           variant="outline"
           href={btnHref}
+          onClick={onClick}
           isExternal={isExternal}
           className="w-full sm:w-auto"
         >
@@ -119,6 +121,8 @@ const RoleCard: React.FC<RoleCardProps> = ({
 };
 
 export const GetInvolved: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section
       id="get-involved"
@@ -156,7 +160,8 @@ export const GetInvolved: React.FC = () => {
             title="Become a Mentor"
             description="Guide collegiate engineering squads through architectural bottlenecks, code optimization, and industry viability during the 24-hour sprint."
             btnText="APPLY AS MENTOR →"
-            btnHref={EVENT_LINKS.mentorForm}
+            onClick={() => navigate('/mentor')}
+            isExternal={false}
             slideX={-60}
           />
 
@@ -167,10 +172,9 @@ export const GetInvolved: React.FC = () => {
             title="Become a Volunteer"
             description="Join the on-site operations team at CEG Campus. Coordinate participant hospitality, technical infrastructure, and seamless stage administration."
             btnText="APPLY AS VOLUNTEER →"
-            btnHref="#volunteer-form"
+            onClick={() => navigate('/volunteer')}
             isExternal={false}
             slideX={60}
-        
           />
         </div>
       </div>
