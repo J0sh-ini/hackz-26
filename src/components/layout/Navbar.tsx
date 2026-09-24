@@ -62,26 +62,32 @@ export const Navbar: React.FC = () => {
         
 
         <Link
-          to="/"
+          to="/#hero"
+          className="absolute left-4 md:left-6 top-0 z-50 flex items-center h-full cursor-pointer pointer-events-auto"
           style={{
             fontFamily: 'var(--font-mono)',
             fontSize: '18px',
             fontWeight: 700,
             color: 'var(--accent-green)',
             letterSpacing: '0.05em',
-            display: 'inline-block',
-            maxWidth:'100%',
-            position: 'absolute',
-            }}
+            maxWidth: '100%',
+          }}
+          onClick={() => {
+            closeMobileMenu();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
         >
           {/* <span style={{ color: 'var(--text-secondary)' }}>&gt;</span>
           <span>HackZ'26</span> */}
-          <img src="/hackz-logo.webp" alt="HackZ'26"  style={{ maxWidth: '100%', height: 'var(--header-height)' ,display: 'block' }} />
-          
+          <img
+            src="/hackz-logo.webp"
+            alt="HackZ'26"
+            style={{ maxWidth: '100%', height: 'var(--header-height)', display: 'block', pointerEvents: 'none' }}
+          />
         </Link>
-      <div className="relative w-full max-w-[1200px] mx-auto px-6 max-md:px-4 h-full flex items-center justify-between">
+      <div className="relative w-full max-w-[1200px] mx-auto px-6 max-md:px-4 h-full flex items-center justify-between pointer-events-none">
         {/* Desktop Nav Links (Centered) */}
-        <nav className="hidden lg:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
+        <nav className="hidden lg:flex items-center gap-6 absolute left-1/2 -translate-x-1/2 pointer-events-auto">
           {NAV_LINKS.map((link) => {
             const isActive = activeSection === link.href.substring(1);
             return (
@@ -115,7 +121,7 @@ export const Navbar: React.FC = () => {
         </nav>
 
         {/* Desktop Register Button (Right corner) */}
-        <div className="hidden lg:flex items-end ml-auto gap-3">
+        <div className="hidden lg:flex items-end ml-auto gap-3 pointer-events-auto">
           {/* <Button
                   variant="primary"
                   onClick={() => {
@@ -149,7 +155,7 @@ export const Navbar: React.FC = () => {
         <button
           onClick={toggleMobileMenu}
           aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
-          className="flex lg:hidden flex-col justify-center items-center w-11 h-11 gap-[5px] cursor-pointer p-0 ml-auto"
+          className="flex lg:hidden flex-col justify-center items-center w-11 h-11 gap-[5px] cursor-pointer p-0 ml-auto pointer-events-auto"
           style={{ background: 'none', border: 'none' }}
         >
           <span

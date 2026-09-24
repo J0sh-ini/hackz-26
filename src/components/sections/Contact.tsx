@@ -1,6 +1,5 @@
 import React from 'react';
 import { CONTACT_PEOPLE, CONTACT_EMAILS, EVENT_LINKS } from '../../data/contact';
-import { FloatingDecorations } from '../ambient/FloatingDecorations';
 import { RollingText } from '../ui/RollingText';
 import ScrambleText from '../ambient/ScrambleText';
 import TextType from '../ui/TextType';
@@ -16,23 +15,13 @@ export const Contact: React.FC = () => {
         overflow: 'hidden',
       }}
     >
-      <FloatingDecorations
-        items={[
-          { text: '@csea_ceg', top: '15%', right: '6%', duration: 10 },
-          { text: '192.168.1.1', top: '48%', right: '5%', duration: 13 },
-          { text: '$ ping hackz', top: '80%', right: '10%', duration: 9 },
-        ]}
-      />
 
       <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4" style={{ position: 'relative', zIndex: 10 }}>
         {/* Header */}
         <div style={{ marginBottom: '56px' }}>
           <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
-            {/* <span>// 08</span>
-            <span>DIRECT COMMS</span> */}
             <ScrambleText text="DIRECT COMMS" as="span" className="text-[13px] text-accent-green uppercase tracking-[0.15em]" from="random" easing="linear"/>
           </div>
-          {/* <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">REACH OUT</h2> */}
           <ScrambleText text="REACH OUT" as="h2" className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6" from="random" easing="linear"/>
           <p style={{ maxWidth: '600px', fontSize: '15px' }}>
             Have logistical queries, sponsorship inquiries, or technical questions? Establish contact with the student organizing committee.
@@ -41,31 +30,28 @@ export const Contact: React.FC = () => {
 
         {/* Two-Column Grid */}
         <div
-          className="grid grid-cols-[1.2fr_1fr] gap-16 max-[660px]:grid-cols-1 max-[660px]:gap-10"
+          className="grid grid-cols-2 gap-16 max-[660px]:grid-cols-1 max-[660px]:gap-10"
         >
           {/* Left Column: Student Coordinators */}
-          <div>
+          <div className="flex flex-col h-full">
             <div
               style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '12px',
                 color: 'var(--accent-green)',
                 letterSpacing: '0.15em',
-                // marginBottom: '20px',
+                marginBottom: '16px',
               }}
             >
               [ STUDENT COORDINATORS ]
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div className="flex flex-col justify-between flex-1">
               {CONTACT_PEOPLE.map((person) => (
                 <div
                   key={person.name}
+                  className="flex items-center justify-between flex-1 py-2"
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    // padding: '16px 0',
                     borderBottom: '1px solid var(--border-default)',
                   }}
                 >
@@ -110,8 +96,52 @@ export const Contact: React.FC = () => {
                 </div>
               ))}
             </div>
-{/* Venue Details */}
-            <div style={{ marginTop: '36px' }}>
+
+          </div>  
+
+          {/* Right Column: Email & Socials */}
+          <div className="flex flex-col justify-between h-full max-[660px]:gap-8">
+            {/* Email Channels */}
+            <div>
+              <div
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '12px',
+                  color: 'var(--accent-green)',
+                  letterSpacing: '0.15em',
+                  marginBottom: '16px',
+                }}
+              >
+                [ OFFICIAL EMAIL CHANNELS ]
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {CONTACT_EMAILS.map((email) => (
+                  <a
+                    key={email}
+                    href={`mailto:${email}`}
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '15px',
+                      color: 'var(--accent-green)',
+                      padding: '14px 18px',
+                      backgroundColor: 'var(--bg-card)',
+                      border: '1px solid var(--border-default)',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '10px',
+                      transition: 'border-color 0.15s ease',
+                    }}
+                    className="btn-hover-primary"
+                  >
+                    <span>&#9993;</span>
+                    <span>{email}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+            {/* Venue Details */}
+            <div className="mt-8 max-[660px]:mt-0">
               <div
                 style={{
                   fontFamily: 'var(--font-mono)',
@@ -153,50 +183,6 @@ export const Contact: React.FC = () => {
                 </span>
               </a>
             </div>
-          </div>  
-
-          {/* Right Column: Email & Socials */}
-          <div>
-            {/* Email Channels */}
-            <div style={{ marginBottom: '40px' }}>
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '12px',
-                  color: 'var(--accent-green)',
-                  letterSpacing: '0.15em',
-                  marginBottom: '16px',
-                }}
-              >
-                [ OFFICIAL EMAIL CHANNELS ]
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {CONTACT_EMAILS.map((email) => (
-                  <a
-                    key={email}
-                    href={`mailto:${email}`}
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '15px',
-                      color: 'var(--accent-green)',
-                      padding: '14px 18px',
-                      backgroundColor: 'var(--bg-card)',
-                      border: '1px solid var(--border-default)',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '10px',
-                      transition: 'border-color 0.15s ease',
-                    }}
-                    className="btn-hover-primary"
-                  >
-                    <span>&#9993;</span>
-                    <span>{email}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-
             {/* Social Network Nodes */}
             {/* <div>
               <div

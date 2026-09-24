@@ -103,7 +103,7 @@ export const Faq: React.FC = () => {
                             }}
                           >
                             {/* {item.question} */}
-                            <TextType text={item.question} as="span" className="font-heading text-[clamp(15px,2.5vw,17px)] font-semibold" typingSpeed={30}  pauseDuration={1000} loop={false} startOnVisible={true} />
+                            <TextType text={item.question} as="span" className="font-heading text-[clamp(15px,2.5vw,17px)] font-semibold" typingSpeed={20}  pauseDuration={1000} loop={false} startOnVisible={true} />
                           </span>
 
                           <span
