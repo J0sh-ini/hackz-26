@@ -130,6 +130,10 @@ export const About: React.FC = () => {
               border: '1px solid var(--border-default)',
               padding: '28px 24px',
               position: 'relative',
+              display:'flex',
+              flexDirection:'column',
+              justifyContent:'center',
+              alignItems:'center'
             }}
           >
             <div
@@ -177,6 +181,10 @@ export const About: React.FC = () => {
               border: '1px solid var(--border-default)',
               padding: '28px 24px',
               position: 'relative',
+              display:'flex',
+              flexDirection:'column',
+              justifyContent:'center',
+              alignItems:'center'
             }}
           >
             <div
@@ -224,6 +232,10 @@ export const About: React.FC = () => {
               border: '1px solid var(--border-default)',
               padding: '28px 24px',
               position: 'relative',
+              display:'flex',
+              flexDirection:'column',
+              justifyContent:'center',
+              alignItems:'center'
             }}
           >
             <div
