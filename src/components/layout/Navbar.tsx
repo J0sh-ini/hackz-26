@@ -226,21 +226,22 @@ export const Navbar: React.FC = () => {
                   onClick={closeMobileMenu}
                   style={{
                     fontFamily: 'var(--font-heading)',
-                    fontSize: '20px',
+                    fontSize: '24px',
                     fontWeight: 600,
                     color: 'var(--text-primary)',
                     minHeight: '48px',
                     display: 'flex',
                     alignItems: 'center',
+                    justifyContent:'center',
                     borderBottom: '1px solid var(--border-default)',
-                    paddingLeft: '8px',
+                    // paddingLeft: '28px',
                   }}
                   className="mobile-nav-item subtle-roll-link"
                 >
                   <span className="subtle-link-fill" aria-hidden="true" />
-                  <span style={{ color: 'var(--accent-green)', marginRight: '10px', fontSize: '14px', position: 'relative', zIndex: 2 }}>
+                  <div style={{ color: 'var(--accent-green)', marginRight: '10px', fontSize: '24px', position: 'absolute', zIndex: 2,left:0}}>
                     //
-                  </span>
+                  </div>
                   <span style={{ position: 'relative', zIndex: 2 }}>
                     <RollingText
                       text={link.label}
@@ -249,6 +250,9 @@ export const Navbar: React.FC = () => {
                       stagger={0.015}
                     />
                   </span>
+                  <div style={{ color: 'var(--accent-green)', marginRight: '10px', fontSize: '24px', position: 'absolute', zIndex: 2,right:'0' }}>
+                    //
+                  </div>
                 </Link>
               ))}
               <div style={{ marginTop: '24px' }}>
