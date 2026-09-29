@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface TrackIconProps {
-  type: 'blockchain' | 'fintech' | 'medx' | 'sustainability' | 'safety' | 'empowerment';
+  type: 'ai' | 'fintech' | 'medx' | 'sustainability' | 'safety' | 'cybersecurity';
   color?: string;
   size?: number;
 }
@@ -14,19 +14,14 @@ export const TrackIcon: React.FC<TrackIconProps> = ({
   const strokeWidth = 1.75;
 
   switch (type) {
-    case 'blockchain':
+    case 'cybersecurity':
       return (
         <svg width={size} height={size} viewBox="0 0 48 48" fill="none" stroke={color} strokeWidth={strokeWidth}>
-          {/* Isometric Cyber Cubes & Hash Chain */}
-          <polygon points="24,4 40,13 40,31 24,40 8,31 8,13" strokeDasharray="3 3" opacity="0.4" />
-          <polygon points="24,10 36,17 24,24 12,17" />
-          <polyline points="12,17 12,29 24,36 36,29 36,17" />
-          <line x1="24" y1="24" x2="24" y2="36" />
-          <circle cx="24" cy="10" r="2" fill={color} />
-          <circle cx="36" cy="17" r="2" fill={color} />
-          <circle cx="12" cy="17" r="2" fill={color} />
-          <circle cx="24" cy="36" r="2" fill={color} />
-        </svg>
+  {/* Cybersecurity Shield & Keyhole */}
+  <path d="M24 4 L8 10 V22 C8 32 15 40 24 44 C33 40 40 32 40 22 V10 Z" strokeLinejoin="round" />
+  <circle cx="24" cy="20" r="4" />
+  <path d="M22.5 23.5 L21 32 H27 L25.5 23.5 Z" strokeLinejoin="round" />
+</svg>
       );
 
     case 'fintech':
@@ -77,29 +72,26 @@ export const TrackIcon: React.FC<TrackIconProps> = ({
     case 'safety':
       return (
         <svg width={size} height={size} viewBox="0 0 48 48" fill="none" stroke={color} strokeWidth={strokeWidth}>
-          {/* Guardian Shield & Radar Sensor */}
-          <polygon points="24,6 40,12 40,26 24,42 8,26 8,12" />
-          <circle cx="24" cy="22" r="7" strokeDasharray="3 2" />
-          <circle cx="24" cy="22" r="3" fill={color} />
-          <line x1="24" y1="12" x2="24" y2="15" />
-          <line x1="24" y1="29" x2="24" y2="32" />
-        </svg>
+  {/* Shield & Venus Symbol */}
+  <path d="M24 4 L8 10 V22 C8 32 15 40 24 44 C33 40 40 32 40 22 V10 Z" strokeLinejoin="round" />
+  <circle cx="24" cy="18" r="5" />
+  <line x1="24" y1="23" x2="24" y2="34" />
+  <line x1="19" y1="28" x2="29" y2="28" />
+</svg>
       );
 
-    case 'empowerment':
+    case 'ai':
       return (
         <svg width={size} height={size} viewBox="0 0 48 48" fill="none" stroke={color} strokeWidth={strokeWidth}>
-          {/* Female Empowerment Circuit Glyph */}
-          <polygon points="24,4 40,14 40,34 24,44 8,34 8,14" strokeDasharray="2 2" opacity="0.3" />
-          <circle cx="24" cy="18" r="9" />
-          <line x1="24" y1="27" x2="24" y2="40" />
-          <line x1="17" y1="33" x2="31" y2="33" />
-          <circle cx="24" cy="18" r="3" fill={color} />
-          <circle cx="24" cy="40" r="1.5" fill={color} />
-        </svg>
+  {/* AI Chip & Brain */}
+  <rect x="10" y="10" width="28" height="28" rx="4" />
+  <path d="M10 16 H6 M10 24 H6 M10 32 H6 M38 16 H42 M38 24 H42 M38 32 H42 M16 10 V6 M24 10 V6 M32 10 V6 M16 38 V42 M24 38 V42 M32 38 V42" />
+  <path d="M24 16 C16 16 14 20 18 24 C14 28 16 32 24 32 C32 32 34 28 30 24 C34 20 32 16 24 16 Z" />
+  <line x1="24" y1="16" x2="24" y2="32" />
+</svg>
       );
 
     default:
       return null;
-  }
+  } 
 };

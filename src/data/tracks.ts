@@ -6,22 +6,22 @@ export interface Track {
   isSpecial?: boolean;
   specialLabel?: string;
   accentColor?: string;
-  iconType: 'blockchain' | 'fintech' | 'medx' | 'sustainability' | 'safety' | 'empowerment';
+  iconType: 'cybersecurity' | 'fintech' | 'medx' | 'sustainability' | 'safety' | 'ai';
 }
 
 export const TRACKS: Track[] = [
   {
-    id: 'blockchain',
+    id: 'cybersecurity',
     number: '[01]',
-    name: 'Blockchain',
-    description: 'Decentralized architectures, smart contract security, Web3 infrastructure, and trustless verification protocols.',
+    name: 'Cybersecurity & Digital Trust',
+    description: 'to be filled in with a brief description of the track, highlighting key areas of focus and potential project ideas.',
     accentColor: '#00ff88',
-    iconType: 'blockchain',
+    iconType: 'cybersecurity',
   },
   {
     id: 'fintech',
     number: '[02]',
-    name: 'FinTech',
+    name: 'FinTech,Fraud & Financial Security',
     description: 'Next-gen algorithmic finance, automated fraud mitigation, zero-knowledge payments, and high-frequency settlement.',
     accentColor: '#10f290',
     iconType: 'fintech',
@@ -29,7 +29,7 @@ export const TRACKS: Track[] = [
   {
     id: 'medx',
     number: '[03]',
-    name: 'MedX',
+    name: 'Health,Privacy & MedTech Security',
     description: 'AI-assisted clinical telemetry, secure biomedical diagnostics, telemetry streaming, and privacy-preserving electronic health records.',
     accentColor: '#39ff14',
     iconType: 'medx',
@@ -37,7 +37,7 @@ export const TRACKS: Track[] = [
   {
     id: 'sustainability',
     number: '[04]',
-    name: 'Sustainability & Climate',
+    name: 'Smart Infrasturucture , IOT & Climate Security',
     description: 'Intelligent carbon accounting, renewable grid optimization, green computing pipelines, and ecological telemetry sensors.',
     accentColor: '#00ff41',
     iconType: 'sustainability',
@@ -45,19 +45,17 @@ export const TRACKS: Track[] = [
   {
     id: 'women-safety',
     number: '[05]',
-    name: 'Women Safety',
+    name: 'Women\'s Safety & Digital Security',
     description: 'Autonomous emergency dispatch, covert threat alerting mechanisms, localized safe-transit routing, and rapid guardian coordination.',
     accentColor: '#70ff00',
     iconType: 'safety',
   },
   {
-    id: 'women-empowerment',
+    id: 'ai',
     number: '[06]',
-    name: 'Women Empowerment',
-    description: 'Leading Women\'s Team special track. Dedicated systems catalyzing female leadership, digital financial autonomy, and equal opportunity.',
-    isSpecial: true,
-    specialLabel: '[SPECIAL PRIZE]',
+    name: 'Secure AI & Responsible Intelligence',
+    description: 'Leading WomenTeam special track. Dedicated systems catalyzing female leadership, digital financial autonomy, and equal opportunity.',
     accentColor: '#84ff00',
-    iconType: 'empowerment',
+    iconType: 'ai',
   },
 ];

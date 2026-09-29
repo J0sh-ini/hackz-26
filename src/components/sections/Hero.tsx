@@ -26,7 +26,7 @@ export const Hero: React.FC = () => {
       burstTimer = setTimeout(() => {
         setIsGlitching(false);
       }, 900);
-    }, 10000);
+    }, 7500);
 
     return () => {
       clearTimeout(initialTimer);
