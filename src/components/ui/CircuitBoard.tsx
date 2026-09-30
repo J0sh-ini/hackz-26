@@ -509,14 +509,14 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
             textAnchor="middle"
             fill={isPaused ? '#ff3344' : 'var(--accent-green)'}
             fontFamily="var(--font-mono)"
-            fontSize="10"
+            fontSize="14"
             fontWeight="800"
             letterSpacing="0.12em"
             style={{ transition: 'fill 0.3s ease' }}
           >
             HACKZ
           </text>
-          <text
+          {/* <text
             x="190"
             y="182"
             textAnchor="middle"
@@ -529,7 +529,7 @@ export const CircuitBoard: React.FC<{ className?: string }> = ({ className = '' 
             style={{ transition: 'fill 0.3s ease' }}
           >
             {isPaused ? 'PAUSED' : 'MAIN_CORE'}
-          </text>
+          </text> */}
 
           {/* Pin 1 Notch Index Indicator */}
           <circle

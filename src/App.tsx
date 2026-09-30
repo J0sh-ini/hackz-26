@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -9,9 +9,12 @@ import { BrowserRouter, Route,Routes } from 'react-router-dom';
 import HomePage from './components/pages/HomePage';
 import VolunteerForm from './components/pages/VolunteerForm';
 import MentorForm from './components/pages/MentorForm';
+import { VideoLoader } from './components/LoadingScreen/VideoLoader';
 gsap.registerPlugin(ScrollTrigger);
 
 export const App: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     // Only init Lenis on non-touch devices or where appropriate
     const isMobile = window.innerWidth < 768;
@@ -68,6 +71,16 @@ export const App: React.FC = () => {
 
   return (
     <div style={{ position: 'relative', width: '100%', minHeight: '100vh', backgroundColor: 'var(--bg-page)' }}>
+      {/* Video Loading Screen — swap src when you have the file */}
+      {isLoading && (
+        <VideoLoader
+          src="/loader.mp4"
+          onComplete={() => setIsLoading(false)}
+          fadeDuration={900}
+          maxDuration={15000}
+        />
+      )}
+
       {/* Global Grain Texture Overlay */}
       {/* <NoiseOverlay /> */}
 
