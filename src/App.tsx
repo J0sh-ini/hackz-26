@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -14,10 +14,25 @@ gsap.registerPlugin(ScrollTrigger);
 
 export const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const lenisRef = useRef<Lenis | null>(null);
+
+  const isMobile = window.innerWidth < 768;
+
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = 'hidden';
+      lenisRef.current?.stop();
+    } else {
+      document.body.style.overflow = '';
+      lenisRef.current?.start();
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isLoading]);
 
   useEffect(() => {
     // Only init Lenis on non-touch devices or where appropriate
-    const isMobile = window.innerWidth < 768;
 
     const lenis = new Lenis({
       duration: isMobile ? 0.9 : 1.2,
@@ -26,6 +41,11 @@ export const App: React.FC = () => {
       smoothWheel: true,
       syncTouch: false,
     });
+    lenisRef.current = lenis;
+
+    if (isLoading) {
+      lenis.stop();
+    }
 
     const updateLenis = (time: number) => {
       lenis.raf(time * 1000);
@@ -66,6 +86,7 @@ export const App: React.FC = () => {
       document.removeEventListener('click', handleAnchorClick);
       gsap.ticker.remove(updateLenis);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
 
@@ -74,10 +95,11 @@ export const App: React.FC = () => {
       {/* Video Loading Screen — swap src when you have the file */}
       {isLoading && (
         <VideoLoader
-          src="/loader.mp4"
+          src={isMobile ? '/loader3.mp4' : '/short.mp4'}
           onComplete={() => setIsLoading(false)}
           fadeDuration={900}
-          maxDuration={15000}
+          maxDuration={8000}
+          isMobile={isMobile}
         />
       )}
 

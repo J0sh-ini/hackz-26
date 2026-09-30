@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import './VideoLoader.css';
-
+import GraphBackground from '../ambient/GraphBackground'
 /**
  * VideoLoader
  *
@@ -22,6 +22,7 @@ interface VideoLoaderProps {
   onComplete?: () => void;
   fadeDuration?: number;
   maxDuration?: number;
+  isMobile?: boolean;
 }
 
 type Phase = 'buffering' | 'playing' | 'fading' | 'done';
@@ -31,6 +32,7 @@ export const VideoLoader: React.FC<VideoLoaderProps> = ({
   onComplete,
   fadeDuration = 900,
   maxDuration = 12000,
+  isMobile = false,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [phase, setPhase] = useState<Phase>('buffering');
@@ -108,6 +110,7 @@ export const VideoLoader: React.FC<VideoLoaderProps> = ({
 
   return (
     <div className={`vl-root${phase === 'fading' ? ' vl-fading' : ''}`}>
+      <GraphBackground />
       {/* ── Video element ─────────────────────────────────────────── */}
       <video
         ref={videoRef}
@@ -117,7 +120,7 @@ export const VideoLoader: React.FC<VideoLoaderProps> = ({
         muted
         playsInline
         preload="auto"
-        style={{ opacity: videoOpacity, transition: 'opacity 0.1s linear' }}
+        style={{ opacity: videoOpacity, transition: 'opacity 0.1s linear',objectFit: isMobile ? 'fill' : 'cover' }}
       />
 
       {/* ── Spinner while buffering ────────────────────────────────── */}
@@ -128,13 +131,13 @@ export const VideoLoader: React.FC<VideoLoaderProps> = ({
       )}
 
       {/* ── CRT scanlines ─────────────────────────────────────────── */}
-      <div className="vl-scanlines" />
+      {/* <div className="vl-scanlines" /> */}
 
-      {/* ── Corner reticles ─────────────────────────────────────────
-      <div className="vl-corner vl-corner-tl" />
-      <div className="vl-corner vl-corner-tr" />
-      <div className="vl-corner vl-corner-bl" />
-      <div className="vl-corner vl-corner-br" /> */}
+      {/* ── Corner reticles ───────────────────────────────────────── */}
+       <div className="vl-corner vl-corner-tl" />
+       <div className="vl-corner vl-corner-tr" />
+       <div className="vl-corner vl-corner-bl" />
+      <div className="vl-corner vl-corner-br" />
 
       {/* ── Bottom status strip ───────────────────────────────────── */}
       <div className="vl-status">

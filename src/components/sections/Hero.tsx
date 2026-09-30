@@ -147,7 +147,7 @@ export const Hero: React.FC = () => {
                           198 l-5 22 -704 0 c-633 0 -706 2 -721 16 -13 13 -15 37 -13 143 l3 126 710 3
                           c653 2 711 3 723 19 14 19 17 349 4 371 -7 9 -199 13 -911 15 -496 1 -911 -1
                           -921 -5z M6231 2931 c-11 -7 -13 -49 -13 -204 0 -108 3 -201 7 -207 4 -7 302
-                          -10 925 -10 828 0 918 2 924 16 12 31 7 389 -6 402 -14 14 -1814 17 -1837 3z" fill="#ffffff" fill-rule="evenodd">
+                          -10 925 -10 828 0 918 2 924 16 12 31 7 389 -6 402 -14 14 -1814 17 -1837 3z" fill="#ffffff" fillRule="evenodd">
                           </path>
                           <path d="M7063 6428 c-38 -46 -84 -103 -103 -128 -19 -25 -68 -85 -110 -135
                             -42 -49 -83 -100 -91 -112 -8 -12 -38 -48 -68 -81 -29 -33 -71 -85 -94 -115
@@ -155,7 +155,7 @@ export const Hero: React.FC = () => {
                             876 1 884 6 21 14 6 44 -82 155 -45 57 -101 130 -124 163 -23 32 -55 72 -71
                             89 -15 17 -57 69 -92 115 -90 119 -129 169 -223 289 -45 58 -93 121 -107 140
                             -13 19 -42 56 -64 81 -23 26 -51 58 -63 73 -12 14 -26 26 -31 26 -5 0 -41 -37
-                            -79 -82z" fill="#0d7a34" fill-rule="evenodd">
+                            -79 -82z" fill="#0d7a34" fillRule="evenodd">
                           </path>
                       </g>
           </svg>
@@ -226,7 +226,7 @@ export const Hero: React.FC = () => {
         </motion.div>
 
         {/* Tagline */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
@@ -243,7 +243,7 @@ export const Hero: React.FC = () => {
         >
           <p>24-Hour National Tech Marathon</p>
           <TextType text=" Innovate, Create, Dominate!" loop={true} cursorBlinkDuration={1} initialDelay={1000}/>
-        </motion.p>
+        </motion.div>
 
         {/* Date / Venue Sharp Pill */}
         <motion.div
