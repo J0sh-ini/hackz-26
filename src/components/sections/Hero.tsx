@@ -89,8 +89,6 @@ export const Hero: React.FC = () => {
             alignItems: 'center',
           }}
         >
-          {/* <span>// CSEA-CEG PRESENTS</span>
-           */}
            <GlitchSvg>
 
           <div className="flex items-center  md:w-[15vw] w-45 justify-center gap-2 mb-3">
@@ -255,7 +253,6 @@ export const Hero: React.FC = () => {
             alignItems: 'center',
             gap: '10px',
             padding: '10px 20px',
-            // backgroundColor: 'var(--bg-card)',
             border: '1px solid var(--border-default)',
             fontFamily: 'var(--font-mono)',
             fontSize: 'clamp(11px, 2.5vw, 13px)',
@@ -266,11 +263,6 @@ export const Hero: React.FC = () => {
             justifyContent: 'center',
           }}
         >
-          {/* <span style={{ color: 'var(--accent-green)', fontWeight: 700 }}>
-            NOV 23–24, 2024
-          </span>
-          <span style={{ color: 'var(--text-secondary)' }}>&middot;</span>
-          <span>CEG CAMPUS, ANNA UNIVERSITY</span> */}
           <ScrambleText text="NOV 23–24, 2024" as="span" className="text-[clamp(11px,2.5vw,13px)] text-accent-green font-mono tracking-[0.08em]" from="random" easing="linear"/>
           <span style={{ color: 'var(--text-secondary)' }}>&middot;</span>
           <ScrambleText text="CEG CAMPUS, ANNA UNIVERSITY" as="span" className="text-[clamp(11px,2.5vw,13px)] text-text-primary font-mono tracking-[0.08em]" from="random" easing="linear"/>
@@ -308,36 +300,6 @@ export const Hero: React.FC = () => {
           </Button>
         </motion.div>
       </div>
-
-      {/* Pulsing Scroll Down Indicator
-      <motion.a
-        href="#about"
-        aria-label="Scroll to About section"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: [0.3, 0.9, 0.3] }}
-        transition={{ duration: 2, repeat: Infinity, delay: 1.5, ease: 'easeInOut' }}
-        style={{
-          position: 'absolute',
-          bottom: '24px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 10,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '4px',
-          fontFamily: 'var(--font-mono)',
-          fontSize: '11px',
-          color: 'var(--accent-green)',
-          letterSpacing: '0.1em',
-          userSelect: 'none',
-          cursor: 'pointer',
-          textDecoration: 'none',
-        }}
-      >
-        <span>SCROLL</span>
-        <span style={{ fontSize: '14px' }}>↓</span>
-      </motion.a> */}
     </section>
   );
 };

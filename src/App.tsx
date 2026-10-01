@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { BrowserRouter, Route,Routes } from 'react-router-dom';
@@ -93,22 +92,16 @@ export const App: React.FC = () => {
   return (
     <div style={{ position: 'relative', width: '100%', minHeight: '100vh', backgroundColor: 'var(--bg-page)' }}>
       {/* Video Loading Screen — swap src when you have the file */}
-      {isLoading && (
+      {isLoading ? (
         <VideoLoader
-          src={isMobile ? '/loader3.mp4' : '/short.mp4'}
+          src={ '/short.mp4'}
           onComplete={() => setIsLoading(false)}
           fadeDuration={900}
           maxDuration={8000}
           isMobile={isMobile}
         />
-      )}
+      ):(
 
-      {/* Global Grain Texture Overlay */}
-      {/* <NoiseOverlay /> */}
-
-      {/* Ambient Floating Cyber Node Network */}
-
-      {/* Persistent Navigation Bar */}
       <BrowserRouter>
       <Navbar />
         <Routes>
@@ -118,6 +111,8 @@ export const App: React.FC = () => {
         </Routes>
       <Footer />
       </BrowserRouter>
+      )
+    }
       
       {/* [11] Footer */}
     </div>

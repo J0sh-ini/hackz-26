@@ -1,21 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import './VideoLoader.css';
-import GraphBackground from '../ambient/GraphBackground'
-/**
- * VideoLoader
- *
- * Drop-in replacement for the Three.js globe loader.
- * Plays a fullscreen video; once the video ends it fades out and calls onComplete.
- *
- * Usage:
- *   <VideoLoader src="/loader.mp4" onComplete={() => setLoading(false)} />
- *
- * Props:
- *   src          – path to the video file inside /public  (e.g. "/loader.mp4")
- *   onComplete   – callback fired after fade-out finishes
- *   fadeDuration – fade-out duration in ms (default 900)
- *   maxDuration  – hard timeout in ms in case the video never ends (default 12000)
- */
+import LoadPage from './LoadPage';
 
 interface VideoLoaderProps {
   src: string;
@@ -34,6 +19,18 @@ export const VideoLoader: React.FC<VideoLoaderProps> = ({
   maxDuration = 12000,
   isMobile = false,
 }) => {
+
+  if (isMobile) {
+    return (
+      <LoadPage
+        onComplete={onComplete}
+        fadeDuration={fadeDuration}
+        maxDuration={maxDuration > 6000 ? 5000 : maxDuration}
+        isMobile={true}
+      />
+    );
+  }
+
   const videoRef = useRef<HTMLVideoElement>(null);
   const [phase, setPhase] = useState<Phase>('buffering');
   const [progress, setProgress] = useState(0);
@@ -110,7 +107,6 @@ export const VideoLoader: React.FC<VideoLoaderProps> = ({
 
   return (
     <div className={`vl-root${phase === 'fading' ? ' vl-fading' : ''}`}>
-      <GraphBackground />
       {/* ── Video element ─────────────────────────────────────────── */}
       <video
         ref={videoRef}
