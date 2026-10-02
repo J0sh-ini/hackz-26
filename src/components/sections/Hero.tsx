@@ -254,9 +254,8 @@ export const Hero: React.FC = () => {
             alignItems: 'center',
             gap: '10px',
             padding: '10px 20px',
-            border: '1px solid var(--border-default)',
+            //border: '1px solid var(--border-default)',
             fontFamily: 'var(--font-mono)',
-            fontSize: 'clamp(11px, 2.5vw, 13px)',
             color: 'var(--text-primary)',
             letterSpacing: '0.08em',
             marginBottom: '36px',
@@ -264,9 +263,9 @@ export const Hero: React.FC = () => {
             justifyContent: 'center',
           }}
         >
-          <ScrambleText text="NOV 23–24, 2024" as="span" className="text-[clamp(11px,2.5vw,13px)] text-accent-green font-mono tracking-[0.08em]" from="random" easing="linear"/>
+          <ScrambleText text="NOV 23–24, 2024" as="span" className="text-[clamp(14px,2.5vw,15px)] text-accent-green font-mono tracking-[0.08em]" from="random" easing="linear"/>
           <span style={{ color: 'var(--text-secondary)' }}>&middot;</span>
-          <ScrambleText text="CEG CAMPUS, ANNA UNIVERSITY" as="span" className="text-[clamp(11px,2.5vw,13px)] text-text-primary font-mono tracking-[0.08em]" from="random" easing="linear"/>
+          <ScrambleText text="CEG CAMPUS, ANNA UNIVERSITY" as="span" className="text-[clamp(14px,2.5vw,15px)] text-text-primary font-mono tracking-[0.08em]" from="random" easing="linear"/>
         </motion.div>
 
         {/* CTAs */}

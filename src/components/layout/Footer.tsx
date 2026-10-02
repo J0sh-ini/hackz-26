@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
             letterSpacing: '0.05em',
           }}
         >
-          HackZ'26 — CSEA-CEG
+          HACKZ'26 — CSEA-CEG
         </div>
 
         {/* Center */}

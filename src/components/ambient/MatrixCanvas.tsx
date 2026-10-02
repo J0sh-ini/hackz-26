@@ -152,8 +152,14 @@ export const MatrixCanvas: React.FC<MatrixCanvasProps> = ({ opacity = 0.85 }) =>
     let mouseX = -2000;
     let mouseY = -2000;
     let isMouseActive = false;
+    let lastTouchTime = 0;
 
     const handleMouseMove = (e: MouseEvent) => {
+      // Discard synthetic mousemove events triggered by mobile touch taps
+      if (performance.now() - lastTouchTime < 1200 || window.innerWidth < 768) {
+        isMouseActive = false;
+        return;
+      }
       const rect = canvas.getBoundingClientRect();
       targetMouseX = e.clientX - rect.left;
       targetMouseY = e.clientY - rect.top;
@@ -166,6 +172,179 @@ export const MatrixCanvas: React.FC<MatrixCanvasProps> = ({ opacity = 0.85 }) =>
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mouseleave', handleMouseLeave);
+
+    // ── Droplet Burst (Click/Tap Event) System ────────────────────────
+    interface DropletParticle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      char: string;
+      fontSize: number;
+      life: number;
+      maxLife: number;
+      gravityThreshold: number; // Duration of initial outward radiating burst
+      gravity: number;
+      drag: number;
+      changeRate: number;
+      isHighEnergy: boolean;
+    }
+
+    interface Shockwave {
+      x: number;
+      y: number;
+      radius: number;
+      maxRadius: number;
+      opacity: number;
+    }
+
+    let droplets: DropletParticle[] = [];
+    let shockwaves: Shockwave[] = [];
+
+    const spawnBurst = (x: number, y: number) => {
+      const isMobile = width < 768 || window.innerWidth < 768;
+
+      // 1. Shatter nearby digital rain streams
+      const shatterRadius = isMobile ? 50 : 70;
+      for (let i = 0; i < streams.length; i++) {
+        const stream = streams[i];
+        const distX = Math.abs(stream.x - x);
+        if (distX < shatterRadius) {
+          // Scramble stream characters near the impact into erratic fragments
+          for (let j = 0; j < stream.length; j++) {
+            const charY = (stream.y - j) * stream.fontSize;
+            if (Math.abs(charY - y) < shatterRadius) {
+              stream.chars[j] = Math.random() < 0.7 ? (Math.random() < 0.5 ? '1' : '0') : getRandomChar();
+            }
+          }
+          // Velocity perturbation (glitch stutter)
+          if (Math.random() < 0.35) {
+            stream.speed = Math.min(stream.speed * 1.5, 2.8);
+          }
+        }
+      }
+
+      // 2. Spawn digital explosion shockwave ripple
+      if (shockwaves.length >= (isMobile ? 2 : 3)) {
+        shockwaves.shift();
+      }
+      shockwaves.push({
+        x,
+        y,
+        radius: 3,
+        maxRadius: Math.min(width * 0.14, isMobile ? 60 : 85),
+        opacity: 0.85,
+      });
+
+      // 3. Limit on new droplets formed by tap and total displayed on screen
+      const MAX_SCREEN_DROPLETS = isMobile ? 25 : 60;
+      const count = isMobile
+        ? Math.floor(Math.random() * 3) + 8   // 8-10 droplets per tap on mobile
+        : Math.floor(Math.random() * 5) + 12; // 12-16 droplets per click on desktop
+
+      // Ensure active droplets on screen never exceed the maximum ceiling
+      while (droplets.length + count > MAX_SCREEN_DROPLETS) {
+        droplets.shift();
+      }
+
+      for (let i = 0; i < count; i++) {
+        // Horizontal and diagonal splash explosion trajectory
+        let angle: number;
+        if (i % 2 === 0) {
+          // Omnidirectional radial blast
+          angle = Math.random() * Math.PI * 2;
+        } else {
+          // Strong horizontal / diagonal splash wings
+          const baseAngle = Math.random() < 0.5 ? 0 : Math.PI;
+          angle = baseAngle + (Math.random() - 0.5) * (Math.PI * 0.7);
+        }
+
+        const speed = Math.random() * 7 + 4;
+        const upwardBias = Math.random() * 2 + 0.5; // Subtle splash lift
+
+        droplets.push({
+          x: x + (Math.random() * 10 - 5),
+          y: y + (Math.random() * 10 - 5),
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - upwardBias,
+          char: getRandomChar(),
+          fontSize: Math.floor(Math.random() * 4) + (isMobile ? 12 : 14),
+          life: 0,
+          maxLife: Math.floor(Math.random() * 25) + (isMobile ? 45 : 60), // Shorter life on mobile for quick turnover
+          gravityThreshold: Math.floor(Math.random() * 8) + 10, // ~160ms - 300ms radiating before dropping
+          gravity: Math.random() * 0.22 + 0.38,
+          drag: Math.random() * 0.03 + 0.94,
+          changeRate: 0.15,
+          isHighEnergy: Math.random() < 0.35,
+        });
+      }
+    };
+
+    let lastTapTime = 0;
+    const MOBILE_TAP_THROTTLE_MS = 380; // Minimum interval between mobile taps
+
+    const triggerBurst = (clientX: number, clientY: number) => {
+      const rect = canvas.getBoundingClientRect();
+      if (
+        clientX >= rect.left &&
+        clientX <= rect.right &&
+        clientY >= rect.top &&
+        clientY <= rect.bottom
+      ) {
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+        spawnBurst(x, y);
+      }
+    };
+
+    const handleMouseDown = (e: MouseEvent) => {
+      // Discard synthetic mousedown triggered after mobile touches
+      if (performance.now() - lastTouchTime < 1200) return;
+
+      if (e.button === 0) {
+        const now = performance.now();
+        if (now - lastTapTime < 250) return;
+        lastTapTime = now;
+        triggerBurst(e.clientX, e.clientY);
+      }
+    };
+
+    const resetTouchRepulsion = () => {
+      lastTouchTime = performance.now();
+      isMouseActive = false;
+      targetMouseX = -2000;
+      targetMouseY = -2000;
+      mouseX = -2000;
+      mouseY = -2000;
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      resetTouchRepulsion();
+      const now = performance.now();
+
+      // Throttle mobile taps to prevent spamming
+      if (now - lastTapTime < MOBILE_TAP_THROTTLE_MS) return;
+      lastTapTime = now;
+
+      // Trigger burst only for the primary touch point
+      if (e.changedTouches.length > 0) {
+        const touch = e.changedTouches[0];
+        triggerBurst(touch.clientX, touch.clientY);
+      }
+    };
+
+    const handleTouchEnd = () => {
+      resetTouchRepulsion();
+    };
+
+    const handleTouchCancel = () => {
+      resetTouchRepulsion();
+    };
+
+    window.addEventListener('mousedown', handleMouseDown, { passive: true });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+    window.addEventListener('touchcancel', handleTouchCancel, { passive: true });
 
     const render = (currentTime: number) => {
       animationFrameId = requestAnimationFrame(render);
@@ -293,6 +472,89 @@ export const MatrixCanvas: React.FC<MatrixCanvasProps> = ({ opacity = 0.85 }) =>
           }
         }
       }
+
+      // ── Render Expanding Digital Shockwaves ────────────────────────
+      for (let i = shockwaves.length - 1; i >= 0; i--) {
+        const sw = shockwaves[i];
+        sw.radius += 3.8;
+        sw.opacity *= 0.88;
+
+        if (sw.radius >= sw.maxRadius || sw.opacity <= 0.02) {
+          shockwaves.splice(i, 1);
+          continue;
+        }
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(sw.x, sw.y, sw.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(57, 255, 20, ${sw.opacity})`;
+        ctx.lineWidth = 1.5;
+        ctx.shadowColor = '#00ff41';
+        ctx.shadowBlur = 8;
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      // ── Render Droplet Burst Particles ───────────────────────────
+      for (let i = droplets.length - 1; i >= 0; i--) {
+        const p = droplets[i];
+        p.life++;
+
+        if (p.life >= p.maxLife || p.y > height + 60) {
+          droplets.splice(i, 1);
+          continue;
+        }
+
+        // Phase 1: Radiating outward (burst / splash explosion)
+        if (p.life <= p.gravityThreshold) {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vx *= p.drag;
+          p.vy *= p.drag;
+        } else {
+          // Phase 2: Dropping down after threshold time
+          p.vy += p.gravity;
+          p.vx *= 0.97; // Horizontal velocity smoothly transitions to vertical fall
+          p.x += p.vx;
+          p.y += p.vy;
+        }
+
+        // Occasional glyph flickering/mutation
+        if (Math.random() < p.changeRate) {
+          p.char = getRandomChar();
+        }
+
+        ctx.font = `bold ${p.fontSize}px 'JetBrains Mono', monospace`;
+
+        if (p.life < 8) {
+          // Initial explosive burst: Blazing white core with neon electric green aura
+          ctx.fillStyle = '#ffffff';
+          ctx.shadowColor = '#00ff41';
+          ctx.shadowBlur = 12;
+          ctx.fillText(p.char, p.x, p.y);
+          ctx.shadowBlur = 0;
+        } else if (p.life <= p.gravityThreshold) {
+          // Radiating phase: High-voltage lime mint
+          ctx.fillStyle = '#a8ffb2';
+          ctx.shadowColor = '#39ff14';
+          ctx.shadowBlur = 6;
+          ctx.fillText(p.char, p.x, p.y);
+          ctx.shadowBlur = 0;
+        } else {
+          // Dropping phase: Cascading matrix green with smooth fade-out
+          const progress = (p.life - p.gravityThreshold) / (p.maxLife - p.gravityThreshold);
+          const alpha = Math.max(0.04, (1 - progress) * 0.95);
+          ctx.fillStyle = `rgba(0, 255, 65, ${alpha})`;
+          if (p.isHighEnergy && progress < 0.6) {
+            ctx.shadowColor = '#00ff41';
+            ctx.shadowBlur = 5;
+            ctx.fillText(p.char, p.x, p.y);
+            ctx.shadowBlur = 0;
+          } else {
+            ctx.fillText(p.char, p.x, p.y);
+          }
+        }
+      }
     };
 
     animationFrameId = requestAnimationFrame(render);
@@ -301,6 +563,10 @@ export const MatrixCanvas: React.FC<MatrixCanvasProps> = ({ opacity = 0.85 }) =>
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener('touchcancel', handleTouchCancel);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
