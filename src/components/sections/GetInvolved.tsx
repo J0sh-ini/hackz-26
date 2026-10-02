@@ -30,6 +30,7 @@ const RoleCard: React.FC<RoleCardProps> = ({
   const [isHovered, setIsHovered] = useState<boolean>(false);
   return (
     <motion.div
+      className="role-card"
       initial={{ opacity: 0, x: slideX }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: '-40px' }}

@@ -170,9 +170,9 @@ export const Timeline: React.FC = () => {
                     width: '100%',
                   }}
                 >
-                  {/* Indicator Diamond Node with Neon Glow */}
+                  {/* Indicator Diamond Node with Neon Glow & Active Radar Ping */}
                   <div
-                    className="timeline-node-marker"
+                    className={`timeline-node-marker ${isActive ? 'timeline-node-marker-active' : ''}`}
                     style={{
                       position: 'absolute',
                       left: '50%',
@@ -192,6 +192,14 @@ export const Timeline: React.FC = () => {
                         : '0 0 8px rgba(0, 255, 65, 0.4)',
                     }}
                   >
+                    {/* Active Radar Sonar Ping Waves */}
+                    {isActive && (
+                      <>
+                        <span className="timeline-radar-ping" aria-hidden="true" />
+                        <span className="timeline-radar-ping timeline-radar-ping-delayed" aria-hidden="true" />
+                      </>
+                    )}
+
                     <div
                       style={{
                         width: '8px',
@@ -201,6 +209,8 @@ export const Timeline: React.FC = () => {
                         boxShadow: isActive
                           ? '0 0 8px var(--accent-green-bright)'
                           : '0 0 8px var(--accent-green)',
+                        position: 'relative',
+                        zIndex: 2,
                       }}
                     />
                   </div>

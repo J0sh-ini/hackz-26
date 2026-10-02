@@ -67,13 +67,18 @@ export const Faq: React.FC = () => {
                     return (
                       <div
                         key={item.id}
+                        className="faq-accordion-item"
                         style={{
                           borderBottom: '1px solid var(--border-default)',
-                          backgroundColor: isOpen ? 'var(--bg-section-alt)' : 'transparent',
-                          transition: 'background-color 0.2s ease',
+                          borderLeft: isOpen ? '2px solid var(--accent-green)' : '2px solid transparent',
+                          backgroundColor: isOpen ? 'rgba(0, 255, 65, 0.03)' : 'transparent',
+                          boxShadow: isOpen ? 'inset 0 0 20px rgba(0, 255, 65, 0.02)' : 'none',
+                          paddingLeft: isOpen ? '12px' : '0px',
+                          transition: 'all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1)',
                         }}
                       >
                         <button
+                          className="faq-accordion-trigger"
                           onClick={() => toggleItem(item.id)}
                           aria-expanded={isOpen}
                           style={{
@@ -88,6 +93,7 @@ export const Faq: React.FC = () => {
                             background: 'none',
                             border: 'none',
                             cursor: 'pointer',
+                            WebkitTapHighlightColor: 'transparent',
                           }}
                         >
                           <span
@@ -106,15 +112,20 @@ export const Faq: React.FC = () => {
                           <span
                             style={{
                               fontFamily: 'var(--font-mono)',
-                              fontSize: '18px',
+                              fontSize: '16px',
                               fontWeight: 700,
-                              color: 'var(--accent-green)',
-                              minWidth: '24px',
-                              textAlign: 'right',
+                              letterSpacing: '0.08em',
+                              color: isOpen ? 'var(--accent-green)' : 'var(--text-muted)',
+                              // backgroundColor: isOpen ? 'rgba(0, 255, 65, 0.12)' : 'rgba(255, 255, 255, 0.03)',
+                              // border: `1px solid ${isOpen ? 'var(--accent-green)' : 'var(--border-default)'}`,
+                              //padding: '4px 8px',
+                              whiteSpace: 'nowrap',
                               userSelect: 'none',
+                              // boxShadow: isOpen ? '0 0 10px rgba(0, 255, 65, 0.25)' : 'none',
+                              transition: 'all 0.2s ease',
                             }}
                           >
-                            {isOpen ? '−' : '+'}
+                            {isOpen ? '[ − ]' : '[ + ]'}
                           </span>
                         </button>
 

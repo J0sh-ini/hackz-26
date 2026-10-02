@@ -60,6 +60,7 @@ export const Tracks: React.FC = () => {
             return (
               <motion.div
                 key={track.id}
+                className="track-card"
                 variants={cardVariants}
                 whileHover={{ y: -4, backgroundColor: 'var(--bg-card-hover)', borderColor: accent }}
                 transition={{ duration: 0.2 }}
