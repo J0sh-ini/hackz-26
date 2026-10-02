@@ -9,6 +9,32 @@ export interface LoadPageProps {
   isMobile?: boolean;
 }
 
+// Precomputed 90-degree radar sweep mask slices (from trailing 12 o'clock to leading 3 o'clock)
+const SWEEP_ANGLE = 90;
+const SLICE_COUNT = 45;
+
+const SWEEP_SLICES = Array.from({ length: SLICE_COUNT }, (_, i) => {
+  const startAngle = (i * SWEEP_ANGLE) / SLICE_COUNT;
+  const endAngle = Math.min(SWEEP_ANGLE, ((i + 1) * SWEEP_ANGLE) / SLICE_COUNT + 0.35);
+
+  const radStart = (startAngle * Math.PI) / 180;
+  const radEnd = (endAngle * Math.PI) / 180;
+
+  const x1 = +(150 + 150 * Math.sin(radStart)).toFixed(2);
+  const y1 = +(150 - 150 * Math.cos(radStart)).toFixed(2);
+  const x2 = +(150 + 150 * Math.sin(radEnd)).toFixed(2);
+  const y2 = +(150 - 150 * Math.cos(radEnd)).toFixed(2);
+
+  // Gamma curve (1.7) so leading dots glow bright while trailing dots fade smoothly
+  const factor = (i + 1) / SLICE_COUNT;
+  const opacity = +(Math.pow(factor, 1.7)).toFixed(4);
+
+  return {
+    d: `M 150 150 L ${x1} ${y1} A 150 150 0 0 1 ${x2} ${y2} Z`,
+    opacity,
+  };
+});
+
 const LoadPage: React.FC<LoadPageProps> = ({
   onComplete,
   fadeDuration = 900,
@@ -26,6 +52,23 @@ const LoadPage: React.FC<LoadPageProps> = ({
   const bottomGraphRef = useRef<HTMLDivElement>(null);
 
   const [phase, setPhase] = useState<'playing' | 'fading' | 'done'>('playing');
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const startTime = Date.now();
+    const duration = Math.max(1000, maxDuration - fadeDuration);
+
+    const progressInterval = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const p = Math.min(100, Math.round((elapsed / duration) * 100));
+      setProgress(p);
+      if (p >= 100) {
+        clearInterval(progressInterval);
+      }
+    }, 40);
+
+    return () => clearInterval(progressInterval);
+  }, [maxDuration, fadeDuration]);
 
   useEffect(() => {
     if (!onComplete) return;
@@ -64,8 +107,8 @@ const LoadPage: React.FC<LoadPageProps> = ({
         pathRef.current.setAttribute('d', d);
       }
 
-      // 2. Animate the radar sweeper mask
-      rotation += 1.5;
+      // 2. Animate the radar sweeper mask (faster rotation speed)
+      rotation = (rotation + 3.6) % 360;
       if (sweeperRef.current) {
         sweeperRef.current.setAttribute('transform', `rotate(${rotation} 150 150)`);
       }
@@ -88,8 +131,8 @@ const LoadPage: React.FC<LoadPageProps> = ({
       const runCrosshairAnim = () => {
         if (!crosshairRef.current) return;
         animeAnim = animate(crosshairRef.current, {
-          translateX: () => random(-100, 100),
-          translateY: () => random(-60, 60),
+          translateX: () => random(-150, 150),
+          translateY: () => random(-150, 150),
           duration: 800,
           ease: 'inOutQuad',
           onComplete: () => {
@@ -156,19 +199,44 @@ const LoadPage: React.FC<LoadPageProps> = ({
               <circle cx="3" cy="3" r="2.5" fill="#33ff66" />
             </pattern>
             
-            {/* The sweeping mask */}
+            {/* The sweeping mask (90 deg radar beam with trailing decay) */}
             <mask id="sweepMask">
               <g ref={sweeperRef} transform="rotate(0 150 150)">
-                <path d="M 150 0 A 150 150 0 0 1 150 300 Z" fill="white" />
+                {SWEEP_SLICES.map((slice, idx) => (
+                  <path
+                    key={idx}
+                    d={slice.d}
+                    fill="white"
+                    opacity={slice.opacity}
+                  />
+                ))}
+                {/* Leading edge bright highlight for maximum dot illumination */}
+                <line
+                  x1="150"
+                  y1="150"
+                  x2="300"
+                  y2="150"
+                  stroke="white"
+                  strokeWidth="2.5"
+                />
               </g>
             </mask>
           </defs>
 
-          {/* Faded Background Dots */}
-          <rect width="300" height="300" fill="url(#dotPattern)" opacity="0.15" />
+          {/* Faded Background Dots (Circular Radar Base) */}
+          <circle cx="150" cy="150" r="150" fill="url(#dotPattern)" opacity="0.15" />
           
-          {/* Bright Revealed Dots bounded by mask */}
-          <rect width="300" height="300" fill="url(#dotPattern)" mask="url(#sweepMask)" style={{ filter: 'drop-shadow(0 0 3px #33ff66)' }} />
+          {/* Bright Revealed Dots bounded by mask with intensified leading glow */}
+          <circle
+            cx="150"
+            cy="150"
+            r="150"
+            fill="url(#dotPattern)"
+            mask="url(#sweepMask)"
+            style={{
+              filter: 'drop-shadow(0 0 3px #33ff66) drop-shadow(0 0 6px rgba(51, 255, 102, 0.75))',
+            }}
+          />
           
           {/* Static Center Crosshairs in radar */}
           <line x1="150" y1="130" x2="150" y2="170" stroke="rgba(36, 173, 74, 0.4)" strokeWidth="1" />
@@ -188,9 +256,9 @@ const LoadPage: React.FC<LoadPageProps> = ({
         </div>
       </div>
 
-      <div style={{ position: 'absolute', bottom: '15%', left: '50%', transform: 'translateX(-50%)', color: '#1a5c2b', fontSize: '0.9rem' }} className="blinking">
+      {/* <div style={{ position: 'absolute', bottom: '15%', left: '50%', transform: 'translateX(-50%)', color: '#1a5c2b', fontSize: '0.9rem' }} className="blinking">
         Scanning...
-      </div>
+      </div> */}
 
       {/* Right Data Lists */}
       <div className="stats-block text-glow">
@@ -204,7 +272,17 @@ const LoadPage: React.FC<LoadPageProps> = ({
          <circle cx="50" cy="50" r="40" fill="none" stroke="#24ad4a" strokeWidth="2" strokeDasharray="10 20" />
          <circle cx="50" cy="50" r="30" fill="none" stroke="#24ad4a" strokeWidth="1" />
       </svg>
-      
+
+      {/* ── Bottom status strip ───────────────────────────────────── */}
+      <div className="vl-status">
+        <div className="vl-status-bar">
+          <div className="vl-status-bar-fill" style={{ width: `${progress}%` }} />
+        </div>
+        <span className="vl-status-text">
+          HACKZ'26 // LOADING
+        </span>
+      </div>
+
     </div>
   );
 };
