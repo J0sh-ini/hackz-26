@@ -183,14 +183,15 @@ export const Hero: React.FC = () => {
             speed={0.25}
             enableShadows={true}
             enableOnHover={!isGlitching}
-            className="hero-glitch-wordmark"
+            className="hero-glitch-wordmark font-pixel"
             style={{
-              fontSize: 'clamp(54px, 16vw, 150px)',
-              lineHeight: 0.95,
+              fontSize: 'clamp(50px, 11vw, 100px)',
+              lineHeight: 1.1,
               margin: 0,
-              fontFamily: 'var(--font-display)',
+              fontFamily: 'var(--font-pixel)',
               color: 'var(--accent-green)',
-              letterSpacing: '0.02em',
+              letterSpacing: '0.04em',
+              textShadow: '0 0 4px rgba(51, 255, 51, 0.6), 0 0 10px rgba(51, 255, 51, 0.4)'
             }}
           >
             HACKZ

@@ -137,14 +137,11 @@ export const GetInvolved: React.FC = () => {
       <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4" style={{ position: 'relative', zIndex: 10 }}>
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-          <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2 justify-center">
-            {/* <span>// 06</span>
-            <span>JOIN THE OPERATIONS</span> */}
-            <ScrambleText text="JOIN THE OPERATIONS" as="span" className="text-[13px] text-accent-green uppercase tracking-[0.15em]" from="random" easing="linear"/>
+          <div className="font-mono text-[13px] text-accent-green mb-3 flex items-center gap-2 justify-center">
+            <ScrambleText text="Join the operations" as="span" className="text-[13px] text-accent-green tracking-[0.15em]" from="random" easing="linear"/>
           </div>
-          {/* <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">GET INVOLVED</h2> */}
-          <ScrambleText text="GET INVOLVED" as="h2" className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6" from="random" easing="linear"/>
-          <p style={{ maxWidth: '560px', margin: '0 auto', fontSize: '15px' }}>
+          <ScrambleText text="GET INVOLVED" as="h2" className="text-[clamp(22px,3.8vw,38px)] font-pixel uppercase mb-6 leading-tight" style={{ fontFamily: 'var(--font-pixel)' }} from="random" easing="linear"/>
+          <p style={{ maxWidth: '560px', margin: '0 auto', fontSize: '16px', lineHeight:'1.5' }}>
             Contribute your expertise or logistical power to ensure HackZ'26 runs with precision and impact.
           </p>
         </div>

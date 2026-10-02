@@ -19,22 +19,21 @@ export const Sponsors: React.FC = () => {
       <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4" style={{ position: 'relative', zIndex: 10 }}>
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-          <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2" style={{ justifyContent: 'center' }}>
-            <span>// 03</span>
-            <span>STRATEGIC ALLIANCES</span>
+          <div className="font-mono text-[13px] text-accent-green mb-3 flex items-center gap-2" style={{ justifyContent: 'center' }}>
+            <ScrambleText text="Strategic alliances" as="span" className="text-[13px] text-accent-green tracking-[0.15em]" from="random" easing="linear"/>
           </div>
-          {/* <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">BACKED BY</h2> */}
           <span>
-          <ScrambleText
-            text="BACKED BY"
-            className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6"
-            as="h2"
-          />
+            <ScrambleText
+              text="BACKED BY"
+              className="text-[clamp(22px,3.8vw,38px)] font-pixel uppercase mb-6 leading-tight"
+              style={{ fontFamily: 'var(--font-pixel)' }}
+              as="h2"
+            />
           </span>
           {/* <p style={{ maxWidth: '600px', margin: '0 auto', fontSize: '15px' }}>
             Empowered by industry pioneers driving global financial software infrastructure and collegiate developer opportunity.
           </p> */}
-          <Shuffle text="Empowered by industry pioneers driving global financial software infrastructure and collegiate developer opportunity." style={{ maxWidth: '600px', margin: '0 auto', fontSize: '15px',lineHeight: '1.5' }}/>
+          <Shuffle text="Empowered by industry pioneers driving global financial software infrastructure and collegiate developer opportunity." style={{ maxWidth: '600px', margin: '0 auto', fontSize: '15px',lineHeight: '1.5', textAlign: 'center' }}/>
         </div> 
 
         {/* Balanced 2-Column Sponsor Grid */}

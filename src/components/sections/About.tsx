@@ -79,15 +79,12 @@ export const About: React.FC = () => {
 
           {/* Right Column: Content Stack */}
           <div>
-            <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
-              {/* <span>// 01</span>
-              <span>ABOUT THE MARATHON</span> */}
-              <ScrambleText text="ABOUT THE MARATHON" as="span" className="text-[13px] text-accent-green font-mono tracking-[0.15em]" from="random" easing="linear"/>
+            <div className="font-mono text-[13px] text-accent-green mb-3 flex items-center gap-2">
+              <ScrambleText text="About the marathon" as="span" className="text-[13px] text-accent-green font-mono tracking-[0.15em]" from="random" easing="linear"/>
             </div>
 
-            <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6" style={{ color: 'var(--text-primary)' }}>
-              <ScrambleText text="HACKZ'26" as="span" className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6" from="random" easing="linear"/>
-
+            <h2 className="text-[clamp(22px,3.8vw,38px)] font-pixel uppercase mb-6 leading-tight" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-pixel)' }}>
+              <ScrambleText text="HACKZ'26" as="span" className="text-[clamp(22px,3.8vw,38px)] font-pixel uppercase tracking-normal" style={{ fontFamily: 'var(--font-pixel)' }} from="random" easing="linear"/>
             </h2>
 
             {/* Body Text with Vertical Border Accent */}

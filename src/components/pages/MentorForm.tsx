@@ -266,7 +266,8 @@ export const MentorForm: React.FC = () => {
           <ScrambleText
             text="MENTOR REGISTRATION"
             as="h2"
-            className="text-[clamp(30px,4.5vw,52px)] font-extrabold tracking-tight uppercase mb-4"
+            className="text-[clamp(18px,3vw,32px)] font-pixel uppercase mb-4 leading-relaxed"
+            style={{ fontFamily: 'var(--font-pixel)' }}
             from="random"
             easing="linear"
           />

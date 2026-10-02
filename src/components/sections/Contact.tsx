@@ -19,10 +19,10 @@ export const Contact: React.FC = () => {
       <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4" style={{ position: 'relative', zIndex: 10 }}>
         {/* Header */}
         <div style={{ marginBottom: '56px' }}>
-          <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
-            <ScrambleText text="DIRECT COMMS" as="span" className="text-[13px] text-accent-green uppercase tracking-[0.15em]" from="random" easing="linear"/>
+          <div className="font-mono text-[13px] text-accent-green mb-3 flex items-center gap-2">
+            <ScrambleText text="Direct comms" as="span" className="text-[13px] text-accent-green  tracking-[0.15em]" from="random" easing="linear"/>
           </div>
-          <ScrambleText text="REACH OUT" as="h2" className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6" from="random" easing="linear"/>
+          <ScrambleText text="REACH OUT" as="h2" className="text-[clamp(22px,3.8vw,38px)] font-pixel uppercase mb-6 leading-tight" style={{ fontFamily: 'var(--font-pixel)' }} from="random" easing="linear"/>
           <p style={{ maxWidth: '600px', fontSize: '15px' }}>
             Have logistical queries, sponsorship inquiries, or technical questions? Establish contact with the student organizing committee.
           </p>

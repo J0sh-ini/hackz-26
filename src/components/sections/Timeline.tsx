@@ -70,13 +70,11 @@ export const Timeline: React.FC = () => {
       <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4" style={{ position: 'relative', zIndex: 10 }}>
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '64px' }}>
-          <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2" style={{ justifyContent: 'center' }}>
-            <span>// 05</span>
-            <span>OPERATIONAL ROADMAP</span>
+          <div className="font-mono text-[13px] text-accent-green mb-3 flex items-center gap-2" style={{ justifyContent: 'center' }}>
+            <ScrambleText text="Operational roadmap" as="span" className="text-[13px] text-accent-green tracking-[0.15em]" from="random" easing="linear"/>
           </div>
-          {/* <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">SEQUENCE OF EVENTS</h2> */}
-          <ScrambleText text="SEQUENCE OF EVENTS" as="h2" className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6" from="random" easing="linear"/>
-          <p style={{ maxWidth: '580px', margin: '0 auto', fontSize: '15px' }}>
+          <ScrambleText text="SEQUENCE OF EVENTS" as="h2" className="text-[clamp(20px,3.5vw,36px)] font-pixel uppercase mb-6 leading-tight" style={{ fontFamily: 'var(--font-pixel)' }} from="random" easing="linear"/>
+          <p style={{ maxWidth: '580px', margin: '0 auto', fontSize: '16px', lineHeight: '1.5' }}>
             A synchronized progression from nationwide ideation review to the intensive 24-hour on-campus prototype deployment.
           </p>
         </div>

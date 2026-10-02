@@ -97,16 +97,11 @@ export const Prizes: React.FC = () => {
       <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4" style={{ position: 'relative', zIndex: 10 }}>
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-          <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2" style={{ justifyContent: 'center' }}>
-            <span>// 04</span>
-            <span>REWARDS & HONORS</span>
+          <div className="font-mono text-[13px] text-accent-green mb-3 flex items-center gap-2" style={{ justifyContent: 'center' }}>
+            <ScrambleText text="Rewards & Honors" as="span" className="text-[13px] text-accent-green tracking-[0.15em]" from="random" easing="linear"/>
           </div>
-          {/* <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">WHAT'S AT STAKE</h2> */}
-          <ScrambleText text="WHAT'S AT STAKE" as="h2" className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6" from="random" easing="linear"/>
-          {/* <p style={{ maxWidth: '600px', margin: '0 auto', fontSize: '16px' }}>
-            Compete for a combined bounty pool engineered to reward disruptive engineering, technical prowess, and innovative design.
-          </p> */}
-            <Shuffle text="Compete for a combined bounty pool engineered to reward disruptive engineering, technical prowess, and innovative design."  style={{ maxWidth: '600px', margin: '0 auto', fontSize: '16px', lineHeight: '1.5' }} />
+          <ScrambleText text="WHAT'S AT STAKE" as="h2" className="text-[clamp(22px,3.8vw,38px)] font-pixel uppercase mb-6 leading-tight" style={{ fontFamily: 'var(--font-pixel)' }} from="random" easing="linear"/>
+            <Shuffle text="Compete for a combined bounty pool engineered to reward disruptive engineering, technical prowess, and innovative design."  style={{ maxWidth: '600px', margin: '0 auto', fontSize: '16px', lineHeight: '1.5', textAlign: 'center' }} />
           </div>
 
           {/* Massive Countup Number Banner */}
@@ -130,7 +125,7 @@ export const Prizes: React.FC = () => {
           </div>
           <div
             style={{
-              fontFamily: 'var(--font-display)',
+              fontFamily: 'var(--font-display--initial)',
               fontSize: 'clamp(42px, 10vw, 115px)',
               fontWeight: 800,
               color: 'var(--accent-green)',

@@ -26,14 +26,11 @@ export const Faq: React.FC = () => {
       <div className="w-full max-w-[860px] mx-auto px-6 max-md:px-4">
         {/* Header */}
         <div style={{ marginBottom: '56px' }}>
-          <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
-            {/* <span>// 07</span>
-            <span>DEBRIEF & INTEL</span> */}
-            <ScrambleText text="DEBRIEF & INTEL" as="span" className="text-[13px] text-accent-green uppercase tracking-[0.15em]" from="random" easing="linear"/>
+          <div className="font-mono text-[13px] text-accent-green mb-3 flex items-center gap-2">
+            <ScrambleText text="Debrief & Intel" as="span" className="text-[13px] text-accent-green tracking-[0.15em]" from="random" easing="linear"/>
           </div>
-          {/* <h2 className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6">FREQUENTLY ASKED QUESTIONS</h2> */}
-          <ScrambleText text="FREQUENTLY ASKED QUESTIONS" as="h2" className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6" from="random" easing="linear"/>
-          <p style={{ fontSize: '15px' }}>
+          <ScrambleText text="FREQUENTLY ASKED QUESTIONS" as="h2" className="text-[clamp(16px,2.8vw,30px)] font-pixel uppercase mb-6 leading-relaxed" style={{ fontFamily: 'var(--font-pixel)' }} from="random" easing="linear"/>
+          <p style={{ fontSize: '16px', lineHeight:'1.5' }}>
             Everything you need to know regarding participation eligibility, marathon protocols, team formation, and registration guidelines.
           </p>
         </div>

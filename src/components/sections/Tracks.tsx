@@ -38,10 +38,10 @@ export const Tracks: React.FC = () => {
       <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4 relative" style={{ zIndex: 10 }}>
         {/* Header */}
         <div style={{ marginBottom: '52px' }}>
-          <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
-          <ScrambleText text="CHALLENGE DOMAINS"/>
+          <div className="font-mono text-[13px] text-accent-green mb-3 flex items-center gap-2">
+          <ScrambleText text="Challenge domains" as="span" className="text-[13px] text-accent-green tracking-[0.15em]" from="random" easing="linear"/>
           </div>
-          <ScrambleText text="MISSION TRACKS" as="h2" className="text-[clamp(32px,5vw,56px)] font-extrabold tracking-tight uppercase mb-6"/>
+          <ScrambleText text="MISSION TRACKS" as="h2" className="text-[clamp(22px,3.8vw,38px)] font-pixel uppercase mb-6 leading-tight" style={{ fontFamily: 'var(--font-pixel)' }} />
           <Shuffle text="Choose an operational theater. Each domain addresses pressing technical, industrial, and societal challenges requiring scalable, high-impact prototypes."  className="max-w-[640px] text-[16px] text-left" />
         </div>
 

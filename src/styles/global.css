@@ -43,10 +43,11 @@
   --color-accent-red:           #00ff41;
 
   /* Fonts */
-  --font-family-display: 'JetBrains Mono', monospace;
-  --font-family-heading:  'Outfit', -apple-system, sans-serif;
-  --font-family-body:     'Inter', -apple-system, sans-serif;
-  --font-family-mono:     'JetBrains Mono', monospace;
+  --font-family-display: 'Press Start 2P', monospace;
+  --font-family-pixel:   'Press Start 2P', monospace;
+  --font-family-heading: 'Outfit', -apple-system, sans-serif;
+  --font-family-body:    'Inter', -apple-system, sans-serif;
+  --font-family-mono:    'JetBrains Mono', monospace;
 
   /* Layout */
   --spacing-header-height:   64px;
@@ -87,10 +88,11 @@
     --accent-cyan:          var(--color-accent-green-mint);
     --accent-magenta:       var(--color-accent-green-bright);
     --accent-red:           var(--color-accent-green);
-    /* --font-display: var(--font-family-display); */
-    /* --font-heading:  var(--font-family-heading); */
-    /* --font-body:     var(--font-family-body); */
-    --font-mono:     var(--font-family-mono);
+    --font-display:         var(--font-family-display);
+    --font-pixel:           var(--font-family-pixel);
+    --font-heading:         var(--font-family-heading);
+    --font-body:            var(--font-family-body);
+    --font-mono:            var(--font-family-mono);
     --header-height:   var(--spacing-header-height);
     --container-max:   var(--spacing-container-max);
   }
@@ -284,5 +286,14 @@
     border-top: 1px solid var(--border-default);
     margin: 0;
     position: relative;
+  }
+
+  .font-pixel {
+    font-family: var(--font-pixel), 'Press Start 2P', monospace !important;
+  }
+
+  .section-title {
+    font-family: var(--font-pixel), 'Press Start 2P', monospace !important;
+    line-height: 1.35 !important;
   }
 }
