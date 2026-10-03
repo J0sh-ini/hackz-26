@@ -1,39 +1,7 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import './VideoLoader.css';
 import LoadPage from './LoadPage';
-// import TerminalSimulator from '../ambient/TerminalSimulator';
 
-// const TOP_TERMINAL_LOGS = [
-//   "> INITIALIZING HACKZ'26 CORE SYSTEM...",
-//   "> KERNEL: Linux 6.8.0-hackz-v26 x86_64",
-//   "> MOUNTING VIRTUAL FILESYSTEMS...",
-//   "> [OK] Mounted /dev/nvme0n1p1 on /boot",
-//   "> [OK] Started Network Time Synchronization",
-//   "> LOADING NEURAL MESH INTERFACE...",
-//   "> CONNECTING TO QUANTUM NODE #0492...",
-//   "> SECURE HANDSHAKE ESTABLISHED [256-BIT CHACHA20]",
-//   "> ALLOCATING MEMORY BUFFERS: 64GB HEAP OK",
-//   "> COMPILING SHADERS: WebGL2 / Vulkan Backend...",
-//   "> INTEGRITY CHECK: PASS (0 ERRORS, 0 WARNINGS)",
-//   "> INITIATING MATRIX SCAN SEQUENCE...",
-//   "> FETCHING COMPETITOR TELEMETRY...",
-//   "> SYSTEM STATUS: OPTIMAL // READY FOR DEPLOYMENT"
-// ];
-
-// const BOTTOM_TERMINAL_LOGS = [
-//   "0x0000FF42: 48 89 5c 24 08 48 89 6c 24 10 48 89 74 24 18 57",
-//   "0x0000FF52: 48 83 ec 20 41 8b e9 49 8b f8 8c c6 48 8b d9 00",
-//   "> DB_PING: 1.2ms [cluster-east-1.hackz.io]",
-//   "> AGENT_BUS: Listening on wss://daemon.hackz.org/stream",
-//   "> SYNC_STATE: ACTIVE | PACKETS_IN: 142091 | PACKETS_OUT: 98124",
-//   "> MEM_USAGE: [██████████████░░░░░░░░] 58.4%",
-//   "> CPU_LOAD:  [██████████████████░░░] 74.1%",
-//   "> GPU_TEMP:  42°C | FAN_SPEED: 1800 RPM",
-//   "> LATENCY: 8ms | BANDWIDTH: 10 Gbps FIBER",
-//   "> RECV SIGNAL: 0x994FA1B2 [CIPHER ENCRYPTED]",
-//   "> DECRYPTING PACKET STREAM... 100% COMPLETE",
-//   "> HACKZ'26 ENGINE RUNTIME: STABLE"
-// ];
 
 interface VideoLoaderProps {
   src: string;
@@ -140,16 +108,7 @@ export const VideoLoader: React.FC<VideoLoaderProps> = ({
 
   return (
     <div className={`vl-root${phase === 'fading' ? ' vl-fading' : ''}`}>
-      {/* ── Ambient Terminal Simulators (Top & Bottom behind loader UI) ── */}
-      {/* <div className="vl-terminal-wrapper vl-terminal-top">
-        <TerminalSimulator lines={TOP_TERMINAL_LOGS} speed={45} loop={true} />
-      </div>
-
-      <div className="vl-terminal-wrapper vl-terminal-bottom">
-        <TerminalSimulator lines={BOTTOM_TERMINAL_LOGS} speed={65} loop={true} />
-      </div> */}
-
-      {/* ── Video element ─────────────────────────────────────────── */}
+            {/* ── Video element ─────────────────────────────────────────── */}
       <video
         ref={videoRef}
         className="vl-video"

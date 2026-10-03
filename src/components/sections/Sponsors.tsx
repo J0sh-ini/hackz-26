@@ -169,7 +169,7 @@ export const Sponsors: React.FC = () => {
 
               <p
                 style={{
-                  fontFamily: 'var(--font-body)',
+                  fontFamily: 'var(--font-mono)',
                   fontSize: '13px',
                   color: 'var(--text-secondary)',
                   textAlign: 'center',
@@ -373,7 +373,7 @@ export const Sponsors: React.FC = () => {
 
               <p
                 style={{
-                  fontFamily: 'var(--font-body)',
+                  fontFamily: 'var(--font-mono)',
                   fontSize: '13px',
                   color: 'var(--text-secondary)',
                   textAlign: 'center',

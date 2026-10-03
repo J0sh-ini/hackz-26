@@ -285,7 +285,7 @@ export const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
           style={{
-            fontFamily: "var(--font-heading)",
+            fontFamily: "var(--font-mono)",
             fontSize: "clamp(14px, 2.5vw, 20px)",
             fontWeight: 500,
             color: "var(--text-primary)",
@@ -304,28 +304,42 @@ export const Hero: React.FC = () => {
           <p
             className="mt-2"
             style={{
-              fontSize: "clamp(15px, 2.65vw, 22px",
+              fontSize: "clamp(15px, 2.65vw, 20px",
               color: "var(--text-primary)",
               opacity: "0.7",
             }}
           >
             All-India Inter-Collegiate Hackathon
           </p>
+          
+        </motion.div >
+            <motion.div
+            initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "clamp(14px, 2.5vw, 20px)",
+            fontWeight: 500,
+            color: "var(--text-primary)",
+            opacity: 0.8,
+            letterSpacing: "0.02em",
+            maxWidth: "650px",
+            marginBottom: "28px",
+          }}>
+            
           <p style={{ fontSize: "clamp(12px, 2vw, 16px)", opacity: "0.9" }}>
             In Association With
           </p>
           <p
-            style={{
-              fontSize: "clamp(15px, 2.65vw, 22px)",
-              marginTop: "0.5rem",
-              fontWeight: "550",
-              color: "var(--accent-green-mint)",
-            }}
+            style={{ fontSize: "clamp(12px, 2vw, 16px)", opacity: "0.9" }}
           >
-            Information Security Education and Awareness
+            Information Security Education & Awareness
           </p>
-        </motion.div>
-
+          <p style={{ fontSize: "clamp(12px, 1.6vw, 14px)", opacity: "1" }}>
+            An Initiative Of Ministry Of Electronics & Information Technology 
+          </p>
+            </motion.div>
         {/* Date / Venue Sharp Pill */}
         <motion.div
           initial={{ opacity: 0, y: 14 }}

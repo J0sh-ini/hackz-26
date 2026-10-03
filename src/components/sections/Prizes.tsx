@@ -216,7 +216,7 @@ export const Prizes: React.FC = () => {
                   <div
                     key={i}
                     style={{
-                      fontFamily: 'var(--font-body)',
+                      fontFamily: 'var(--font-mono)',
                       fontSize: '13px',
                       color: 'var(--text-secondary)',
                       display: 'flex',

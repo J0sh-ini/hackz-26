@@ -141,7 +141,7 @@ export const Faq: React.FC = () => {
                               <div
                                 style={{
                                   padding: '0 8px 20px 8px',
-                                  fontFamily: 'var(--font-body)',
+                                  fontFamily: 'var(--font-mono)',
                                   fontSize: '14px',
                                   lineHeight: 1.65,
                                   color: '#a8a8a8',
@@ -152,7 +152,7 @@ export const Faq: React.FC = () => {
                                 <FoldText
                                   text={item.answer}
                                   style={{
-                                    fontFamily: 'var(--font-body)',
+                                    fontFamily: 'var(--font-mono)',
                                     fontSize: '14px',
                                     lineHeight: 1.65,
                                     color: '#a8a8a8',

@@ -159,7 +159,7 @@ export const About: React.FC = () => {
             </div>
             <div
               style={{
-                fontFamily: 'var(--font-body)',
+                fontFamily: 'var(--font-mono)',
                 fontSize: '13px',
                 color: 'var(--text-secondary)',
               }}
@@ -210,7 +210,7 @@ export const About: React.FC = () => {
             </div>
             <div
               style={{
-                fontFamily: 'var(--font-body)',
+                fontFamily: 'var(--font-mono)',
                 fontSize: '13px',
                 color: 'var(--text-secondary)',
               }}
@@ -261,7 +261,7 @@ export const About: React.FC = () => {
             </div>
             <div
               style={{
-                fontFamily: 'var(--font-body)',
+                fontFamily: 'var(--font-mono)',
                 fontSize: '13px',
                 color: 'var(--text-secondary)',
               }}

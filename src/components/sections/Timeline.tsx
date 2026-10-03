@@ -271,7 +271,7 @@ export const Timeline: React.FC = () => {
                     {/* Description */}
                     <p
                       style={{
-                        fontFamily: 'var(--font-body)',
+                        fontFamily: 'var(--font-mono)',
                         fontSize: '13px',
                         color: 'var(--text-secondary)',
                         lineHeight: 1.55,

@@ -135,7 +135,7 @@ export const Tracks: React.FC = () => {
                 {/* Description */}
                 <p
                   style={{
-                    fontFamily: 'var(--font-body)',
+                    fontFamily: 'var(--font-mono)',
                     fontSize: '14px',
                     color: 'var(--text-secondary)',
                     lineHeight: 1.6,
