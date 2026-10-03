@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
-import { MatrixCanvas } from '../ambient/MatrixCanvas';
-import { BlinkingCursor } from '../ambient/BlinkingCursor';
-import { Button } from '../ui/Button';
-import { GlitchText } from '../ui/GlitchText';
-import { EVENT_LINKS } from '../../data/contact';
-import ScrambleText from '../ui/ScrambleText';
-import TextType from '../ui/TextType'
-import {GlitchSvg} from '../ui/GlitchSvg';
+import React, { useState, useEffect } from "react";
+import { motion } from "motion/react";
+import { MatrixCanvas } from "../ambient/MatrixCanvas";
+import { BlinkingCursor } from "../ambient/BlinkingCursor";
+import { Button } from "../ui/Button";
+import { GlitchText } from "../ui/GlitchText";
+import { EVENT_LINKS } from "../../data/contact";
+import ScrambleText from "../ui/ScrambleText";
+import TextType from "../ui/TextType";
+import { GlitchSvg } from "../ui/GlitchSvg";
 export const Hero: React.FC = () => {
   const [isGlitching, setIsGlitching] = useState<boolean>(true);
 
@@ -39,24 +39,23 @@ export const Hero: React.FC = () => {
     <section
       id="hero"
       style={{
-        position: 'relative',
-        minHeight: '100vh',
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        overflow: 'hidden',
+        position: "relative",
+        minHeight: "100vh",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        overflow: "hidden",
         zIndex: 2,
-        backgroundColor: 'var(--bg-page)',
-        paddingTop: 'var(--header-height)',
-        paddingBottom: '40px',
+        backgroundColor: "var(--bg-page)",
+        paddingTop: "var(--header-height)",
+        paddingBottom: "40px",
       }}
     >
       {/* Background Matrix Rain */}
       <MatrixCanvas opacity={0.6} />
-
 
       <div className="crt-vignette" />
 
@@ -64,12 +63,12 @@ export const Hero: React.FC = () => {
       <div
         className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4"
         style={{
-          position: 'relative',
+          position: "relative",
           zIndex: 10,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          maxWidth: '900px',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          maxWidth: "900px",
         }}
       >
         {/* Top Monospace Label */}
@@ -78,23 +77,28 @@ export const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '14px',
-            color: 'var(--accent-green)',
-            letterSpacing: '0.18em',
-            marginBottom: '16px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '4px',
-            alignItems: 'center',
+            fontFamily: "var(--font-mono)",
+            fontSize: "14px",
+            color: "var(--accent-green)",
+            letterSpacing: "0.18em",
+            marginBottom: "16px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "4px",
+            alignItems: "center",
           }}
         >
-           <GlitchSvg>
-
-          <div className="flex items-center  md:w-[15vw] w-45 justify-center gap-2 mb-3">
-                    <svg viewBox="76 74 1086 650" className="h-full w-auto filter drop-shadow-[0_0_15px_rgba(13, 122, 52, 1)]">
-                      <g transform="translate(0,944) scale(0.1,-0.1)">
-                        <path d="M6185 8365 c-270 -36 -416 -69 -580 -129 -38 -15 -104 -38 -145 -52
+          <GlitchSvg>
+            <div className="flex items-center justify-center gap-4 sm:gap-6 mb-3">
+              {/* CSEA Logo */}
+              <div className="h-14 sm:h-16 md:h-18 lg:h-22 flex items-center justify-center">
+                <svg
+                  viewBox="76 74 1086 650"
+                  className="h-full w-auto filter drop-shadow-[0_0_15px_rgba(13, 122, 52, 1)]"
+                >
+                  <g transform="translate(0,944) scale(0.1,-0.1)">
+                    <path
+                      d="M6185 8365 c-270 -36 -416 -69 -580 -129 -38 -15 -104 -38 -145 -52
                           -71 -25 -164 -64 -203 -85 -10 -5 -62 -33 -115 -61 -93 -49 -294 -178 -377
                           -242 -138 -105 -343 -295 -448 -414 -100 -113 -258 -337 -320 -452 -4 -8 -34
                           -60 -65 -115 l-58 -100 -204 0 c-182 0 -214 -3 -290 -23 -165 -45 -211 -66
@@ -145,25 +149,47 @@ export const Hero: React.FC = () => {
                           198 l-5 22 -704 0 c-633 0 -706 2 -721 16 -13 13 -15 37 -13 143 l3 126 710 3
                           c653 2 711 3 723 19 14 19 17 349 4 371 -7 9 -199 13 -911 15 -496 1 -911 -1
                           -921 -5z M6231 2931 c-11 -7 -13 -49 -13 -204 0 -108 3 -201 7 -207 4 -7 302
-                          -10 925 -10 828 0 918 2 924 16 12 31 7 389 -6 402 -14 14 -1814 17 -1837 3z" fill="#ffffff" fillRule="evenodd">
-                          </path>
-                          <path d="M7063 6428 c-38 -46 -84 -103 -103 -128 -19 -25 -68 -85 -110 -135
+                          -10 925 -10 828 0 918 2 924 16 12 31 7 389 -6 402 -14 14 -1814 17 -1837 3z"
+                      fill="#ffffff"
+                      fillRule="evenodd"
+                    ></path>
+                    <path
+                      d="M7063 6428 c-38 -46 -84 -103 -103 -128 -19 -25 -68 -85 -110 -135
                             -42 -49 -83 -100 -91 -112 -8 -12 -38 -48 -68 -81 -29 -33 -71 -85 -94 -115
                             -67 -87 -270 -338 -316 -391 -27 -31 -41 -56 -39 -70 l3 -21 870 -2 c479 -2
                             876 1 884 6 21 14 6 44 -82 155 -45 57 -101 130 -124 163 -23 32 -55 72 -71
                             89 -15 17 -57 69 -92 115 -90 119 -129 169 -223 289 -45 58 -93 121 -107 140
                             -13 19 -42 56 -64 81 -23 26 -51 58 -63 73 -12 14 -26 26 -31 26 -5 0 -41 -37
-                            -79 -82z" fill="#0d7a34" fillRule="evenodd">
-                          </path>
-                      </g>
-          </svg>
+                            -79 -82z"
+                      fill="#0d7a34"
+                      fillRule="evenodd"
+                    ></path>
+                  </g>
+                </svg>
+              </div>
+
+              {/* ISEA Logo */}
+              <div className="h-14 sm:h-16 md:h-18 lg:h-22 flex items-center justify-center">
+                <img
+                  src="/isea.png"
+                  alt="ISEA Logo"
+                  className="h-full w-auto object-contain filter drop-shadow-[0_0_15px_rgba(13, 122, 52, 0.8)]"
+                />
+              </div>
+            </div>
+          </GlitchSvg>
+
+          
+          <div>
+            <ScrambleText
+              text="PRESENTS"
+              as="span"
+              className="text-[14px] text-accent-green font-mono tracking-[0.18em]"
+              from="random"
+              easing="linear"
+            />
+            <BlinkingCursor />
           </div>
-           </GlitchSvg>
-           <div>
-            
-            <ScrambleText text="PRESENTS" as="span" className="text-[14px] text-accent-green font-mono tracking-[0.18em]" from="random" easing="linear"/>
-          <BlinkingCursor />
-           </div>
         </motion.div>
 
         {/* Massive HackZ Wordmark with React Bits GlitchText */}
@@ -172,10 +198,10 @@ export const Hero: React.FC = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           style={{
-            marginBottom: '14px',
-            display: 'flex',
-            justifyContent: 'center',
-            width: '100%',
+            marginBottom: "14px",
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
           }}
         >
           <GlitchText
@@ -185,13 +211,14 @@ export const Hero: React.FC = () => {
             enableOnHover={!isGlitching}
             className="hero-glitch-wordmark font-pixel"
             style={{
-              fontSize: 'clamp(50px, 11vw, 100px)',
+              fontSize: "clamp(50px, 11vw, 100px)",
               lineHeight: 1.1,
               margin: 0,
-              fontFamily: 'var(--font-pixel)',
-              color: 'var(--accent-green)',
-              letterSpacing: '0.04em',
-              textShadow: '0 0 4px rgba(51, 255, 51, 0.6), 0 0 10px rgba(51, 255, 51, 0.4)'
+              fontFamily: "var(--font-pixel)",
+              color: "var(--accent-green)",
+              letterSpacing: "0.04em",
+              textShadow:
+                "0 0 4px rgba(51, 255, 51, 0.6), 0 0 10px rgba(51, 255, 51, 0.4)",
             }}
           >
             HACKZ
@@ -204,24 +231,52 @@ export const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.25 }}
           style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: 'clamp(14px, 2.8vw, 18px)',
+            fontFamily: "var(--font-mono)",
+            fontSize: "clamp(14px, 2.8vw, 18px)",
             fontWeight: 800,
-            letterSpacing: '0.22em',
-            textTransform: 'uppercase',
-            marginBottom: '14px',
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            gap: '10px',
-            textShadow: '0 0 12px rgba(0, 0, 0, 0.8)',
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            //marginBottom: '14px',
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            gap: "10px",
+            textShadow: "0 0 12px rgba(0, 0, 0, 0.8)",
           }}
         >
-          <span style={{ color: 'var(--accent-green-bright)', textShadow: '0 0 10px rgba(57, 255, 20, 0.45)' }}>Zap.</span>
-          <span style={{ color: 'var(--accent-green-mint)', textShadow: '0 0 10px rgba(0, 255, 136, 0.4)' }}>Zen.</span>
-          <span style={{ color: 'var(--accent-green-volt)', textShadow: '0 0 10px rgba(132, 255, 0, 0.4)' }}>Zest.</span>
-          <span style={{ color: 'var(--accent-green)', textShadow: '0 0 12px rgba(0, 255, 65, 0.5)' }}>HackZ</span>
+          <span
+            style={{
+              color: "var(--accent-green-bright)",
+              textShadow: "0 0 10px rgba(57, 255, 20, 0.45)",
+            }}
+          >
+            Zap.
+          </span>
+          <span
+            style={{
+              color: "var(--accent-green-mint)",
+              textShadow: "0 0 10px rgba(0, 255, 136, 0.4)",
+            }}
+          >
+            Zen.
+          </span>
+          <span
+            style={{
+              color: "var(--accent-green-volt)",
+              textShadow: "0 0 10px rgba(132, 255, 0, 0.4)",
+            }}
+          >
+            Zest.
+          </span>
+          <span
+            style={{
+              color: "var(--accent-green)",
+              textShadow: "0 0 12px rgba(0, 255, 65, 0.5)",
+            }}
+          >
+            HackZ
+          </span>
         </motion.div>
 
         {/* Tagline */}
@@ -230,18 +285,45 @@ export const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
           style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(15px, 2.5vw, 22px)',
+            fontFamily: "var(--font-heading)",
+            fontSize: "clamp(14px, 2.5vw, 20px)",
             fontWeight: 500,
-            color: 'var(--text-primary)',
-            opacity: 0.75,
-            letterSpacing: '0.02em',
-            maxWidth: '650px',
-            marginBottom: '28px',
+            color: "var(--text-primary)",
+            opacity: 0.8,
+            letterSpacing: "0.02em",
+            maxWidth: "650px",
+            marginBottom: "28px",
           }}
         >
-          <p>All-India Inter-Collegiate Hackathon</p>
-          <TextType text=" Innovate, Create, Dominate!" loop={true} cursorBlinkDuration={1} initialDelay={1000}/>
+          <TextType
+            text=" Innovate, Create, Dominate!"
+            loop={true}
+            cursorBlinkDuration={1}
+            initialDelay={1000}
+          />
+          <p
+            className="mt-2"
+            style={{
+              fontSize: "clamp(15px, 2.65vw, 22px",
+              color: "var(--text-primary)",
+              opacity: "0.7",
+            }}
+          >
+            All-India Inter-Collegiate Hackathon
+          </p>
+          <p style={{ fontSize: "clamp(12px, 2vw, 16px)", opacity: "0.9" }}>
+            In Association With
+          </p>
+          <p
+            style={{
+              fontSize: "clamp(15px, 2.65vw, 22px)",
+              marginTop: "0.5rem",
+              fontWeight: "550",
+              color: "var(--accent-green-mint)",
+            }}
+          >
+            Information Security Education and Awareness
+          </p>
         </motion.div>
 
         {/* Date / Venue Sharp Pill */}
@@ -250,22 +332,39 @@ export const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.55 }}
           style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '10px',
-            padding: '10px 20px',
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "10px",
+            padding: "10px 20px",
             //border: '1px solid var(--border-default)',
-            fontFamily: 'var(--font-mono)',
-            color: 'var(--text-primary)',
-            letterSpacing: '0.08em',
-            marginBottom: '36px',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
+            fontFamily: "var(--font-mono)",
+            color: "var(--text-primary)",
+            letterSpacing: "0.08em",
+            marginBottom: "36px",
+            flexWrap: "wrap",
+            justifyContent: "center",
           }}
         >
-          <ScrambleText text="DEC 12–13, 2026" as="span" className="text-[clamp(14px,2.5vw,15px)] text-accent-green font-mono tracking-[0.08em]" from="random" easing="linear"/>
-          <span style={{ color: 'var(--text-secondary)' }}>&middot;</span>
-          <ScrambleText text="CEG CAMPUS, ANNA UNIVERSITY" as="span" className="text-[clamp(14px,2.5vw,15px)] text-text-primary font-mono tracking-[0.08em]" from="random" easing="linear"/>
+          <ScrambleText
+            text="DEC 12–13, 2026"
+            as="span"
+            className="text-[clamp(14px,2.5vw,15px)] text-accent-green font-mono tracking-[0.08em]"
+            from="random"
+            easing="linear"
+          />
+          <span
+            style={{ color: "var(--text-secondary)" }}
+            className="max-md:hidden"
+          >
+            &middot;
+          </span>
+          <ScrambleText
+            text="CEG CAMPUS, ANNA UNIVERSITY"
+            as="span"
+            className="text-[clamp(14px,2.5vw,15px)] text-text-primary font-mono tracking-[0.08em]"
+            from="random"
+            easing="linear"
+          />
         </motion.div>
 
         {/* CTAs */}
@@ -274,12 +373,12 @@ export const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.7 }}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '16px',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            width: '100%',
+            display: "flex",
+            alignItems: "center",
+            gap: "16px",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            width: "100%",
           }}
         >
           <Button
@@ -288,14 +387,10 @@ export const Hero: React.FC = () => {
             isExternal
             className="w-full sm:w-auto"
           >
-             [ REGISTER NOW ]
+            [ REGISTER NOW ]
           </Button>
 
-          <Button
-            variant="outline"
-            href="#about"
-            className="w-full sm:w-auto"
-          >
+          <Button variant="outline" href="#about" className="w-full sm:w-auto">
             EXPLORE DETAILS ↓
           </Button>
         </motion.div>
