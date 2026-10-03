@@ -94,7 +94,7 @@ export const App: React.FC = () => {
       {/* Video Loading Screen — swap src when you have the file */}
       {isLoading ? (
         <VideoLoader
-          src={ '/short.mp4'}
+          src={ '/Produce.MP4'}
           onComplete={() => setIsLoading(false)}
           fadeDuration={900}
           maxDuration={8000}

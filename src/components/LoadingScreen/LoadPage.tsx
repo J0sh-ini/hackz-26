@@ -1,6 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { animate, random } from 'animejs';
 import './VideoLoader.css';
+import TerminalSimulator from '../ambient/TerminalSimulator';
+
+const MOBILE_TOP_LOGS = [
+  "> SYS_BOOT: HACKZ'26 ENGINE",
+  "> CONNECT: OK [NODE_01]",
+  "> ALLOC_HEAP: 1024MB",
+  "> SECURITY: ENCRYPTED"
+];
+
+const MOBILE_BOTTOM_LOGS = [
+  "0x00FF: STREAMING DATA...",
+  "> PACKETS: 4891 OK",
+  "> STATUS: RUNNING..."
+];
 
 export interface LoadPageProps {
   onComplete?: () => void;
@@ -157,6 +171,11 @@ const LoadPage: React.FC<LoadPageProps> = ({
   return (
     <div className={`hud-container ${phase === 'fading' ? 'vl-fading' : ''} ${isMobile ? 'hud-mobile' : ''}`}>
 
+      {/* Top & Bottom Ambient Terminal Simulators */}
+      <div className="vl-terminal-wrapper vl-terminal-top">
+        <TerminalSimulator lines={MOBILE_TOP_LOGS} speed={50} loop={true} />
+      </div>
+
       <div className="hud-overlay" />
 
       {/* Background Reticle / Frame markers */}
@@ -283,6 +302,9 @@ const LoadPage: React.FC<LoadPageProps> = ({
         </span>
       </div>
 
+      <div className="vl-terminal-wrapper vl-terminal-bottom">
+        <TerminalSimulator lines={MOBILE_BOTTOM_LOGS} speed={70} loop={true} style={{ textAlign: 'right' }} />
+      </div>
     </div>
   );
 };

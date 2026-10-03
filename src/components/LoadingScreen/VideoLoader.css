@@ -7,7 +7,7 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: #00000000;
+  background: #000000;
   overflow: hidden;
   pointer-events: auto;
   opacity: 1;
@@ -19,6 +19,39 @@
   opacity: 0;
   pointer-events: none;
 }
+
+/* ── Terminal Simulator Ambient Overlays (Top & Bottom) ───────────── */
+.vl-terminal-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 1;
+}
+
+.vl-terminal-top {
+  top: 0;
+  height: 180px;
+  background: linear-gradient(to bottom, rgba(2, 10, 4, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 0) 100%);
+}
+
+.vl-terminal-bottom {
+  bottom: 0;
+  right: 0 !important;
+  left: auto !important;
+  width: 380px;
+  max-width: 90vw;
+  height: 180px;
+  text-align: right;
+  background: linear-gradient(to top left, rgba(2, 10, 4, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 65%, rgba(0, 0, 0, 0) 100%);
+}
+
 
 /* ── Video fits fully in screen, letterboxed with dark bars ────── */
 .vl-video {
@@ -240,4 +273,4 @@
   .decor-circle {
     display: none;
   }
-}
+}
