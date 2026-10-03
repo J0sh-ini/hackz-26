@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { MatrixCanvas } from "../ambient/MatrixCanvas";
 import { BlinkingCursor } from "../ambient/BlinkingCursor";
 import { Button } from "../ui/Button";
@@ -8,8 +8,15 @@ import { EVENT_LINKS } from "../../data/contact";
 import ScrambleText from "../ui/ScrambleText";
 import TextType from "../ui/TextType";
 import { GlitchSvg } from "../ui/GlitchSvg";
+
+const LOGOS = [
+  { src: "/isea.png", alt: "ISEA Logo" },
+  { src: "/goi.png", alt: "GOI Logo" },
+];
+
 export const Hero: React.FC = () => {
   const [isGlitching, setIsGlitching] = useState<boolean>(true);
+  const [logoIndex, setLogoIndex] = useState<number>(0);
 
   useEffect(() => {
     let burstTimer: ReturnType<typeof setTimeout> | null = null;
@@ -19,7 +26,7 @@ export const Hero: React.FC = () => {
       setIsGlitching(false);
     }, 850);
 
-    // Auto-glitch burst every 10 seconds
+    // Auto-glitch burst every 7.5 seconds
     const interval = setInterval(() => {
       setIsGlitching(true);
       if (burstTimer) clearTimeout(burstTimer);
@@ -33,6 +40,17 @@ export const Hero: React.FC = () => {
       if (burstTimer) clearTimeout(burstTimer);
       clearInterval(interval);
     };
+  }, []);
+
+  useEffect(() => {
+    // Alternate logo every 5 seconds right during the glitch
+    const logoInterval = setInterval(() => {
+      setTimeout(() => {
+        setLogoIndex((prev) => (prev + 1) % LOGOS.length);
+      }, 300);
+    }, 5000);
+
+    return () => clearInterval(logoInterval);
   }, []);
 
   return (
@@ -88,7 +106,7 @@ export const Hero: React.FC = () => {
             alignItems: "center",
           }}
         >
-          <GlitchSvg>
+          <GlitchSvg duration={800} delay={4200}>
             <div className="flex items-center justify-center gap-4 sm:gap-6 mb-3">
               {/* CSEA Logo */}
               <div className="h-14 sm:h-16 md:h-18 lg:h-22 flex items-center justify-center">
@@ -168,13 +186,21 @@ export const Hero: React.FC = () => {
                 </svg>
               </div>
 
-              {/* ISEA Logo */}
-              <div className="h-14 sm:h-16 md:h-18 lg:h-22 flex items-center justify-center">
-                <img
-                  src="/isea.png"
-                  alt="ISEA Logo"
-                  className="h-full w-auto object-contain filter drop-shadow-[0_0_15px_rgba(13, 122, 52, 0.8)]"
-                />
+              {/* ISEA / GOI Alternating Logo */}
+              <div className="h-14 sm:h-16 md:h-18 lg:h-22 flex items-center justify-center relative min-w-[70px] sm:min-w-[90px]">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={LOGOS[logoIndex].src}
+                    src={LOGOS[logoIndex].src}
+                    alt={LOGOS[logoIndex].alt}
+                    initial={{ opacity: 0, scale: 0.85, filter: "brightness(2) blur(2px)" }}
+                    animate={{ opacity: 1, scale: 1, filter: "brightness(1) blur(0px)" }}
+                    exit={{ opacity: 0, scale: 1.15, filter: "brightness(2) blur(2px)" }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                    className="h-full w-auto object-contain filter drop-shadow-[0_0_15px_rgba(13,122,52,0.8)]"
+                    style={{borderRadius:'50%'}}
+                  />
+                </AnimatePresence>
               </div>
             </div>
           </GlitchSvg>
