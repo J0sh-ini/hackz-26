@@ -145,16 +145,22 @@ export const Faq: React.FC = () => {
                                   fontSize: '14px',
                                   lineHeight: 1.65,
                                   color: '#a8a8a8',
+                                  textAlign: 'justify',
                                 }}
                               >
                                 {/* {item.answer} */}
-                                <FoldText text={item.answer} style={{
-                                  padding: '0 8px 20px 8px',
-                                  fontFamily: 'var(--font-body)',
-                                  fontSize: '14px',
-                                  lineHeight: 1.65,
-                                  color: '#a8a8a8',
-                                }}/>
+                                <FoldText
+                                  text={item.answer}
+                                  style={{
+                                    fontFamily: 'var(--font-body)',
+                                    fontSize: '14px',
+                                    lineHeight: 1.65,
+                                    color: '#a8a8a8',
+                                    textAlign: 'justify',
+                                    display: 'block',
+                                    width: '100%',
+                                  }}
+                                />
                               </div>
                             </motion.div>
                           )}

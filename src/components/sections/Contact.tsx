@@ -132,7 +132,7 @@ export const Contact: React.FC = () => {
                       gap: '10px',
                       transition: 'border-color 0.15s ease',
                     }}
-                    className="btn-hover-primary"
+                    className="btn-hover-primary max-md:justify-center"
                   >
                     <span>&#9993;</span>
                     <span>{email}</span>

@@ -275,6 +275,7 @@ export const Timeline: React.FC = () => {
                         fontSize: '13px',
                         color: 'var(--text-secondary)',
                         lineHeight: 1.55,
+                        textAlign:'justify',
                         margin: 0,
                       }}
                     >

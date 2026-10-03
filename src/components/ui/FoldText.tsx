@@ -47,7 +47,7 @@ const renderWhitespace = (value: string, key: string): ReactNode[] =>
 
     return (
       <span className="fold-text-whitespace" key={`${key}-space-${index}`}>
-        {part.replace(/ /g, '\u00A0')}
+        {part}
       </span>
     );
   });
