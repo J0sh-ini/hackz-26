@@ -92,6 +92,7 @@ const RoleCard: React.FC<RoleCardProps> = ({
             fontWeight: 700,
             color: 'var(--text-primary)',
             marginBottom: '14px',
+            textAlign: 'center',
           }}
         />
         <p
@@ -100,19 +101,20 @@ const RoleCard: React.FC<RoleCardProps> = ({
             color: 'var(--text-secondary)',
             lineHeight: 1.65,
             marginBottom: '32px',
+            textAlign: 'center',
           }}
         >
           {description}
         </p>
       </div>
 
-      <div style={{ position: 'relative', zIndex: 2 }}>
+      <div style={{ position: 'relative', zIndex: 2,display:'flex',justifyContent:'center' }}>
         <Button
           variant="outline"
           href={btnHref}
           onClick={onClick}
           isExternal={isExternal}
-          className="w-full sm:w-auto"
+          className="w-full sm:w-auto "
         >
           {btnText}
         </Button>

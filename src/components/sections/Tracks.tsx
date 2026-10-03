@@ -140,7 +140,7 @@ export const Tracks: React.FC = () => {
                     color: 'var(--text-secondary)',
                     lineHeight: 1.6,
                     flexGrow: 1,
-                    textAlign:'justify'
+                    textAlign:'center'
                   }}
                 >
                   {track.description}

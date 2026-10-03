@@ -29,7 +29,7 @@ export const Faq: React.FC = () => {
           <div className="font-mono text-[13px] text-accent-green mb-3 flex items-center gap-2">
             <ScrambleText text="Debrief & Intel" as="span" className="text-[13px] text-accent-green tracking-[0.15em]" from="random" easing="linear"/>
           </div>
-          <ScrambleText text="FREQUENTLY ASKED QUESTIONS" as="h2" className="text-[clamp(16px,2.8vw,30px)] font-pixel uppercase mb-6 leading-relaxed" style={{ fontFamily: 'var(--font-pixel)' }} from="random" easing="linear"/>
+          <ScrambleText text="FREQUENTLY ASKED QUESTIONS" as="h2" className="text-[clamp(16px,2.8vw,30px)] font-pixel uppercase mb-6 leading-relaxed text-center" style={{ fontFamily: 'var(--font-pixel)' }} from="random" easing="linear"/>
           <p style={{ fontSize: '16px', lineHeight:'1.5',textAlign: 'center' }}>
             Everything you need to know regarding participation eligibility, marathon protocols, team formation, and registration guidelines.
           </p>
@@ -156,7 +156,7 @@ export const Faq: React.FC = () => {
                                     fontSize: '14px',
                                     lineHeight: 1.65,
                                     color: '#a8a8a8',
-                                    textAlign: 'justify',
+                                    textAlign: 'center',
                                     display: 'block',
                                     width: '100%',
                                   }}

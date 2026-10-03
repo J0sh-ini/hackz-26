@@ -74,7 +74,7 @@ export const Timeline: React.FC = () => {
             <ScrambleText text="Event path" as="span" className="text-[13px] text-accent-green tracking-[0.15em]" from="random" easing="linear"/>
           </div>
           <ScrambleText text="SEQUENCE OF EVENTS" as="h2" className="text-[clamp(20px,3.5vw,36px)] font-pixel uppercase mb-6 leading-tight" style={{ fontFamily: 'var(--font-pixel)' }} from="random" easing="linear"/>
-          <p style={{ maxWidth: '580px', margin: '0 auto', fontSize: '16px', lineHeight: '1.5' }}>
+          <p style={{ maxWidth: '580px', margin: '0 auto', fontSize: '16px', lineHeight: '1.5',textAlign:'center', color: 'var(--text-secondary)' }}>
             A synchronized progression from nationwide ideation review to the intensive 24-hour on-campus prototype deployment.
           </p>
         </div>
@@ -167,7 +167,7 @@ export const Timeline: React.FC = () => {
                     alignItems: 'center',
                     justifyContent: isEven ? 'flex-end' : 'flex-start',
                     position: 'relative',
-                    width: '100%',
+                    width: '100%'
                   }}
                 >
                   {/* Indicator Diamond Node with Neon Glow & Active Radar Ping */}
@@ -275,7 +275,7 @@ export const Timeline: React.FC = () => {
                         fontSize: '13px',
                         color: 'var(--text-secondary)',
                         lineHeight: 1.55,
-                        textAlign:'justify',
+                        textAlign:'center',
                         margin: 0,
                       }}
                     >

@@ -298,7 +298,7 @@ export const Prizes: React.FC = () => {
               >
                 Women Empowerment — Leading Women's Team
               </div>
-              <div style={{ fontSize: '13px', color: '#b0b0b0', marginTop: '4px', lineHeight: 1.5 }}>
+              <div style={{ fontSize: '13px', color: '#b0b0b0', marginTop: '4px', lineHeight: 1.5,textAlign:'center' }}>
                 Exclusive cash prize and mentorship package dedicated to the highest-scoring all-women engineering squad.
               </div>
             </div>
