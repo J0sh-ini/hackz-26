@@ -26,7 +26,7 @@ export const VideoLoader: React.FC<VideoLoaderProps> = ({
       <LoadPage
         onComplete={onComplete}
         fadeDuration={fadeDuration}
-        maxDuration={maxDuration > 6000 ? 5000 : maxDuration}
+        maxDuration={4000}
         isMobile={true}
       />
     );

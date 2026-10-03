@@ -99,7 +99,7 @@ export const About: React.FC = () => {
               }}
             >
               {ABOUT_PARAGRAPHS.map((text, idx) => (
-                <span key={idx} style={{ color: 'var(--text-secondary)' }}>
+                <span key={idx} style={{ color: 'var(--text-secondary)',textAlign:'center' }}>
                   {text}
                   {/* <Shuffle text={text} style={{
                     fontSize: 'clamp(15px, 2.5vw, 17px)',

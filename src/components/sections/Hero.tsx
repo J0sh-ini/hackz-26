@@ -108,8 +108,28 @@ export const Hero: React.FC = () => {
         >
           <GlitchSvg duration={800} delay={4200}>
             <div className="flex items-center justify-center gap-4 sm:gap-6 mb-3">
+              {/* ISEA / GOI Alternating Logo */}
+              <div 
+              // className="h-14 sm:h-16 md:h-18 lg:h-24 flex items-center justify-center relative min-w-[70px] sm:min-w-[90px]"
+              style={{height:'clamp(66px, 6vw, 120px)', minWidth:'clamp(66px, 6vw, 96px)'}}>
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={LOGOS[logoIndex].src}
+                    src={LOGOS[logoIndex].src}
+                    alt={LOGOS[logoIndex].alt}
+                    initial={{ opacity: 0, scale: 0.85, filter: "brightness(2) blur(2px)" }}
+                    animate={{ opacity: 1, scale: 1, filter: "brightness(1) blur(0px)" }}
+                    exit={{ opacity: 0, scale: 1.15, filter: "brightness(2) blur(2px)" }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                    className="h-full w-auto object-contain filter drop-shadow-[0_0_15px_rgba(13,122,52,0.8)]"
+                    style={{borderRadius:'50%'}}
+                  />
+                </AnimatePresence>
+              </div>
               {/* CSEA Logo */}
-              <div className="h-14 sm:h-16 md:h-18 lg:h-22 flex items-center justify-center">
+              <div 
+              // className="h-14 sm:h-16 md:h-18 lg:h-22 flex items-center justify-center"
+              style={{height:'clamp(86px, 6vw, 160px)', minWidth:'clamp(86px, 6vw, 160px)'}}>
                 <svg
                   viewBox="76 74 1086 650"
                   className="h-full w-auto filter drop-shadow-[0_0_15px_rgba(13, 122, 52, 1)]"
@@ -186,13 +206,16 @@ export const Hero: React.FC = () => {
                 </svg>
               </div>
 
-              {/* ISEA / GOI Alternating Logo */}
-              <div className="h-14 sm:h-16 md:h-18 lg:h-22 flex items-center justify-center relative min-w-[70px] sm:min-w-[90px]">
+              
+              <div 
+              // className="h-14 sm:h-16 md:h-18 lg:h-22 flex items-center justify-center"
+              style={{height:'clamp(66px, 6vw, 120px)', minWidth:'clamp(66px, 6vw, 96px)'}}
+              >
                 <AnimatePresence mode="wait">
                   <motion.img
-                    key={LOGOS[logoIndex].src}
-                    src={LOGOS[logoIndex].src}
-                    alt={LOGOS[logoIndex].alt}
+                    key="newlogo"
+                    src="/favicon.ico"
+                    alt="sponser logo"
                     initial={{ opacity: 0, scale: 0.85, filter: "brightness(2) blur(2px)" }}
                     animate={{ opacity: 1, scale: 1, filter: "brightness(1) blur(0px)" }}
                     exit={{ opacity: 0, scale: 1.15, filter: "brightness(2) blur(2px)" }}
@@ -339,33 +362,34 @@ export const Hero: React.FC = () => {
           </p>
           
         </motion.div >
-            <motion.div
-            initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "clamp(14px, 2.5vw, 20px)",
-            fontWeight: 500,
-            color: "var(--text-primary)",
-            opacity: 0.8,
-            letterSpacing: "0.02em",
-            maxWidth: "650px",
-            marginBottom: "28px",
-          }}>
-            
-          <p style={{ fontSize: "clamp(12px, 2vw, 16px)", opacity: "0.9" }}>
-            In Association With
-          </p>
-          <p
-            style={{ fontSize: "clamp(12px, 2vw, 16px)", opacity: "0.9" }}
-          >
-            Information Security Education & Awareness
-          </p>
-          <p style={{ fontSize: "clamp(12px, 1.6vw, 14px)", opacity: "1" }}>
-            An Initiative Of Ministry Of Electronics & Information Technology 
-          </p>
-            </motion.div>
+        {/* Association Info */}
+        {/* <motion.div
+        initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.4 }}
+      style={{
+        fontFamily: "var(--font-mono)",
+        fontSize: "clamp(14px, 2.5vw, 20px)",
+        fontWeight: 500,
+        color: "var(--text-primary)",
+        opacity: 0.8,
+        letterSpacing: "0.02em",
+        maxWidth: "650px",
+        marginBottom: "28px",
+      }}>
+        
+      <p style={{ fontSize: "clamp(12px, 2vw, 16px)", opacity: "0.9" }}>
+        In Association With
+      </p>
+      <p
+        style={{ fontSize: "clamp(12px, 2vw, 16px)", opacity: "0.9" }}
+      >
+        Information Security Education & Awareness
+      </p>
+      <p style={{ fontSize: "clamp(12px, 1.6vw, 14px)", opacity: "1" }}>
+        An Initiative Of Ministry Of Electronics & Information Technology 
+      </p>
+        </motion.div> */}
         {/* Date / Venue Sharp Pill */}
         <motion.div
           initial={{ opacity: 0, y: 14 }}

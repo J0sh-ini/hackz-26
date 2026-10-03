@@ -7,13 +7,20 @@ const MOBILE_TOP_LOGS = [
   "> SYS_BOOT: HACKZ'26 ENGINE",
   "> CONNECT: OK [NODE_01]",
   "> ALLOC_HEAP: 1024MB",
-  "> SECURITY: ENCRYPTED"
+  "> CLEAR_CACHE: OK",
+  "> INIT: SUCCESS",
+  "> NETWORK: CONNECTED",
+  "> SECURITY: ENCRYPTED",
+  "> REROUTE: HACKZ'26 SERVER",
 ];
 
 const MOBILE_BOTTOM_LOGS = [
   "0x00FF: STREAMING DATA...",
+  "0x067B : SIX SEVEN PROTOCOLS .....",
+  "0x6767 : SIGMA PROTOCOL INITIALIZED...",
   "> PACKETS: 4891 OK",
-  "> STATUS: RUNNING..."
+  "> STATUS: RUNNING...",
+  "> REROUTE: HACKZ'26 SERVER",
 ];
 
 export interface LoadPageProps {
@@ -173,7 +180,7 @@ const LoadPage: React.FC<LoadPageProps> = ({
 
       {/* Top & Bottom Ambient Terminal Simulators */}
       <div className="vl-terminal-wrapper vl-terminal-top">
-        <TerminalSimulator lines={MOBILE_TOP_LOGS} speed={50} loop={true} />
+        <TerminalSimulator lines={MOBILE_TOP_LOGS} speed={200} loop={true} />
       </div>
 
       <div className="hud-overlay" />
@@ -303,7 +310,7 @@ const LoadPage: React.FC<LoadPageProps> = ({
       </div>
 
       <div className="vl-terminal-wrapper vl-terminal-bottom">
-        <TerminalSimulator lines={MOBILE_BOTTOM_LOGS} speed={70} loop={true} style={{ textAlign: 'right' }} />
+        <TerminalSimulator lines={MOBILE_BOTTOM_LOGS} speed={220} loop={true} style={{ textAlign: 'right' }} />
       </div>
     </div>
   );
