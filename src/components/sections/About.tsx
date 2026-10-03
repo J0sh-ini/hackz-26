@@ -95,7 +95,7 @@ export const About: React.FC = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '16px',
-                textAlign: 'justify',
+                textAlign: 'center',
               }}
             >
               {ABOUT_PARAGRAPHS.map((text, idx) => (

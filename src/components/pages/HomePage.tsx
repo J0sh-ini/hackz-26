@@ -11,6 +11,7 @@ import { Faq } from '../sections/Faq';
 import { Contact } from '../sections/Contact';
 import {useEffect} from 'react';
 import { useLocation } from 'react-router-dom';
+import {Collaborator} from '../sections/Collaborator';
 export default function HomePage(){
   const { hash } = useLocation();
 
@@ -59,7 +60,7 @@ export default function HomePage(){
 
         {/* [05] Sponsors */}
         <Sponsors />
-
+          <Collaborator />
         {/* [06] Prizes Bounty */}
         <Prizes />
 

@@ -6,14 +6,15 @@ import { RollingText } from '../ui/RollingText';
 import {Link} from 'react-router-dom';
 
 const NAV_LINKS = [
-  { label: 'About', href: '#about' },
-  { label: 'Tracks', href: '#tracks' },
-  { label: 'Sponsors', href: '#sponsors' },
-  { label: 'Prizes', href: '#prizes' },
-  { label: 'Timeline', href: '#timeline' },
-  { label: 'Get Involved', href: '#get-involved'},
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '/#about' },
+  { label: 'Tracks', href: '/#tracks' },
+  { label: 'Sponsors', href: '/#sponsors' },
+  { label: 'Collaborator', href: '/#collaborator'},
+  { label: 'Prizes', href: '/#prizes' },
+  { label: 'Timeline', href: '/#timeline' },
+  { label: 'Get Involved', href: '/#get-involved'},
+  { label: 'FAQ', href: '/#faq' },
+  { label: 'Contact', href: '/#contact'},
 ];
 
 export const Navbar: React.FC = () => {
@@ -93,7 +94,7 @@ export const Navbar: React.FC = () => {
             return (
               <Link
                 key={link.href}
-                to={'/'+link.href}
+                to={link.href}
                 style={{
                   fontFamily: 'var(--font-heading)',
                   fontSize: '14px',
@@ -122,21 +123,7 @@ export const Navbar: React.FC = () => {
 
         {/* Desktop Register Button (Right corner) */}
         <div className="hidden lg:flex items-end ml-auto gap-3 pointer-events-auto">
-          {/* <Button
-                  variant="primary"
-                  onClick={() => {
-                    closeMobileMenu();
-                    navigate('/#get-involved');
-                  }}  
-                  style={{
-                    padding: '8px 16px',
-                    minHeight: '38px',
-                    fontSize: '12px',
-                    minWidth: '120px',
-                  }}
-                >
-                JOIN THE TEAM
-                </Button> */}
+
                   <Button
                     variant="outline"
                     href={EVENT_LINKS.registration}
@@ -222,7 +209,7 @@ export const Navbar: React.FC = () => {
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
-                  to={'/'+link.href}
+                  to={link.href}
                   onClick={closeMobileMenu}
                   style={{
                     fontFamily: 'var(--font-heading)',
