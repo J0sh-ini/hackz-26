@@ -9,7 +9,7 @@ export const FAQS: FaqItem[] = [
   {
     id: 'eligibility-1',
     category: 'ELIGIBILITY /',
-    question: 'Who is eligible to participate in HackZ \'24?',
+    question: 'Who is eligible to participate in HackZ \'26?',
     answer: 'All current undergraduate and postgraduate students enrolled in recognized institutions across India are eligible. Cross-college and cross-disciplinary teams are fully permitted.',
   },
   {
@@ -28,7 +28,7 @@ export const FAQS: FaqItem[] = [
     id: 'format-1',
     category: 'FORMAT /',
     question: 'What is the structure of the event (Online, On-Site, or Hybrid)?',
-    answer: 'HackZ \'24 follows a hybrid two-round protocol. Round 1 (Ideation & Solution Blueprint) takes place entirely online. Shortlisted finalist teams advance to Round 2, which is an intensive 24-hour in-person prototype sprint hosted at the CEG Campus, Anna University, Chennai.',
+    answer: 'HackZ \'26 follows a hybrid two-round protocol. Round 1 (Ideation & Solution Blueprint) takes place entirely online. Shortlisted finalist teams advance to Round 2, which is an intensive 24-hour in-person prototype sprint hosted at the CEG Campus, Anna University, Chennai.',
   },
   {
     id: 'format-2',

@@ -28,7 +28,7 @@ export const SOCIAL_LINKS = [
     handle: 'csea-ceg',
   },
   {
-    name: 'CSEA Official',
+    name: 'Website',
     url: 'https://cseaceg.org.in/',
     handle: 'cseaceg.org.in',
   },

@@ -240,7 +240,7 @@ export const Hero: React.FC = () => {
             marginBottom: '28px',
           }}
         >
-          <p>24-Hour National Tech Marathon</p>
+          <p>All-India Inter-Collegiate Hackathon</p>
           <TextType text=" Innovate, Create, Dominate!" loop={true} cursorBlinkDuration={1} initialDelay={1000}/>
         </motion.div>
 
@@ -263,7 +263,7 @@ export const Hero: React.FC = () => {
             justifyContent: 'center',
           }}
         >
-          <ScrambleText text="NOV 23–24, 2024" as="span" className="text-[clamp(14px,2.5vw,15px)] text-accent-green font-mono tracking-[0.08em]" from="random" easing="linear"/>
+          <ScrambleText text="DEC 12–13, 2026" as="span" className="text-[clamp(14px,2.5vw,15px)] text-accent-green font-mono tracking-[0.08em]" from="random" easing="linear"/>
           <span style={{ color: 'var(--text-secondary)' }}>&middot;</span>
           <ScrambleText text="CEG CAMPUS, ANNA UNIVERSITY" as="span" className="text-[clamp(14px,2.5vw,15px)] text-text-primary font-mono tracking-[0.08em]" from="random" easing="linear"/>
         </motion.div>

@@ -71,7 +71,7 @@ export const Timeline: React.FC = () => {
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '64px' }}>
           <div className="font-mono text-[13px] text-accent-green mb-3 flex items-center gap-2" style={{ justifyContent: 'center' }}>
-            <ScrambleText text="Operational roadmap" as="span" className="text-[13px] text-accent-green tracking-[0.15em]" from="random" easing="linear"/>
+            <ScrambleText text="Event path" as="span" className="text-[13px] text-accent-green tracking-[0.15em]" from="random" easing="linear"/>
           </div>
           <ScrambleText text="SEQUENCE OF EVENTS" as="h2" className="text-[clamp(20px,3.5vw,36px)] font-pixel uppercase mb-6 leading-tight" style={{ fontFamily: 'var(--font-pixel)' }} from="random" easing="linear"/>
           <p style={{ maxWidth: '580px', margin: '0 auto', fontSize: '16px', lineHeight: '1.5' }}>

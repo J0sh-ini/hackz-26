@@ -78,7 +78,7 @@ export const Footer: React.FC = () => {
                     <circle cx="4" cy="4" r="2" />
                   </svg>
                 )}
-                {link.name === 'CSEA Official' && (
+                {link.name === 'Website' && (
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="12" cy="12" r="10" />
                     <line x1="2" y1="12" x2="22" y2="12" />
