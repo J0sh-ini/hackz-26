@@ -1,5 +1,3 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'motion/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrambleText from '../ui/ScrambleText';
