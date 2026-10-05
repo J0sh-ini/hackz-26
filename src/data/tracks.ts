@@ -45,7 +45,7 @@ export const TRACKS: Track[] = [
   {
     id: 'hardware',
     number: '[04]',
-    name: 'Smart Infrasturucture and Hardware Security',
+    name: 'Smart Infrasturucture & Hardware Security',
     description: 'Edge computing cryptography, IoT firmware integrity validation, zero-trust urban networks, and automated SCADA threat mitigation.',
     accentColor: '#00ff41',
     iconType: 'hardware',

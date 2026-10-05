@@ -50,7 +50,7 @@ export const Contact: React.FC = () => {
               {CONTACT_PEOPLE.map((person) => (
                 <div
                   key={person.name}
-                  className="flex items-center justify-between flex-1 py-2"
+                  className="flex items-center justify-between flex-1 py-1"
                   style={{
                     borderBottom: '1px solid var(--border-default)',
                   }}

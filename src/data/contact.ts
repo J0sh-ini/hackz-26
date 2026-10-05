@@ -5,15 +5,16 @@ export interface ContactPerson {
 }
 
 export const CONTACT_PEOPLE: ContactPerson[] = [
-  { name: 'Sunil Kumar', phone: '+91 63831 23505', rawPhone: '+916383123505' },
-  { name: 'Smrithi Prakash', phone: '+91 80728 69255', rawPhone: '+918072869255' },
-  { name: 'Sharan', phone: '+91 95856 12262', rawPhone: '+919585612262' },
-  { name: 'Varsha', phone: '+91 63829 52323', rawPhone: '+916382952323' },
+  { name: 'Jaison JV', phone: '+91 90256 01119', rawPhone: '+919025601119' },
+  { name: 'Varsha S', phone: '+91 80562 46330', rawPhone: '+918056246330' },
+  { name: 'Nethra B', phone: '+91 63812 02110', rawPhone: '+916381202110' },
+  { name: 'Dhanush T', phone: '+91 81248 68540', rawPhone: '+918124868540' },
+  { name: 'Roopa Varshini R', phone: '+91 90926 15584', rawPhone: '+919092615584' },
 ];
 
 export const CONTACT_EMAILS = [
   'hackz.csea@gmail.com',
-  'cseaceg26@gmail.com',
+  'cseaceg27@gmail.com',
 ];
 
 export const SOCIAL_LINKS = [

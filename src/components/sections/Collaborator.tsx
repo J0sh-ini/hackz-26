@@ -43,7 +43,7 @@ export const Collaborator: React.FC = () => {
                 gap: '16px',
                 maxWidth: '720px'
               }}
-              className='max-md:text-justify text-center'
+              className='text-justify'
             >
               {ABOUT_PARAGRAPHS.map((text, idx) => (
                 <span

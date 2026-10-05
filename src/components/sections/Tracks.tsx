@@ -42,7 +42,7 @@ export const Tracks: React.FC = () => {
           <ScrambleText text="Challenge areas" as="span" className="text-[13px] text-accent-green tracking-[0.15em]" from="random" easing="linear"/>
           </div>
           <ScrambleText text="MISSION TRACKS" as="h2" className="text-[clamp(22px,3.8vw,38px)] font-pixel uppercase mb-6 leading-tight" style={{ fontFamily: 'var(--font-pixel)' }} />
-          <Shuffle text="Choose an operational theater. Each domain addresses pressing technical, industrial, and societal challenges requiring scalable, high-impact prototypes."  className="max-w-[640px] text-[16px]" style={{textAlign: 'center'}} />
+          <Shuffle text="Choose an operational theater. Each domain addresses pressing technical, industrial, and societal challenges requiring scalable, high-impact prototypes."  className="max-w-[640px] text-[16px]" style={{textAlign: 'center', lineHeight: '1.5'}} />
         </div>
 
         {/* Tracks Grid */}
@@ -141,7 +141,7 @@ export const Tracks: React.FC = () => {
                     lineHeight: 1.6,
                     flexGrow: 1,
                   }}
-                  className='max-md:pl-0 pl-2 max-md:text-justify text-left'
+                  className='max-md:pl-0 pl-2 text-justify'
                 >
                   {track.description}
                 </p>                
