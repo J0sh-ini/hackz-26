@@ -243,7 +243,7 @@ export const VolunteerForm: React.FC = () => {
                 <span className="text-accent-green font-semibold">FORM_SYS: ACTIVE</span>
               </div>
               <div className="text-muted tracking-widest hidden sm:block">
-                TARGET // GOOGLE_FORM_MAINFRAME
+                TARGET // VOLUNTEER_REGISTRY
               </div>
             </div>
 
@@ -329,7 +329,7 @@ export const VolunteerForm: React.FC = () => {
                           htmlFor="volunteer-name"
                           className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                         >
-                          <span>// 01. FULL NAME</span>
+                          <span>// FULL NAME</span>
                           {errors.name && (
                             <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                               {errors.name}
@@ -356,7 +356,7 @@ export const VolunteerForm: React.FC = () => {
                           htmlFor="volunteer-email"
                           className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                         >
-                          <span>// 02. EMAIL ADDRESS</span>
+                          <span>// EMAIL ADDRESS</span>
                           {errors.email && (
                             <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                               {errors.email}
@@ -386,7 +386,7 @@ export const VolunteerForm: React.FC = () => {
                           htmlFor="volunteer-rollno"
                           className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                         >
-                          <span>// 03. ROLL NUMBER</span>
+                          <span>// ROLL NUMBER</span>
                           {errors.rollno && (
                             <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                               {errors.rollno}
@@ -413,7 +413,7 @@ export const VolunteerForm: React.FC = () => {
                           htmlFor="volunteer-phone"
                           className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                         >
-                          <span>// 04. PHONE NUMBER</span>
+                          <span>// PHONE NUMBER</span>
                           {errors.phone && (
                             <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                               {errors.phone}
@@ -441,7 +441,7 @@ export const VolunteerForm: React.FC = () => {
                         htmlFor="volunteer-dept"
                         className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                       >
-                        <span>// 05. DEPARTMENT</span>
+                        <span>// DEPARTMENT</span>
                         {errors.department && (
                           <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                             {errors.department}
@@ -465,7 +465,7 @@ export const VolunteerForm: React.FC = () => {
                     {/* Year of Study Selector (1-5) */}
                     <div>
                       <div className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between">
-                        <span>// 06. YEAR OF STUDY</span>
+                        <span>// YEAR OF STUDY</span>
                         {errors.year && (
                           <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                             {errors.year}

@@ -272,7 +272,7 @@ export const MentorForm: React.FC = () => {
             easing="linear"
           />
           <p style={{ maxWidth: '620px', margin: '0 auto', fontSize: '15px', color: 'var(--text-secondary)' }}>
-            Guide collegiate engineering squads through architectural bottlenecks, code optimization, and industry viability during the 24-hour sprint at CEG Campus.
+            Guide collegiate engineering squads through architectural bottlenecks and industry viability during the 24-hour sprint at CEG Campus.
           </p>
         </div>
 
@@ -312,10 +312,10 @@ export const MentorForm: React.FC = () => {
             </div>
 
             {/* Corner Tech Accents */}
-            <span className="absolute top-2 left-2 font-mono text-[10px] text-accent-green opacity-40 select-none">+</span>
-            <span className="absolute top-2 right-2 font-mono text-[10px] text-accent-green opacity-40 select-none">+</span>
-            <span className="absolute bottom-2 left-2 font-mono text-[10px] text-accent-green opacity-40 select-none">+</span>
-            <span className="absolute bottom-2 right-2 font-mono text-[10px] text-accent-green opacity-40 select-none">+</span>
+            <span className="absolute top-2 left-2 font-mono text-[10px] text-accent-green opacity-50 select-none">+</span>
+            <span className="absolute top-2 right-2 font-mono text-[10px] text-accent-green opacity-50 select-none">+</span>
+            <span className="absolute bottom-2 left-2 font-mono text-[10px] text-accent-green opacity-50 select-none">+</span>
+            <span className="absolute bottom-2 right-2 font-mono text-[10px] text-accent-green opacity-50 select-none">+</span>
 
             {/* Terminal Status Bar */}
             <div
@@ -337,7 +337,7 @@ export const MentorForm: React.FC = () => {
                 <span className="text-accent-green font-semibold">FORM_SYS: ACTIVE</span>
               </div>
               <div className="text-muted tracking-widest hidden sm:block">
-                TARGET // MENTOR_REGISTRY_MAINFRAME
+                TARGET // MENTOR_REGISTRY
               </div>
             </div>
 
@@ -426,7 +426,7 @@ export const MentorForm: React.FC = () => {
                           htmlFor="mentor-name"
                           className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                         >
-                          <span>// 01. FULL NAME</span>
+                          <span>// FULL NAME</span>
                           {errors.name && (
                             <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                               {errors.name}
@@ -453,7 +453,7 @@ export const MentorForm: React.FC = () => {
                           htmlFor="mentor-phone"
                           className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                         >
-                          <span>// 02. MOBILE NUMBER</span>
+                          <span>// MOBILE NUMBER</span>
                           {errors.phone && (
                             <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                               {errors.phone}
@@ -483,7 +483,7 @@ export const MentorForm: React.FC = () => {
                           htmlFor="mentor-role"
                           className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                         >
-                          <span>// 03. CURRENT ROLE / POSITION</span>
+                          <span>// CURRENT ROLE / POSITION</span>
                           {errors.role && (
                             <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                               {errors.role}
@@ -510,7 +510,7 @@ export const MentorForm: React.FC = () => {
                           htmlFor="mentor-organisation"
                           className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                         >
-                          <span>// 04. ORGANISATION / INSTITUTION</span>
+                          <span>// ORGANISATION / INSTITUTION</span>
                           {errors.organisation && (
                             <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                               {errors.organisation}
@@ -535,7 +535,7 @@ export const MentorForm: React.FC = () => {
                     {/* Technology / Field of Expertise */}
                     <div>
                       <div className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between">
-                        <span>// 05. TECHNOLOGY / SPECIALIZATION DOMAIN</span>
+                        <span>// TECHNOLOGY / SPECIALIZATION DOMAIN</span>
                         {errors.technology && (
                           <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                             {errors.technology}
@@ -603,7 +603,7 @@ export const MentorForm: React.FC = () => {
                     {/* Years of Experience */}
                     <div>
                       <div className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between">
-                        <span>// 06. YEARS OF EXPERIENCE</span>
+                        <span>// YEARS OF EXPERIENCE</span>
                         {errors.experience && (
                           <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                             {errors.experience}
@@ -641,7 +641,7 @@ export const MentorForm: React.FC = () => {
                       {/* Prior Mentoring */}
                       <div>
                         <div className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between">
-                          <span>// 07. PRIOR MENTOR EXPERIENCE</span>
+                          <span>// PRIOR MENTOR EXPERIENCE</span>
                           {errors.priorMentoring && (
                             <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                               {errors.priorMentoring}
@@ -672,7 +672,7 @@ export const MentorForm: React.FC = () => {
                       {/* Mentorship Format */}
                       <div>
                         <div className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between">
-                          <span>// 08. MENTORSHIP FORMAT</span>
+                          <span>// MENTORSHIP FORMAT</span>
                           {errors.format && (
                             <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                               {errors.format}
@@ -704,7 +704,7 @@ export const MentorForm: React.FC = () => {
                     {/* Preferred Track */}
                     <div>
                       <div className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between">
-                        <span>// 09. PREFERRED HACKATHON TRACK</span>
+                        <span>// PREFERRED HACKATHON TRACK</span>
                         {errors.track && (
                           <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                             {errors.track}
@@ -741,7 +741,7 @@ export const MentorForm: React.FC = () => {
                         htmlFor="mentor-reason"
                         className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                       >
-                        <span>// 10. WHY DO YOU WANT TO MENTOR AT HACKZ'26? (OPTIONAL)</span>
+                        <span>// WHY DO YOU WANT TO MENTOR AT HACKZ'26? (OPTIONAL)</span>
                       </label>
                       <textarea
                         id="mentor-reason"
@@ -759,7 +759,7 @@ export const MentorForm: React.FC = () => {
                         htmlFor="mentor-requests"
                         className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                       >
-                        <span>// 11. SPECIFIC REQUESTS OR REQUIREMENTS (OPTIONAL)</span>
+                        <span>// SPECIFIC REQUESTS OR REQUIREMENTS (OPTIONAL)</span>
                       </label>
                       <textarea
                         id="mentor-requests"
@@ -777,7 +777,7 @@ export const MentorForm: React.FC = () => {
                         htmlFor="mentor-comments"
                         className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                       >
-                        <span>// 12. ADDITIONAL COMMENTS OR SUGGESTIONS (OPTIONAL)</span>
+                        <span>// ADDITIONAL COMMENTS OR SUGGESTIONS (OPTIONAL)</span>
                       </label>
                       <textarea
                         id="mentor-comments"
