@@ -288,6 +288,16 @@
   z-index: 1000;
 }
 
+/* Inline Link Trigger variant (e.g. <> Dev in footer) */
+.folder-float.folder-float--link {
+  width: auto;
+  height: auto;
+  padding-top: 0;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
 .folder-float__folder {
   filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.7));
   transition: filter 0.25s ease, transform 0.25s ease;

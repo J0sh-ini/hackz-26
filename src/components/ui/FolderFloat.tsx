@@ -48,6 +48,7 @@ export interface FolderFloatProps {
   bounce?: number;
   className?: string;
   isOpen?: boolean;
+  renderTrigger?: (props: { open: boolean; toggle: () => void }) => React.ReactNode;
   children?: React.ReactNode;
 }
 
@@ -150,6 +151,7 @@ const FolderFloat: React.FC<FolderFloatProps> = ({
   bounce = 0.3,
   className = '',
   isOpen: propsIsOpen,
+  renderTrigger,
   children
 }) => {
   const cards = propCards ?? children;
@@ -503,21 +505,25 @@ const FolderFloat: React.FC<FolderFloatProps> = ({
               );
             })}
       </div>
-      <div className="folder-float__folder">
-        <span className="folder-float__back" aria-hidden="true" />
-        <span className="folder-float__paper" aria-hidden="true" />
-        <span className="folder-float__front" aria-hidden="true">
-          <span className="folder-float__label">{label}</span>
-          {sub ? <span className="folder-float__sub">{sub}</span> : null}
-        </span>
-        <button
-          type="button"
-          className="folder-float__trigger"
-          aria-expanded={open}
-          aria-label={sub ? `${label}, ${sub}` : label}
-          onClick={() => set(!open)}
-        />
-      </div>
+      {renderTrigger ? (
+        renderTrigger({ open, toggle: () => set(!open) })
+      ) : (
+        <div className="folder-float__folder">
+          <span className="folder-float__back" aria-hidden="true" />
+          <span className="folder-float__paper" aria-hidden="true" />
+          <span className="folder-float__front" aria-hidden="true">
+            <span className="folder-float__label">{label}</span>
+            {sub ? <span className="folder-float__sub">{sub}</span> : null}
+          </span>
+          <button
+            type="button"
+            className="folder-float__trigger"
+            aria-expanded={open}
+            aria-label={sub ? `${label}, ${sub}` : label}
+            onClick={() => set(!open)}
+          />
+        </div>
+      )}
     </div>
   );
 };

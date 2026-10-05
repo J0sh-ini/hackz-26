@@ -39,24 +39,24 @@ export const Footer: React.FC = () => {
           &copy; 2026 CSEA. All rights reserved.
         </div>
 
-        {/* Right: Developer Profile Folder & Social Links */}
+        {/* Right: Developer Profile & Social Links */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '24px',
+            gap: '16px',
             flexWrap: 'wrap',
           }}
           className="max-sm:justify-center max-sm:flex-col"
         >
-          {/* Developer Profile View with FolderFloat */}
+          {/* Developer Profile View */}
           <DeveloperProfileView />
 
           {/* Subtle Cyber Separator */}
           <div
             style={{
               width: '1px',
-              height: '36px',
+              height: '16px',
               backgroundColor: 'var(--border-default)',
             }}
             className="max-sm:hidden"
