@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { label: 'About', href: '/#about' },
   { label: 'Tracks', href: '/#tracks' },
   { label: 'Sponsors', href: '/#sponsors' },
-  { label: 'Collaborator', href: '/#collaborator'},
+  //{ label: 'Collaborator', href: '/#collaborator'},
   { label: 'Prizes', href: '/#prizes' },
   { label: 'Timeline', href: '/#timeline' },
   { label: 'Get Involved', href: '/#get-involved'},
@@ -88,7 +88,7 @@ export const Navbar: React.FC = () => {
         </Link>
       <div className="relative w-full max-w-[1200px] mx-auto px-6 max-md:px-4 h-full flex items-center justify-between pointer-events-none">
         {/* Desktop Nav Links (Centered) */}
-        <nav className="hidden lg:flex items-center gap-6 absolute left-1/2 -translate-x-1/2 pointer-events-auto">
+        <nav className="hidden lg:flex items-center gap-[1vw] absolute left-1/2 -translate-x-1/2 pointer-events-auto">
           {NAV_LINKS.map((link) => {
             const isActive = activeSection === link.href.substring(1);
             return (
@@ -96,7 +96,7 @@ export const Navbar: React.FC = () => {
                 key={link.href}
                 to={link.href}
                 style={{
-                  fontFamily: 'var(--font-heading)',
+                  fontFamily: 'var(--font-mono)',
                   fontSize: '14px',
                   fontWeight: 500,
                   color: isActive ? 'var(--accent-green)' : 'var(--text-primary)',
