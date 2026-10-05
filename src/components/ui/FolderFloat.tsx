@@ -9,10 +9,20 @@ import React, {
   type CSSProperties,
   type PointerEvent
 } from 'react';
-import Matter from 'matter-js';
+import type Matter from 'matter-js';
 import '../../styles/FolderFloat.css';
 
-const { Bodies, Body, Composite, Engine } = Matter;
+let matterPromise: Promise<typeof Matter> | null = null;
+let matterLib: typeof Matter | null = null;
+const getMatter = async (): Promise<typeof Matter> => {
+  if (!matterLib) {
+    if (!matterPromise) {
+      matterPromise = import('matter-js').then(m => m.default || m);
+    }
+    matterLib = await matterPromise;
+  }
+  return matterLib;
+};
 
 export type FolderFloatItem = string | { label: string; value: string };
 export type FolderFloatTrigger = 'hover' | 'click';
@@ -204,7 +214,8 @@ const FolderFloat: React.FC<FolderFloatProps> = ({
     clearTimeout(liveTimer.current);
     cancelAnimationFrame(w.raf);
     w.raf = 0;
-    if (w.engine) {
+    if (w.engine && matterLib) {
+      const { Composite, Engine } = matterLib;
       w.bodies.forEach((b, i) => {
         const el = pillRefs.current[i];
         if (!el) return;
@@ -221,11 +232,13 @@ const FolderFloat: React.FC<FolderFloatProps> = ({
     setLive(false);
   }, []);
 
-  const startPhysics = useCallback(() => {
+  const startPhysics = useCallback(async () => {
     const w = world.current;
     if (w.engine) return;
     const els = pillRefs.current.slice(0, n);
     if (els.some(el => !el)) return;
+    const Matter = await getMatter();
+    const { Bodies, Body, Composite, Engine } = Matter;
     const engine = Engine.create({ gravity: { x: 0, y: 0 } });
     engine.enableSleeping = false;
     w.engine = engine;
@@ -404,8 +417,10 @@ const FolderFloat: React.FC<FolderFloatProps> = ({
     const p = pointerAt(e);
     const x = Math.min(z.right - bw / 2, Math.max(z.left + bw / 2, p.x + d.dx));
     const y = Math.min(z.bottom - bh / 2, Math.max(z.top + bh / 2, p.y + d.dy));
-    Body.setVelocity(b, { x: (x - b.position.x) * 0.6, y: (y - b.position.y) * 0.6 });
-    Body.setPosition(b, { x, y });
+    if (matterLib) {
+      matterLib.Body.setVelocity(b, { x: (x - b.position.x) * 0.6, y: (y - b.position.y) * 0.6 });
+      matterLib.Body.setPosition(b, { x, y });
+    }
   };
   const up = (e: PointerEvent<HTMLButtonElement>, i: number, item: Entry) => {
     const w = world.current;
