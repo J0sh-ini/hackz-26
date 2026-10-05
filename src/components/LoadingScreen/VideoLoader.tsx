@@ -115,6 +115,8 @@ export const VideoLoader: React.FC<VideoLoaderProps> = ({
         src={src}
         autoPlay
         muted
+        disablePictureInPicture
+        controlsList="nodownload nofullscreen noremoteplayback"
         playsInline
         preload="auto"
         style={{ opacity: videoOpacity, transition: 'opacity 0.1s linear',objectFit: isMobile ? 'fill' : 'cover' }}
