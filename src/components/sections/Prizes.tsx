@@ -258,15 +258,13 @@ export const Prizes: React.FC = () => {
             style={{ display: 'flex', alignItems: 'flex-start', gap: '20px', flex: '1 1 300px' }}
           >
             <div
+              className="flex items-center justify-center max-md:hidden"
               style={{
                 width: '48px',
                 height: '48px',
                 minWidth: '48px',
                 backgroundColor: 'rgba(132, 255, 0, 0.12)',
                 border: '1px solid var(--accent-green-volt)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
                 color: 'var(--accent-green-volt)',
                 fontSize: '24px',
                 fontWeight: 700,
@@ -298,7 +296,7 @@ export const Prizes: React.FC = () => {
               >
                 Women Empowerment — Leading Women's Team
               </div>
-              <div style={{ fontSize: '13px', color: '#b0b0b0', marginTop: '4px', lineHeight: 1.5,textAlign:'center' }}>
+              <div style={{ fontSize: '13px', color: '#b0b0b0', marginTop: '4px', lineHeight: 1.5 }} >
                 Exclusive cash prize and mentorship package dedicated to the highest-scoring all-women engineering squad.
               </div>
             </div>

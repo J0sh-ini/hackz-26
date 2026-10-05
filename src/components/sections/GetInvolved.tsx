@@ -79,6 +79,7 @@ const RoleCard: React.FC<RoleCardProps> = ({
             color: 'var(--accent-green)',
             letterSpacing: '0.15em',
             marginBottom: '12px',
+            textAlign:'center'
           }}
         >
           {roleTag}
@@ -101,8 +102,11 @@ const RoleCard: React.FC<RoleCardProps> = ({
             color: 'var(--text-secondary)',
             lineHeight: 1.65,
             marginBottom: '32px',
-            textAlign: 'center',
+            maxWidth: '400px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
           }}
+          className='max-md:text-justify text-center'
         >
           {description}
         </p>
@@ -158,7 +162,7 @@ export const GetInvolved: React.FC = () => {
             roleTag="[ DOMAIN SPECIALIST ]"
             watermark="MENTOR"
             title="Become a Mentor"
-            description="Guide collegiate engineering squads through architectural bottlenecks, code optimization, and industry viability during the 24-hour sprint."
+            description="Guide collegiate engineering squads through architectural bottlenecks and industry viability during the 24-hour sprint."
             btnText="APPLY AS MENTOR →"
             onClick={() => navigate('/mentor')}
             isExternal={false}
@@ -170,7 +174,7 @@ export const GetInvolved: React.FC = () => {
             roleTag="[ EVENT CREW ]"
             watermark="VOLUNTEER"
             title="Become a Volunteer"
-            description="Join the on-site operations team at CEG Campus. Coordinate participant hospitality, technical infrastructure, and seamless stage administration."
+            description="Join the on-site operations team at campus. Coordinate participant hospitality and seamless stage management."
             btnText="APPLY AS VOLUNTEER →"
             onClick={() => navigate('/volunteer')}
             isExternal={false}

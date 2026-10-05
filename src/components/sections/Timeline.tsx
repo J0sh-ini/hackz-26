@@ -275,9 +275,9 @@ export const Timeline: React.FC = () => {
                         fontSize: '13px',
                         color: 'var(--text-secondary)',
                         lineHeight: 1.55,
-                        textAlign:'center',
                         margin: 0,
                       }}
+                      className='max-md:text-left text-justify'
                     >
                       {event.description}
                     </p>

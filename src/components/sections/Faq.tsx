@@ -26,7 +26,7 @@ export const Faq: React.FC = () => {
       <div className="w-full max-w-[860px] mx-auto px-6 max-md:px-4">
         {/* Header */}
         <div style={{ marginBottom: '56px' }}>
-          <div className="font-mono text-[13px] text-accent-green mb-3 flex items-center gap-2">
+          <div className="font-mono text-[13px] text-accent-green mb-3 flex items-center justify-center gap-2">
             <ScrambleText text="Debrief & Intel" as="span" className="text-[13px] text-accent-green tracking-[0.15em]" from="random" easing="linear"/>
           </div>
           <ScrambleText text="FREQUENTLY ASKED QUESTIONS" as="h2" className="text-[clamp(16px,2.8vw,30px)] font-pixel uppercase mb-6 leading-relaxed text-center" style={{ fontFamily: 'var(--font-pixel)' }} from="random" easing="linear"/>

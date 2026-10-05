@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const ABOUT_PARAGRAPHS = [
   "HackZ'26 is a dynamic 24-hour hackathon initiated by CSEA that brings together the brightest minds to solve real-world challenges through technology and innovation.",
   "Open to engineering students across India, it encourages collaboration and out-of-the-box thinking, fostering an environment of continuous learning and rapid architectural prototyping.",
-  "Participants work in multidisciplinary teams to solve industry-relevant problems, with the opportunity to engineer impactful solutions that can be scaled and deployed in the real world."
+  "Participants work in multi disciplinary teams to solve industry-relevant problems, with the opportunity to engineer impactful solutions that can be scaled and deployed in the real world."
 ];
 
 export const About: React.FC = () => {
@@ -89,17 +89,16 @@ export const About: React.FC = () => {
 
             {/* Body Text with Vertical Border Accent */}
             <div
+              className="border-l-2 border-border-default pl-6 max-md:border-l-0 max-md:px-2"
               style={{
-                borderLeft: '2px solid var(--border-default)',
-                paddingLeft: '24px',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '16px',
-                textAlign: 'center',
+                
               }}
             >
               {ABOUT_PARAGRAPHS.map((text, idx) => (
-                <span key={idx} style={{ color: 'var(--text-secondary)',textAlign:'center' }}>
+                <span key={idx} style={{ color: 'var(--text-secondary)',textAlign:'justify' }}>
                   {text}
                   {/* <Shuffle text={text} style={{
                     fontSize: 'clamp(15px, 2.5vw, 17px)',

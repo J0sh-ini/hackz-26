@@ -140,8 +140,8 @@ export const Tracks: React.FC = () => {
                     color: 'var(--text-secondary)',
                     lineHeight: 1.6,
                     flexGrow: 1,
-                    textAlign:'center'
                   }}
+                  className='max-md:pl-0 pl-2 max-md:text-justify text-left'
                 >
                   {track.description}
                 </p>                
