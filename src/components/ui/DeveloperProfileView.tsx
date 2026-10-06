@@ -141,9 +141,9 @@ export const DeveloperProfileView: React.FC = () => {
                     linkedinUrl={dev.linkedinUrl}
                     behindGlowColor={isLeft ? 'rgba(0, 255, 65, 0.5)' : 'rgba(57, 255, 20, 0.5)'}
                     innerGradient="linear-gradient(145deg, rgba(0, 255, 65, 0.16) 0%, rgba(10, 26, 14, 0.85) 50%, rgba(0, 0, 0, 0.95) 100%)"
-                    cardHeight="330px"
-                    maxHeight="340px"
-                    cardWidth="236px"
+                    cardHeight="240px"
+                    maxHeight="310px"
+                    cardWidth="206px"
                     borderRadius="30px"
                     enableTilt={true}
                     enableMobileTilt={true}
