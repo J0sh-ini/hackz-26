@@ -144,6 +144,7 @@ export const DeveloperProfileView: React.FC = () => {
                     cardHeight="330px"
                     maxHeight="340px"
                     cardWidth="236px"
+                    borderRadius="30px"
                     enableTilt={true}
                     enableMobileTilt={true}
                   />

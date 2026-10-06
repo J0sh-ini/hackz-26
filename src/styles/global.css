@@ -97,12 +97,12 @@
     --container-max:   var(--spacing-container-max);
   }
 
-  /* Hard reset — sharp corners everywhere */
+  /* Hard reset — sharp corners by default */
   *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    border-radius: 0 !important;
+    border-radius: 0;
     -webkit-tap-highlight-color: transparent;
   }
 

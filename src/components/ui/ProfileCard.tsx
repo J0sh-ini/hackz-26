@@ -59,6 +59,7 @@ export interface ProfileCardProps {
   cardWidth?: string;
   maxHeight?: string;
   accentColor?: string;
+  borderRadius?: string;
 }
 
 interface TiltEngine {
@@ -90,7 +91,8 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   cardHeight,
   cardWidth,
   maxHeight,
-  accentColor: _accentColor = '#00ff41'
+  accentColor: _accentColor = '#00ff41',
+  borderRadius = '20px'
 }) => {
   const wrapRef = useRef<HTMLDivElement>(null);
   const shellRef = useRef<HTMLDivElement>(null);
@@ -347,7 +349,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     handleDeviceOrientation
   ]);
 
-  const cardRadius = '24px';
+  const cardRadius = borderRadius;
 
   const cardStyle = useMemo(
     () => ({

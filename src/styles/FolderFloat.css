@@ -403,6 +403,18 @@
   z-index: 50;
 }
 
+.folder-float__card section,
+.folder-float__card section > div,
+.folder-float__card section img {
+  border-radius: var(--card-radius, 20px) !important;
+}
+
+.folder-float__card section {
+  overflow: hidden !important;
+  isolation: isolate;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
 .folder-float[data-open] .folder-float__card {
   opacity: 1;
   pointer-events: auto;
