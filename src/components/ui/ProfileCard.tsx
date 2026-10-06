@@ -501,66 +501,28 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
               />
             </div>
 
-            {/* Top Details - Name in dedicated glass badge */}
+            {/* Bottom Actions - Green outline symbols and center name badge */}
             <div
-              className="max-h-full overflow-hidden text-center relative z-[5]"
-              style={{
-                transform:
-                  'translate3d(calc(var(--pointer-from-left) * -6px + 3px), calc(var(--pointer-from-top) * -6px + 3px), 0.1px)',
-                gridArea: '1 / -1',
-                borderRadius: cardRadius,
-                pointerEvents: 'none'
-              }}
-            >
-              <div
-                className="w-full absolute flex flex-col items-center px-2"
-                style={{ top: isCompact ? '0.9em' : '1.2em', display: 'flex', gridArea: 'auto' }}
-              >
-                <div
-                  className="px-3 py-1 rounded-full backdrop-blur-md"
-                  style={{
-                    background: 'rgba(5, 15, 8, 0.78)',
-                    border: '1px solid rgba(0, 255, 65, 0.35)',
-                    boxShadow: '0 4px 14px rgba(0, 0, 0, 0.6)'
-                  }}
-                >
-                  <h3
-                    className="font-bold m-0 text-center tracking-tight"
-                    style={{
-                      fontSize: isCompact ? '14px' : '16px',
-                      fontFamily: 'var(--font-heading, sans-serif)',
-                      color: '#ffffff',
-                      textShadow: '0 0 10px rgba(0, 255, 65, 0.4)',
-                      display: 'block',
-                      pointerEvents: 'auto',
-                    }}
-                  >
-                    {name}
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Actions - Green outline symbols only */}
-            <div
-              className="absolute z-[10] flex items-center justify-center gap-4 pointer-events-auto"
+              className="absolute z-[10] flex items-center justify-center gap-2 pointer-events-auto px-2"
               style={{
                 bottom: isCompact ? '12px' : '16px',
                 left: '0',
                 right: '0',
                 background: 'transparent',
                 border: 'none',
+                transform:
+                  'translate3d(calc(var(--pointer-from-left) * -4px + 2px), calc(var(--pointer-from-top) * -4px + 2px), 0.1px)',
               }}
             >
               {githubUrl && (
                 <button
                   type="button"
                   onClick={handleGithubClick}
-                  className="cursor-pointer transition-all duration-200 ease-out hover:scale-115 hover:brightness-125"
+                  className="cursor-pointer transition-all duration-200 ease-out hover:scale-115 hover:brightness-125 shrink-0"
                   style={{
                     background: 'transparent',
                     border: 'none',
-                    padding: '6px',
+                    padding: '4px',
                     outline: 'none',
                     display: 'flex',
                     alignItems: 'center',
@@ -570,8 +532,8 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                   aria-label={`${name} GitHub`}
                 >
                   <svg
-                    width={isCompact ? 21 : 23}
-                    height={isCompact ? 21 : 23}
+                    width={isCompact ? 20 : 22}
+                    height={isCompact ? 20 : 22}
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="#00ff41"
@@ -584,15 +546,39 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                 </button>
               )}
 
+              {/* Name Badge in between social links */}
+              <div
+                className="px-2.5 py-1 rounded-full backdrop-blur-md max-w-[155px] overflow-hidden"
+                style={{
+                  background: 'rgba(5, 15, 8, 0.82)',
+                  border: '1px solid rgba(0, 255, 65, 0.35)',
+                  boxShadow: '0 4px 14px rgba(0, 0, 0, 0.6)'
+                }}
+              >
+                <h3
+                  className="font-bold m-0 text-center tracking-tight truncate whitespace-nowrap"
+                  style={{
+                    fontSize: isCompact ? '12px' : '13px',
+                    fontFamily: 'var(--font-heading, sans-serif)',
+                    color: '#ffffff',
+                    textShadow: '0 0 10px rgba(0, 255, 65, 0.4)',
+                    display: 'block',
+                    pointerEvents: 'auto',
+                  }}
+                >
+                  {name}
+                </h3>
+              </div>
+
               {linkedinUrl && (
                 <button
                   type="button"
                   onClick={handleLinkedinClick}
-                  className="cursor-pointer transition-all duration-200 ease-out hover:scale-115 hover:brightness-125"
+                  className="cursor-pointer transition-all duration-200 ease-out hover:scale-115 hover:brightness-125 shrink-0"
                   style={{
                     background: 'transparent',
                     border: 'none',
-                    padding: '6px',
+                    padding: '4px',
                     outline: 'none',
                     display: 'flex',
                     alignItems: 'center',
@@ -602,8 +588,8 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                   aria-label={`${name} LinkedIn`}
                 >
                   <svg
-                    width={isCompact ? 21 : 23}
-                    height={isCompact ? 21 : 23}
+                    width={isCompact ? 20 : 22}
+                    height={isCompact ? 20 : 22}
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="#00ff41"

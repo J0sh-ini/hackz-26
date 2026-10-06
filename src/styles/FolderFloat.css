@@ -426,18 +426,18 @@
 
 .folder-float[data-open] .folder-float__card--0 {
   --card-i: 0;
-  --card-x: -130px;
-  --card-y: -350px;
-  --card-r: -5deg;
+  --card-x: -90px;
+  --card-y: -315px;
+  --card-r: -3deg;
   animation: ff-card-open-0 var(--ff-open, 520ms) var(--ff-spring) backwards;
   transform: translate(calc(-50% + var(--card-x)), var(--card-y)) rotate(var(--card-r)) scale(1);
 }
 
 .folder-float[data-open] .folder-float__card--1 {
   --card-i: 1;
-  --card-x: 130px;
-  --card-y: -350px;
-  --card-r: 5deg;
+  --card-x: 90px;
+  --card-y: -315px;
+  --card-r: 3deg;
   animation: ff-card-open-1 var(--ff-open, 520ms) var(--ff-spring) backwards;
   transform: translate(calc(-50% + var(--card-x)), var(--card-y)) rotate(var(--card-r)) scale(1);
 }
@@ -493,7 +493,7 @@
   }
   100% {
     opacity: 1;
-    transform: translate(calc(-50% - 130px), -350px) rotate(-5deg) scale(1);
+    transform: translate(calc(-50% - 90px), -315px) rotate(-3deg) scale(1);
   }
 }
 
@@ -507,7 +507,7 @@
   }
   100% {
     opacity: 1;
-    transform: translate(calc(-50% + 130px), -350px) rotate(5deg) scale(1);
+    transform: translate(calc(-50% + 90px), -315px) rotate(3deg) scale(1);
   }
 }
 
