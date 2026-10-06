@@ -247,8 +247,8 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background-color: rgba(0, 255, 65, 0.07);
-    border-bottom: 1px solid var(--accent-green);
+    background-color: var(--hover-fill-bg, rgba(0, 255, 65, 0.07));
+    border-bottom: 1px solid var(--hover-fill-border, var(--accent-green));
     clip-path: polygon(0 0, 0 0, 0 0);
     transition: clip-path 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     z-index: 0;
@@ -261,7 +261,19 @@
 
   .nav-link-item:hover,
   .mobile-nav-item:hover {
-    color: var(--accent-green) !important;
+    color: var(--hover-color, var(--accent-green)) !important;
+  }
+
+  .social-link--instagram:hover {
+    color: #E1306C !important;
+  }
+
+  .social-link--linkedin:hover {
+    color: #0A66C2 !important;
+  }
+
+  .social-link--website:hover {
+    color: #00ff41 !important;
   }
 
   /* ── Timeline Single-Column Left-Aligned Responsiveness ────────────────── */

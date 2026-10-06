@@ -574,7 +574,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                 <button
                   type="button"
                   onClick={handleLinkedinClick}
-                  className="cursor-pointer transition-all duration-200 ease-out hover:scale-115 hover:brightness-125 shrink-0"
+                  className="cursor-pointer transition-all duration-200 ease-out hover:scale-115 shrink-0 group/li"
                   style={{
                     background: 'transparent',
                     border: 'none',
@@ -584,6 +584,14 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                     alignItems: 'center',
                     justifyContent: 'center',
                     filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 8px rgba(0, 255, 65, 0.6))',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.filter =
+                      'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 10px rgba(10, 102, 194, 0.85))';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.filter =
+                      'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 8px rgba(0, 255, 65, 0.6))';
                   }}
                   aria-label={`${name} LinkedIn`}
                 >
@@ -596,6 +604,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                     strokeWidth="1.8"
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    className="transition-colors duration-200 group-hover/li:stroke-[#0A66C2]"
                   >
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                     <rect x="2" y="9" width="4" height="12" />
