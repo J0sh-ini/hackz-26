@@ -78,7 +78,7 @@ export const Navbar: React.FC = () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
         >
-          {/* <span style={{ color: 'var(--text-secondary)' }}>&gt;</span>
+          {/* <span style={{ color: 'var(--text-secondary)' }}>></span>
           <span>HackZ'26</span> */}
           <img
             src="/hackz-logo.webp"
@@ -122,8 +122,7 @@ export const Navbar: React.FC = () => {
         </nav>
 
         {/* Desktop Register Button (Right corner) */}
-        <div className="hidden lg:flex items-end ml-auto gap-3 pointer-events-auto">
-
+        <div className="hidden lg:flex items-center ml-auto pointer-events-auto">
                   <Button
                     variant="outline"
                     href={EVENT_LINKS.registration}
@@ -242,7 +241,7 @@ export const Navbar: React.FC = () => {
                   </div>
                 </Link>
               ))}
-              <div style={{ marginTop: '24px' }}>
+              <div style={{ marginTop: '16px' }}>
                 <Button
                   variant="primary"
                   href={EVENT_LINKS.registration}

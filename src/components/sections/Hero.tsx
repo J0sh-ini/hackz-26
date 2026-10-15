@@ -8,6 +8,7 @@ import { EVENT_LINKS } from "../../data/contact";
 import ScrambleText from "../ui/ScrambleText";
 import TextType from "../ui/TextType";
 import { GlitchSvg } from "../ui/GlitchSvg";
+import { Countdown } from "../ui/Countdown";
 
 const LOGOS = [
   { src: "/isea.png", alt: "ISEA Logo" },
@@ -390,17 +391,26 @@ export const Hero: React.FC = () => {
         An Initiative Of Ministry Of Electronics & Information Technology 
       </p>
         </motion.div> */}
-        {/* Date / Venue Sharp Pill */}
+        {/* Live Countdown Timer */}
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.55 }}
+          style={{ marginBottom: "36px" }}
+        >
+          <Countdown variant="hero" showLabels={true} />
+        </motion.div>
+
+        {/* Venue Info */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
           style={{
             display: "inline-flex",
             alignItems: "center",
             gap: "10px",
-            padding: "10px 20px",
-            //border: '1px solid var(--border-default)',
+            padding: "8px 16px",
             fontFamily: "var(--font-mono)",
             color: "var(--text-primary)",
             letterSpacing: "0.08em",
@@ -410,22 +420,9 @@ export const Hero: React.FC = () => {
           }}
         >
           <ScrambleText
-            text="DEC 12–13, 2026"
-            as="span"
-            className="text-[clamp(14px,2.5vw,15px)] text-accent-green font-mono tracking-[0.08em]"
-            from="random"
-            easing="linear"
-          />
-          <span
-            style={{ color: "var(--text-secondary)" }}
-            className="max-md:hidden"
-          >
-            &middot;
-          </span>
-          <ScrambleText
             text="CEG CAMPUS, ANNA UNIVERSITY"
             as="span"
-            className="text-[clamp(14px,2.5vw,15px)] text-text-primary font-mono tracking-[0.08em]"
+            className="text-[clamp(13px,2.2vw,15px)] text-text-primary font-mono tracking-[0.08em]"
             from="random"
             easing="linear"
           />
