@@ -1,8 +1,6 @@
 import React from 'react';
 import { SOCIAL_LINKS } from '../../data/contact';
 import { RollingText } from '../ui/RollingText';
-import { DeveloperProfileView } from '../ui/DeveloperProfileView';
-
 export const Footer: React.FC = () => {
   return (
     <footer
@@ -39,29 +37,16 @@ export const Footer: React.FC = () => {
           &copy; 2026 CSEA. All rights reserved.
         </div>
 
-        {/* Right: Developer Profile & Social Links */}
+        {/* Right: Social Links */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '16px',
+            gap: '14px',
             flexWrap: 'wrap',
           }}
-          className="max-sm:justify-center max-sm:flex-col"
+          className="max-sm:justify-center"
         >
-          {/* Developer Profile View */}
-          <DeveloperProfileView />
-
-          {/* Subtle Cyber Separator */}
-          <div
-            style={{
-              width: '1px',
-              height: '16px',
-              backgroundColor: 'var(--border-default)',
-            }}
-            className="max-sm:hidden"
-            aria-hidden="true"
-          />
 
           {/* Social Links */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>

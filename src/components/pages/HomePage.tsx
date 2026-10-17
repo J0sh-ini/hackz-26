@@ -9,6 +9,7 @@ import { Timeline } from '../sections/Timeline';
 import { GetInvolved } from '../sections/GetInvolved';
 import { Faq } from '../sections/Faq';
 import { Contact } from '../sections/Contact';
+import { Developers } from '../sections/Developers';
 import {useEffect} from 'react';
 import { useLocation } from 'react-router-dom';
 import {Collaborator} from '../sections/Collaborator';
@@ -86,12 +87,15 @@ export default function HomePage(){
         {/* [09] FAQs Accordion */}
         <Faq />
 
+        {/* [10] Developers Section */}
+        <Developers />
+
         {/* Terminal Divider
         <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4">
         <SectionDivider label="TRANSMISSION LINKS" />
         </div> */}
 
-        {/* [10] Contact & Socials */}
+        {/* [11] Contact & Socials */}
         <Contact />
         </div>
       </main>
