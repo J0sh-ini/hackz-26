@@ -57,20 +57,11 @@ interface DeveloperCardProps {
 
 const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpanded, onToggle }) => {
   const handleCardClick = () => {
-    if (!isExpanded) {
-      onToggle();
-    }
-  };
-
-  const handleHeaderClick = (e: React.MouseEvent) => {
-    if (isExpanded) {
-      e.stopPropagation();
-      onToggle();
-    }
+    onToggle();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (!isExpanded && (e.key === 'Enter' || e.key === ' ')) {
+    if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       onToggle();
     }
@@ -80,8 +71,8 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
     <motion.div
       layout
       className={`developer-card group relative overflow-hidden select-none`}
-      role={!isExpanded ? 'button' : undefined}
-      tabIndex={!isExpanded ? 0 : undefined}
+      role= 'button' 
+      tabIndex={0}
       aria-expanded={isExpanded}
       onClick={handleCardClick}
       onKeyDown={handleKeyDown}
@@ -104,7 +95,7 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
         position: 'relative',
         zIndex: 10,
         overflow: 'hidden',
-        cursor: !isExpanded ? 'pointer' : 'default',
+        cursor: 'pointer',
         outline: 'none',
       }}
     >
@@ -131,6 +122,7 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
                   const t = e.target as HTMLImageElement;
                   t.src = getFallbackAvatar(developer.name);
                 }}
+                onClick={(e) => e.stopPropagation()}
                 style={{
                   width: '210px',
                   height: '210px',
@@ -142,6 +134,7 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
                   border: '1px solid var(--border-default)',
                   boxShadow: 'none',
                   display: 'block',
+                  cursor:'default'
                 }}
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.3 }}
@@ -154,14 +147,13 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
       {/* Header with Glitch Effect */}
       <div style={{ position: 'relative', zIndex: 2 }}>
         <motion.div
-          onClick={handleHeaderClick}
           style={{
             fontFamily: 'var(--font-pixel)',
             fontSize: '16px',
             fontWeight: 700,
             color: 'var(--text-primary)',
             textAlign: 'center',
-            cursor: isExpanded ? 'pointer' : 'inherit',
+            cursor: 'pointer' ,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
