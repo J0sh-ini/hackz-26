@@ -4,49 +4,11 @@ import { EVENT_LINKS } from '../../data/contact';
 import { RollingText } from '../ui/RollingText';
 import ScrambleText from '../ui/ScrambleText';
 import Shuffle from '../ui/Shuffle';
+import CircularCarousel,{CircularCarouselItem} from '../ui/CircularCarousel';
 export const Sponsors: React.FC = () => {
-  return (
-    <section
-      id="sponsors"
-      className="py-[100px] max-md:py-16 relative"
-      style={{
-        position: 'relative',
-        backgroundColor: 'var(--bg-page)',
-        borderTop: '1px solid var(--border-default)',
-        overflow: 'hidden',
-      }}
-    >
-      <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4" style={{ position: 'relative', zIndex: 10 }}>
-        {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-          <div className="font-mono text-[13px] text-accent-green mb-3 flex items-center gap-2" style={{ justifyContent: 'center' }}>
-            <ScrambleText text="Strategic alliances" as="span" className="text-[13px] text-accent-green tracking-[0.15em]" from="random" easing="linear"/>
-          </div>
-          <span>
-            <ScrambleText
-              text="BACKED BY"
-              className="text-[clamp(22px,3.8vw,38px)] font-pixel uppercase mb-6 leading-tight"
-              style={{ fontFamily: 'var(--font-pixel)' }}
-              as="h2"
-            />
-          </span>
-          {/* <p style={{ maxWidth: '600px', margin: '0 auto', fontSize: '15px' }}>
-            Empowered by industry pioneers driving global financial software infrastructure and collegiate developer opportunity.
-          </p> */}
-          <Shuffle text="Empowered by industry pioneers driving global financial software infrastructure and collegiate developer opportunity." style={{ maxWidth: '600px', margin: '0 auto', fontSize: '15px',lineHeight: '1.5', textAlign: 'center' }}/>
-        </div> 
+  const sponsorDivs:CircularCarouselItem[]=[
+    { id: 1, content: <div
 
-        {/* Balanced 2-Column Sponsor Grid */}
-        <div
-          className="grid grid-cols-[1.1fr_1fr] gap-8 items-stretch max-w-[1080px] mx-auto max-[860px]:grid-cols-1 max-[860px]:gap-6"
-        >
-          {/* Card 1: TEMENOS (Exclusive Sponsor) */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            whileHover={{ y: -4, borderColor: 'rgba(0, 255, 65, 0.4)' }}
             style={{
               backgroundColor: 'var(--bg-card)',
               border: '1px solid var(--border-default)',
@@ -69,8 +31,7 @@ export const Sponsors: React.FC = () => {
                 backgroundColor: 'rgba(0, 255, 65, 0.02)',
               }}
             >
-              
-                <ScrambleText text="[ TITLE SPONSOR ]" className="text-[11px] font-mono text-accent-green tracking-[0.15em]" as="span"/>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--accent-green)', letterSpacing: '0.15em' }}>[ TITLE SPONSOR ]</span>
              
 
               <span
@@ -116,11 +77,7 @@ export const Sponsors: React.FC = () => {
                 flexGrow: 1,
               }}
             >
-              <motion.div
-                initial={{ filter: 'grayscale(1) brightness(0.65)', opacity: 0.6 }}
-                whileInView={{ filter: 'grayscale(0) brightness(1)', opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, ease: 'easeOut' }}
+              <div
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -152,7 +109,7 @@ export const Sponsors: React.FC = () => {
                     TEMENOS
                   </text>
                 </svg>
-              </motion.div>
+              </div>
 
               <div
                 style={{
@@ -219,23 +176,18 @@ export const Sponsors: React.FC = () => {
               >
                 <span className="subtle-link-fill" aria-hidden="true" />
                 <span style={{ position: 'relative', zIndex: 2 }}>
-                  <RollingText
+                  {/* <RollingText
                     text="temenos.com →"
                     baseColor="var(--accent-green)"
                     hoverColor="#ffffff"
                     stagger={0.015}
-                  />
+                  /> */}
+                  temenos.com →
                 </span>
               </a>
             </div>
-          </motion.div>
-          {/* Card 2: IBM (Powered By) */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
-            whileHover={{ y: -4, borderColor: 'rgba(255, 255, 255, 0.3)' }}
+          </div> },
+    { id: 2, content: <div
             style={{
               backgroundColor: 'var(--bg-card)',
               border: '1px solid var(--border-default)',
@@ -258,7 +210,7 @@ export const Sponsors: React.FC = () => {
                 backgroundColor: 'rgba(28, 73, 194, 0.03)',
               }}
             >
-              <ScrambleText text="[ ASSOCIATE SPONSOR ]" className="text-[11px] font-mono text-[#6e6e6e] tracking-[0.15em]" as="span"/>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-muted)', letterSpacing: '0.15em' }}>[ ASSOCIATE SPONSOR ]</span>
               <span
                 style={{
                   fontFamily: 'var(--font-mono)',
@@ -301,11 +253,7 @@ export const Sponsors: React.FC = () => {
                 flexGrow: 1,
               }}
             >
-              <motion.div
-                initial={{ filter: 'grayscale(1) brightness(0.65)', opacity: 0.6 }}
-                whileInView={{ filter: 'grayscale(0) brightness(1)', opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
+              <div
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -314,35 +262,7 @@ export const Sponsors: React.FC = () => {
                   marginBottom: '20px',
                 }}
               >
-                {/* High-definition Unstop vector logo */}
-                {/* <svg
-                  width="220"
-                  height="52"
-                  viewBox="0 0 260 54"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ maxWidth: '100%', height: 'auto' }}
-                >
-                  <circle cx="28" cy="27" r="18" fill="#1C49C2" />
-                  <path
-                    d="M20 27C20 22.5817 23.5817 19 28 19C32.4183 19 36 22.5817 36 27C36 31.4183 32.4183 35 28 35"
-                    stroke="#FFD100"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                  />
-                  <circle cx="28" cy="27" r="4" fill="#ffffff" />
-                  <text
-                    x="60"
-                    y="36"
-                    fontFamily="'Outfit', sans-serif"
-                    fontWeight="800"
-                    fontSize="30"
-                    fill="#ffffff"
-                    letterSpacing="3"
-                  >
-                    IBM
-                  </text>
-                </svg> */}
+               
                   <svg 
                   viewBox="0 0 300 100" 
                   width="120"
@@ -380,7 +300,7 @@ export const Sponsors: React.FC = () => {
                             H 180 V 85 H 195 V 15 H 180 Z" />
                   </g>
                 </svg>
-              </motion.div>
+              </div>
 
               <div
                 style={{
@@ -446,23 +366,18 @@ export const Sponsors: React.FC = () => {
               >
                 <span className="subtle-link-fill" aria-hidden="true" />
                 <span style={{ position: 'relative', zIndex: 2 }}>
-                  <RollingText
+                  {/* <RollingText
                     text="ibm.com →"
                     baseColor="var(--text-secondary)"
                     hoverColor="#ffffff"
                     stagger={0.015}
-                  />
+                  /> */}
+                  ibm.com →
                 </span>
               </a>
             </div>
-          </motion.div>
-          {/* Card 3: UNSTOP (Powered By) */}
-          {/* <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
-            whileHover={{ y: -4, borderColor: 'rgba(255, 255, 255, 0.3)' }}
+          </div> },
+    { id: 3, content: <div
             style={{
               backgroundColor: 'var(--bg-card)',
               border: '1px solid var(--border-default)',
@@ -474,7 +389,7 @@ export const Sponsors: React.FC = () => {
               transition: 'border-color 0.2s ease, transform 0.2s ease',
             }}
           >
-            {/* Terminal Status Header 
+            {/* {/* Terminal Status Header  */}
             <div
               style={{
                 display: 'flex',
@@ -525,7 +440,7 @@ export const Sponsors: React.FC = () => {
               </span>
             </div>
 
-            {/* Main Stage: Unstop Logo 
+            {/* {/* Main Stage: Unstop Logo  */}
             <a
               href={EVENT_LINKS.unstop}
               target="_blank"
@@ -540,11 +455,7 @@ export const Sponsors: React.FC = () => {
                 flexGrow: 1,
               }}
             >
-              <motion.div
-                initial={{ filter: 'grayscale(1) brightness(0.65)', opacity: 0.6 }}
-                whileInView={{ filter: 'grayscale(0) brightness(1)', opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
+              <div
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -553,7 +464,7 @@ export const Sponsors: React.FC = () => {
                   marginBottom: '20px',
                 }}
               >
-                {/* High-definition Unstop vector logo *
+                {/* {/* High-definition Unstop vector logo * */}
                 <svg
                   width="220"
                   height="52"
@@ -582,7 +493,7 @@ export const Sponsors: React.FC = () => {
                     unstop
                   </text>
                 </svg>
-              </motion.div>
+              </div>
 
               <div
                 style={{
@@ -612,7 +523,7 @@ export const Sponsors: React.FC = () => {
               </p>
             </a>
 
-            {/* Card Link Footer *
+            {/* {/* Card Link Footer * */}
             <div
               style={{
                 borderTop: '1px solid var(--border-default)',
@@ -649,16 +560,63 @@ export const Sponsors: React.FC = () => {
               >
                 <span className="subtle-link-fill" aria-hidden="true" />
                 <span style={{ position: 'relative', zIndex: 2 }}>
-                  <RollingText
+                  {/* <RollingText
                     text="unstop.com →"
                     baseColor="var(--text-secondary)"
                     hoverColor="#ffffff"
                     stagger={0.015}
-                  />
+                  /> */}
+                  unstop.com →
                 </span>
               </a>
             </div>
-          </motion.div> */}
+          </div> }
+  ]
+  return (
+    <section
+      id="sponsors"
+      className="py-[100px] max-md:py-16 relative"
+      style={{
+        position: 'relative',
+        backgroundColor: 'var(--bg-page)',
+        borderTop: '1px solid var(--border-default)',
+        overflow: 'hidden',
+      }}
+    >
+      <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4" style={{ position: 'relative', zIndex: 10 }}>
+        {/* Section Header */}
+        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+          <div className="font-mono text-[13px] text-accent-green mb-3 flex items-center gap-2" style={{ justifyContent: 'center' }}>
+            <ScrambleText text="Strategic alliances" as="span" className="text-[13px] text-accent-green tracking-[0.15em]" from="random" easing="linear"/>
+          </div>
+          <span>
+            <ScrambleText
+              text="BACKED BY"
+              className="text-[clamp(22px,3.8vw,38px)] font-pixel uppercase mb-6 leading-tight"
+              style={{ fontFamily: 'var(--font-pixel)' }}
+              as="h2"
+            />
+          </span>
+          {/* <p style={{ maxWidth: '600px', margin: '0 auto', fontSize: '15px' }}>
+            Empowered by industry pioneers driving global financial software infrastructure and collegiate developer opportunity.
+          </p> */}
+          <Shuffle text="Empowered by industry pioneers driving global financial software infrastructure and collegiate developer opportunity." style={{ maxWidth: '600px', margin: '0 auto', fontSize: '15px',lineHeight: '1.5', textAlign: 'center' }}/>
+        </div> 
+
+        {/* Balanced 2-Column Sponsor Grid */}
+        {/* <div
+          className="grid grid-cols-[1.1fr_1fr] gap-8 items-stretch max-w-[1080px] mx-auto max-[860px]:grid-cols-1 max-[860px]:gap-6"
+        >
+          
+           
+        </div> */}
+        <div className="h-150" >
+
+        <CircularCarousel items={sponsorDivs}
+          cardWidth={280}
+          intro="rise" 
+          aspectRatio={0.5}
+        />
         </div>
       </div>
     </section>
