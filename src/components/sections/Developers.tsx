@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -71,7 +71,7 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
     <motion.div
       layout
       className={`developer-card group relative overflow-hidden select-none`}
-      role= 'button' 
+      role="button"
       tabIndex={0}
       aria-expanded={isExpanded}
       onClick={handleCardClick}
@@ -86,7 +86,7 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
       }}
       whileHover={!isExpanded ? { y: -4 } : undefined}
       style={{
-        backgroundColor:  'var(--bg-card)',
+        backgroundColor: 'var(--bg-card)',
         border: '1px solid var(--border-default)',
         boxShadow: 'none',
         padding: '32px',
@@ -134,7 +134,7 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
                   border: '1px solid var(--border-default)',
                   boxShadow: 'none',
                   display: 'block',
-                  cursor:'default'
+                  cursor: 'default',
                 }}
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.3 }}
@@ -153,7 +153,7 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
             fontWeight: 700,
             color: 'var(--text-primary)',
             textAlign: 'center',
-            cursor: 'pointer' ,
+            cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -164,7 +164,6 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
             className={`name-glitch-text inline-block relative ${!isExpanded ? 'active-glitch' : ''}`}
             data-text={developer.name}
           >
-            {/* Glitched name text when collapsed */}
             {!isExpanded && (
               <ScrambleText
                 text={developer.name}
@@ -213,11 +212,14 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
                 }}
               >
                 {/* GitHub */}
-                <a
+                <motion.a
                   href={developer.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
+                  whileHover={{ scale: 1.15, rotate: 360 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -229,14 +231,17 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
                   }}
                 >
                   <GithubIcon size={20} />
-                </a>
+                </motion.a>
 
                 {/* LinkedIn */}
-                <a
+                <motion.a
                   href={developer.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
+                  whileHover={{ scale: 1.15, rotate: 360 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -248,13 +253,12 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
                   }}
                 >
                   <LinkedinIcon size={20} />
-                </a>
+                </motion.a>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-
 
       {/* Cyber glitch & scanline effects */}
       <div
@@ -277,7 +281,6 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
           }}
         />
       </div>
-        
     </motion.div>
   );
 };
@@ -285,259 +288,324 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
 export const Developers: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const sectionRef = useRef<HTMLElement>(null);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const initialHeightRef = useRef<number>(0);
+  const animationRef = useRef<gsap.core.Tween | null>(null);
+  const hasOpenedRef = useRef<boolean>(false);
+  const isAnimatingRef = useRef<boolean>(false);
 
-  const handleToggle = () => {
+  const handleToggle = useCallback(() => {
     setIsExpanded((prev) => !prev);
-  };
+  }, []);
 
+  // Breakthrough animation + ScrollTrigger on FIXED SENTINEL (Option B)
   useEffect(() => {
-    if (!wrapperRef.current || !sectionRef.current) return;
+    if (!wrapperRef.current || !sentinelRef.current || !contentRef.current) return;
 
     const wrapper = wrapperRef.current;
-    const section = sectionRef.current;
+    const sentinel = sentinelRef.current;
+    const content = contentRef.current;
+
+    // Measure the natural height of content once
+    if (!initialHeightRef.current) {
+      initialHeightRef.current = content.scrollHeight;
+    }
 
     const ctx = gsap.context(() => {
-      // Measure natural height before collapsing
-      const initialHeight = section.getBoundingClientRect().height || section.scrollHeight || 750;
-
       // Initially collapse wrapper with overflow hidden
       gsap.set(wrapper, { height: 0, overflow: 'hidden', opacity: 0 });
 
-      // Refresh ScrollTrigger so contact section sits directly below FAQ before trigger
+      // Refresh ScrollTrigger so layout settles
       ScrollTrigger.refresh();
 
       let isRevealed = false;
 
       const openSection = () => {
-        if (isRevealed) return;
+        if (isRevealed || isAnimatingRef.current) return;
         isRevealed = true;
-        const targetHeight = section.scrollHeight || initialHeight;
+        hasOpenedRef.current = true;
+        isAnimatingRef.current = true;
 
-        gsap.to(wrapper, {
+        const targetHeight = initialHeightRef.current || 750;
+
+        animationRef.current?.kill();
+
+        animationRef.current = gsap.to(wrapper, {
           height: targetHeight,
           opacity: 1,
           duration: 0.45,
           ease: 'power2.out',
           onComplete: () => {
             gsap.set(wrapper, { height: 'auto', overflow: 'visible' });
+            isAnimatingRef.current = false;
+            ScrollTrigger.refresh();
           },
         });
       };
 
       const closeSection = () => {
-        if (!isRevealed) return;
+        if (!isRevealed || isAnimatingRef.current) return;
         isRevealed = false;
+        isAnimatingRef.current = true;
 
-        gsap.to(wrapper, {
+        animationRef.current?.kill();
+
+        animationRef.current = gsap.to(wrapper, {
           height: 0,
           opacity: 0,
           duration: 0.45,
           ease: 'power2.inOut',
           onComplete: () => {
             gsap.set(wrapper, { overflow: 'hidden' });
+            isAnimatingRef.current = false;
+            ScrollTrigger.refresh();
           },
         });
       };
 
-      // Trigger using stationary #faq so height changes don't shift the trigger position
-      ScrollTrigger.create({
-        trigger: '#faq',
-        start: 'bottom 45%',
+      // Trigger on SENTINEL (fixed position, never moves)
+      const st = ScrollTrigger.create({
+        trigger: sentinel,
+        start: 'top 55%',
         end: 'bottom 5%',
         onEnter: openSection,
         onLeave: closeSection,
         onEnterBack: openSection,
         onLeaveBack: closeSection,
+        refreshPriority: -1,
       });
+
+      return () => {
+        st.kill();
+        animationRef.current?.kill();
+      };
     });
 
     return () => ctx.revert();
   }, []);
 
+  // Sync GSAP state with React state (manual toggle)
+  useEffect(() => {
+    if (!wrapperRef.current || !hasOpenedRef.current || isAnimatingRef.current) return;
+
+    const wrapper = wrapperRef.current;
+    const targetHeight = isExpanded ? (initialHeightRef.current || wrapper.scrollHeight) : 0;
+    const targetOpacity = isExpanded ? 1 : 0;
+
+    isAnimatingRef.current = true;
+    animationRef.current?.kill();
+
+    animationRef.current = gsap.to(wrapper, {
+      height: targetHeight,
+      opacity: targetOpacity,
+      duration: 0.45,
+      ease: isExpanded ? 'power2.out' : 'power2.inOut',
+      onComplete: () => {
+        if (isExpanded) {
+          gsap.set(wrapper, { height: 'auto', overflow: 'visible' });
+        } else {
+          gsap.set(wrapper, { overflow: 'hidden' });
+        }
+        isAnimatingRef.current = false;
+        ScrollTrigger.refresh();
+      },
+    });
+  }, [isExpanded]);
+
   return (
-    <div ref={wrapperRef} className="developers-wrapper" style={{ position: 'relative', width: '100%', zIndex: 10 }}>
-      <section
-        id="developers"
-        ref={sectionRef}
-        className="py-[100px] max-md:py-16 relative"
-        style={{
-          position: 'relative',
-          zIndex: 10,
-          borderTop: '1px solid var(--border-default)',
-          borderBottom: '1px solid var(--border-default)',
-          overflow: 'hidden',
-        }}
-      >
-      {/* Section Header */}
+    <div style={{ position: 'relative', width: '100%', zIndex: 10 }}>
+      {/* FIXED SENTINEL - never moves, marks the trigger point */}
       <div
-        style={{
-          textAlign: 'center',
-          marginBottom: '64px',
-          position: 'relative',
-          zIndex: 10,
-        }}
-      >
-        <div
-          className="font-mono text-[13px] text-accent-green mb-3 flex items-center gap-2"
-          style={{ justifyContent: 'center' }}
-        >
-          <ScrambleText
-            text="Core team profiles"
-            as="span"
-            className="text-[13px] text-accent-green font-mono tracking-[0.15em]"
-            from="random"
-            easing="linear"
-          />
-        </div>
-        <ScrambleText
-          text="MEET THE DEVS"
-          as="h2"
-          className="text-[clamp(22px,3.8vw,38px)] font-pixel uppercase mb-6 leading-tight"
-          style={{ fontFamily: 'var(--font-pixel)' }}
-          from="random"
-          easing="linear"
-        />
-        <p
+        ref={sentinelRef}
+        style={{ height: 1, width: '100%', position: 'relative', zIndex: 1 }}
+        aria-hidden="true"
+      />
+
+      {/* Animated wrapper - height changes don't affect sentinel position */}
+      <div ref={wrapperRef} className="developers-wrapper" style={{ position: 'relative', width: '100%', zIndex: 10 }}>
+        <section
+          id="developers"
+          className="py-[60px] max-md:py-16 relative"
           style={{
-            maxWidth: '560px',
-            margin: '0 auto',
-            fontSize: '16px',
-            lineHeight: '1.5',
-            color: 'var(--text-secondary)',
+            position: 'relative',
+            zIndex: 10,
+            borderTop: '1px solid var(--border-default)',
+            borderBottom: '1px solid var(--border-default)',
+            overflow: 'hidden',
           }}
         >
-          Meet the engineers crafting HackZ'26's Web infrastructure and magic.
-        </p>
+          {/* Section Header */}
+          <div
+            style={{
+              textAlign: 'center',
+              marginBottom: '64px',
+              position: 'relative',
+              zIndex: 10,
+            }}
+          >
+            <div
+              className="font-mono text-[13px] text-accent-green mb-3 flex items-center gap-2"
+              style={{ justifyContent: 'center' }}
+            >
+              <ScrambleText
+                text="Core team profiles"
+                as="span"
+                className="text-[13px] text-accent-green font-mono tracking-[0.15em]"
+                from="random"
+                easing="linear"
+              />
+            </div>
+            <ScrambleText
+              text="MEET THE DEVS"
+              as="h2"
+              className="text-[clamp(22px,3.8vw,38px)] font-pixel uppercase mb-6 leading-tight"
+              style={{ fontFamily: 'var(--font-pixel)' }}
+              from="random"
+              easing="linear"
+            />
+            <p
+              style={{
+                maxWidth: '560px',
+                margin: '0 auto',
+                fontSize: '16px',
+                lineHeight: '1.5',
+                color: 'var(--text-secondary)',
+              }}
+            >
+              Meet the engineers crafting HackZ'26's Web infrastructure and magic.
+            </p>
+          </div>
+
+          {/* Cards Grid - measured for height */}
+          <div
+            ref={contentRef}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
+              gap: '32px',
+              maxWidth: '1200px',
+              margin: '0 auto',
+              padding: '0 24px',
+              position: 'relative',
+              zIndex: 10,
+            }}
+          >
+            {DEVELOPERS.map((developer, index) => (
+              <DeveloperCard
+                key={developer.name}
+                developer={developer}
+                index={index}
+                isExpanded={isExpanded}
+                onToggle={handleToggle}
+              />
+            ))}
+          </div>
+
+          {/* Cyberpunk Glitch Animations */}
+          <style>{`
+            /* Text RGB Split Glitch */
+            .name-glitch-text.active-glitch {
+              animation: glitch-rgb-split 1.6s infinite;
+            }
+
+            .developer-card:hover .name-glitch-text.active-glitch {
+              animation-duration: 1.6s;
+            }
+
+            @keyframes glitch-rgb-split {
+              0%, 86%, 100% {
+                text-shadow: none;
+                transform: translate(0);
+              }
+              87% {
+                text-shadow: -2.5px 0 #00ffff, 2.5px 0 #ff0055;
+                transform: translate(-1.5px, 0.5px);
+              }
+              89% {
+                text-shadow: 2px 0 #00ff41, -2px 0 #ff0055;
+                transform: translate(1.5px, -0.5px);
+              }
+              91% {
+                text-shadow: -1.5px 0 #00ff41, 1.5px 0 #00ffff;
+                transform: translate(-0.5px, 0);
+              }
+              93% {
+                text-shadow: none;
+                transform: translate(0);
+              }
+              94% {
+                text-shadow: 2.5px 0 #ff0055, -2px 0 #00ff41;
+                transform: translate(1px, -1px);
+              }
+              96% {
+                text-shadow: -1px 0 #00ffff, 1px 0 #ff0055;
+                transform: translate(-1px, 0.5px);
+              }
+              97%, 100% {
+                text-shadow: none;
+                transform: translate(0);
+              }
+            }
+
+            /* Card Digital Glitch Slice Tearing */
+            .card-glitch-slice {
+              opacity: 0;
+              animation: cyber-glitch-tear 1.8s infinite linear;
+            }
+
+            .developer-card:hover .card-glitch-slice {
+              animation-duration: 1.6s;
+            }
+
+            @keyframes cyber-glitch-tear {
+              0%, 86%, 100% {
+                opacity: 0;
+                clip-path: inset(50% 0 50% 0);
+                background: transparent;
+              }
+              87% {
+                opacity: 0.75;
+                clip-path: inset(15% 0 75% 0);
+                transform: translate(-4px, 1px);
+                background: rgba(0, 255, 65, 0.1);
+              }
+              89% {
+                opacity: 0.85;
+                clip-path: inset(58% 0 22% 0);
+                transform: translate(4px, -1px);
+                background: rgba(0, 240, 255, 0.08);
+              }
+              91% {
+                opacity: 0;
+                clip-path: inset(0 0 0 0);
+              }
+              92% {
+                opacity: 0.8;
+                clip-path: inset(80% 0 8% 0);
+                transform: translate(-3px, 0);
+                background: rgba(255, 0, 85, 0.08);
+              }
+              94% {
+                opacity: 0.9;
+                clip-path: inset(8% 0 82% 0);
+                transform: translate(3px, 1px);
+                background: rgba(0, 255, 65, 0.12);
+              }
+              96% {
+                opacity: 0.5;
+                clip-path: inset(38% 0 48% 0);
+                transform: translate(-2px, -1px);
+                background: rgba(0, 240, 255, 0.06);
+              }
+              98%, 100% {
+                opacity: 0;
+                clip-path: inset(50% 0 50% 0);
+              }
+            }
+          `}</style>
+        </section>
       </div>
-
-      {/* Cards Grid */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
-          gap: '32px',
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '0 24px',
-          position: 'relative',
-          zIndex: 10,
-        }}
-      >
-        {DEVELOPERS.map((developer, index) => (
-          <DeveloperCard
-            key={developer.name}
-            developer={developer}
-            index={index}
-            isExpanded={isExpanded}
-            onToggle={handleToggle}
-          />
-        ))}
-      </div>
-
-      {/* Cyberpunk Glitch Animations */}
-      <style>{`
-        /* Text RGB Split Glitch */
-        .name-glitch-text.active-glitch {
-          animation: glitch-rgb-split 1.6s infinite;
-        }
-
-        .developer-card:hover .name-glitch-text.active-glitch {
-          animation-duration: 1.6s;
-        }
-
-        @keyframes glitch-rgb-split {
-          0%, 86%, 100% {
-            text-shadow: none;
-            transform: translate(0);
-          }
-          87% {
-            text-shadow: -2.5px 0 #00ffff, 2.5px 0 #ff0055;
-            transform: translate(-1.5px, 0.5px);
-          }
-          89% {
-            text-shadow: 2px 0 #00ff41, -2px 0 #ff0055;
-            transform: translate(1.5px, -0.5px);
-          }
-          91% {
-            text-shadow: -1.5px 0 #00ff41, 1.5px 0 #00ffff;
-            transform: translate(-0.5px, 0);
-          }
-          93% {
-            text-shadow: none;
-            transform: translate(0);
-          }
-          94% {
-            text-shadow: 2.5px 0 #ff0055, -2px 0 #00ff41;
-            transform: translate(1px, -1px);
-          }
-          96% {
-            text-shadow: -1px 0 #00ffff, 1px 0 #ff0055;
-            transform: translate(-1px, 0.5px);
-          }
-          97%, 100% {
-            text-shadow: none;
-            transform: translate(0);
-          }
-        }
-
-        /* Card Digital Glitch Slice Tearing */
-        .card-glitch-slice {
-          opacity: 0;
-          animation: cyber-glitch-tear 1.8s infinite linear;
-        }
-
-        .developer-card:hover .card-glitch-slice {
-          animation-duration: 1.6s;
-        }
-
-        @keyframes cyber-glitch-tear {
-          0%, 86%, 100% {
-            opacity: 0;
-            clip-path: inset(50% 0 50% 0);
-            background: transparent;
-          }
-          87% {
-            opacity: 0.75;
-            clip-path: inset(15% 0 75% 0);
-            transform: translate(-4px, 1px);
-            background: rgba(0, 255, 65, 0.1);
-          }
-          89% {
-            opacity: 0.85;
-            clip-path: inset(58% 0 22% 0);
-            transform: translate(4px, -1px);
-            background: rgba(0, 240, 255, 0.08);
-          }
-          91% {
-            opacity: 0;
-            clip-path: inset(0 0 0 0);
-          }
-          92% {
-            opacity: 0.8;
-            clip-path: inset(80% 0 8% 0);
-            transform: translate(-3px, 0);
-            background: rgba(255, 0, 85, 0.08);
-          }
-          94% {
-            opacity: 0.9;
-            clip-path: inset(8% 0 82% 0);
-            transform: translate(3px, 1px);
-            background: rgba(0, 255, 65, 0.12);
-          }
-          96% {
-            opacity: 0.5;
-            clip-path: inset(38% 0 48% 0);
-            transform: translate(-2px, -1px);
-            background: rgba(0, 240, 255, 0.06);
-          }
-          98%, 100% {
-            opacity: 0;
-            clip-path: inset(50% 0 50% 0);
-          }
-        }
-      `}</style>
-    </section>
     </div>
   );
 };

@@ -272,7 +272,7 @@ export const Timeline: React.FC = () => {
                     <p
                       style={{
                         fontFamily: 'var(--font-mono)',
-                        fontSize: '13px',
+                        fontSize: '14px',
                         color: 'var(--text-secondary)',
                         lineHeight: 1.55,
                         margin: 0,
