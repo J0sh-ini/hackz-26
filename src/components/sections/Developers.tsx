@@ -302,29 +302,53 @@ export const Developers: React.FC = () => {
       const initialHeight = section.getBoundingClientRect().height || section.scrollHeight || 750;
 
       // Initially collapse wrapper with overflow hidden
-      gsap.set(wrapper, { height: 0, overflow: 'hidden' });
+      gsap.set(wrapper, { height: 0, overflow: 'hidden', opacity: 0 });
 
       // Refresh ScrollTrigger so contact section sits directly below FAQ before trigger
       ScrollTrigger.refresh();
 
-      // Trigger when contact section reaches top 50% of the viewport
-      ScrollTrigger.create({
-        trigger: '#contact',
-        start: 'top 50%',
-        once: true,
-        onEnter: () => {
-          const targetHeight = section.scrollHeight || initialHeight;
+      let isRevealed = false;
 
-          gsap.to(wrapper, {
-            height: targetHeight,
-            duration: 0.45,
-            ease: 'power2.out',
-            onComplete: () => {
-              gsap.set(wrapper, { height: 'auto', overflow: 'visible' });
-              ScrollTrigger.refresh();
-            },
-          });
-        },
+      const openSection = () => {
+        if (isRevealed) return;
+        isRevealed = true;
+        const targetHeight = section.scrollHeight || initialHeight;
+
+        gsap.to(wrapper, {
+          height: targetHeight,
+          opacity: 1,
+          duration: 0.45,
+          ease: 'power2.out',
+          onComplete: () => {
+            gsap.set(wrapper, { height: 'auto', overflow: 'visible' });
+          },
+        });
+      };
+
+      const closeSection = () => {
+        if (!isRevealed) return;
+        isRevealed = false;
+
+        gsap.to(wrapper, {
+          height: 0,
+          opacity: 0,
+          duration: 0.45,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            gsap.set(wrapper, { overflow: 'hidden' });
+          },
+        });
+      };
+
+      // Trigger using stationary #faq so height changes don't shift the trigger position
+      ScrollTrigger.create({
+        trigger: '#faq',
+        start: 'bottom 45%',
+        end: 'bottom 5%',
+        onEnter: openSection,
+        onLeave: closeSection,
+        onEnterBack: openSection,
+        onLeaveBack: closeSection,
       });
     });
 
