@@ -315,7 +315,7 @@ export const Sponsors: React.FC = () => {
                 }}
               >
                 {/* High-definition Unstop vector logo */}
-                <svg
+                {/* <svg
                   width="220"
                   height="52"
                   viewBox="0 0 260 54"
@@ -342,6 +342,43 @@ export const Sponsors: React.FC = () => {
                   >
                     IBM
                   </text>
+                </svg> */}
+                  <svg 
+                  viewBox="0 0 300 100" 
+                  width="120"
+                  
+                  xmlns="http://www.w3.org/2000/svg" 
+                  fill="#0f62fe" 
+                >
+                  <defs>
+                    <pattern id="ibm-bars" width="300" height="13" patternUnits="userSpaceOnUse">
+                      <rect width="300" height="9" fill="white" />
+                    </pattern>
+                    <mask id="ibm-mask">
+                      <rect width="300" height="100" fill="url(#ibm-bars)" />
+                    </mask>
+                  </defs>
+                  
+                  <g mask="url(#ibm-mask)">
+                    <path d="M 20 0 H 70 V 15 H 55 V 85 H 70 V 100 H 20 V 85 H 35 V 15 H 20 Z" />
+                    <path 
+                      fillRule="evenodd" 
+                      d="M 90 0 
+                        H 135 
+                        C 165 0, 165 47, 135 47 
+                        C 170 47, 170 100, 135 100 
+                        H 90 V 85 H 105 V 15 H 90 Z 
+                        M 125 15 V 38 H 132 C 145 38, 145 15, 132 15 Z 
+                        M 125 55 V 85 H 132 C 150 85, 150 55, 132 55 Z" 
+                    />
+                    <path d="M 180 0 
+                            H 215 L 230 50 L 245 0 H 280 
+                            V 15 H 265 V 85 H 280 V 100 
+                            H 235 V 85 H 245 V 30 
+                            L 230 80 L 215 30 
+                            V 85 H 225 V 100 
+                            H 180 V 85 H 195 V 15 H 180 Z" />
+                  </g>
                 </svg>
               </motion.div>
 
@@ -349,7 +386,7 @@ export const Sponsors: React.FC = () => {
                 style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: '11px',
-                  color: '#4e82f7',
+                  color: "white",//  '#4e82f7',
                   letterSpacing: '0.12em',
                   textAlign: 'center',
                   marginBottom: '8px',
@@ -410,7 +447,7 @@ export const Sponsors: React.FC = () => {
                 <span className="subtle-link-fill" aria-hidden="true" />
                 <span style={{ position: 'relative', zIndex: 2 }}>
                   <RollingText
-                    text="unstop.com →"
+                    text="ibm.com →"
                     baseColor="var(--text-secondary)"
                     hoverColor="#ffffff"
                     stagger={0.015}
@@ -420,7 +457,7 @@ export const Sponsors: React.FC = () => {
             </div>
           </motion.div>
           {/* Card 3: UNSTOP (Powered By) */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
@@ -437,7 +474,7 @@ export const Sponsors: React.FC = () => {
               transition: 'border-color 0.2s ease, transform 0.2s ease',
             }}
           >
-            {/* Terminal Status Header */}
+            {/* Terminal Status Header 
             <div
               style={{
                 display: 'flex',
@@ -488,7 +525,7 @@ export const Sponsors: React.FC = () => {
               </span>
             </div>
 
-            {/* Main Stage: Unstop Logo */}
+            {/* Main Stage: Unstop Logo 
             <a
               href={EVENT_LINKS.unstop}
               target="_blank"
@@ -516,7 +553,7 @@ export const Sponsors: React.FC = () => {
                   marginBottom: '20px',
                 }}
               >
-                {/* High-definition Unstop vector logo */}
+                {/* High-definition Unstop vector logo *
                 <svg
                   width="220"
                   height="52"
@@ -575,7 +612,7 @@ export const Sponsors: React.FC = () => {
               </p>
             </a>
 
-            {/* Card Link Footer */}
+            {/* Card Link Footer *
             <div
               style={{
                 borderTop: '1px solid var(--border-default)',
@@ -621,7 +658,7 @@ export const Sponsors: React.FC = () => {
                 </span>
               </a>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
     </section>
