@@ -95,7 +95,7 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
       }}
       whileHover={!isExpanded ? { y: -4 } : undefined}
       style={{
-        backgroundColor: isExpanded ? '#0d1510' : 'var(--bg-card)',
+        backgroundColor:  'var(--bg-card)',
         border: '1px solid var(--border-default)',
         boxShadow: 'none',
         padding: '32px',
@@ -136,7 +136,7 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
                   height: '210px',
                   maxWidth: '100%',
                   aspectRatio: '1 / 1',
-                  borderRadius: '0px',
+                  borderRadius: '6px',
                   objectFit: 'cover',
                   objectPosition: 'center top',
                   border: '1px solid var(--border-default)',
@@ -264,31 +264,28 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
       </AnimatePresence>
 
 
-      {/* Cyber glitch & scanline effects for collapsed card */}
-      {!isExpanded && (
-        <>
-          <div
-            className="card-scanlines"
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background:
-                'repeating-linear-gradient(transparent 0px, transparent 2px, rgba(0, 0, 0, 0.22) 2px, rgba(0, 0, 0, 0.22) 4px)',
-              pointerEvents: 'none',
-              zIndex: 1,
-            }}
-          />
-          <div
-            className="card-glitch-slice"
-            style={{
-              position: 'absolute',
-              inset: 0,
-              pointerEvents: 'none',
-              zIndex: 1,
-            }}
-          />
-        </>
-      )}
+      {/* Cyber glitch & scanline effects */}
+      <div
+        className="card-glitch-slice"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      >
+        <div
+          className="card-scanlines"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background:
+              'repeating-linear-gradient(transparent 0px, transparent 2px, rgba(0, 0, 0, 0.22) 2px, rgba(0, 0, 0, 0.22) 4px)',
+            pointerEvents: 'none',
+          }}
+        />
+      </div>
+        
     </motion.div>
   );
 };
@@ -351,11 +348,9 @@ export const Developers: React.FC = () => {
         style={{
           position: 'relative',
           zIndex: 10,
-          backgroundColor: 'var(--bg-section-alt)',
           borderTop: '1px solid var(--border-default)',
           borderBottom: '1px solid var(--border-default)',
           overflow: 'hidden',
-          backgroundImage: 'radial-gradient(circle at 30% 30%, rgba(0, 255, 65, 0.06), transparent 60%)',
         }}
       >
       {/* Section Header */}
@@ -396,7 +391,7 @@ export const Developers: React.FC = () => {
             color: 'var(--text-secondary)',
           }}
         >
-          Meet the engineers crafting HackZ'26's infrastructure and magic.
+          Meet the engineers crafting HackZ'26's Web infrastructure and magic.
         </p>
       </div>
 
@@ -428,11 +423,11 @@ export const Developers: React.FC = () => {
       <style>{`
         /* Text RGB Split Glitch */
         .name-glitch-text.active-glitch {
-          animation: glitch-rgb-split 3.2s infinite;
+          animation: glitch-rgb-split 1.6s infinite;
         }
 
         .developer-card:hover .name-glitch-text.active-glitch {
-          animation-duration: 1.4s;
+          animation-duration: 1.6s;
         }
 
         @keyframes glitch-rgb-split {
@@ -473,7 +468,7 @@ export const Developers: React.FC = () => {
         /* Card Digital Glitch Slice Tearing */
         .card-glitch-slice {
           opacity: 0;
-          animation: cyber-glitch-tear 3.8s infinite linear;
+          animation: cyber-glitch-tear 1.8s infinite linear;
         }
 
         .developer-card:hover .card-glitch-slice {
