@@ -13,10 +13,15 @@ const LOGOS = [
   { src: "/isea.png", alt: "ISEA Logo" },
   { src: "/goi.png", alt: "GOI Logo" },
 ];
+const temenosLogo = [
+  { src: "/temenos_white.png", alt: "Temenos Logo"} ,
+  {src:"/temenos_t.jpg", alt:"Temenos Logo" }
+];
 
 export const Hero: React.FC = () => {
   const [isGlitching, setIsGlitching] = useState<boolean>(true);
   const [logoIndex, setLogoIndex] = useState<number>(0);
+  const [temnosLogoIndex, setTemenosLogoIndex] = useState<number>(0);
 
   useEffect(() => {
     let burstTimer: ReturnType<typeof setTimeout> | null = null;
@@ -47,6 +52,7 @@ export const Hero: React.FC = () => {
     const logoInterval = setInterval(() => {
       setTimeout(() => {
         setLogoIndex((prev) => (prev + 1) % LOGOS.length);
+        setTemenosLogoIndex((prev) => (prev + 1) % temenosLogo.length);
       }, 300);
     }, 5000);
 
@@ -213,9 +219,9 @@ export const Hero: React.FC = () => {
               >
                 <AnimatePresence mode="wait">
                   <motion.img
-                    key="newlogo"
-                    src="/favicon.ico"
-                    alt="sponser logo"
+                    key={temenosLogo[temnosLogoIndex].src}
+                    src={temenosLogo[temnosLogoIndex].src}
+                    alt={temenosLogo[temnosLogoIndex].alt}
                     initial={{ opacity: 0, scale: 0.85, filter: "brightness(2) blur(2px)" }}
                     animate={{ opacity: 1, scale: 1, filter: "brightness(1) blur(0px)" }}
                     exit={{ opacity: 0, scale: 1.15, filter: "brightness(2) blur(2px)" }}
