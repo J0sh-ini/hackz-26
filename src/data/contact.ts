@@ -42,4 +42,5 @@ export const EVENT_LINKS = {
   mapVenue: 'https://maps.app.goo.gl/JL1mG5KUfTrLS6Pg6',
   temenos: 'https://www.temenos.com/',
   unstop: 'https://unstop.com/',
+  ibm: 'https://www.ibm.com/in-en',
 };

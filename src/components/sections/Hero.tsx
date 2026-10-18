@@ -14,7 +14,7 @@ const LOGOS = [
   { src: "/goi.png", alt: "GOI Logo" },
 ];
 const temenosLogo = [
-  { src: "/temenos_white.png", alt: "Temenos Logo"} ,
+  { src: "/temenos_full.png", alt: "Temenos Logo"} ,
   {src:"/temenos_t.jpg", alt:"Temenos Logo" }
 ];
 

@@ -70,7 +70,7 @@ export const Sponsors: React.FC = () => {
               }}
             >
               
-                <ScrambleText text="[ EXCLUSIVE SPONSOR ]" className="text-[11px] font-mono text-accent-green tracking-[0.15em]" as="span"/>
+                <ScrambleText text="[ TITLE SPONSOR ]" className="text-[11px] font-mono text-accent-green tracking-[0.15em]" as="span"/>
              
 
               <span
@@ -229,8 +229,197 @@ export const Sponsors: React.FC = () => {
               </a>
             </div>
           </motion.div>
+          {/* Card 2: IBM (Powered By) */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+            whileHover={{ y: -4, borderColor: 'rgba(255, 255, 255, 0.3)' }}
+            style={{
+              backgroundColor: 'var(--bg-card)',
+              border: '1px solid var(--border-default)',
+              borderTop: '3px solid #1C49C2',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              position: 'relative',
+              transition: 'border-color 0.2s ease, transform 0.2s ease',
+            }}
+          >
+            {/* Terminal Status Header */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '14px 20px',
+                borderBottom: '1px solid var(--border-default)',
+                backgroundColor: 'rgba(28, 73, 194, 0.03)',
+              }}
+            >
+              <ScrambleText text="[ ASSOCIATE SPONSOR ]" className="text-[11px] font-mono text-[#6e6e6e] tracking-[0.15em]" as="span"/>
+              <span
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '11px',
+                  color: 'var(--accent-green)',
+                  backgroundColor: 'rgba(0, 255, 65, 0.08)',
+                  border: '1px solid rgba(0, 255, 65, 0.35)',
+                  padding: '2px 8px',
+                  letterSpacing: '0.1em',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                }}
+              >
+                <span
+                  style={{
+                    width: '6px',
+                    height: '6px',
+                    borderRadius: '50%',
+                    backgroundColor: 'var(--accent-green)',
+                    display: 'inline-block',
+                    boxShadow: '0 0 6px var(--accent-green)',
+                  }}
+                />
+                [ OK ]
+              </span>
+            </div>
 
-          {/* Card 2: UNSTOP (Powered By) */}
+            <a
+              href={EVENT_LINKS.ibm}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '48px 32px 36px',
+                textDecoration: 'none',
+                flexGrow: 1,
+              }}
+            >
+              <motion.div
+                initial={{ filter: 'grayscale(1) brightness(0.65)', opacity: 0.6 }}
+                whileInView={{ filter: 'grayscale(0) brightness(1)', opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '100%',
+                  marginBottom: '20px',
+                }}
+              >
+                {/* High-definition Unstop vector logo */}
+                <svg
+                  width="220"
+                  height="52"
+                  viewBox="0 0 260 54"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{ maxWidth: '100%', height: 'auto' }}
+                >
+                  <circle cx="28" cy="27" r="18" fill="#1C49C2" />
+                  <path
+                    d="M20 27C20 22.5817 23.5817 19 28 19C32.4183 19 36 22.5817 36 27C36 31.4183 32.4183 35 28 35"
+                    stroke="#FFD100"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="28" cy="27" r="4" fill="#ffffff" />
+                  <text
+                    x="60"
+                    y="36"
+                    fontFamily="'Outfit', sans-serif"
+                    fontWeight="800"
+                    fontSize="30"
+                    fill="#ffffff"
+                    letterSpacing="3"
+                  >
+                    IBM
+                  </text>
+                </svg>
+              </motion.div>
+
+              <div
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '11px',
+                  color: '#4e82f7',
+                  letterSpacing: '0.12em',
+                  textAlign: 'center',
+                  marginBottom: '8px',
+                }}
+              >
+                GLOBAL LEADER IN RESEARCH & INNOVATION
+              </div>
+
+              <p
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '13px',
+                  color: 'var(--text-secondary)',
+                  textAlign: 'center',
+                  lineHeight: 1.5,
+                  maxWidth: '360px',
+                  margin: '0 auto',
+                }}
+              >
+              Pioneering enterprise AI, quantum breakthroughs, and hybrid cloud solutions for tomorrow's business.              </p>
+            </a>
+
+            {/* Card Link Footer */}
+            <div
+              style={{
+                borderTop: '1px solid var(--border-default)',
+                padding: '14px 20px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                backgroundColor: 'rgba(0, 0, 0, 0.2)',
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '11px',
+                  color: 'var(--text-muted)',
+                }}
+              >
+                DOMAIN: TECH_RESEARCH
+              </span>
+
+              <a
+                href={EVENT_LINKS.unstop}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-link-item subtle-roll-link"
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '12px',
+                  color: 'var(--text-secondary)',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  padding: '4px 8px',
+                }}
+              >
+                <span className="subtle-link-fill" aria-hidden="true" />
+                <span style={{ position: 'relative', zIndex: 2 }}>
+                  <RollingText
+                    text="unstop.com →"
+                    baseColor="var(--text-secondary)"
+                    hoverColor="#ffffff"
+                    stagger={0.015}
+                  />
+                </span>
+              </a>
+            </div>
+          </motion.div>
+          {/* Card 3: UNSTOP (Powered By) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
