@@ -2,7 +2,7 @@ import React from 'react';
 import { RollingText } from '../ui/RollingText';
 import ScrambleText from '../ui/ScrambleText';
 import Shuffle from '../ui/Shuffle';
-import CircularCarousel from '../ui/CircularCarousel';
+import CircularCarousel, { CircularCarouselRef } from '../ui/CircularCarousel';
 import Carousel from '../ui/Carousel';
 import { SPONSORS, Sponsor } from '../../data/sponsors.tsx';
 
@@ -83,7 +83,7 @@ const SponsorCard: React.FC<{ sponsor: Sponsor; isDesktop?: boolean }> = ({ spon
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '14px 20px',
+            padding: isDesktop ? '14px 20px' : '10px 16px',
             borderBottom: '1px solid var(--border-default)',
             backgroundColor: tierConfig.badgeBg,
           }}
@@ -91,7 +91,7 @@ const SponsorCard: React.FC<{ sponsor: Sponsor; isDesktop?: boolean }> = ({ spon
           <span
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '11px',
+              fontSize: isDesktop ? '11px' : '10px',
               color: tierConfig.badgeTextColor,
               letterSpacing: '0.15em',
               fontWeight: 700,
@@ -99,33 +99,6 @@ const SponsorCard: React.FC<{ sponsor: Sponsor; isDesktop?: boolean }> = ({ spon
           >
             [ {tierConfig.label} ]
           </span>
-
-          {/* <span
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '11px',
-              color: tierConfig.badgeTextColor,
-              backgroundColor: 'rgba(0, 255, 65, 0.08)',
-              border: '1px solid rgba(0, 255, 65, 0.35)',
-              padding: '2px 8px',
-              letterSpacing: '0.1em',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-            }}
-          >
-            <span
-              style={{
-                width: '6px',
-                height: '6px',
-                borderRadius: '50%',
-                backgroundColor: tierConfig.badgeTextColor,
-                display: 'inline-block',
-                boxShadow: `0 0 6px ${tierConfig.badgeTextColor}`,
-              }}
-            />
-            [ OK ]
-          </span> */}
         </div>
 
         {/* Main Stage: Sponsor Logo */}
@@ -135,7 +108,7 @@ const SponsorCard: React.FC<{ sponsor: Sponsor; isDesktop?: boolean }> = ({ spon
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: isDesktop ? '42px 36px 32px' : '32px 24px 24px',
+            padding: isDesktop ? '42px 36px 32px' : '20px 16px 16px',
             flexGrow: 1,
           }}
         >
@@ -145,8 +118,8 @@ const SponsorCard: React.FC<{ sponsor: Sponsor; isDesktop?: boolean }> = ({ spon
               alignItems: 'center',
               justifyContent: 'center',
               width: '100%',
-              minHeight: '70px',
-              marginBottom: '18px',
+              minHeight: isDesktop ? '70px' : '48px',
+              marginBottom: isDesktop ? '18px' : '10px',
             }}
           >
             {sponsor.logo}
@@ -159,7 +132,7 @@ const SponsorCard: React.FC<{ sponsor: Sponsor; isDesktop?: boolean }> = ({ spon
               color: tierConfig.badgeTextColor,
               letterSpacing: '0.12em',
               textAlign: 'center',
-              marginBottom: '8px',
+              marginBottom: isDesktop ? '8px' : '6px',
             }}
           >
             {sponsor.tagline}
@@ -168,11 +141,11 @@ const SponsorCard: React.FC<{ sponsor: Sponsor; isDesktop?: boolean }> = ({ spon
           <p
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: isDesktop ? '13px' : '12px',
+              fontSize: isDesktop ? '13px' : '11.5px',
               color: 'var(--text-secondary)',
               textAlign: 'center',
-              lineHeight: 1.6,
-              maxWidth: isDesktop ? '480px' : '380px',
+              lineHeight: isDesktop ? 1.6 : 1.5,
+              maxWidth: isDesktop ? '480px' : '260px',
               margin: '0 auto',
             }}
           >
@@ -184,7 +157,7 @@ const SponsorCard: React.FC<{ sponsor: Sponsor; isDesktop?: boolean }> = ({ spon
         <div
           style={{
             borderTop: '1px solid var(--border-default)',
-            padding: '14px 20px',
+            padding: isDesktop ? '14px 20px' : '10px 16px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -194,7 +167,7 @@ const SponsorCard: React.FC<{ sponsor: Sponsor; isDesktop?: boolean }> = ({ spon
           <span
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '11px',
+              fontSize: isDesktop ? '11px' : '10px',
               color: 'var(--text-muted)',
             }}
           >
@@ -214,6 +187,9 @@ const SponsorCard: React.FC<{ sponsor: Sponsor; isDesktop?: boolean }> = ({ spon
 };
 
 export const Sponsors: React.FC = () => {
+  const [mobileIndex, setMobileIndex] = React.useState(0);
+  const mobileCarouselRef = React.useRef<CircularCarouselRef>(null);
+
   // Prepare items for React Bits Carousel (desktop)
   const carouselItems = SPONSORS.map((sponsor) => (
     <SponsorCard key={sponsor.id} sponsor={sponsor} isDesktop={true} />
@@ -286,15 +262,68 @@ export const Sponsors: React.FC = () => {
         </div>
 
         {/* Mobile: CircularCarousel */}
-        <div className="md:hidden">
-          <div style={{ height: '480px', position: 'relative' }}>
+        <div className="md:hidden flex flex-col items-center">
+          <div style={{ width: '100%', height: '390px', position: 'relative' }}>
             <CircularCarousel
+              ref={mobileCarouselRef}
               items={circularItems}
-              cardWidth={280}
-              intro="rise"
-              aspectRatio={0.55}
+              cardWidth={295}
+              aspectRatio={0.82}
+              curve={0}
+              tilt={0}
+              gap={16}
+              intro="spin"
+              autoplay="step"
+              interval={4}
+              snap={true}
+              draggable={true}
+              cornerRadius={0}
+              preset="cylinder"
+              depthFade={0.6}
+              fadeColor="#030712"
+              innerShade={0.85}
+              onChange={(idx) => setMobileIndex(idx)}
             />
           </div>
+
+          {/* Cyberpunk Navigation Controls for Mobile */}
+          <div className="flex items-center justify-between w-full max-w-[310px] mt-4 px-1">
+            <button
+              type="button"
+              onClick={() => mobileCarouselRef.current?.prev()}
+              className="font-mono text-[11px] text-accent-green hover:text-white bg-black/60 border border-border-default hover:border-accent-green px-3 py-1.5 transition-colors active:scale-95 flex items-center gap-1 cursor-pointer select-none"
+              aria-label="Previous sponsor"
+            >
+              <span>&lt;</span>
+            </button>
+
+            {/* Indicator Pips */}
+            <div className="flex items-center gap-2">
+              {SPONSORS.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => mobileCarouselRef.current?.goTo(i)}
+                  className={`h-2 transition-all duration-300 cursor-pointer ${
+                    mobileIndex === i
+                      ? 'w-6 bg-accent-green'
+                      : 'w-2 bg-border-default hover:bg-text-muted'
+                  }`}
+                  aria-label={`Go to sponsor ${i + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => mobileCarouselRef.current?.next()}
+              className="font-mono text-[11px] text-accent-green hover:text-white bg-black/60 border border-border-default hover:border-accent-green px-3 py-1.5 transition-colors active:scale-95 flex items-center gap-1 cursor-pointer select-none"
+              aria-label="Next sponsor"
+            >
+              <span>&gt;</span>
+            </button>
+          </div>
+
         </div>
       </div>
     </section>
