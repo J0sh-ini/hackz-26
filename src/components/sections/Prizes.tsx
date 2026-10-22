@@ -150,9 +150,8 @@ export const Prizes: React.FC = () => {
               transition={{ duration: 0.5, delay: podium.orderDesktop * 0.12 }}
               style={{
                 backgroundColor: 'var(--bg-card)',
-                border: `1px solid var(--border-default)`,
-                borderLeft: `4px solid ${podium.borderColor}`,
-                boxShadow: `inset 0 0 20px ${podium.glowColor}`,
+                border: '1px solid var(--border-default)',
+                boxShadow: 'none',
                 padding: '32px 24px',
                 display: 'flex',
                 flexDirection: 'column',
@@ -242,9 +241,8 @@ export const Prizes: React.FC = () => {
           className="prizes-special-card"
           style={{
             backgroundColor: '#07150a',
-            border: '1px solid rgba(132, 255, 0, 0.35)',
-            borderLeft: '4px solid var(--accent-green-volt)',
-            boxShadow: 'inset 0 0 24px rgba(132, 255, 0, 0.08)',
+            border: '1px solid var(--border-default)',
+            boxShadow: 'none',
             padding: '24px 28px',
             display: 'flex',
             alignItems: 'center',
@@ -264,11 +262,11 @@ export const Prizes: React.FC = () => {
                 height: '48px',
                 minWidth: '48px',
                 backgroundColor: 'rgba(132, 255, 0, 0.12)',
-                border: '1px solid var(--accent-green-volt)',
+                border: '1px solid var(--border-default)',
                 color: 'var(--accent-green-volt)',
                 fontSize: '24px',
                 fontWeight: 700,
-                boxShadow: '0 0 12px rgba(132, 255, 0, 0.25)',
+                boxShadow: 'none',
               }}
             >
               &#9792;
