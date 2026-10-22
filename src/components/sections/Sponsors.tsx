@@ -1,577 +1,230 @@
 import React from 'react';
-import { motion } from 'motion/react';
-import { EVENT_LINKS } from '../../data/contact';
 import { RollingText } from '../ui/RollingText';
 import ScrambleText from '../ui/ScrambleText';
 import Shuffle from '../ui/Shuffle';
-import CircularCarousel,{CircularCarouselItem} from '../ui/CircularCarousel';
+import CircularCarousel from '../ui/CircularCarousel';
+import Carousel from '../ui/Carousel';
+import { SPONSORS, Sponsor } from '../../data/sponsors.tsx';
+
+const getTierConfig = (tier: Sponsor['tier']) => {
+  const configs = {
+    title: {
+      label: 'TITLE SPONSOR',
+      badgeBg: 'rgba(0, 255, 65, 0.02)',
+      badgeTextColor: 'var(--accent-green)',
+      borderColor: 'var(--accent-green)',
+    },
+    platinum: {
+      label: 'PLATINUM SPONSOR',
+      badgeBg: 'rgba(0, 255, 136, 0.02)',
+      badgeTextColor: 'var(--accent-green-mint)',
+      borderColor: 'var(--accent-green-mint)',
+    },
+    gold: {
+      label: 'GOLD SPONSOR',
+      badgeBg: 'rgba(132, 255, 0, 0.02)',
+      badgeTextColor: 'var(--accent-green-volt)',
+      borderColor: 'var(--accent-green-volt)',
+    },
+    silver: {
+      label: 'SILVER SPONSOR',
+      badgeBg: 'rgba(163, 255, 184, 0.02)',
+      badgeTextColor: 'var(--accent-green-light)',
+      borderColor: 'var(--accent-green-light)',
+    },
+    associate: {
+      label: 'ASSOCIATE SPONSOR',
+      badgeBg: 'rgba(28, 73, 194, 0.03)',
+      badgeTextColor: '#4e82f7',
+      borderColor: '#1C49C2',
+    },
+    'powered-by': {
+      label: 'POWERED BY',
+      badgeBg: 'rgba(78, 130, 247, 0.03)',
+      badgeTextColor: '#4e82f7',
+      borderColor: '#4e82f7',
+    }
+  };
+  return configs[tier];
+};
+
+const SponsorCard: React.FC<{ sponsor: Sponsor; isDesktop?: boolean }> = ({ sponsor, isDesktop = true }) => {
+  const tierConfig = getTierConfig(sponsor.tier);
+
+  return (
+    <a
+      href={sponsor.website}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        textDecoration: 'none',
+        color: 'inherit',
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: 'var(--bg-card)',
+          border: '1px solid var(--border-default)',
+          borderTop: `3px solid ${tierConfig.borderColor}`,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          height: '100%',
+          position: 'relative',
+          transition: 'border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease',
+        }}
+      >
+        {/* Terminal Status Header */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '14px 20px',
+            borderBottom: '1px solid var(--border-default)',
+            backgroundColor: tierConfig.badgeBg,
+          }}
+        >
+          <span
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '11px',
+              color: tierConfig.badgeTextColor,
+              letterSpacing: '0.15em',
+              fontWeight: 700,
+            }}
+          >
+            [ {tierConfig.label} ]
+          </span>
+
+          {/* <span
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '11px',
+              color: tierConfig.badgeTextColor,
+              backgroundColor: 'rgba(0, 255, 65, 0.08)',
+              border: '1px solid rgba(0, 255, 65, 0.35)',
+              padding: '2px 8px',
+              letterSpacing: '0.1em',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+            }}
+          >
+            <span
+              style={{
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                backgroundColor: tierConfig.badgeTextColor,
+                display: 'inline-block',
+                boxShadow: `0 0 6px ${tierConfig.badgeTextColor}`,
+              }}
+            />
+            [ OK ]
+          </span> */}
+        </div>
+
+        {/* Main Stage: Sponsor Logo */}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: isDesktop ? '42px 36px 32px' : '32px 24px 24px',
+            flexGrow: 1,
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+              minHeight: '70px',
+              marginBottom: '18px',
+            }}
+          >
+            {sponsor.logo}
+          </div>
+
+          <div
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: isDesktop ? '11px' : '10px',
+              color: tierConfig.badgeTextColor,
+              letterSpacing: '0.12em',
+              textAlign: 'center',
+              marginBottom: '8px',
+            }}
+          >
+            {sponsor.tagline}
+          </div>
+
+          <p
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: isDesktop ? '13px' : '12px',
+              color: 'var(--text-secondary)',
+              textAlign: 'center',
+              lineHeight: 1.6,
+              maxWidth: isDesktop ? '480px' : '380px',
+              margin: '0 auto',
+            }}
+          >
+            {sponsor.description}
+          </p>
+        </div>
+
+        {/* Card Link Footer */}
+        <div
+          style={{
+            borderTop: '1px solid var(--border-default)',
+            padding: '14px 20px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            backgroundColor: 'rgba(0, 0, 0, 0.2)',
+          }}
+        >
+          <span
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '11px',
+              color: 'var(--text-muted)',
+            }}
+          >
+            DOMAIN: {sponsor.id.toUpperCase().replace('-', '_')}
+          </span>
+
+          <RollingText
+            text={`${sponsor.name.toLowerCase().replace(/\s+/g, '')}.com →`}
+            baseColor={tierConfig.badgeTextColor}
+            hoverColor="#ffffff"
+            stagger={0.015}
+          />
+        </div>
+      </div>
+    </a>
+  );
+};
+
 export const Sponsors: React.FC = () => {
-  const sponsorDivs:CircularCarouselItem[]=[
-    { id: 1, content: <div
+  // Prepare items for React Bits Carousel (desktop)
+  const carouselItems = SPONSORS.map((sponsor) => (
+    <SponsorCard key={sponsor.id} sponsor={sponsor} isDesktop={true} />
+  ));
 
-            style={{
-              backgroundColor: 'var(--bg-card)',
-              border: '1px solid var(--border-default)',
-              borderTop: '3px solid var(--accent-green)',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              position: 'relative',
-              transition: 'border-color 0.2s ease, transform 0.2s ease',
-            }}
-          >
-            {/* Terminal Status Header */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '14px 20px',
-                borderBottom: '1px solid var(--border-default)',
-                backgroundColor: 'rgba(0, 255, 65, 0.02)',
-              }}
-            >
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--accent-green)', letterSpacing: '0.15em' }}>[ TITLE SPONSOR ]</span>
-             
+  // Prepare items for CircularCarousel (mobile)
+  const circularItems = SPONSORS.map((sponsor, index) => ({
+    id: index + 1,
+    content: <SponsorCard sponsor={sponsor} isDesktop={false} />,
+  }));
 
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '11px',
-                  color: 'var(--accent-green)',
-                  backgroundColor: 'rgba(0, 255, 65, 0.08)',
-                  border: '1px solid rgba(0, 255, 65, 0.35)',
-                  padding: '2px 8px',
-                  letterSpacing: '0.1em',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                }}
-              >
-                <span
-                  style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--accent-green)',
-                    display: 'inline-block',
-                    boxShadow: '0 0 6px var(--accent-green)',
-                  }}
-                />
-                [ OK ]
-              </span>
-            </div>
-
-            {/* Main Stage: Temenos Logo */}
-            <a
-              href={EVENT_LINKS.temenos}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '48px 32px 36px',
-                textDecoration: 'none',
-                flexGrow: 1,
-              }}
-            >
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '100%',
-                  marginBottom: '20px',
-                }}
-              >
-                {/* High-definition Temenos vector logo */}
-                <svg
-                  width="260"
-                  height="58"
-                  viewBox="0 0 320 60"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ maxWidth: '100%', height: 'auto' }}
-                >
-                  <rect x="10" y="8" width="44" height="44" fill="#003594" />
-                  <path d="M18 18H46V25H35V44H28V25H18V18Z" fill="#ffffff" />
-                  <text
-                    x="68"
-                    y="38"
-                    fontFamily="'Outfit', sans-serif"
-                    fontWeight="800"
-                    fontSize="32"
-                    fill="#ffffff"
-                    letterSpacing="4"
-                  >
-                    TEMENOS
-                  </text>
-                </svg>
-              </div>
-
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '11px',
-                  color: 'var(--accent-green)',
-                  letterSpacing: '0.12em',
-                  textAlign: 'center',
-                  marginBottom: '8px',
-                }}
-              >
-                GLOBAL LEADER IN BANKING SOFTWARE
-              </div>
-
-              <p
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '13px',
-                  color: 'var(--text-secondary)',
-                  textAlign: 'center',
-                  lineHeight: 1.5,
-                  maxWidth: '380px',
-                  margin: '0 auto',
-                }}
-              >
-                Powering mission-critical financial systems and next-generation cloud banking architecture worldwide.
-              </p>
-            </a>
-
-            {/* Card Link Footer */}
-            <div
-              style={{
-                borderTop: '1px solid var(--border-default)',
-                padding: '14px 20px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                backgroundColor: 'rgba(0, 0, 0, 0.2)',
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '11px',
-                  color: 'var(--text-muted)',
-                }}
-              >
-                DOMAIN: FINTECH_INFRA
-              </span>
-
-              <a
-                href={EVENT_LINKS.temenos}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="nav-link-item subtle-roll-link"
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '12px',
-                  color: 'var(--accent-green)',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  padding: '4px 8px',
-                }}
-              >
-                <span className="subtle-link-fill" aria-hidden="true" />
-                <span style={{ position: 'relative', zIndex: 2 }}>
-                  {/* <RollingText
-                    text="temenos.com →"
-                    baseColor="var(--accent-green)"
-                    hoverColor="#ffffff"
-                    stagger={0.015}
-                  /> */}
-                  temenos.com →
-                </span>
-              </a>
-            </div>
-          </div> },
-    { id: 2, content: <div
-            style={{
-              backgroundColor: 'var(--bg-card)',
-              border: '1px solid var(--border-default)',
-              borderTop: '3px solid #1C49C2',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              position: 'relative',
-              transition: 'border-color 0.2s ease, transform 0.2s ease',
-            }}
-          >
-            {/* Terminal Status Header */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '14px 20px',
-                borderBottom: '1px solid var(--border-default)',
-                backgroundColor: 'rgba(28, 73, 194, 0.03)',
-              }}
-            >
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-muted)', letterSpacing: '0.15em' }}>[ ASSOCIATE SPONSOR ]</span>
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '11px',
-                  color: 'var(--accent-green)',
-                  backgroundColor: 'rgba(0, 255, 65, 0.08)',
-                  border: '1px solid rgba(0, 255, 65, 0.35)',
-                  padding: '2px 8px',
-                  letterSpacing: '0.1em',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                }}
-              >
-                <span
-                  style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--accent-green)',
-                    display: 'inline-block',
-                    boxShadow: '0 0 6px var(--accent-green)',
-                  }}
-                />
-                [ OK ]
-              </span>
-            </div>
-
-            <a
-              href={EVENT_LINKS.ibm}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '48px 32px 36px',
-                textDecoration: 'none',
-                flexGrow: 1,
-              }}
-            >
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '100%',
-                  marginBottom: '20px',
-                }}
-              >
-               
-                  <svg 
-                  viewBox="0 0 300 100" 
-                  width="120"
-                  
-                  xmlns="http://www.w3.org/2000/svg" 
-                  fill="#0f62fe" 
-                >
-                  <defs>
-                    <pattern id="ibm-bars" width="300" height="13" patternUnits="userSpaceOnUse">
-                      <rect width="300" height="9" fill="white" />
-                    </pattern>
-                    <mask id="ibm-mask">
-                      <rect width="300" height="100" fill="url(#ibm-bars)" />
-                    </mask>
-                  </defs>
-                  
-                  <g mask="url(#ibm-mask)">
-                    <path d="M 20 0 H 70 V 15 H 55 V 85 H 70 V 100 H 20 V 85 H 35 V 15 H 20 Z" />
-                    <path 
-                      fillRule="evenodd" 
-                      d="M 90 0 
-                        H 135 
-                        C 165 0, 165 47, 135 47 
-                        C 170 47, 170 100, 135 100 
-                        H 90 V 85 H 105 V 15 H 90 Z 
-                        M 125 15 V 38 H 132 C 145 38, 145 15, 132 15 Z 
-                        M 125 55 V 85 H 132 C 150 85, 150 55, 132 55 Z" 
-                    />
-                    <path d="M 180 0 
-                            H 215 L 230 50 L 245 0 H 280 
-                            V 15 H 265 V 85 H 280 V 100 
-                            H 235 V 85 H 245 V 30 
-                            L 230 80 L 215 30 
-                            V 85 H 225 V 100 
-                            H 180 V 85 H 195 V 15 H 180 Z" />
-                  </g>
-                </svg>
-              </div>
-
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '11px',
-                  color: "white",//  '#4e82f7',
-                  letterSpacing: '0.12em',
-                  textAlign: 'center',
-                  marginBottom: '8px',
-                }}
-              >
-                GLOBAL LEADER IN RESEARCH & INNOVATION
-              </div>
-
-              <p
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '13px',
-                  color: 'var(--text-secondary)',
-                  textAlign: 'center',
-                  lineHeight: 1.5,
-                  maxWidth: '360px',
-                  margin: '0 auto',
-                }}
-              >
-              Pioneering enterprise AI, quantum breakthroughs, and hybrid cloud solutions for tomorrow's business.              </p>
-            </a>
-
-            {/* Card Link Footer */}
-            <div
-              style={{
-                borderTop: '1px solid var(--border-default)',
-                padding: '14px 20px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                backgroundColor: 'rgba(0, 0, 0, 0.2)',
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '11px',
-                  color: 'var(--text-muted)',
-                }}
-              >
-                DOMAIN: TECH_RESEARCH
-              </span>
-
-              <a
-                href={EVENT_LINKS.unstop}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="nav-link-item subtle-roll-link"
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '12px',
-                  color: 'var(--text-secondary)',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  padding: '4px 8px',
-                }}
-              >
-                <span className="subtle-link-fill" aria-hidden="true" />
-                <span style={{ position: 'relative', zIndex: 2 }}>
-                  {/* <RollingText
-                    text="ibm.com →"
-                    baseColor="var(--text-secondary)"
-                    hoverColor="#ffffff"
-                    stagger={0.015}
-                  /> */}
-                  ibm.com →
-                </span>
-              </a>
-            </div>
-          </div> },
-    { id: 3, content: <div
-            style={{
-              backgroundColor: 'var(--bg-card)',
-              border: '1px solid var(--border-default)',
-              borderTop: '3px solid #1C49C2',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              position: 'relative',
-              transition: 'border-color 0.2s ease, transform 0.2s ease',
-            }}
-          >
-            {/* {/* Terminal Status Header  */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '14px 20px',
-                borderBottom: '1px solid var(--border-default)',
-                backgroundColor: 'rgba(28, 73, 194, 0.03)',
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '11px',
-                  fontWeight: 700,
-                  letterSpacing: '0.15em',
-                  color: 'var(--text-secondary)',
-                }}
-              >
-                [ POWERED BY ]
-              </span>
-
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '11px',
-                  color: 'var(--accent-green)',
-                  backgroundColor: 'rgba(0, 255, 65, 0.08)',
-                  border: '1px solid rgba(0, 255, 65, 0.35)',
-                  padding: '2px 8px',
-                  letterSpacing: '0.1em',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                }}
-              >
-                <span
-                  style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--accent-green)',
-                    display: 'inline-block',
-                    boxShadow: '0 0 6px var(--accent-green)',
-                  }}
-                />
-                [ OK ]
-              </span>
-            </div>
-
-            {/* {/* Main Stage: Unstop Logo  */}
-            <a
-              href={EVENT_LINKS.unstop}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '48px 32px 36px',
-                textDecoration: 'none',
-                flexGrow: 1,
-              }}
-            >
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '100%',
-                  marginBottom: '20px',
-                }}
-              >
-                {/* {/* High-definition Unstop vector logo * */}
-                <svg
-                  width="220"
-                  height="52"
-                  viewBox="0 0 260 54"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ maxWidth: '100%', height: 'auto' }}
-                >
-                  <circle cx="28" cy="27" r="18" fill="#1C49C2" />
-                  <path
-                    d="M20 27C20 22.5817 23.5817 19 28 19C32.4183 19 36 22.5817 36 27C36 31.4183 32.4183 35 28 35"
-                    stroke="#FFD100"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                  />
-                  <circle cx="28" cy="27" r="4" fill="#ffffff" />
-                  <text
-                    x="60"
-                    y="36"
-                    fontFamily="'Outfit', sans-serif"
-                    fontWeight="800"
-                    fontSize="30"
-                    fill="#ffffff"
-                    letterSpacing="1"
-                  >
-                    unstop
-                  </text>
-                </svg>
-              </div>
-
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '11px',
-                  color: '#4e82f7',
-                  letterSpacing: '0.12em',
-                  textAlign: 'center',
-                  marginBottom: '8px',
-                }}
-              >
-                TALENT DISCOVERY & HIRING PLATFORM
-              </div>
-
-              <p
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '13px',
-                  color: 'var(--text-secondary)',
-                  textAlign: 'center',
-                  lineHeight: 1.5,
-                  maxWidth: '360px',
-                  margin: '0 auto',
-                }}
-              >
-                Connecting millions of collegiate engineers, competitive hackers, and pioneers with career-defining opportunities.
-              </p>
-            </a>
-
-            {/* {/* Card Link Footer * */}
-            <div
-              style={{
-                borderTop: '1px solid var(--border-default)',
-                padding: '14px 20px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                backgroundColor: 'rgba(0, 0, 0, 0.2)',
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '11px',
-                  color: 'var(--text-muted)',
-                }}
-              >
-                DOMAIN: TALENT_NETWORK
-              </span>
-
-              <a
-                href={EVENT_LINKS.unstop}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="nav-link-item subtle-roll-link"
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '12px',
-                  color: 'var(--text-secondary)',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  padding: '4px 8px',
-                }}
-              >
-                <span className="subtle-link-fill" aria-hidden="true" />
-                <span style={{ position: 'relative', zIndex: 2 }}>
-                  {/* <RollingText
-                    text="unstop.com →"
-                    baseColor="var(--text-secondary)"
-                    hoverColor="#ffffff"
-                    stagger={0.015}
-                  /> */}
-                  unstop.com →
-                </span>
-              </a>
-            </div>
-          </div> }
-  ]
   return (
     <section
       id="sponsors"
@@ -597,30 +250,107 @@ export const Sponsors: React.FC = () => {
               as="h2"
             />
           </span>
-          {/* <p style={{ maxWidth: '600px', margin: '0 auto', fontSize: '15px' }}>
-            Empowered by industry pioneers driving global financial software infrastructure and collegiate developer opportunity.
-          </p> */}
-          <Shuffle text="Empowered by industry pioneers driving global financial software infrastructure and collegiate developer opportunity." style={{ maxWidth: '600px', margin: '0 auto', fontSize: '15px',lineHeight: '1.5', textAlign: 'center' }}/>
-        </div> 
+          <Shuffle text="Empowered by industry pioneers driving global financial software infrastructure and collegiate developer opportunity." style={{ maxWidth: '600px', margin: '0 auto', fontSize: '15px', lineHeight: '1.5', textAlign: 'center' }}/>
+        </div>
 
-        {/* Balanced 2-Column Sponsor Grid */}
-        {/* <div
-          className="grid grid-cols-[1.1fr_1fr] gap-8 items-stretch max-w-[1080px] mx-auto max-[860px]:grid-cols-1 max-[860px]:gap-6"
-        >
-          
-           
-        </div> */}
-        <div className="h-150" >
+        {/* Desktop: React Bits Carousel */}
+        <div className="hidden md:flex flex-col items-center justify-center w-full" style={{ position: 'relative' }}>
+          <div
+            style={{
+              width: '100%',
+              maxWidth: '700px',
+              margin: '0 auto',
+              position: 'relative',
+            }}
+          >
+            {/* Cyber HUD Corner Crosshairs */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '-8px',
+                left: '-8px',
+                width: '18px',
+                height: '18px',
+                borderTop: '2px solid var(--accent-green)',
+                borderLeft: '2px solid var(--accent-green)',
+                zIndex: 30,
+                pointerEvents: 'none',
+              }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                top: '-8px',
+                right: '-8px',
+                width: '18px',
+                height: '18px',
+                borderTop: '2px solid var(--accent-green)',
+                borderRight: '2px solid var(--accent-green)',
+                zIndex: 30,
+                pointerEvents: 'none',
+              }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '-8px',
+                left: '-8px',
+                width: '18px',
+                height: '18px',
+                borderBottom: '2px solid var(--accent-green)',
+                borderLeft: '2px solid var(--accent-green)',
+                zIndex: 30,
+                pointerEvents: 'none',
+              }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '-8px',
+                right: '-8px',
+                width: '18px',
+                height: '18px',
+                borderBottom: '2px solid var(--accent-green)',
+                borderRight: '2px solid var(--accent-green)',
+                zIndex: 30,
+                pointerEvents: 'none',
+              }}
+            />
 
-        <CircularCarousel items={sponsorDivs}
-          cardWidth={280}
-          intro="rise" 
-          aspectRatio={0.5}
-        />
+            <Carousel
+              items={carouselItems}
+              baseWidth={700}
+              aspectRatio={1.42}
+              peek={0}
+              gap={0}
+              radius={0}
+              frame={true}
+              effect="cube"
+              indicator="dots"
+              arrows={true}
+              autoplay={true}
+              autoplayDelay={4000}
+              pauseOnHover={true}
+              loop={true}
+              draggable={true}
+              theme="dark"
+              className="w-full"
+            />
+          </div>
+        </div>
+
+        {/* Mobile: CircularCarousel */}
+        <div className="md:hidden">
+          <div style={{ height: '480px', position: 'relative' }}>
+            <CircularCarousel
+              items={circularItems}
+              cardWidth={280}
+              intro="rise"
+              aspectRatio={0.55}
+            />
+          </div>
         </div>
       </div>
     </section>
   );
 };
-
-
