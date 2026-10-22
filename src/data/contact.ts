@@ -43,4 +43,5 @@ export const EVENT_LINKS = {
   temenos: 'https://www.temenos.com/',
   unstop: 'https://unstop.com/',
   ibm: 'https://www.ibm.com/in-en',
+  aaceg: 'https://www.aaceg.org/',
 };

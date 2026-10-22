@@ -118,11 +118,124 @@ const SponsorCard: React.FC<{ sponsor: Sponsor; isDesktop?: boolean }> = ({ spon
               alignItems: 'center',
               justifyContent: 'center',
               width: '100%',
-              minHeight: isDesktop ? '70px' : '48px',
+              height: isDesktop ? '72px' : '52px',
               marginBottom: isDesktop ? '18px' : '10px',
             }}
           >
-            {sponsor.logo}
+            {sponsor.id === 'temenos' ? (
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: isDesktop ? '14px' : '10px',
+                }}
+              >
+                <div
+                  style={{
+                    width: isDesktop ? '50px' : '38px',
+                    height: isDesktop ? '50px' : '38px',
+                    borderRadius: '4px',
+                    overflow: 'hidden',
+                    flexShrink: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: '#223577',
+                  }}
+                >
+                  <img
+                    src="/temenos_t.jpg"
+                    alt="Temenos"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block',
+                    }}
+                  />
+                </div>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontWeight: 800,
+                    fontSize: isDesktop ? '28px' : '20px',
+                    color: '#ffffff',
+                    letterSpacing: '0.14em',
+                    lineHeight: 1,
+                    textShadow: '0 0 12px rgba(255, 255, 255, 0.25)',
+                  }}
+                >
+                  TEMENOS
+                </span>
+              </div>
+            ) : sponsor.id === 'ibm' ? (
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: '100%',
+                }}
+              >
+                <img
+                  src="/ibm.png"
+                  alt="IBM"
+                  style={{
+                    height: isDesktop ? '48px' : '34px',
+                    width: 'auto',
+                    maxWidth: isDesktop ? '210px' : '150px',
+                    objectFit: 'contain',
+                    display: 'block',
+                    filter: 'contrast(1.1) brightness(1.15)',
+                  }}
+                />
+              </div>
+            ) : sponsor.id === 'aaceg' ? (
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: isDesktop ? '14px' : '10px',
+                }}
+              >
+                <img
+                  src="/aaceg.png"
+                  alt="AACEG"
+                  style={{
+                    height: isDesktop ? '50px' : '38px',
+                    width: 'auto',
+                    objectFit: 'contain',
+                    display: 'block',
+                  }}
+                />
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontWeight: 800,
+                    fontSize: isDesktop ? '28px' : '20px',
+                    color: '#ffffff',
+                    letterSpacing: '0.14em',
+                    lineHeight: 1,
+                  }}
+                >
+                  AACEG
+                </span>
+              </div>
+            ) : (
+              <img
+                src={sponsor.logoSrc}
+                alt={sponsor.name}
+                style={{
+                  height: isDesktop ? '48px' : '34px',
+                  width: 'auto',
+                  maxWidth: isDesktop ? '210px' : '150px',
+                  objectFit: 'contain',
+                  display: 'block',
+                }}
+              />
+            )}
           </div>
 
           <div
@@ -175,7 +288,7 @@ const SponsorCard: React.FC<{ sponsor: Sponsor; isDesktop?: boolean }> = ({ spon
           </span>
 
           <RollingText
-            text={`${sponsor.name.toLowerCase().replace(/\s+/g, '')}.com →`}
+            text={sponsor.website.replace(/^https?:\/\/(www\.)?/, '').replace(/\/.*$/, '') + ' →'}
             baseColor={tierConfig.badgeTextColor}
             hoverColor="#ffffff"
             stagger={0.015}
@@ -196,7 +309,10 @@ export const Sponsors: React.FC = () => {
   ));
 
   // Prepare items for CircularCarousel (mobile)
-  const circularItems = SPONSORS.map((sponsor, index) => ({
+  // Repeating the sponsors forms a complete 6-card 3D cylinder
+  // so adjacent sponsor cards peek into view with depth, creating a fluid continuous carousel
+  const mobileSponsors = [...SPONSORS, ...SPONSORS];
+  const circularItems = mobileSponsors.map((sponsor, index) => ({
     id: index + 1,
     content: <SponsorCard sponsor={sponsor} isDesktop={false} />,
   }));
@@ -282,7 +398,7 @@ export const Sponsors: React.FC = () => {
               depthFade={0.6}
               fadeColor="#030712"
               innerShade={0.85}
-              onChange={(idx) => setMobileIndex(idx)}
+              onChange={(idx) => setMobileIndex(idx % SPONSORS.length)}
             />
           </div>
 
