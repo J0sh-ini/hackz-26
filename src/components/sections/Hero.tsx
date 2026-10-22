@@ -14,8 +14,8 @@ const LOGOS = [
   { src: "/goi.png", alt: "GOI Logo" },
 ];
 const temenosLogo = [
-  { src: "/temenos_full.png", alt: "Temenos Logo"} ,
-  {src:"/temenos_t.jpg", alt:"Temenos Logo" }
+  { src: "/temenos_t.jpg", alt: "Temenos Logo" },
+  { src: "/temenos_full.png", alt: "Temenos Logo" }
 ];
 
 export const Hero: React.FC = () => {

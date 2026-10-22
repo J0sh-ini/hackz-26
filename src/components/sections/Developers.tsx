@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrambleText from '../ui/ScrambleText';
 import { DEVELOPERS, DeveloperProfile } from '../../data/developers';
+import Shuffle from '../ui/Shuffle';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -149,7 +150,7 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
         <motion.div
           style={{
             fontFamily: 'var(--font-pixel)',
-            fontSize: '16px',
+            fontSize: '15px',
             fontWeight: 700,
             color: 'var(--text-primary)',
             textAlign: 'center',
@@ -168,7 +169,7 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({ developer, index, isExpan
               <ScrambleText
                 text={developer.name}
                 as="span"
-                className="text-[16px] font-pixel"
+                className="text-[15px] font-pixel"
                 from="random"
                 easing="linear"
                 style={{ display: 'inline-block' }}
@@ -360,6 +361,10 @@ export const Developers: React.FC = () => {
             gsap.set(wrapper, { overflow: 'hidden' });
             isAnimatingRef.current = false;
             ScrollTrigger.refresh();
+            const element = document.getElementById("contact");
+            if (element) {
+              element.scrollIntoView({ behavior: "smooth" });
+            }
           },
         });
       };
@@ -368,7 +373,7 @@ export const Developers: React.FC = () => {
       const st = ScrollTrigger.create({
         trigger: sentinel,
         start: 'top 55%',
-        end: 'bottom 5%',
+        end: 'bottom 20%',
         onEnter: openSection,
         onLeave: closeSection,
         onEnterBack: openSection,
@@ -414,10 +419,10 @@ export const Developers: React.FC = () => {
   }, [isExpanded]);
 
   return (
-    <div style={{ position: 'relative', width: '100%', zIndex: 10 }}>
+    <div ref={sentinelRef} style={{ position: 'relative', width: '100%', zIndex: 10 }}>
       {/* FIXED SENTINEL - never moves, marks the trigger point */}
       <div
-        ref={sentinelRef}
+        
         style={{ height: 1, width: '100%', position: 'relative', zIndex: 1 }}
         aria-hidden="true"
       />
@@ -464,17 +469,7 @@ export const Developers: React.FC = () => {
               from="random"
               easing="linear"
             />
-            <p
-              style={{
-                maxWidth: '560px',
-                margin: '0 auto',
-                fontSize: '16px',
-                lineHeight: '1.5',
-                color: 'var(--text-secondary)',
-              }}
-            >
-              Meet the engineers crafting HackZ'26's Web infrastructure and magic.
-            </p>
+            <Shuffle text="Meet the engineers crafting HackZ'26's Web infrastructure and magic." style={{ maxWidth: '600px', margin: '0 auto', fontSize: '15px', lineHeight: '1.5', textAlign: 'center' }}/>
           </div>
 
           {/* Cards Grid - measured for height */}
@@ -482,7 +477,7 @@ export const Developers: React.FC = () => {
             ref={contentRef}
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
               gap: '32px',
               maxWidth: '1200px',
               margin: '0 auto',

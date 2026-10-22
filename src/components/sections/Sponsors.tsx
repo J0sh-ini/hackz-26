@@ -403,15 +403,15 @@ export const Sponsors: React.FC = () => {
           </div>
 
           {/* Cyberpunk Navigation Controls for Mobile */}
-          <div className="flex items-center justify-between w-full max-w-[310px] mt-4 px-1">
-            <button
+          <div className="flex items-center justify-center w-full max-w-[310px] mt-4 px-1">
+            {/* <button
               type="button"
               onClick={() => mobileCarouselRef.current?.prev()}
               className="font-mono text-[11px] text-accent-green hover:text-white bg-black/60 border border-border-default hover:border-accent-green px-3 py-1.5 transition-colors active:scale-95 flex items-center gap-1 cursor-pointer select-none"
               aria-label="Previous sponsor"
             >
               <span>&lt;</span>
-            </button>
+            </button> */}
 
             {/* Indicator Pips */}
             <div className="flex items-center gap-2">
@@ -430,14 +430,14 @@ export const Sponsors: React.FC = () => {
               ))}
             </div>
 
-            <button
+            {/* <button
               type="button"
               onClick={() => mobileCarouselRef.current?.next()}
               className="font-mono text-[11px] text-accent-green hover:text-white bg-black/60 border border-border-default hover:border-accent-green px-3 py-1.5 transition-colors active:scale-95 flex items-center gap-1 cursor-pointer select-none"
               aria-label="Next sponsor"
             >
               <span>&gt;</span>
-            </button>
+            </button> */}
           </div>
 
         </div>
