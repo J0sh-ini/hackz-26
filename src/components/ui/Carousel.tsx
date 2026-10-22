@@ -86,12 +86,12 @@ const ROOT_FRAMED = `${ROOT} gap-4`;
 const STAGE_BASE =
   'relative box-border flex flex-col items-center gap-4 self-stretch group-focus-visible/root:outline-2 group-focus-visible/root:outline-offset-4 group-focus-visible/root:outline-[var(--carousel-ink)]';
 const STAGE_PANEL =
-  'overflow-hidden p-5 md:p-6 [background:var(--carousel-frame)] [box-shadow:var(--carousel-frame-shadow)] backdrop-blur-[20px] backdrop-saturate-[1.6] border border-[var(--carousel-frame-edge)]';
+  'overflow-hidden p-5 md:p-6 [background:var(--carousel-frame)] [box-shadow:var(--carousel-frame-shadow)] backdrop-blur-[20px] backdrop-saturate-[1.6]';
 const STAGE = `${STAGE_BASE} rounded-[var(--carousel-radius)]`;
 const STAGE_FRAME = `${STAGE_BASE} ${STAGE_PANEL} rounded-[var(--carousel-radius)]`;
 const STAGE_RING = `${STAGE_BASE} ${STAGE_PANEL} rounded-full`;
 const FRAME_RIM =
-  'pointer-events-none absolute inset-0 z-30 rounded-[inherit] [box-shadow:inset_0_0_0_1px_var(--carousel-frame-edge),inset_0_1px_0_var(--carousel-frame-highlight)]';
+  'pointer-events-none absolute inset-0 z-30 rounded-[inherit]';
 const VIEWPORT =
   'relative touch-pan-y select-none self-stretch data-[draggable=true]:cursor-grab data-[dragging=true]:cursor-grabbing';
 const SLIDE = 'group/slide absolute top-0 [backface-visibility:hidden] will-change-[transform,opacity]';
@@ -199,10 +199,10 @@ const DEFAULT_ITEMS: CarouselItem[] = [
 
 const THEMES: Record<string, Record<string, string>> = {
   dark: {
-    '--carousel-frame': 'rgba(10, 10, 10, 0.96)',
-    '--carousel-frame-edge': 'rgba(0, 255, 65, 0.35)',
-    '--carousel-frame-highlight': 'rgba(0, 255, 65, 0.15)',
-    '--carousel-frame-shadow': '0 24px 60px -15px rgba(0, 0, 0, 0.95), 0 0 35px -5px rgba(0, 255, 65, 0.18)',
+    '--carousel-frame': 'transparent',
+    '--carousel-frame-edge': 'transparent',
+    '--carousel-frame-highlight': 'transparent',
+    '--carousel-frame-shadow': 'none',
     '--carousel-tile': 'transparent',
     '--carousel-tile-edge': 'transparent',
     '--carousel-tile-highlight': 'transparent',
@@ -216,10 +216,10 @@ const THEMES: Record<string, Record<string, string>> = {
     '--carousel-press': 'brightness(0.92)'
   },
   cyber: {
-    '--carousel-frame': 'rgba(10, 10, 10, 0.96)',
-    '--carousel-frame-edge': 'rgba(0, 255, 65, 0.35)',
-    '--carousel-frame-highlight': 'rgba(0, 255, 65, 0.15)',
-    '--carousel-frame-shadow': '0 24px 60px -15px rgba(0, 0, 0, 0.95), 0 0 35px -5px rgba(0, 255, 65, 0.18)',
+    '--carousel-frame': 'transparent',
+    '--carousel-frame-edge': 'transparent',
+    '--carousel-frame-highlight': 'transparent',
+    '--carousel-frame-shadow': 'none',
     '--carousel-tile': 'transparent',
     '--carousel-tile-edge': 'transparent',
     '--carousel-tile-highlight': 'transparent',

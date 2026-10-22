@@ -263,60 +263,6 @@ export const Sponsors: React.FC = () => {
               position: 'relative',
             }}
           >
-            {/* Cyber HUD Corner Crosshairs */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '-8px',
-                left: '-8px',
-                width: '18px',
-                height: '18px',
-                borderTop: '2px solid var(--accent-green)',
-                borderLeft: '2px solid var(--accent-green)',
-                zIndex: 30,
-                pointerEvents: 'none',
-              }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                top: '-8px',
-                right: '-8px',
-                width: '18px',
-                height: '18px',
-                borderTop: '2px solid var(--accent-green)',
-                borderRight: '2px solid var(--accent-green)',
-                zIndex: 30,
-                pointerEvents: 'none',
-              }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                bottom: '-8px',
-                left: '-8px',
-                width: '18px',
-                height: '18px',
-                borderBottom: '2px solid var(--accent-green)',
-                borderLeft: '2px solid var(--accent-green)',
-                zIndex: 30,
-                pointerEvents: 'none',
-              }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                bottom: '-8px',
-                right: '-8px',
-                width: '18px',
-                height: '18px',
-                borderBottom: '2px solid var(--accent-green)',
-                borderRight: '2px solid var(--accent-green)',
-                zIndex: 30,
-                pointerEvents: 'none',
-              }}
-            />
-
             <Carousel
               items={carouselItems}
               baseWidth={700}
@@ -324,7 +270,7 @@ export const Sponsors: React.FC = () => {
               peek={0}
               gap={0}
               radius={0}
-              frame={true}
+              frame={false}
               effect="cube"
               indicator="dots"
               arrows={true}
@@ -332,7 +278,7 @@ export const Sponsors: React.FC = () => {
               autoplayDelay={4000}
               pauseOnHover={true}
               loop={true}
-              draggable={true}
+              draggable={false}
               theme="dark"
               className="w-full"
             />
