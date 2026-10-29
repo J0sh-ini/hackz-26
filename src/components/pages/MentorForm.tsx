@@ -293,7 +293,7 @@ export const MentorForm: React.FC = () => {
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
           <div className="font-mono text-[13px] text-accent-green uppercase tracking-[0.15em] mb-3 flex items-center gap-2 justify-center">
             <ScrambleText
-              text="// DOMAIN SPECIALIST PROTOCOL"
+              text=" DOMAIN SPECIALIST PROTOCOL"
               as="span"
               className="text-[13px] text-accent-green uppercase tracking-[0.15em]"
               from="random"
@@ -374,7 +374,7 @@ export const MentorForm: React.FC = () => {
                 <span className="text-accent-green font-semibold">FORM_SYS: ACTIVE</span>
               </div>
               <div className="text-muted tracking-widest hidden sm:block">
-                TARGET // MENTOR_REGISTRY
+                TARGET : MENTOR_REGISTRY
               </div>
             </div>
 
@@ -410,7 +410,7 @@ export const MentorForm: React.FC = () => {
                     </div>
 
                     <div className="font-mono text-xs text-accent-green tracking-[0.2em] uppercase mb-2">
-                      [ STATUS: 200 OK // TRANSMISSION LOGGED ]
+                      [ STATUS: 200 OK # TRANSMISSION LOGGED ]
                     </div>
 
                     <h3 className="font-heading text-2xl sm:text-3xl font-bold uppercase text-white mb-3">
@@ -427,7 +427,7 @@ export const MentorForm: React.FC = () => {
                       style={{ backgroundColor: '#050505' }}
                     >
                       <div className="text-accent-green mb-3 pb-2 border-b border-border-default">
-                        // MENTOR_MANIFEST
+                         MENTOR_MANIFEST
                       </div>
                       <div className="grid grid-cols-[120px_1fr] gap-y-1.5 text-secondary">
                         <span>NAME:</span> <span className="text-white truncate">{formData.name}</span>
@@ -465,7 +465,7 @@ export const MentorForm: React.FC = () => {
                           htmlFor="mentor-name"
                           className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                         >
-                          <span>// FULL NAME</span>
+                          <span> FULL NAME</span>
                           {errors.name && (
                             <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                               {errors.name}
@@ -477,7 +477,7 @@ export const MentorForm: React.FC = () => {
                           type="text"
                           value={formData.name}
                           onChange={(e) => handleChange('name', e.target.value)}
-                          placeholder="e.g. Dr. Alex Morgan"
+                          placeholder="Loki"
                           className={`w-full bg-[#050505] border px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none ${
                             errors.name
                               ? 'border-[#ff4444] focus:border-[#ff4444]'
@@ -492,7 +492,7 @@ export const MentorForm: React.FC = () => {
                           htmlFor="mentor-email"
                           className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                         >
-                          <span>// EMAIL ADDRESS</span>
+                          <span> EMAIL ADDRESS</span>
                           {errors.email && (
                             <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                               {errors.email}
@@ -504,7 +504,7 @@ export const MentorForm: React.FC = () => {
                           type="email"
                           value={formData.email}
                           onChange={(e) => handleChange('email', e.target.value)}
-                          placeholder="e.g. alex.morgan@gmail.com"
+                          placeholder="loki@gmail.com"
                           className={`w-full bg-[#050505] border px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none ${
                             errors.email
                               ? 'border-[#ff4444] focus:border-[#ff4444]'
@@ -522,7 +522,7 @@ export const MentorForm: React.FC = () => {
                           htmlFor="mentor-phone"
                           className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                         >
-                          <span>// MOBILE NUMBER</span>
+                          <span> MOBILE NUMBER</span>
                           {errors.phone && (
                             <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                               {errors.phone}
@@ -534,7 +534,7 @@ export const MentorForm: React.FC = () => {
                           type="tel"
                           value={formData.phone}
                           onChange={(e) => handleChange('phone', e.target.value)}
-                          placeholder="e.g. +91 98765 43210"
+                          placeholder="+91 96969 96767"
                           className={`w-full bg-[#050505] border px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none ${
                             errors.phone
                               ? 'border-[#ff4444] focus:border-[#ff4444]'
@@ -549,7 +549,7 @@ export const MentorForm: React.FC = () => {
                           htmlFor="mentor-role"
                           className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                         >
-                          <span>// CURRENT ROLE / POSITION</span>
+                          <span>CURRENT ROLE / POSITION</span>
                           {errors.role && (
                             <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                               {errors.role}
@@ -561,7 +561,7 @@ export const MentorForm: React.FC = () => {
                           type="text"
                           value={formData.role}
                           onChange={(e) => handleChange('role', e.target.value)}
-                          placeholder="e.g. Senior Software Engineer"
+                          placeholder="Sr Software Engineer"
                           className={`w-full bg-[#050505] border px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none ${
                             errors.role
                               ? 'border-[#ff4444] focus:border-[#ff4444]'
@@ -577,7 +577,7 @@ export const MentorForm: React.FC = () => {
                         htmlFor="mentor-organisation"
                         className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                       >
-                        <span>// ORGANISATION / INSTITUTION</span>
+                        <span> ORGANISATION / INSTITUTION</span>
                         {errors.organisation && (
                           <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                             {errors.organisation}
@@ -589,7 +589,7 @@ export const MentorForm: React.FC = () => {
                         type="text"
                         value={formData.organisation}
                         onChange={(e) => handleChange('organisation', e.target.value)}
-                        placeholder="e.g. Google / Microsoft / Anna Univ"
+                        placeholder="Natwest / Microsoft / Appian"
                         className={`w-full bg-[#050505] border px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none ${
                           errors.organisation
                             ? 'border-[#ff4444] focus:border-[#ff4444]'
@@ -601,7 +601,7 @@ export const MentorForm: React.FC = () => {
                     {/* Technology / Field of Expertise (Multi-select) */}
                     <div id="mentor-technologies">
                       <div className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between">
-                        <span>// TECHNOLOGY / SPECIALIZATION DOMAIN [MULTI-SELECT]</span>
+                        <span> TECHNOLOGY / SPECIALIZATION DOMAIN [MULTI-SELECT]</span>
                         {errors.technologies && (
                           <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                             {errors.technologies}
@@ -660,7 +660,7 @@ export const MentorForm: React.FC = () => {
                             type="text"
                             value={formData.otherTechnology}
                             onChange={(e) => handleChange('otherTechnology', e.target.value)}
-                            placeholder="e.g. Quantum Computing, Embedded Systems, DevOps..."
+                            placeholder="Embedded Systems, DevOps..."
                             className={`w-full bg-[#050505] border px-4 py-2.5 font-mono text-sm text-text-primary transition-all outline-none ${
                               errors.otherTechnology
                                 ? 'border-[#ff4444] focus:border-[#ff4444]'
@@ -679,7 +679,7 @@ export const MentorForm: React.FC = () => {
                     {/* Years of Experience */}
                     <div>
                       <div className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between">
-                        <span>// YEARS OF EXPERIENCE</span>
+                        <span> YEARS OF EXPERIENCE</span>
                         {errors.experience && (
                           <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                             {errors.experience}
@@ -717,7 +717,7 @@ export const MentorForm: React.FC = () => {
                       {/* Prior Mentoring */}
                       <div>
                         <div className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between">
-                          <span>// PRIOR MENTOR EXPERIENCE</span>
+                          <span>PRIOR MENTOR EXPERIENCE</span>
                           {errors.priorMentoring && (
                             <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                               {errors.priorMentoring}
@@ -748,7 +748,7 @@ export const MentorForm: React.FC = () => {
                       {/* Mentorship Format */}
                       <div>
                         <div className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between">
-                          <span>// MENTORSHIP FORMAT</span>
+                          <span>MENTORSHIP FORMAT</span>
                           {errors.format && (
                             <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                               {errors.format}
@@ -780,7 +780,7 @@ export const MentorForm: React.FC = () => {
                     {/* Preferred Track (Multi-select) */}
                     <div id="mentor-tracks">
                       <div className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between">
-                        <span>// PREFERRED HACKATHON TRACKS [MULTI-SELECT]</span>
+                        <span>PREFERRED HACKATHON TRACKS [MULTI-SELECT]</span>
                         {errors.tracks && (
                           <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
                             {errors.tracks}
@@ -827,14 +827,14 @@ export const MentorForm: React.FC = () => {
                         htmlFor="mentor-requests"
                         className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                       >
-                        <span>// SPECIFIC REQUESTS OR REQUIREMENTS</span>
+                        <span>SPECIFIC REQUESTS OR REQUIREMENTS</span>
                       </label>
                       <textarea
                         id="mentor-requests"
                         rows={2}
                         value={formData.requests}
                         onChange={(e) => handleChange('requests', e.target.value)}
-                        placeholder="e.g. Specific time window availability, workstation equipment, dietary needs (or leave blank if none)..."
+                        placeholder="Specific time window availability, dietary needs (leave blank if none)..."
                         className="w-full bg-[#050505] border border-border-default px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none focus:border-accent-green focus:shadow-[0_0_12px_rgba(0,255,65,0.2)] resize-none"
                       />
                     </div>
@@ -845,14 +845,14 @@ export const MentorForm: React.FC = () => {
                         htmlFor="mentor-comments"
                         className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                       >
-                        <span>// ADDITIONAL COMMENTS OR SUGGESTIONS</span>
+                        <span>COMMENTS OR SUGGESTIONS</span>
                       </label>
                       <textarea
                         id="mentor-comments"
                         rows={2}
                         value={formData.comments}
                         onChange={(e) => handleChange('comments', e.target.value)}
-                        placeholder="Any additional thoughts, special initiatives, or inquiries for the organizers (or leave blank if none)..."
+                        placeholder="Any thoughts, inquiries for the organizers (leave blank if none)..."
                         className="w-full bg-[#050505] border border-border-default px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none focus:border-accent-green focus:shadow-[0_0_12px_rgba(0,255,65,0.2)] resize-none"
                       />
                     </div>
