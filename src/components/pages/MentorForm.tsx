@@ -309,7 +309,7 @@ export const MentorForm: React.FC = () => {
             easing="linear"
           />
           <p style={{ maxWidth: '620px', margin: '0 auto', fontSize: '15px', color: 'var(--text-secondary)' }}>
-            Guide collegiate engineering squads through architectural bottlenecks and industry viability during the 24-hour sprint at CEG Campus.
+            Guide collegiate engineering squads through architectural bottlenecks and industry viability during the 24-hour sprint.
           </p>
         </div>
 
@@ -355,28 +355,31 @@ export const MentorForm: React.FC = () => {
             <span className="absolute bottom-2 right-2 font-mono text-[10px] text-accent-green opacity-50 select-none">+</span>
 
             {/* Terminal Status Bar */}
-            <div
-              style={{
-                borderBottom: '1px solid var(--border-default)',
-                padding: '12px 24px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                fontFamily: 'var(--font-mono)',
-                fontSize: '11px',
-                letterSpacing: '0.12em',
-                color: 'var(--text-secondary)',
-                backgroundColor: 'rgba(0,0,0,0.4)',
-              }}
-            >
-              <div className="flex items-center gap-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-accent-green animate-pulse" />
-                <span className="text-accent-green font-semibold">FORM_SYS: ACTIVE</span>
+            { status === 'idle' && (
+              <div
+                style={{
+                  borderBottom: '1px solid var(--border-default)',
+                  padding: '12px 24px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '11px',
+                  letterSpacing: '0.12em',
+                  color: 'var(--text-secondary)',
+                  backgroundColor: 'rgba(0,0,0,0.4)',
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <span className="inline-block w-2 h-2 rounded-full bg-accent-green  animate-pulse" />
+                  <span className="text-accent-green font-semibold">FORM_SYS: ACTIVE</span>
+                </div>
+                <div className="text-muted tracking-widest hidden sm:block">
+                  TARGET : MENTOR_REGISTRY
+                </div>
               </div>
-              <div className="text-muted tracking-widest hidden sm:block">
-                TARGET : MENTOR_REGISTRY
-              </div>
-            </div>
+
+            )}
 
             {/* Form Inner Content */}
             <div className="p-8 max-md:p-5 relative z-10">
@@ -395,7 +398,7 @@ export const MentorForm: React.FC = () => {
                       style={{
                         border: '1px solid var(--accent-green)',
                         backgroundColor: 'rgba(0, 255, 65, 0.08)',
-                        boxShadow: '0 0 25px rgba(0, 255, 65, 0.25)',
+                        
                       }}
                     >
                       <svg
@@ -481,7 +484,7 @@ export const MentorForm: React.FC = () => {
                           className={`w-full bg-[#050505] border px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none ${
                             errors.name
                               ? 'border-[#ff4444] focus:border-[#ff4444]'
-                              : 'border-border-default focus:border-accent-green focus:shadow-[0_0_12px_rgba(0,255,65,0.2)]'
+                              : 'border-border-default focus:border-accent-green-dim'
                           }`}
                         />
                       </div>
@@ -508,7 +511,7 @@ export const MentorForm: React.FC = () => {
                           className={`w-full bg-[#050505] border px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none ${
                             errors.email
                               ? 'border-[#ff4444] focus:border-[#ff4444]'
-                              : 'border-border-default focus:border-accent-green focus:shadow-[0_0_12px_rgba(0,255,65,0.2)]'
+                              : 'border-border-default focus:border-accent-green-dim'
                           }`}
                         />
                       </div>
@@ -538,7 +541,7 @@ export const MentorForm: React.FC = () => {
                           className={`w-full bg-[#050505] border px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none ${
                             errors.phone
                               ? 'border-[#ff4444] focus:border-[#ff4444]'
-                              : 'border-border-default focus:border-accent-green focus:shadow-[0_0_12px_rgba(0,255,65,0.2)]'
+                              : 'border-border-default focus:border-accent-green-dim'
                           }`}
                         />
                       </div>
@@ -565,7 +568,7 @@ export const MentorForm: React.FC = () => {
                           className={`w-full bg-[#050505] border px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none ${
                             errors.role
                               ? 'border-[#ff4444] focus:border-[#ff4444]'
-                              : 'border-border-default focus:border-accent-green focus:shadow-[0_0_12px_rgba(0,255,65,0.2)]'
+                              : 'border-border-default focus:border-accent-green-dim'
                           }`}
                         />
                       </div>
@@ -593,7 +596,7 @@ export const MentorForm: React.FC = () => {
                         className={`w-full bg-[#050505] border px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none ${
                           errors.organisation
                             ? 'border-[#ff4444] focus:border-[#ff4444]'
-                            : 'border-border-default focus:border-accent-green focus:shadow-[0_0_12px_rgba(0,255,65,0.2)]'
+                            : 'border-border-default focus:border-accent-green-dim'
                         }`}
                       />
                     </div>
@@ -618,7 +621,7 @@ export const MentorForm: React.FC = () => {
                               onClick={() => handleToggleTechnology(tech)}
                               className={`py-2.5 px-3 font-mono text-xs text-left transition-all cursor-pointer border relative select-none flex items-center justify-between ${
                                 isSelected
-                                  ? 'border-accent-green bg-[rgba(0,255,65,0.12)] text-accent-green font-bold shadow-[0_0_12px_rgba(0,255,65,0.2)]'
+                                  ? 'border-accent-green-dim text-accent-green font-bold'
                                   : 'border-border-default bg-[#050505] text-secondary hover:border-accent-green/50 hover:text-white'
                               }`}
                             >
@@ -626,12 +629,12 @@ export const MentorForm: React.FC = () => {
                                 <span
                                   className={`w-3.5 h-3.5 border flex items-center justify-center shrink-0 ${
                                     isSelected
-                                      ? 'border-accent-green bg-accent-green/20'
+                                      ? 'border-accent-green-dim bg-accent-green/20'
                                       : 'border-border-default bg-[#0a0a0a]'
                                   }`}
                                 >
                                   {isSelected && (
-                                    <span className="w-1.5 h-1.5 bg-accent-green shadow-[0_0_6px_var(--accent-green)]" />
+                                    <span className="w-1.5 h-1.5 bg-accent-green-dim " />
                                   )}
                                 </span>
                                 <span className="truncate">{tech}</span>
@@ -664,7 +667,7 @@ export const MentorForm: React.FC = () => {
                             className={`w-full bg-[#050505] border px-4 py-2.5 font-mono text-sm text-text-primary transition-all outline-none ${
                               errors.otherTechnology
                                 ? 'border-[#ff4444] focus:border-[#ff4444]'
-                                : 'border-border-default focus:border-accent-green'
+                                : 'border-border-default focus:border-accent-green-dim'
                             }`}
                           />
                           {errors.otherTechnology && (
@@ -697,15 +700,12 @@ export const MentorForm: React.FC = () => {
                               onClick={() => handleChange('experience', exp)}
                               className={`py-3 px-2 font-mono text-center transition-all cursor-pointer border relative select-none ${
                                 isSelected
-                                  ? 'border-accent-green bg-[rgba(0,255,65,0.12)] text-accent-green font-bold shadow-[0_0_15px_rgba(0,255,65,0.25)]'
+                                  ? 'border-accent-green-dim text-accent-green font-bold'
                                   : 'border-border-default bg-[#050505] text-secondary hover:border-accent-green/50 hover:text-white'
                               }`}
                             >
                               <span className="block text-[10px] tracking-widest text-muted">EXP</span>
                               <span className="text-base sm:text-lg font-bold">{exp}</span>
-                              {isSelected && (
-                                <span className="absolute bottom-1 right-1 w-1.5 h-1.5 bg-accent-green rounded-full shadow-[0_0_6px_var(--accent-green)]" />
-                              )}
                             </button>
                           );
                         })}
@@ -734,7 +734,7 @@ export const MentorForm: React.FC = () => {
                                 onClick={() => handleChange('priorMentoring', val)}
                                 className={`py-3 px-3 font-mono text-center text-xs transition-all cursor-pointer border select-none ${
                                   isSelected
-                                    ? 'border-accent-green bg-[rgba(0,255,65,0.12)] text-accent-green font-bold shadow-[0_0_12px_rgba(0,255,65,0.2)]'
+                                    ? 'border-accent-green-dim text-accent-green font-bold'
                                     : 'border-border-default bg-[#050505] text-secondary hover:border-accent-green/50 hover:text-white'
                                 }`}
                               >
@@ -765,7 +765,7 @@ export const MentorForm: React.FC = () => {
                                 onClick={() => handleChange('format', fmt)}
                                 className={`py-3 px-2 font-mono text-center text-[11px] transition-all cursor-pointer border select-none ${
                                   isSelected
-                                    ? 'border-accent-green bg-[rgba(0,255,65,0.12)] text-accent-green font-bold shadow-[0_0_12px_rgba(0,255,65,0.2)]'
+                                    ? 'border-accent-green-dim text-accent-green font-bold'
                                     : 'border-border-default bg-[#050505] text-secondary hover:border-accent-green/50 hover:text-white'
                                 }`}
                               >
@@ -797,7 +797,7 @@ export const MentorForm: React.FC = () => {
                               onClick={() => handleToggleTrack(trk)}
                               className={`py-3 px-3.5 font-mono text-xs text-left transition-all cursor-pointer border relative select-none flex items-center justify-between ${
                                 isSelected
-                                  ? 'border-accent-green bg-[rgba(0,255,65,0.12)] text-accent-green font-bold shadow-[0_0_12px_rgba(0,255,65,0.2)]'
+                                  ? 'border-accent-green-dim text-accent-green font-bold'
                                   : 'border-border-default bg-[#050505] text-secondary hover:border-accent-green/50 hover:text-white'
                               }`}
                             >
@@ -805,12 +805,12 @@ export const MentorForm: React.FC = () => {
                                 <span
                                   className={`w-3.5 h-3.5 border flex items-center justify-center shrink-0 ${
                                     isSelected
-                                      ? 'border-accent-green bg-accent-green/20'
+                                      ? 'border-accent-green-dim bg-accent-green/20'
                                       : 'border-border-default bg-[#0a0a0a]'
                                   }`}
                                 >
                                   {isSelected && (
-                                    <span className="w-1.5 h-1.5 bg-accent-green shadow-[0_0_6px_var(--accent-green)]" />
+                                    <span className="w-1.5 h-1.5 bg-accent-green-dim" />
                                   )}
                                 </span>
                                 <span>{trk}</span>
@@ -835,7 +835,7 @@ export const MentorForm: React.FC = () => {
                         value={formData.requests}
                         onChange={(e) => handleChange('requests', e.target.value)}
                         placeholder="Specific time window availability, dietary needs (leave blank if none)..."
-                        className="w-full bg-[#050505] border border-border-default px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none focus:border-accent-green focus:shadow-[0_0_12px_rgba(0,255,65,0.2)] resize-none"
+                        className="w-full bg-[#050505] border border-border-default px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none focus:border-accent-green-dim resize-none"
                       />
                     </div>
 
@@ -853,7 +853,7 @@ export const MentorForm: React.FC = () => {
                         value={formData.comments}
                         onChange={(e) => handleChange('comments', e.target.value)}
                         placeholder="Any thoughts, inquiries for the organizers (leave blank if none)..."
-                        className="w-full bg-[#050505] border border-border-default px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none focus:border-accent-green focus:shadow-[0_0_12px_rgba(0,255,65,0.2)] resize-none"
+                        className="w-full bg-[#050505] border border-border-default px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none focus:border-accent-green-dim resize-none"
                       />
                     </div>
 
