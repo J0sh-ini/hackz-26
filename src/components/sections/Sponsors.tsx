@@ -40,9 +40,9 @@ const getTierConfig = (tier: Sponsor['tier']) => {
     },
     'powered-by': {
       label: 'POWERED BY',
-      badgeBg: 'rgba(78, 130, 247, 0.03)',
-      badgeTextColor: '#4e82f7',
-      borderColor: '#4e82f7',
+      badgeBg: 'rgba(148, 0, 0, 0.03)',
+      badgeTextColor: '#940000',
+      borderColor: '#940000',
     }
   };
   return configs[tier];
@@ -413,7 +413,7 @@ export const Sponsors: React.FC = () => {
                   onClick={() => mobileCarouselRef.current?.goTo(i)}
                   className={`h-2 transition-all duration-300 cursor-pointer ${
                     mobileIndex === i
-                      ? 'w-6 bg-accent-green'
+                      ? 'w-6 bg-accent-green-dim'
                       : 'w-2 bg-border-default hover:bg-text-muted'
                   }`}
                   aria-label={`Go to sponsor ${i + 1}`}

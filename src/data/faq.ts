@@ -1,6 +1,6 @@
 export interface FaqItem {
   id: string;
-  category: 'ELIGIBILITY' | 'FORMAT' | 'REGISTRATION';
+  category: 'TRACKS' | 'ELIGIBILITY' | 'FORMAT' | 'REGISTRATION';
   question: string;
   answer: string;
   bold?: string;
@@ -26,6 +26,25 @@ export const FAQS: FaqItem[] = [
     answer: 'Yes. All participants must provide valid college identification or institutional verification during registration and on-site reporting at CEG Campus.',
   },
   {
+    id: 'tracks-1',
+    category: 'TRACKS',
+    question: 'Can our solution span across multiple tracks, and how should we nominate our category?',
+    answer: 'Teams must designate a single primary track during submission so that their project is assigned to the appropriate domain jury. However, cross-disciplinary innovations are strongly encouraged. Your prototype will be benchmarked under your nominated primary track, with interdisciplinary depth factored positively.',
+  },
+  {
+    id: 'tracks-2',
+    category: 'TRACKS',
+    question: 'Should the problem addressed and the proposed solution be entirely focused on security?',
+    answer: 'No. Security should be an important component of the proposed solution, but it must not be the sole focus. Participants are expected to identify a real-world problem and develop an innovative, practical solution to address it. The proposed solution must incorporate a security component that addresses relevant security risks or vulnerabilities as part of the overall solution.',
+    bold: 'Submissions that focus exclusively on security or fail to incorporate a security component into the proposed solution will be rejected.'
+  },
+  {
+    id: 'tracks-3',
+    category: 'TRACKS',
+    question: 'Are specific problem statements assigned within each track, or do teams define their own challenge?',
+    answer: 'HackZ \'26 operates on an open-innovation model within the scope of each thematic track. Teams possess the creative autonomy to identify any authentic, real-world industry or societal problem statement within their chosen domain. The overarching prerequisite is that the architecture must integrate an active security, digital trust, or cyber-hygiene layer.',
+  },
+  {
     id: 'format-1',
     category: 'FORMAT',
     question: 'What is the structure of the event (Online, On-Site, or Hybrid)?',
@@ -36,12 +55,6 @@ export const FAQS: FaqItem[] = [
     category: 'FORMAT',
     question: 'Are there direct networking & mentorship opportunities?',
     answer: 'Absolutely. Throughout the 24-hour on-site marathon, senior software architects, industry mentors from Temenos, and leading tech professionals will conduct round-table reviews, technical check-ins, and direct networking sessions.',
-  },{
-    id: 'format-3',
-    category: 'FORMAT',
-    question: 'Should the problem addressed and the proposed solution be entirely focused on security?',
-    answer: "No. Security should be an important component of the proposed solution, but it must not be the sole focus.Participants are expected to identify a real-world problem and develop an innovative, practical solution to address it. The proposed solution must incorporate a security component that addresses relevant security risks or vulnerabilities as part of the overall solution.",
-    bold: "Submissions that focus exclusively on security or fail to incorporate a security component into the proposed solution will be rejected."
   },
   {
     id: 'registration-1',

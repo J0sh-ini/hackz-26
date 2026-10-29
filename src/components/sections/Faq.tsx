@@ -151,12 +151,12 @@ export const Faq: React.FC = () => {
                                 {/* {item.answer} */}
                                 <FoldText
                                   text={item.answer}
+                                  className='max-md:text-justify left'
                                   style={{
                                     fontFamily: 'var(--font-mono)',
                                     fontSize: '14px',
                                     lineHeight: 1.65,
                                     color: '#a8a8a8',
-                                    textAlign: 'center',
                                     display: 'block',
                                     width: '100%',
                                   }}
