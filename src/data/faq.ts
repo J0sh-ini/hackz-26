@@ -3,6 +3,7 @@ export interface FaqItem {
   category: 'ELIGIBILITY' | 'FORMAT' | 'REGISTRATION';
   question: string;
   answer: string;
+  bold?: string;
 }
 
 export const FAQS: FaqItem[] = [
@@ -35,6 +36,12 @@ export const FAQS: FaqItem[] = [
     category: 'FORMAT',
     question: 'Are there direct networking & mentorship opportunities?',
     answer: 'Absolutely. Throughout the 24-hour on-site marathon, senior software architects, industry mentors from Temenos, and leading tech professionals will conduct round-table reviews, technical check-ins, and direct networking sessions.',
+  },{
+    id: 'format-3',
+    category: 'FORMAT',
+    question: 'Should the problem addressed and the proposed solution be entirely focused on security?',
+    answer: "No. Security should be an important component of the proposed solution, but it must not be the sole focus.Participants are expected to identify a real-world problem and develop an innovative, practical solution to address it. The proposed solution must incorporate a security component that addresses relevant security risks or vulnerabilities as part of the overall solution.",
+    bold: "Submissions that focus exclusively on security or fail to incorporate a security component into the proposed solution will be rejected."
   },
   {
     id: 'registration-1',

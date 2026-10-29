@@ -161,6 +161,25 @@ export const Faq: React.FC = () => {
                                     width: '100%',
                                   }}
                                 />
+                                {
+                                  item.bold && (
+                                  <>
+                                  <br/>
+                                  <FoldText
+                                  text={item.bold}
+                                  style={{
+                                    fontFamily: 'var(--font-mono)',
+                                    fontSize: '14px',
+                                    fontWeight:"bolder",
+                                    lineHeight: 1.65,
+                                    color: '#ffffff',
+                                    textAlign: 'center',
+                                    display: 'block',
+                                    width: '100%',
+                                  }}
+                                  />
+                                  </>)
+                                }
                               </div>
                             </motion.div>
                           )}
