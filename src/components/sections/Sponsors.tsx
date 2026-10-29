@@ -320,9 +320,8 @@ export const Sponsors: React.FC = () => {
   return (
     <section
       id="sponsors"
-      className="py-[100px] max-md:py-16 relative"
+      className="pt-16 relative"
       style={{
-        position: 'relative',
         backgroundColor: 'var(--bg-page)',
         borderTop: '1px solid var(--border-default)',
         overflow: 'hidden',

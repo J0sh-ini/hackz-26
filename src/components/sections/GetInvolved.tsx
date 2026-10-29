@@ -155,7 +155,7 @@ export const GetInvolved: React.FC = () => {
 
         {/* Two Side-by-Side Action Blocks with completely decoupled hover scopes */}
         <div
-          className="grid grid-cols-2 gap-8 max-md:grid-cols-1 max-md:gap-5"
+          className="flex flex-col sm:flex-row gap-8 sm:gap-12 justify-center"
         >
           {/* Mentor Block */}
           <RoleCard
@@ -170,7 +170,7 @@ export const GetInvolved: React.FC = () => {
           />
 
           {/* Volunteer Block */}
-          <RoleCard
+          {/* <RoleCard
             roleTag="[ EVENT CREW ]"
             watermark="VOLUNTEER"
             title="Become a Volunteer"
@@ -179,7 +179,7 @@ export const GetInvolved: React.FC = () => {
             onClick={() => navigate('/volunteer')}
             isExternal={false}
             slideX={60}
-          />
+          /> */}
         </div>
       </div>
     </section>

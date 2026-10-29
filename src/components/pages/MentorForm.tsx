@@ -2,24 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '../ui/Button';
 import ScrambleText from '../ui/ScrambleText';
+import { Link } from 'react-router-dom';
+
 
 // Google Form configuration matching the official HackZ Call for Mentors form
 const GFORM_ACTION_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLSdBHYL0g2Nyej_jGOy9YyahtdVW0BusjhZt4fY-nABvlqqeZQ/formResponse';
+  'https://docs.google.com/forms/d/e/1FAIpQLSeyEcRk3i9gEiY7m6ivOd0tSCVtMDX_bm8pjudJ4sWXsgYbuQ/formResponse';
 
 const GFORM_ENTRIES = {
-  name: 'entry.236779670',
-  phone: 'entry.1290791010',
-  role: 'entry.1397143955',
-  organisation: 'entry.2070024171',
-  technology: 'entry.1337643046',
-  experience: 'entry.1082602373',
-  priorMentoring: 'entry.1818491429',
-  track: 'entry.244757476',
-  format: 'entry.1438618338',
-  reason: 'entry.121254884',
-  requests: 'entry.1578911757',
-  comments: 'entry.1321005685',
+  email: 'emailAddress',
+  name: 'entry.731907686',
+  phone: 'entry.263547231',
+  role: 'entry.2032206985',
+  organisation: 'entry.1250675723',
+  technology: 'entry.1135912174',
+  experience: 'entry.2061328271',
+  priorMentoring: 'entry.1728759225',
+  track: 'entry.1443998076',
+  format: 'entry.1165888872',
+  requests: 'entry.1092528552',
+  comments: 'entry.441963514',
 };
 
 const TECH_CHOICES = [
@@ -31,47 +33,48 @@ const TECH_CHOICES = [
   'Other',
 ];
 
-const EXPERIENCE_CHOICES = ['0-1', '1-3', '3-5', '5-10', '10+'];
+const EXPERIENCE_CHOICES = ['0 - 1', '1 - 3', '3 - 5', '5 - 10', '10+'];
 
 const PRIOR_MENTORING_CHOICES = ['Yes', 'No'];
 
 const TRACK_CHOICES = [
-  'Women Empowerment',
-  'Blockchain',
-  'FinTech',
-  'MedX',
-  'Sustainability and Climate Change',
-  'Women Safety',
+  'Women’s Safety & Digital Security',
+  'Supply Chain Logistics & Product Authenticity Security',
+  'Environment, Disaster Management & Disaster Response Security',
+  'FinTech, Fraud & Financial Security',
+  'Health, Privacy & MedTech Security',
+  'Critical Infrastructure, Energy & Grid Security',
 ];
 
-const FORMAT_CHOICES = ['Virtual', 'In-person', 'Both'];
+const FORMAT_CHOICES = ['Virtual', 'In - Person', 'Both'];
 
 export interface MentorFormData {
   name: string;
+  email: string;
   phone: string;
   role: string;
   organisation: string;
-  technology: string;
+  technologies: string[];
   otherTechnology: string;
   experience: string;
   priorMentoring: string;
-  track: string;
+  tracks: string[];
   format: string;
-  reason: string;
   requests: string;
   comments: string;
 }
 
 interface FormErrors {
   name?: string;
+  email?: string;
   phone?: string;
   role?: string;
   organisation?: string;
-  technology?: string;
+  technologies?: string;
   otherTechnology?: string;
   experience?: string;
   priorMentoring?: string;
-  track?: string;
+  tracks?: string;
   format?: string;
 }
 
@@ -82,16 +85,16 @@ export const MentorForm: React.FC = () => {
 
   const [formData, setFormData] = useState<MentorFormData>({
     name: '',
+    email: '',
     phone: '',
     role: '',
     organisation: '',
-    technology: '',
+    technologies: [],
     otherTechnology: '',
     experience: '',
     priorMentoring: '',
-    track: '',
+    tracks: [],
     format: '',
-    reason: '',
     requests: '',
     comments: '',
   });
@@ -104,6 +107,12 @@ export const MentorForm: React.FC = () => {
 
     if (!formData.name.trim()) {
       newErrors.name = 'NAME REQUIRED';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'EMAIL ADDRESS REQUIRED';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      newErrors.email = 'INVALID EMAIL ADDRESS';
     }
 
     if (!formData.phone.trim()) {
@@ -120,9 +129,9 @@ export const MentorForm: React.FC = () => {
       newErrors.organisation = 'ORGANISATION REQUIRED';
     }
 
-    if (!formData.technology) {
-      newErrors.technology = 'FIELD / TECH SELECTION REQUIRED';
-    } else if (formData.technology === 'Other' && !formData.otherTechnology.trim()) {
+    if (formData.technologies.length === 0) {
+      newErrors.technologies = 'SELECT AT LEAST ONE FIELD / TECH';
+    } else if (formData.technologies.includes('Other') && !formData.otherTechnology.trim()) {
       newErrors.otherTechnology = 'PLEASE SPECIFY YOUR FIELD';
     }
 
@@ -134,8 +143,8 @@ export const MentorForm: React.FC = () => {
       newErrors.priorMentoring = 'SELECTION REQUIRED';
     }
 
-    if (!formData.track) {
-      newErrors.track = 'TRACK PREFERENCE REQUIRED';
+    if (formData.tracks.length === 0) {
+      newErrors.tracks = 'SELECT AT LEAST ONE TRACK';
     }
 
     if (!formData.format) {
@@ -150,6 +159,32 @@ export const MentorForm: React.FC = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     if (errors[field as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [field]: undefined }));
+    }
+  };
+
+  const handleToggleTechnology = (tech: string) => {
+    setFormData((prev) => {
+      const exists = prev.technologies.includes(tech);
+      const next = exists
+        ? prev.technologies.filter((t) => t !== tech)
+        : [...prev.technologies, tech];
+      return { ...prev, technologies: next };
+    });
+    if (errors.technologies) {
+      setErrors((prev) => ({ ...prev, technologies: undefined }));
+    }
+  };
+
+  const handleToggleTrack = (trk: string) => {
+    setFormData((prev) => {
+      const exists = prev.tracks.includes(trk);
+      const next = exists
+        ? prev.tracks.filter((t) => t !== trk)
+        : [...prev.tracks, trk];
+      return { ...prev, tracks: next };
+    });
+    if (errors.tracks) {
+      setErrors((prev) => ({ ...prev, tracks: undefined }));
     }
   };
 
@@ -176,33 +211,35 @@ export const MentorForm: React.FC = () => {
 
     try {
       const formBody = new URLSearchParams();
+      formBody.append(GFORM_ENTRIES.email, formData.email.trim());
       formBody.append(GFORM_ENTRIES.name, formData.name.trim());
       formBody.append(GFORM_ENTRIES.phone, formData.phone.trim());
       formBody.append(GFORM_ENTRIES.role, formData.role.trim());
       formBody.append(GFORM_ENTRIES.organisation, formData.organisation.trim());
 
-      // Technology handling (with Google Forms "Other" support)
-      if (formData.technology === 'Other') {
-        formBody.append(GFORM_ENTRIES.technology, '__other_option__');
-        formBody.append(`${GFORM_ENTRIES.technology}.other_option_response`, formData.otherTechnology.trim());
-      } else {
-        formBody.append(GFORM_ENTRIES.technology, formData.technology);
-      }
+      // Technologies (checkboxes: append each selected choice)
+      formData.technologies.forEach((tech) => {
+        if (tech === 'Other') {
+          formBody.append(GFORM_ENTRIES.technology, '__other_option__');
+          formBody.append(`${GFORM_ENTRIES.technology}.other_option_response`, formData.otherTechnology.trim());
+        } else {
+          formBody.append(GFORM_ENTRIES.technology, tech);
+        }
+      });
 
       formBody.append(GFORM_ENTRIES.experience, formData.experience);
       formBody.append(GFORM_ENTRIES.priorMentoring, formData.priorMentoring);
-      formBody.append(GFORM_ENTRIES.track, formData.track);
+
+      // Tracks (checkboxes: append each selected choice)
+      formData.tracks.forEach((trk) => {
+        formBody.append(GFORM_ENTRIES.track, trk);
+      });
+
       formBody.append(GFORM_ENTRIES.format, formData.format);
 
-      if (formData.reason.trim()) {
-        formBody.append(GFORM_ENTRIES.reason, formData.reason.trim());
-      }
-      if (formData.requests.trim()) {
-        formBody.append(GFORM_ENTRIES.requests, formData.requests.trim());
-      }
-      if (formData.comments.trim()) {
-        formBody.append(GFORM_ENTRIES.comments, formData.comments.trim());
-      }
+      // Google Form fields for requests and comments (default to 'None' if blank)
+      formBody.append(GFORM_ENTRIES.requests, formData.requests.trim() || 'None');
+      formBody.append(GFORM_ENTRIES.comments, formData.comments.trim() || 'None');
 
       await fetch(GFORM_ACTION_URL, {
         method: 'POST',
@@ -223,16 +260,16 @@ export const MentorForm: React.FC = () => {
   const resetForm = () => {
     setFormData({
       name: '',
+      email: '',
       phone: '',
       role: '',
       organisation: '',
-      technology: '',
+      technologies: [],
       otherTechnology: '',
       experience: '',
       priorMentoring: '',
-      track: '',
+      tracks: [],
       format: '',
-      reason: '',
       requests: '',
       comments: '',
     });
@@ -394,20 +431,22 @@ export const MentorForm: React.FC = () => {
                       </div>
                       <div className="grid grid-cols-[120px_1fr] gap-y-1.5 text-secondary">
                         <span>NAME:</span> <span className="text-white truncate">{formData.name}</span>
+                        <span>EMAIL:</span> <span className="text-white truncate">{formData.email}</span>
                         <span>PHONE:</span> <span className="text-white">{formData.phone}</span>
                         <span>ROLE:</span> <span className="text-white truncate">{formData.role}</span>
                         <span>ORG:</span> <span className="text-white truncate">{formData.organisation}</span>
-                        <span>DOMAIN:</span> <span className="text-white truncate">{formData.technology === 'Other' ? formData.otherTechnology : formData.technology}</span>
+                        <span>DOMAINS:</span> <span className="text-white truncate">{formData.technologies.map(t => t === 'Other' ? (formData.otherTechnology.trim() || 'Other') : t).join(', ')}</span>
                         <span>EXPERIENCE:</span> <span className="text-white">{formData.experience} YRS</span>
-                        <span>TRACK:</span> <span className="text-white truncate">{formData.track}</span>
+                        <span>TRACKS:</span> <span className="text-white truncate">{formData.tracks.join(', ')}</span>
                         <span>FORMAT:</span> <span className="text-white">{formData.format}</span>
                         <span>PRIOR MENTOR:</span> <span className="text-white">{formData.priorMentoring}</span>
                       </div>
                     </div>
-
+                      <Link to="/">
                     <Button variant="outline" onClick={resetForm}>
-                      + SUBMIT ANOTHER TRANSMISSION
+                      # RETURN TO MAIN
                     </Button>
+                      </Link>
                   </motion.div>
                 ) : (
                   <motion.form
@@ -418,7 +457,7 @@ export const MentorForm: React.FC = () => {
                     exit={{ opacity: 0 }}
                     className="space-y-6"
                   >
-                    {/* Two-Column Grid for Name & Phone */}
+                    {/* Two-Column Grid for Name & Email */}
                     <div className="grid grid-cols-2 gap-6 max-sm:grid-cols-1 max-sm:gap-4">
                       {/* Name Field */}
                       <div>
@@ -447,6 +486,36 @@ export const MentorForm: React.FC = () => {
                         />
                       </div>
 
+                      {/* Email Field */}
+                      <div>
+                        <label
+                          htmlFor="mentor-email"
+                          className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
+                        >
+                          <span>// EMAIL ADDRESS</span>
+                          {errors.email && (
+                            <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
+                              {errors.email}
+                            </span>
+                          )}
+                        </label>
+                        <input
+                          id="mentor-email"
+                          type="email"
+                          value={formData.email}
+                          onChange={(e) => handleChange('email', e.target.value)}
+                          placeholder="e.g. alex.morgan@gmail.com"
+                          className={`w-full bg-[#050505] border px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none ${
+                            errors.email
+                              ? 'border-[#ff4444] focus:border-[#ff4444]'
+                              : 'border-border-default focus:border-accent-green focus:shadow-[0_0_12px_rgba(0,255,65,0.2)]'
+                          }`}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Two-Column Grid for Phone & Role */}
+                    <div className="grid grid-cols-2 gap-6 max-sm:grid-cols-1 max-sm:gap-4">
                       {/* Mobile Number Field */}
                       <div>
                         <label
@@ -473,10 +542,7 @@ export const MentorForm: React.FC = () => {
                           }`}
                         />
                       </div>
-                    </div>
 
-                    {/* Two-Column Grid for Role & Organisation */}
-                    <div className="grid grid-cols-2 gap-6 max-sm:grid-cols-1 max-sm:gap-4">
                       {/* Current Role */}
                       <div>
                         <label
@@ -503,70 +569,80 @@ export const MentorForm: React.FC = () => {
                           }`}
                         />
                       </div>
-
-                      {/* Organisation / Institution */}
-                      <div>
-                        <label
-                          htmlFor="mentor-organisation"
-                          className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
-                        >
-                          <span>// ORGANISATION / INSTITUTION</span>
-                          {errors.organisation && (
-                            <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
-                              {errors.organisation}
-                            </span>
-                          )}
-                        </label>
-                        <input
-                          id="mentor-organisation"
-                          type="text"
-                          value={formData.organisation}
-                          onChange={(e) => handleChange('organisation', e.target.value)}
-                          placeholder="e.g. Google / Microsoft / Anna Univ"
-                          className={`w-full bg-[#050505] border px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none ${
-                            errors.organisation
-                              ? 'border-[#ff4444] focus:border-[#ff4444]'
-                              : 'border-border-default focus:border-accent-green focus:shadow-[0_0_12px_rgba(0,255,65,0.2)]'
-                          }`}
-                        />
-                      </div>
                     </div>
 
-                    {/* Technology / Field of Expertise */}
+                    {/* Organisation / Institution */}
                     <div>
-                      <div className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between">
-                        <span>// TECHNOLOGY / SPECIALIZATION DOMAIN</span>
-                        {errors.technology && (
+                      <label
+                        htmlFor="mentor-organisation"
+                        className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
+                      >
+                        <span>// ORGANISATION / INSTITUTION</span>
+                        {errors.organisation && (
                           <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
-                            {errors.technology}
+                            {errors.organisation}
+                          </span>
+                        )}
+                      </label>
+                      <input
+                        id="mentor-organisation"
+                        type="text"
+                        value={formData.organisation}
+                        onChange={(e) => handleChange('organisation', e.target.value)}
+                        placeholder="e.g. Google / Microsoft / Anna Univ"
+                        className={`w-full bg-[#050505] border px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none ${
+                          errors.organisation
+                            ? 'border-[#ff4444] focus:border-[#ff4444]'
+                            : 'border-border-default focus:border-accent-green focus:shadow-[0_0_12px_rgba(0,255,65,0.2)]'
+                        }`}
+                      />
+                    </div>
+
+                    {/* Technology / Field of Expertise (Multi-select) */}
+                    <div id="mentor-technologies">
+                      <div className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between">
+                        <span>// TECHNOLOGY / SPECIALIZATION DOMAIN [MULTI-SELECT]</span>
+                        {errors.technologies && (
+                          <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
+                            {errors.technologies}
                           </span>
                         )}
                       </div>
                       <div className="grid grid-cols-3 max-sm:grid-cols-2 gap-2.5">
                         {TECH_CHOICES.map((tech) => {
-                          const isSelected = formData.technology === tech;
+                          const isSelected = formData.technologies.includes(tech);
                           return (
                             <button
                               key={tech}
                               type="button"
-                              onClick={() => handleChange('technology', tech)}
+                              onClick={() => handleToggleTechnology(tech)}
                               className={`py-2.5 px-3 font-mono text-xs text-left transition-all cursor-pointer border relative select-none flex items-center justify-between ${
                                 isSelected
                                   ? 'border-accent-green bg-[rgba(0,255,65,0.12)] text-accent-green font-bold shadow-[0_0_12px_rgba(0,255,65,0.2)]'
                                   : 'border-border-default bg-[#050505] text-secondary hover:border-accent-green/50 hover:text-white'
                               }`}
                             >
-                              <span className="truncate">{tech}</span>
-                              {isSelected && (
-                                <span className="w-1.5 h-1.5 bg-accent-green rounded-full shadow-[0_0_6px_var(--accent-green)] shrink-0 ml-1.5" />
-                              )}
+                              <div className="flex items-center gap-2 truncate">
+                                <span
+                                  className={`w-3.5 h-3.5 border flex items-center justify-center shrink-0 ${
+                                    isSelected
+                                      ? 'border-accent-green bg-accent-green/20'
+                                      : 'border-border-default bg-[#0a0a0a]'
+                                  }`}
+                                >
+                                  {isSelected && (
+                                    <span className="w-1.5 h-1.5 bg-accent-green shadow-[0_0_6px_var(--accent-green)]" />
+                                  )}
+                                </span>
+                                <span className="truncate">{tech}</span>
+                              </div>
                             </button>
                           );
                         })}
                       </div>
 
                       {/* If "Other" selected, show custom text input */}
-                      {formData.technology === 'Other' && (
+                      {formData.technologies.includes('Other') && (
                         <motion.div
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: 'auto' }}
@@ -701,90 +777,82 @@ export const MentorForm: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Preferred Track */}
-                    <div>
+                    {/* Preferred Track (Multi-select) */}
+                    <div id="mentor-tracks">
                       <div className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between">
-                        <span>// PREFERRED HACKATHON TRACK</span>
-                        {errors.track && (
+                        <span>// PREFERRED HACKATHON TRACKS [MULTI-SELECT]</span>
+                        {errors.tracks && (
                           <span className="text-[#ff4444] text-[10px] tracking-normal font-sans">
-                            {errors.track}
+                            {errors.tracks}
                           </span>
                         )}
                       </div>
                       <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-2.5">
                         {TRACK_CHOICES.map((trk) => {
-                          const isSelected = formData.track === trk;
+                          const isSelected = formData.tracks.includes(trk);
                           return (
                             <button
                               key={trk}
                               type="button"
-                              onClick={() => handleChange('track', trk)}
+                              onClick={() => handleToggleTrack(trk)}
                               className={`py-3 px-3.5 font-mono text-xs text-left transition-all cursor-pointer border relative select-none flex items-center justify-between ${
                                 isSelected
                                   ? 'border-accent-green bg-[rgba(0,255,65,0.12)] text-accent-green font-bold shadow-[0_0_12px_rgba(0,255,65,0.2)]'
                                   : 'border-border-default bg-[#050505] text-secondary hover:border-accent-green/50 hover:text-white'
                               }`}
                             >
-                              <span>{trk}</span>
-                              {isSelected && (
-                                <span className="w-1.5 h-1.5 bg-accent-green rounded-full shadow-[0_0_6px_var(--accent-green)] shrink-0 ml-2" />
-                              )}
+                              <div className="flex items-center gap-2.5">
+                                <span
+                                  className={`w-3.5 h-3.5 border flex items-center justify-center shrink-0 ${
+                                    isSelected
+                                      ? 'border-accent-green bg-accent-green/20'
+                                      : 'border-border-default bg-[#0a0a0a]'
+                                  }`}
+                                >
+                                  {isSelected && (
+                                    <span className="w-1.5 h-1.5 bg-accent-green shadow-[0_0_6px_var(--accent-green)]" />
+                                  )}
+                                </span>
+                                <span>{trk}</span>
+                              </div>
                             </button>
                           );
                         })}
                       </div>
                     </div>
 
-                    {/* Why do you want to mentor (Optional) */}
-                    <div>
-                      <label
-                        htmlFor="mentor-reason"
-                        className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
-                      >
-                        <span>// WHY DO YOU WANT TO MENTOR AT HACKZ'26? (OPTIONAL)</span>
-                      </label>
-                      <textarea
-                        id="mentor-reason"
-                        rows={3}
-                        value={formData.reason}
-                        onChange={(e) => handleChange('reason', e.target.value)}
-                        placeholder="Share your motivation for guiding collegiate teams and shaping future engineers..."
-                        className="w-full bg-[#050505] border border-border-default px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none focus:border-accent-green focus:shadow-[0_0_12px_rgba(0,255,65,0.2)] resize-none"
-                      />
-                    </div>
-
-                    {/* Specific Requests / Requirements (Optional) */}
+                    {/* Specific Requests / Requirements */}
                     <div>
                       <label
                         htmlFor="mentor-requests"
                         className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                       >
-                        <span>// SPECIFIC REQUESTS OR REQUIREMENTS (OPTIONAL)</span>
+                        <span>// SPECIFIC REQUESTS OR REQUIREMENTS</span>
                       </label>
                       <textarea
                         id="mentor-requests"
                         rows={2}
                         value={formData.requests}
                         onChange={(e) => handleChange('requests', e.target.value)}
-                        placeholder="e.g. Specific time window availability, workstation equipment, dietary needs..."
+                        placeholder="e.g. Specific time window availability, workstation equipment, dietary needs (or leave blank if none)..."
                         className="w-full bg-[#050505] border border-border-default px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none focus:border-accent-green focus:shadow-[0_0_12px_rgba(0,255,65,0.2)] resize-none"
                       />
                     </div>
 
-                    {/* Additional Comments (Optional) */}
+                    {/* Additional Comments */}
                     <div>
                       <label
                         htmlFor="mentor-comments"
                         className="font-mono text-[11px] uppercase tracking-wider text-accent-green mb-2 flex items-center justify-between"
                       >
-                        <span>// ADDITIONAL COMMENTS OR SUGGESTIONS (OPTIONAL)</span>
+                        <span>// ADDITIONAL COMMENTS OR SUGGESTIONS</span>
                       </label>
                       <textarea
                         id="mentor-comments"
                         rows={2}
                         value={formData.comments}
                         onChange={(e) => handleChange('comments', e.target.value)}
-                        placeholder="Any additional thoughts, special initiatives, or inquiries for the organizers..."
+                        placeholder="Any additional thoughts, special initiatives, or inquiries for the organizers (or leave blank if none)..."
                         className="w-full bg-[#050505] border border-border-default px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none focus:border-accent-green focus:shadow-[0_0_12px_rgba(0,255,65,0.2)] resize-none"
                       />
                     </div>
