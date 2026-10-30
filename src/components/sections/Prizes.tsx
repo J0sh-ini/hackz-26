@@ -157,20 +157,23 @@ export const Prizes: React.FC = () => {
                 flexDirection: 'column',
                 position: 'relative',
                 order: podium.orderDesktop,
+                maxWidth:'500px'
               }}
               className="podium-card"
             >
+              <div className="flex justify-between max-md:justify-center gap-4 items-baseline">
+
               {/* Rank Tag */}
               <div
                 style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: '12px',
+                  fontSize: 'clamp(10px, 1vw, 12px)',
                   fontWeight: 700,
                   color: podium.borderColor,
                   letterSpacing: '0.15em',
                   marginBottom: '8px',
                 }}
-              >
+                >
                 {podium.rank}
               </div>
 
@@ -186,6 +189,7 @@ export const Prizes: React.FC = () => {
               >
                 {podium.title}
               </div>
+              </div>
 
               {/* Amount */}
               <div
@@ -193,6 +197,7 @@ export const Prizes: React.FC = () => {
                   fontFamily: 'var(--font-mono)',
                   fontSize: 'clamp(28px, 4vw, 42px)',
                   fontWeight: 800,
+                  textAlign:'center',
                   color: podium.amountColor,
                   lineHeight: 1,
                   marginBottom: '24px',
@@ -253,8 +258,8 @@ export const Prizes: React.FC = () => {
           }}
         >
           <div
-            className="prizes-special-info"
-            style={{ display: 'flex', alignItems: 'flex-start', gap: '20px', flex: '1 1 300px' }}
+            className="prizes-special-info max-md:flex-col"
+            style={{ display: 'flex', alignItems: 'center', gap: '20px', flex: '1 1 300px' }}
           >
             <div
               className="flex items-center justify-center max-md:hidden"
@@ -264,7 +269,7 @@ export const Prizes: React.FC = () => {
                 minWidth: '48px',
                 backgroundColor: 'rgba(132, 255, 0, 0.12)',
                 border: '1px solid var(--border-default)',
-                color: 'var(--accent-green-volt)',
+                color: 'var(--accent-green-mint)',
                 fontSize: '24px',
                 fontWeight: 700,
                 boxShadow: 'none',
@@ -277,7 +282,7 @@ export const Prizes: React.FC = () => {
                 style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: '11px',
-                  color: 'var(--accent-green-volt)',
+                  color: 'var(--accent-green-mint)',
                   letterSpacing: '0.15em',
                   marginBottom: '4px',
                   fontWeight: 700,
@@ -299,23 +304,22 @@ export const Prizes: React.FC = () => {
                 Exclusive cash prize and mentorship package dedicated to the highest-scoring all-women engineering squad.
               </div>
             </div>
-          </div>
-
-          <div
+            <div
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: 'clamp(28px, 1.5vw, 42px',
+              fontSize: 'clamp(20px, 1.2vw, 36px)',
               fontWeight: 800,
-              color: 'var(--accent-green-volt)',
-              
-              border: '1px solid var(--accent-green-volt)',
+              color: 'var(--accent-green-mint)',
               padding: '10px 20px',
               letterSpacing: '0.08em',
               whiteSpace: 'nowrap',
             }}
-          >
-            [₹ 15,000 ]
+            >
+            [ ₹15,000 ]
           </div>
+          </div>
+
+          
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -336,8 +340,8 @@ export const Prizes: React.FC = () => {
           }}
         >
           <div
-            className="prizes-special-info"
-            style={{ display: 'flex', alignItems: 'flex-start', gap: '20px', flex: '1 1 300px' }}
+            className="prizes-special-info max-md:flex-col"
+            style={{ display: 'flex', alignItems: 'center', gap: '20px', flex: '1 1 300px' }}
           >
             <div
               className="flex items-center justify-center max-md:hidden"
@@ -399,23 +403,25 @@ export const Prizes: React.FC = () => {
                 Encouraging cash reward and mentorship packages to the highest-scoring squads trackwise.
               </div>
             </div>
-          </div>
-
-          <div
+            <div
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: 'clamp(28px, 1.5vw, 42px',
+              fontSize: 'clamp(20px, 1.4vw, 36px)',
               fontWeight: 800,
               color: 'var(--accent-green-volt)',
-              backgroundColor: 'rgba(132, 255, 0, 0.1)',
-              border: '1px solid var(--accent-green-volt)',
+              
               padding: '10px 20px',
               letterSpacing: '0.08em',
               whiteSpace: 'nowrap',
+              
             }}
-          >
-            [  ₹ 3,000  ]
+            className='md:ml-auto'
+            >
+            [ ₹3,000 ]
+            </div>
           </div>
+
+          
         </motion.div>
       </div>
     </section>

@@ -185,11 +185,11 @@ export const Timeline: React.FC = () => {
                       alignItems: 'center',
                       justifyContent: 'center',
                       zIndex: 5,
-                      boxShadow: isActive
-                        ? '0 0 14px rgba(57, 255, 20, 0.75)'
-                        : isLast
-                        ? '0 0 14px rgba(0, 255, 65, 0.8)'
-                        : '0 0 8px rgba(0, 255, 65, 0.4)',
+                      // boxShadow: isActive
+                      //   ? '0 0 14px rgba(57, 255, 20, 0.75)'
+                      //   : isLast
+                      //   ? '0 0 14px rgba(0, 255, 65, 0.8)'
+                      //   : '0 0 8px rgba(0, 255, 65, 0.4)',
                     }}
                   >
                     {/* Active Radar Sonar Ping Waves */}
@@ -206,9 +206,9 @@ export const Timeline: React.FC = () => {
                         height: '8px',
                         backgroundColor: nodeColor,
                         transform: 'rotate(45deg)',
-                        boxShadow: isActive
-                          ? '0 0 8px var(--accent-green-bright)'
-                          : '0 0 8px var(--accent-green)',
+                        // boxShadow: isActive
+                        //   ? '0 0 8px var(--accent-green-bright)'
+                        //   : '0 0 8px var(--accent-green)',
                         position: 'relative',
                         zIndex: 2,
                       }}

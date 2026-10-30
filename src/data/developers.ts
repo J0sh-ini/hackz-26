@@ -8,14 +8,14 @@ export interface DeveloperProfile {
 
 export const DEVELOPERS: DeveloperProfile[] = [
   {
-    name: 'Joshua Iniyan P',
+    name: 'Joshua Iniyan',
     title: 'Lead Frontend Architect',
     githubUrl: 'https://github.com/J0sh-ini',
     linkedinUrl: 'https://www.linkedin.com/in/joshua-iniyan-298065376/',
     avatarUrl: '/joshbw.jpg',
   },
   {
-    name: 'Lokashakthivel SP',
+    name: 'Lokashakthivel',
     title: 'Backend Engineer',
     githubUrl: 'https://github.com/lokashakthivel-sp/',
     linkedinUrl: 'https://www.linkedin.com/in/lokashakthivel-sp',

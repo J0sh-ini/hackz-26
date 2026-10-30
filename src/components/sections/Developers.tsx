@@ -431,7 +431,7 @@ export const Developers: React.FC = () => {
       <div ref={wrapperRef} className="developers-wrapper" style={{ position: 'relative', width: '100%', zIndex: 10 }}>
         <section
           id="developers"
-          className="py-[60px] max-md:py-16 relative"
+          className="py-[60px] max-md:py-16 relative px-6 max-md:px-4"
           style={{
             position: 'relative',
             zIndex: 10,

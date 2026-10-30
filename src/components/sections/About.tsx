@@ -32,7 +32,7 @@ export const About: React.FC = () => {
         gsap.to(statsObj, {
           hours: 24,
           team: 4,
-          prize: 170000,
+          prize: 190000,
           duration: 1.4,
           ease: 'power2.out',
           onUpdate: () => {
@@ -143,7 +143,7 @@ export const About: React.FC = () => {
                 marginBottom: '8px',
               }}
             >
-              {hoursVal} HRS
+              {hoursVal} hrs
             </div>
             <div
               style={{
@@ -194,7 +194,7 @@ export const About: React.FC = () => {
                 marginBottom: '8px',
               }}
             >
-              {teamVal === 0 ? '0' : `2–${teamVal}`} MBRS
+              {teamVal === 0 ? '0' : `2–${teamVal}`} 
             </div>
             <div
               style={{
@@ -218,7 +218,7 @@ export const About: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Stat 3: ₹1,70,000 */}
+          {/* Stat 3: ₹1,90,000 */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}

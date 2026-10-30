@@ -168,8 +168,19 @@ export const GetInvolved: React.FC = () => {
       }}
     >
       <div className="w-full max-w-[1200px] mx-auto px-6 max-md:px-4" style={{ position: 'relative', zIndex: 10 }}>
+
+        {/* Section Header */}
+            <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+              <div className="font-mono text-[13px] text-accent-green mb-3 flex items-center gap-2 justify-center">
+                <ScrambleText text="Join the operations" as="span" className="text-[13px] text-accent-green tracking-[0.15em]" from="random" easing="linear"/>
+              </div>
+              <ScrambleText text="GET INVOLVED" as="h2" className="text-[clamp(22px,3.8vw,38px)] font-pixel uppercase mb-6 leading-tight" style={{ fontFamily: 'var(--font-pixel)' }} from="random" easing="linear"/>
+              <p style={{ maxWidth: '560px', margin: '0 auto', fontSize: '16px', lineHeight:'1.5' }}>
+                Contribute your expertise or logistical power to ensure HackZ'26 runs with precision and impact.
+              </p>
+            </div>
         <div
-          className="grid grid-cols-[1fr_1.5fr] gap-16 items-center mb-16 max-[992px]:grid-cols-1 max-[992px]:gap-8"
+          className="grid grid-cols-[1fr_1.2fr] gap-16 items-center mb-16 max-[992px]:grid-cols-1 max-[992px]:gap-8"
         >
           <div className="w-full flex justify-center items-center [&_.glitch-wrapper]:w-full [&_.glitch-wrapper]:block">
             <GlitchSvg duration={GLITCH_DURATION} delay={GLITCH_DELAY}>
@@ -192,16 +203,7 @@ export const GetInvolved: React.FC = () => {
 
           <div className="">
             {/* Mentor Block */}
-            {/* Section Header */}
-            <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-              <div className="font-mono text-[13px] text-accent-green mb-3 flex items-center gap-2 justify-center">
-                <ScrambleText text="Join the operations" as="span" className="text-[13px] text-accent-green tracking-[0.15em]" from="random" easing="linear"/>
-              </div>
-              <ScrambleText text="GET INVOLVED" as="h2" className="text-[clamp(22px,3.8vw,38px)] font-pixel uppercase mb-6 leading-tight" style={{ fontFamily: 'var(--font-pixel)' }} from="random" easing="linear"/>
-              <p style={{ maxWidth: '560px', margin: '0 auto', fontSize: '16px', lineHeight:'1.5' }}>
-                Contribute your expertise or logistical power to ensure HackZ'26 runs with precision and impact.
-              </p>
-            </div>
+            
               
             <RoleCard
               roleTag="[ DOMAIN SPECIALIST ]"

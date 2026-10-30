@@ -33,7 +33,7 @@ const getTierConfig = (tier: Sponsor['tier']) => {
       borderColor: 'var(--accent-green-light)',
     },
     associate: {
-      label: 'ASSOCIATE SPONSOR',
+      label: 'SUPPORTING SPONSOR',
       badgeBg: 'rgba(28, 73, 194, 0.03)',
       badgeTextColor: '#4e82f7',
       borderColor: '#1C49C2',
