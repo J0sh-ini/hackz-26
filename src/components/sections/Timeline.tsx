@@ -251,7 +251,7 @@ export const Timeline: React.FC = () => {
                           letterSpacing: '0.12em',
                         }}
                       >
-                        {event.dateStr}
+                        {event.shortDate}
                       </span>
                     </div>
 

@@ -35,7 +35,7 @@ const PODIUM_PRIZES = [
   },
   {
     rank: 'RANK_03',
-    title: 'SECOND RUNNERS UP',
+    title: 'THIRD PLACE',
     amount: '₹25,000',
     borderColor: 'var(--accent-green-dim)',
     amountColor: 'var(--accent-green-light)',
@@ -57,7 +57,7 @@ export const Prizes: React.FC = () => {
     if (!counterRef.current || !sectionRef.current) return;
 
     const counterObj = { val: 0 };
-    const target = 170000;
+    const target = 190000;
 
     const trigger = ScrollTrigger.create({
       trigger: counterRef.current,
@@ -249,6 +249,7 @@ export const Prizes: React.FC = () => {
             justifyContent: 'space-between',
             flexWrap: 'wrap',
             gap: '20px',
+            marginBottom: '20px',
           }}
         >
           <div
@@ -303,8 +304,8 @@ export const Prizes: React.FC = () => {
           <div
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '13px',
-              fontWeight: 700,
+              fontSize: 'clamp(28px, 1.5vw, 42px',
+              fontWeight: 800,
               color: 'var(--accent-green-volt)',
               backgroundColor: 'rgba(132, 255, 0, 0.1)',
               border: '1px solid var(--accent-green-volt)',
@@ -313,7 +314,107 @@ export const Prizes: React.FC = () => {
               whiteSpace: 'nowrap',
             }}
           >
-            [ SPECIAL TRACK BOUNTY ]
+            [₹ 15,000 ]
+          </div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45 }}
+          className="prizes-special-card"
+          style={{
+            backgroundColor: '#07150a',
+            border: '1px solid var(--border-default)',
+            boxShadow: 'none',
+            padding: '24px 28px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '20px',
+          }}
+        >
+          <div
+            className="prizes-special-info"
+            style={{ display: 'flex', alignItems: 'flex-start', gap: '20px', flex: '1 1 300px' }}
+          >
+            <div
+              className="flex items-center justify-center max-md:hidden"
+              style={{
+                width: '48px',
+                height: '48px',
+                minWidth: '48px',
+                backgroundColor: 'rgba(132, 255, 0, 0.12)',
+                border: '1px solid var(--border-default)',
+                color: 'var(--accent-green-volt)',
+                fontSize: '24px',
+                fontWeight: 700,
+                boxShadow: 'none',
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+                <path d="M4 22h16" />
+                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+                <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+              </svg>
+            </div>
+            <div>
+              <div
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '11px',
+                  color: 'var(--accent-green-volt)',
+                  letterSpacing: '0.15em',
+                  marginBottom: '4px',
+                  fontWeight: 700,
+                }}
+              >
+              TRACK PRIZE
+              </div>
+              <div
+                style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '18px',
+                  fontWeight: 700,
+                  color: '#ffffff',
+                }}
+              >
+                 Best Team in Each Track
+              </div>
+              <div style={{ fontSize: '13px', color: '#b0b0b0', marginTop: '4px', lineHeight: 1.5 }} >
+                Encouraging cash reward and mentorship packages to the highest-scoring squads trackwise.
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: 'clamp(28px, 1.5vw, 42px',
+              fontWeight: 800,
+              color: 'var(--accent-green-volt)',
+              backgroundColor: 'rgba(132, 255, 0, 0.1)',
+              border: '1px solid var(--accent-green-volt)',
+              padding: '10px 20px',
+              letterSpacing: '0.08em',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            [  ₹ 3,000  ]
           </div>
         </motion.div>
       </div>
