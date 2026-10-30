@@ -307,7 +307,7 @@ export const Prizes: React.FC = () => {
               fontSize: 'clamp(28px, 1.5vw, 42px',
               fontWeight: 800,
               color: 'var(--accent-green-volt)',
-              backgroundColor: 'rgba(132, 255, 0, 0.1)',
+              
               border: '1px solid var(--accent-green-volt)',
               padding: '10px 20px',
               letterSpacing: '0.08em',

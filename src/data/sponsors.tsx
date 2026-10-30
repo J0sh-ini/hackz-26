@@ -47,8 +47,8 @@ export const SPONSORS: Sponsor[] = [
     description: 'Alumni Association of the College of Engineering, Guindy — uniting global alumni, nurturing engineering leadership, and empowering student innovation.',
     website: 'https://www.aaceg.org/',
     tagline: 'ALUMNI ASSOCIATION OF THE COLLEGE OF ENGINEERING',
-    accentColor: '#e11d48',
-    badgeColor: 'rgba(225, 29, 72, 0.03)',
+    accentColor: '#940000',
+    badgeColor: 'rgba(148, 0, 0, 0.03)',
     logoBgColor: '#c8102e'
   }
 ];
@@ -97,9 +97,9 @@ export const getTierConfig = (tier: Sponsor['tier']) => {
     },
     'powered-by': {
       label: 'POWERED BY',
-      badgeBg: 'rgba(225, 29, 72, 0.03)',
-      badgeTextColor: '#f43f5e',
-      borderColor: '#e11d48',
+      badgeBg: 'rgba(148, 0, 0, 0.03)',
+      badgeTextColor: '#940000',
+      borderColor: '#940000',
       width: 'calc(50% - 16px)',
       order: 6
     }

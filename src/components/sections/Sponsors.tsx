@@ -40,9 +40,9 @@ const getTierConfig = (tier: Sponsor['tier']) => {
     },
     'powered-by': {
       label: 'POWERED BY',
-      badgeBg: 'rgba(78, 130, 247, 0.03)',
-      badgeTextColor: '#4e82f7',
-      borderColor: '#4e82f7',
+      badgeBg: 'rgba(148, 0, 0, 0.03)',
+      badgeTextColor: '#940000',
+      borderColor: '#940000',
     }
   };
   return configs[tier];
@@ -320,7 +320,7 @@ export const Sponsors: React.FC = () => {
   return (
     <section
       id="sponsors"
-      className="pt-16 relative"
+      className="py-[100px] max-md:py-16 relative"
       style={{
         backgroundColor: 'var(--bg-page)',
         borderTop: '1px solid var(--border-default)',
@@ -403,14 +403,6 @@ export const Sponsors: React.FC = () => {
 
           {/* Cyberpunk Navigation Controls for Mobile */}
           <div className="flex items-center justify-center w-full max-w-[310px] mt-4 px-1">
-            {/* <button
-              type="button"
-              onClick={() => mobileCarouselRef.current?.prev()}
-              className="font-mono text-[11px] text-accent-green hover:text-white bg-black/60 border border-border-default hover:border-accent-green px-3 py-1.5 transition-colors active:scale-95 flex items-center gap-1 cursor-pointer select-none"
-              aria-label="Previous sponsor"
-            >
-              <span>&lt;</span>
-            </button> */}
 
             {/* Indicator Pips */}
             <div className="flex items-center gap-2">
@@ -421,22 +413,13 @@ export const Sponsors: React.FC = () => {
                   onClick={() => mobileCarouselRef.current?.goTo(i)}
                   className={`h-2 transition-all duration-300 cursor-pointer ${
                     mobileIndex === i
-                      ? 'w-6 bg-accent-green'
+                      ? 'w-6 bg-accent-green-dim'
                       : 'w-2 bg-border-default hover:bg-text-muted'
                   }`}
                   aria-label={`Go to sponsor ${i + 1}`}
                 />
               ))}
             </div>
-
-            {/* <button
-              type="button"
-              onClick={() => mobileCarouselRef.current?.next()}
-              className="font-mono text-[11px] text-accent-green hover:text-white bg-black/60 border border-border-default hover:border-accent-green px-3 py-1.5 transition-colors active:scale-95 flex items-center gap-1 cursor-pointer select-none"
-              aria-label="Next sponsor"
-            >
-              <span>&gt;</span>
-            </button> */}
           </div>
 
         </div>

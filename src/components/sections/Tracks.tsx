@@ -81,7 +81,7 @@ export const Tracks: React.FC = () => {
                 <div
                   style={{
                     display: 'flex',
-                    alignItems: 'flex-start',
+                    alignItems: 'center',
                     justifyContent: 'space-between',
                     marginBottom: '28px',
                   }}
@@ -95,7 +95,6 @@ export const Tracks: React.FC = () => {
                       justifyContent: 'center',
                       backgroundColor: '#070707',
                       border: `1px solid ${accent}40`,
-                      boxShadow: `0 0 12px ${accent}20`,
                     }}
                   >
                     <TrackIcon type={track.iconType} color={accent} size={36} />
@@ -104,12 +103,10 @@ export const Tracks: React.FC = () => {
                   <span
                     style={{
                       fontFamily: 'var(--font-mono)',
-                      fontSize: '12px',
+                      fontSize: '14px',
                       fontWeight: 700,
                       color: accent,
                       letterSpacing: '0.1em',
-                      backgroundColor: `${accent}15`,
-                      border: `1px solid ${accent}35`,
                       padding: '3px 8px',
                     }}
                   >
