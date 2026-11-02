@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const STATS_ITEMS = [
-  'PRIZE POOL: ₹1,70,000',
+  'PRIZE POOL: ₹1,83,000',
   'TEAM SIZE: 2–4 MEMBERS',
   'DURATION: 24 HOURS',
   'VENUE: CEG CAMPUS, CHENNAI',
