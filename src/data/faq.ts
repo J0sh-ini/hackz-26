@@ -66,6 +66,6 @@ export const FAQS: FaqItem[] = [
     id: 'registration-2',
     category: 'REGISTRATION',
     question: 'Is there any registration fee involved?',
-    answer: 'Round 1 ideation submission is 100% free of cost for all applicants. Teams shortlisted for the Round 2 on-site finals pay a nominal fee of ₹500 per participant to cover on-site food, high-speed networking facilities, and event kits.',
+    answer: 'Round 1 ideation submission is 100% free of cost for all applicants. Teams shortlisted for the Round 2 on-site finals pay a nominal fee of ₹250 per participant to cover on-site food, high-speed networking facilities, and event kits.',
   },
 ];
