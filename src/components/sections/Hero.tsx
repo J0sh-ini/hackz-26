@@ -416,7 +416,7 @@ export const Hero: React.FC = () => {
           }}
         >
           <ScrambleText
-            text="DEC 12–13, 2026"
+            text="JAN 23-24, 2027"
             as="span"
             className="text-[clamp(14px,2.5vw,15px)] text-accent-green font-mono tracking-[0.08em]"
             from="random"

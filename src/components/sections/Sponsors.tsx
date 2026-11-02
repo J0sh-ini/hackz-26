@@ -33,16 +33,22 @@ const getTierConfig = (tier: Sponsor['tier']) => {
       borderColor: 'var(--accent-green-light)',
     },
     associate: {
-      label: 'SUPPORTING SPONSOR',
+      label: 'ASSOCIATE SPONSOR',
       badgeBg: 'rgba(28, 73, 194, 0.03)',
       badgeTextColor: '#4e82f7',
       borderColor: '#1C49C2',
     },
+    support:{
+      label: 'SUPPORTING SPONSOR',
+      badgeBg: 'rgba(112, 128, 169, 0.03)',
+      badgeTextColor: '#f77c7c',
+      borderColor: '#b22b2b',
+    },
     'powered-by': {
       label: 'POWERED BY',
       badgeBg: 'rgba(148, 0, 0, 0.03)',
-      badgeTextColor: '#940000',
-      borderColor: '#940000',
+      badgeTextColor: '#538dff',
+      borderColor: '#0035e4',
     }
   };
   return configs[tier];

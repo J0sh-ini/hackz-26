@@ -10,14 +10,6 @@ export interface Track {
 }
 
 export const TRACKS: Track[] = [
-  // {
-  //   id: 'cybersecurity',
-  //   number: '[01]',
-  //   name: 'Cybersecurity & Digital Trust',
-  //   description: 'Zero-trust network architectures, post-quantum cryptographic protocols, automated threat intelligence, and decentralized identity frameworks.',
-  //   accentColor: '#00ff88',
-  //   iconType: 'cybersecurity',
-  // },
   {
     id: 'fintech',
     number: '[01]',
@@ -45,23 +37,15 @@ export const TRACKS: Track[] = [
   {
     id: 'hardware',
     number: '[04]',
-    name: 'Smart Infrasturucture & Hardware Security',
+    name: 'Critical Infrastructure, Energy & Grid Security',
     description: 'Edge computing cryptography, IoT firmware integrity validation, zero-trust urban networks, and automated SCADA threat mitigation.',
     accentColor: '#00ff41',
     iconType: 'hardware',
   },
-  // {
-  //   id: 'ai',
-  //   number: '[06]',
-  //   name: 'Secure AI & Responsible Intelligence',
-  //   description: 'Leading WomenTeam special track. Dedicated systems catalyzing female leadership, digital financial autonomy, and equal opportunity.',
-  //   accentColor: '#84ff00',
-  //   iconType: 'ai',
-  // },
    {
     id: 'logistics',
     number: '[05]',
-    name: ' Logistics, Mobility & Supply Chain Security ',
+    name: 'Supply Chain, Logistics & Product Authenticity Security',
     description: 'Distributed ledger provenance, autonomous vehicle cybersecurity, RFID spoofing prevention, and predictive freight disruption modeling.',
     accentColor: '#84ff00',
     iconType: 'logistics',
@@ -69,8 +53,8 @@ export const TRACKS: Track[] = [
   {
     id: 'sustainability',
     number: '[06]',
-    name: 'Sustainability, Climate & Environmental Security',
-    description: 'Intelligent carbon accounting, renewable grid optimization, green computing pipelines, and eco telemetry sensors.',
+    name: 'Environment, Disaster Management & Disaster Response Security',
+    description: 'Predictive catastrophe modeling, decentralized emergency mesh networks, autonomous rescue , and secure crisis informatics.',
     accentColor: '#84ff00',
     iconType: 'sustainability',
   },

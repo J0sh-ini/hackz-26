@@ -3,7 +3,7 @@ import React from 'react';
 export interface Sponsor {
   id: string;
   name: string;
-  tier: 'title' | 'platinum' | 'gold' | 'silver' | 'associate' | 'powered-by';
+  tier: 'title' | 'platinum' | 'gold' | 'silver' | 'associate' | 'powered-by' | 'support';
   logoSrc: string;
   logo?: React.ReactNode;
   description: string;
@@ -42,7 +42,7 @@ export const SPONSORS: Sponsor[] = [
   {
     id: 'aaceg',
     name: 'AACEG',
-    tier: 'powered-by',
+    tier: 'support',
     logoSrc: '/aaceg.png',
     description: 'Alumni Association of the College of Engineering, Guindy — uniting global alumni, nurturing engineering leadership, and empowering student innovation.',
     website: 'https://www.aaceg.org/',
@@ -51,58 +51,17 @@ export const SPONSORS: Sponsor[] = [
     badgeColor: 'rgba(148, 0, 0, 0.03)',
     logoBgColor: '#c8102e'
   }
+  ,
+  {
+    id: 'unstop',
+    name: 'Unstop',
+    tier: 'powered-by',
+    logoSrc: '/unstop.jpeg',
+    description: 'Connecting millions of collegiate engineers, competitive hackers, and pioneers with career-defining opportunities.',
+    website: 'https://www.unstop.com/',
+    tagline: 'TALENT DISCOVERY & HIRING PLATFORM',
+    accentColor: '#1C49C2',
+    badgeColor: 'rgba(28, 73, 194, 0.03)',
+    logoBgColor: '#0f62fe'
+  }
 ];
-
-export const getTierConfig = (tier: Sponsor['tier']) => {
-  const configs = {
-    title: {
-      label: 'TITLE SPONSOR',
-      badgeBg: 'rgba(0, 255, 65, 0.02)',
-      badgeTextColor: 'var(--accent-green)',
-      borderColor: 'var(--accent-green)',
-      width: '100%',
-      order: 1
-    },
-    platinum: {
-      label: 'PLATINUM SPONSOR',
-      badgeBg: 'rgba(0, 255, 136, 0.02)',
-      badgeTextColor: 'var(--accent-green-mint)',
-      borderColor: 'var(--accent-green-mint)',
-      width: '100%',
-      order: 2
-    },
-    gold: {
-      label: 'GOLD SPONSOR',
-      badgeBg: 'rgba(132, 255, 0, 0.02)',
-      badgeTextColor: 'var(--accent-green-volt)',
-      borderColor: 'var(--accent-green-volt)',
-      width: 'calc(50% - 16px)',
-      order: 3
-    },
-    silver: {
-      label: 'SILVER SPONSOR',
-      badgeBg: 'rgba(163, 255, 184, 0.02)',
-      badgeTextColor: 'var(--accent-green-light)',
-      borderColor: 'var(--accent-green-light)',
-      width: 'calc(50% - 16px)',
-      order: 4
-    },
-    associate: {
-      label: 'ASSOCIATE SPONSOR',
-      badgeBg: 'rgba(28, 73, 194, 0.03)',
-      badgeTextColor: '#4e82f7',
-      borderColor: '#1C49C2',
-      width: 'calc(50% - 16px)',
-      order: 5
-    },
-    'powered-by': {
-      label: 'POWERED BY',
-      badgeBg: 'rgba(148, 0, 0, 0.03)',
-      badgeTextColor: '#940000',
-      borderColor: '#940000',
-      width: 'calc(50% - 16px)',
-      order: 6
-    }
-  };
-  return configs[tier];
-};
