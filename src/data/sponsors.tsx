@@ -56,7 +56,7 @@ export const SPONSORS: Sponsor[] = [
     id: 'unstop',
     name: 'Unstop',
     tier: 'powered-by',
-    logoSrc: '/unstop.jpeg',
+    logoSrc: '/unstop.png',
     description: 'Connecting millions of collegiate engineers, competitive hackers, and pioneers with career-defining opportunities.',
     website: 'https://www.unstop.com/',
     tagline: 'TALENT DISCOVERY & HIRING PLATFORM',
