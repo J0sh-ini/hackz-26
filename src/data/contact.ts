@@ -36,9 +36,7 @@ export const SOCIAL_LINKS = [
 ];
 
 export const EVENT_LINKS = {
-  registration: 'https://unstop.com/p/hackz24-computer-science-and-engineering-association-csea-ceg-anna-university-1171819',
-  mentorForm: 'https://forms.gle/QaDpNALP7UzXy12L8',
-  volunteerForm: 'https://forms.gle/t7aqN92m7XERujow9',
+  registration: 'https://unstop.com/p/hackz26-computer-science-and-engineering-association-csea-ceg-anna-university-1776729',
   mapVenue: 'https://maps.app.goo.gl/JL1mG5KUfTrLS6Pg6',
   temenos: 'https://www.temenos.com/',
   unstop: 'https://unstop.com/',

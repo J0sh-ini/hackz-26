@@ -293,7 +293,6 @@ export const Developers: React.FC = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const initialHeightRef = useRef<number>(0);
   const animationRef = useRef<gsap.core.Tween | null>(null);
-  const hasOpenedRef = useRef<boolean>(false);
   const isAnimatingRef = useRef<boolean>(false);
 
   const handleToggle = useCallback(() => {
@@ -325,7 +324,6 @@ export const Developers: React.FC = () => {
       const openSection = () => {
         if (isRevealed || isAnimatingRef.current) return;
         isRevealed = true;
-        hasOpenedRef.current = true;
         isAnimatingRef.current = true;
 
         const targetHeight = initialHeightRef.current || 750;
@@ -345,39 +343,12 @@ export const Developers: React.FC = () => {
         });
       };
 
-      const closeSection = () => {
-        if (!isRevealed || isAnimatingRef.current) return;
-        isRevealed = false;
-        isAnimatingRef.current = true;
-
-        animationRef.current?.kill();
-
-        animationRef.current = gsap.to(wrapper, {
-          height: 0,
-          opacity: 0,
-          duration: 0.45,
-          ease: 'power2.inOut',
-          onComplete: () => {
-            gsap.set(wrapper, { overflow: 'hidden' });
-            isAnimatingRef.current = false;
-            ScrollTrigger.refresh();
-            const element = document.getElementById("contact");
-            if (element) {
-              element.scrollIntoView({ behavior: "smooth" });
-            }
-          },
-        });
-      };
-
       // Trigger on SENTINEL (fixed position, never moves)
       const st = ScrollTrigger.create({
         trigger: sentinel,
         start: 'top 55%',
         end: 'bottom 20%',
         onEnter: openSection,
-        onLeave: closeSection,
-        onEnterBack: openSection,
-        onLeaveBack: closeSection,
         refreshPriority: -1,
       });
 
@@ -389,34 +360,6 @@ export const Developers: React.FC = () => {
 
     return () => ctx.revert();
   }, []);
-
-  // Sync GSAP state with React state (manual toggle)
-  useEffect(() => {
-    if (!wrapperRef.current || !hasOpenedRef.current || isAnimatingRef.current) return;
-
-    const wrapper = wrapperRef.current;
-    const targetHeight = isExpanded ? (initialHeightRef.current || wrapper.scrollHeight) : 0;
-    const targetOpacity = isExpanded ? 1 : 0;
-
-    isAnimatingRef.current = true;
-    animationRef.current?.kill();
-
-    animationRef.current = gsap.to(wrapper, {
-      height: targetHeight,
-      opacity: targetOpacity,
-      duration: 0.45,
-      ease: isExpanded ? 'power2.out' : 'power2.inOut',
-      onComplete: () => {
-        if (isExpanded) {
-          gsap.set(wrapper, { height: 'auto', overflow: 'visible' });
-        } else {
-          gsap.set(wrapper, { overflow: 'hidden' });
-        }
-        isAnimatingRef.current = false;
-        ScrollTrigger.refresh();
-      },
-    });
-  }, [isExpanded]);
 
   return (
     <div ref={sentinelRef} style={{ position: 'relative', width: '100%', zIndex: 10 }}>

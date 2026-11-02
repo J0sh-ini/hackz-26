@@ -480,7 +480,7 @@ export const MentorForm: React.FC = () => {
                           type="text"
                           value={formData.name}
                           onChange={(e) => handleChange('name', e.target.value)}
-                          placeholder="Loki"
+                          placeholder="John Doe"
                           className={`w-full bg-[#050505] border px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none ${
                             errors.name
                               ? 'border-[#ff4444] focus:border-[#ff4444]'
@@ -507,7 +507,7 @@ export const MentorForm: React.FC = () => {
                           type="email"
                           value={formData.email}
                           onChange={(e) => handleChange('email', e.target.value)}
-                          placeholder="loki@gmail.com"
+                          placeholder="johndoe@gmail.com"
                           className={`w-full bg-[#050505] border px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none ${
                             errors.email
                               ? 'border-[#ff4444] focus:border-[#ff4444]'
@@ -537,7 +537,7 @@ export const MentorForm: React.FC = () => {
                           type="tel"
                           value={formData.phone}
                           onChange={(e) => handleChange('phone', e.target.value)}
-                          placeholder="+91 96969 96767"
+                          placeholder="+91 9876543210"
                           className={`w-full bg-[#050505] border px-4 py-3 font-mono text-sm text-text-primary transition-all outline-none ${
                             errors.phone
                               ? 'border-[#ff4444] focus:border-[#ff4444]'
@@ -611,7 +611,7 @@ export const MentorForm: React.FC = () => {
                           </span>
                         )}
                       </div>
-                      <div className="grid grid-cols-3 max-sm:grid-cols-2 gap-2.5">
+                      <div className="grid grid-cols-3 max-sm:grid-cols-1 gap-2.5">
                         {TECH_CHOICES.map((tech) => {
                           const isSelected = formData.technologies.includes(tech);
                           return (
@@ -619,13 +619,13 @@ export const MentorForm: React.FC = () => {
                               key={tech}
                               type="button"
                               onClick={() => handleToggleTechnology(tech)}
-                              className={`py-2.5 px-3 font-mono text-xs text-left transition-all cursor-pointer border relative select-none flex items-center justify-between ${
+                              className={`min-w-0 py-2.5 px-3 font-mono text-xs text-left transition-all cursor-pointer border relative select-none flex items-center justify-between ${
                                 isSelected
                                   ? 'border-accent-green-dim text-accent-green font-bold'
                                   : 'border-border-default bg-[#050505] text-secondary hover:border-accent-green/50 hover:text-white'
                               }`}
                             >
-                              <div className="flex items-center gap-2 truncate">
+                              <div className="min-w-0 flex items-center gap-2">
                                 <span
                                   className={`w-3.5 h-3.5 border flex items-center justify-center shrink-0 ${
                                     isSelected
@@ -637,7 +637,7 @@ export const MentorForm: React.FC = () => {
                                     <span className="w-1.5 h-1.5 bg-accent-green-dim " />
                                   )}
                                 </span>
-                                <span className="truncate">{tech}</span>
+                                <span className="min-w-0 truncate">{tech}</span>
                               </div>
                             </button>
                           );
@@ -690,22 +690,22 @@ export const MentorForm: React.FC = () => {
                         )}
                       </div>
 
-                      <div className="grid grid-cols-5 gap-3 max-sm:gap-2">
-                        {EXPERIENCE_CHOICES.map((exp) => {
+                      <div className="grid grid-cols-5 max-sm:grid-cols-6 gap-3 max-sm:gap-2">
+                        {EXPERIENCE_CHOICES.map((exp, index) => {
                           const isSelected = formData.experience === exp;
                           return (
                             <button
                               key={exp}
                               type="button"
                               onClick={() => handleChange('experience', exp)}
-                              className={`py-3 px-2 font-mono text-center transition-all cursor-pointer border relative select-none ${
+                              className={`min-w-0 max-sm:col-span-2 ${index === 3 ? 'max-sm:col-start-2' : index === 4 ? 'max-sm:col-start-4' : ''} py-3 px-2 font-mono text-center transition-all cursor-pointer border relative select-none ${
                                 isSelected
                                   ? 'border-accent-green-dim text-accent-green font-bold'
                                   : 'border-border-default bg-[#050505] text-secondary hover:border-accent-green/50 hover:text-white'
                               }`}
                             >
                               <span className="block text-[10px] tracking-widest text-muted">EXP</span>
-                              <span className="text-base sm:text-lg font-bold">{exp}</span>
+                              <span className="text-base sm:text-lg font-bold whitespace-nowrap">{exp}</span>
                             </button>
                           );
                         })}

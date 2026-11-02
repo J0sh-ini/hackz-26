@@ -57,7 +57,7 @@ export const Prizes: React.FC = () => {
     if (!counterRef.current || !sectionRef.current) return;
 
     const counterObj = { val: 0 };
-    const target = 190000;
+    const target = 183000;
 
     const trigger = ScrollTrigger.create({
       trigger: counterRef.current,

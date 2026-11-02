@@ -6,7 +6,6 @@ import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { BrowserRouter, Route,Routes } from 'react-router-dom';
 import HomePage from './components/pages/HomePage';
-import VolunteerForm from './components/pages/VolunteerForm';
 import MentorForm from './components/pages/MentorForm';
 import { VideoLoader } from './components/LoadingScreen/VideoLoader';
 gsap.registerPlugin(ScrollTrigger);
@@ -94,7 +93,7 @@ export const App: React.FC = () => {
       {/* Video Loading Screen — swap src when you have the file */}
       {isLoading ? (
         <VideoLoader
-          src={ '/Produce.MP4'}
+          src={ '/smol-vid.mp4'}
           onComplete={() => setIsLoading(false)}
           fadeDuration={900}
           maxDuration={8000}
@@ -106,7 +105,6 @@ export const App: React.FC = () => {
       <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/volunteer" element={<VolunteerForm />} />
           <Route path="/mentor" element={<MentorForm />} />
         </Routes>
       <Footer />
