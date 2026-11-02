@@ -64,7 +64,7 @@ export const Navbar: React.FC = () => {
 
         <Link
           to="/#hero"
-          className="absolute left-4 md:left-6 top-0 z-50 flex items-center h-full cursor-pointer pointer-events-auto"
+          className="absolute  md:left-3 top-0 z-50 flex items-center h-full cursor-pointer pointer-events-auto"
           style={{
             fontFamily: 'var(--font-mono)',
             fontSize: '18px',
@@ -81,9 +81,9 @@ export const Navbar: React.FC = () => {
           {/* <span style={{ color: 'var(--text-secondary)' }}>&gt;</span>
           <span>HackZ'26</span> */}
           <img
-            src="/hackz-logo.webp"
+            src="/hackz-new-nobg.png"
             alt="HackZ'26"
-            style={{ maxWidth: '100%', height: 'var(--header-height)', display: 'block', pointerEvents: 'none' }}
+            style={{ maxWidth: '100%', height: 'var(--header-height)', display: 'block', pointerEvents: 'none',backgroundColor:'black',borderRadius:'4px' }}
           />
         </Link>
       <div className="relative w-full max-w-[1200px] mx-auto px-6 max-md:px-4 h-full flex items-center justify-between pointer-events-none">
