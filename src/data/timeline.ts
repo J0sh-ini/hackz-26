@@ -44,7 +44,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
   {
     id: 'hackathon-start',
     dateStr: '12-12-2026',
-    shortDate: 'JAN 23',
+    shortDate: 'JAN 29',
     title: 'Commencement of 24-Hour Hackathon',
     description: 'The final round kicks off with the 24-hour hackathon. Finalist teams will work tirelessly to develop working prototypes, refining their solutions under time constraints while displaying teamwork and technical prowess.',
     status: 'active',
@@ -53,7 +53,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
   {
     id: 'hackathon-end',
     dateStr: '13-12-2026',
-    shortDate: 'JAN 24',
+    shortDate: 'JAN 30',
     title: 'Marathon Concludes & Awards Ceremony',
     description: 'The hackathon concludes with the submission of final solutions. The judges will evaluate the projects, and the winners will be announced, celebrating innovative ideas and impactful contributions to society.',
     status: 'upcoming',

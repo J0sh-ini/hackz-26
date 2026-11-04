@@ -115,9 +115,9 @@ export const Hero: React.FC = () => {
           <GlitchSvg duration={800} delay={4200}>
             <div className="flex items-center justify-center gap-4 sm:gap-6 mb-3">
               {/* ISEA / GOI Alternating Logo */}
-              <div 
-              // className="h-14 sm:h-16 md:h-18 lg:h-24 flex items-center justify-center relative min-w-[70px] sm:min-w-[90px]"
-              style={{height:'clamp(66px, 6vw, 120px)', minWidth:'clamp(66px, 6vw, 96px)'}}>
+              <div
+                // className="h-14 sm:h-16 md:h-18 lg:h-24 flex items-center justify-center relative min-w-[70px] sm:min-w-[90px]"
+                style={{ height: 'clamp(66px, 6vw, 120px)', minWidth: 'clamp(66px, 6vw, 96px)' }}>
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={LOGOS[logoIndex].src}
@@ -128,14 +128,14 @@ export const Hero: React.FC = () => {
                     exit={{ opacity: 0, scale: 1.15, filter: "brightness(2) blur(2px)" }}
                     transition={{ duration: 0.35, ease: "easeInOut" }}
                     className="h-full w-auto object-contain filter drop-shadow-[0_0_15px_rgba(13,122,52,0.8)]"
-                    style={{borderRadius:'50%'}}
+                    style={{ borderRadius: '50%' }}
                   />
                 </AnimatePresence>
               </div>
               {/* CSEA Logo */}
-              <div 
-              // className="h-14 sm:h-16 md:h-18 lg:h-22 flex items-center justify-center"
-              style={{height:'clamp(86px, 6vw, 160px)', minWidth:'clamp(86px, 6vw, 160px)'}}>
+              <div
+                // className="h-14 sm:h-16 md:h-18 lg:h-22 flex items-center justify-center"
+                style={{ height: 'clamp(86px, 6vw, 160px)', minWidth: 'clamp(86px, 6vw, 160px)' }}>
                 <svg
                   viewBox="76 74 1086 650"
                   className="h-full w-auto filter drop-shadow-[0_0_15px_rgba(13, 122, 52, 1)]"
@@ -212,10 +212,10 @@ export const Hero: React.FC = () => {
                 </svg>
               </div>
 
-              
-              <div 
-              // className="h-14 sm:h-16 md:h-18 lg:h-22 flex items-center justify-center"
-              style={{height:'clamp(66px, 6vw, 120px)', minWidth:'clamp(66px, 6vw, 96px)'}}
+
+              <div
+                // className="h-14 sm:h-16 md:h-18 lg:h-22 flex items-center justify-center"
+                style={{ height: 'clamp(66px, 6vw, 120px)', minWidth: 'clamp(66px, 6vw, 96px)' }}
               >
                 <AnimatePresence mode="wait">
                   <motion.img
@@ -227,14 +227,14 @@ export const Hero: React.FC = () => {
                     exit={{ opacity: 0, scale: 1.15, filter: "brightness(2) blur(2px)" }}
                     transition={{ duration: 0.35, ease: "easeInOut" }}
                     className="h-full w-auto object-contain filter drop-shadow-[0_0_15px_rgba(13,122,52,0.8)]"
-                    style={{borderRadius:'50%'}}
+                    style={{ borderRadius: '50%' }}
                   />
                 </AnimatePresence>
               </div>
             </div>
           </GlitchSvg>
 
-          
+
           <div>
             <ScrambleText
               text="PRESENTS"
@@ -366,7 +366,7 @@ export const Hero: React.FC = () => {
           >
             All-India Inter-Collegiate Hackathon
           </p>
-          
+
         </motion.div >
         {/* Association Info */}
         {/* <motion.div
@@ -416,7 +416,7 @@ export const Hero: React.FC = () => {
           }}
         >
           <ScrambleText
-            text="JAN 23-24, 2027"
+            text="JAN 29-30, 2027"
             as="span"
             className="text-[clamp(14px,2.5vw,15px)] text-accent-green font-mono tracking-[0.08em]"
             from="random"
