@@ -8,9 +8,9 @@ import { GlitchSvg } from '../ui/GlitchSvg';
 
 const EVENT_IMAGES = [
   '/event1-150kb.jpg',
-  '/event2-150kb.jpg',
+  
   '/event3-150kb.jpg',
-  '/event4-150kb.jpg',
+  
   '/event5-150kb.jpg',
   '/event6-150kb.jpg',
   '/event7-150kb.jpg',
