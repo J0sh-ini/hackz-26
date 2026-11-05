@@ -95,7 +95,7 @@ export const Hero: React.FC = () => {
           <GlitchSvg duration={800} delay={4200}>
               <div
                 // className="h-14 sm:h-16 md:h-18 lg:h-22 flex items-center justify-center"
-                style={{ height: 'clamp(32px, 4vw, 50px)',}}
+                style={{ height: 'clamp(32px, 4vw, 50px)',  marginTop: '6px'}}
               >
                 <AnimatePresence mode="wait">
                   <motion.img
@@ -285,7 +285,17 @@ export const Hero: React.FC = () => {
                   justifyContent: 'center',
                   alignItems: 'center'
                 }}
-              >      
+              >  
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.85, filter: "brightness(2) blur(2px)" }}
+                    animate={{ opacity: 1, scale: 1, filter: "brightness(1) blur(0px)" }}
+                    exit={{ opacity: 0, scale: 1.15, filter: "brightness(2) blur(2px)" }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                    className="h-full w-auto object-contain filter drop-shadow-[0_0_15px_rgba(13,122,52,0.8)]"
+                    style={{ borderRadius: '50%', }}
+                  >
+                    
                 <svg
                   viewBox="76 74 1086 650"
                   className="h-full w-auto filter drop-shadow-[0_0_15px_rgba(13, 122, 52, 1)]"
@@ -360,6 +370,8 @@ export const Hero: React.FC = () => {
                     ></path>
                   </g>
                 </svg>
+                </motion.div>
+                </AnimatePresence>  
               </div>
 
 
