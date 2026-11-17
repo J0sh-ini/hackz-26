@@ -20,7 +20,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
   {
     id: 'round-1-close',
     dateStr: '14-11-2026',
-    shortDate: 'DEC 05',
+    shortDate: 'DEC 15',
     title: 'Conclusion of Round 1 Submissions',
     description: 'Round 1 submissions close as teams submit their ideation solutions. Judges will carefully evaluate each submission based on the clarity, innovation, and feasibility of the proposed ideas, setting the stage for the next phase.',
     status: 'completed',
@@ -28,7 +28,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
   {
     id: 'finalists-announced',
     dateStr: '28-11-2026',
-    shortDate: 'DEC 19',
+    shortDate: 'DEC 31',
     title: 'Shortlisted Finalists Announcement',
     description: 'The list of finalists advancing to Round 2 will be announced. These teams have impressed the judges with their ideation and will proceed to tackle more complex challenges in the final round.',
     status: 'completed',
