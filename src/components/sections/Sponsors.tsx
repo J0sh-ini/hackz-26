@@ -135,23 +135,12 @@ const SponsorCard: React.FC<{ sponsor: Sponsor; isDesktop?: boolean }> = ({ spon
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: isDesktop ? '14px' : '10px',
+                  height: isDesktop ? '56px' : '32px',
                 }}
               >
-                <div
-                  style={{
-                    width: isDesktop ? '50px' : '38px',
-                    height: isDesktop ? '50px' : '38px',
-                    borderRadius: '4px',
-                    overflow: 'hidden',
-                    flexShrink: 0,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: '#223577',
-                  }}
-                >
+                
                   <img
-                    src="/temenos_t.jpg"
+                    src="/temenos.png"
                     alt="Temenos"
                     style={{
                       width: '100%',
@@ -160,20 +149,8 @@ const SponsorCard: React.FC<{ sponsor: Sponsor; isDesktop?: boolean }> = ({ spon
                       display: 'block',
                     }}
                   />
-                </div>
-                <span
-                  style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontWeight: 800,
-                    fontSize: isDesktop ? '28px' : '20px',
-                    color: '#ffffff',
-                    letterSpacing: '0.14em',
-                    lineHeight: 1,
-                    textShadow: '0 0 12px rgba(255, 255, 255, 0.25)',
-                  }}
-                >
-                  TEMENOS
-                </span>
+                
+                
               </div>
             ) : sponsor.id === 'ibm' ? (
               <div

@@ -19,7 +19,7 @@ export const SPONSORS: Sponsor[] = [
     id: 'temenos',
     name: 'Temenos',
     tier: 'title',
-    logoSrc: '/temenos_t.jpg',
+    logoSrc: '/temenos.png',
     description: 'Powering mission-critical financial systems and next-generation cloud banking architecture worldwide.',
     website: 'https://www.temenos.com',
     tagline: 'GLOBAL LEADER IN BANKING SOFTWARE',
