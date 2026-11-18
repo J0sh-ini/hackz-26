@@ -56,13 +56,13 @@ const RoleCard: React.FC<RoleCardProps> = ({
       style={{
         backgroundColor: 'var(--bg-card)',
         border: '1px solid var(--border-default)',
-        padding: '48px 36px',
+        padding: '36px 28px',
         position: 'relative',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        minHeight: '320px',
+        minHeight: '250px',
         cursor: onClick ? 'pointer' : 'default',
       }}
     >
@@ -104,7 +104,7 @@ const RoleCard: React.FC<RoleCardProps> = ({
           trigger={isHovered}
           style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: '28px',
+            fontSize: 'clamp(24px,2vw,28px)',
             fontWeight: 700,
             color: 'var(--text-primary)',
             marginBottom: '14px',
@@ -179,10 +179,10 @@ export const GetInvolved: React.FC = () => {
                 Contribute your expertise or logistical power to ensure HackZ'26 runs with precision and impact.
               </p>
             </div>
-        <div
+        {/* <div
           className="grid grid-cols-[1fr_1.2fr] gap-16 items-center mb-16 max-[992px]:grid-cols-1 max-[992px]:gap-8"
-        >
-          <div className="w-full flex justify-center items-center [&_.glitch-wrapper]:w-full [&_.glitch-wrapper]:block">
+        > */}
+          {/* <div className="w-full flex justify-center items-center [&_.glitch-wrapper]:w-full [&_.glitch-wrapper]:block">
             <GlitchSvg duration={GLITCH_DURATION} delay={GLITCH_DELAY}>
               <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden border border-[var(--border-default)] bg-[var(--bg-card)]">
                 <AnimatePresence mode="wait">
@@ -199,12 +199,10 @@ export const GetInvolved: React.FC = () => {
                 </AnimatePresence>
               </div>
             </GlitchSvg>
-          </div>
+          </div> */}
 
-          <div className="">
+          <div className="flex flex-col justify-center items-center gap-4 md:flex-row w-full  md:justify-evenly">
             {/* Mentor Block */}
-            
-              
             <RoleCard
               roleTag="[ DOMAIN SPECIALIST ]"
               watermark="MENTOR"
@@ -216,19 +214,19 @@ export const GetInvolved: React.FC = () => {
               slideX={-60}
             />
 
-            {/* Volunteer Block */}
-            {/* <RoleCard
-              roleTag="[ EVENT CREW ]"
-              watermark="VOLUNTEER"
-              title="Become a Volunteer"
-              description="Join the on-site operations team at campus. Coordinate participant hospitality and seamless stage management."
-              btnText="APPLY AS VOLUNTEER →"
-              onClick={() => navigate('/volunteer')}
+            {/* Ambassador Block */}
+            <RoleCard
+              roleTag="[ CAMPUS OUTREACH ]"
+              watermark="AMBASSADOR"
+              title="Become an Ambassador"
+              description="Represent HackZ'26 at your institution. Lead campus outreach, rally engineering squads, and unlock exclusive symposium privileges."
+              btnText="APPLY AS AMBASSADOR →"
+              onClick={() => navigate('/ambassador')}
               isExternal={false}
               slideX={60}
-            /> */}
+            />
           </div>
-        </div>
+        {/* </div> */}
 
         {/* Two Side-by-Side Action Blocks with completely decoupled hover scopes */}
       </div>

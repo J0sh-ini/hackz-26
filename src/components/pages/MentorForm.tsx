@@ -611,7 +611,7 @@ export const MentorForm: React.FC = () => {
                           </span>
                         )}
                       </div>
-                      <div className="grid grid-cols-3 max-sm:grid-cols-1 gap-2.5">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
                         {TECH_CHOICES.map((tech) => {
                           const isSelected = formData.technologies.includes(tech);
                           return (
@@ -619,26 +619,24 @@ export const MentorForm: React.FC = () => {
                               key={tech}
                               type="button"
                               onClick={() => handleToggleTechnology(tech)}
-                              className={`min-w-0 py-2.5 px-3 font-mono text-xs text-left transition-all cursor-pointer border relative select-none flex items-center justify-between ${
+                              className={`w-full min-h-[44px] py-2.5 px-3 font-mono text-xs text-left transition-all cursor-pointer border select-none flex items-center gap-2.5 ${
                                 isSelected
-                                  ? 'border-accent-green-dim text-accent-green font-bold'
+                                  ? 'border-accent-green-dim bg-accent-green/10 text-accent-green font-bold'
                                   : 'border-border-default bg-[#050505] text-secondary hover:border-accent-green/50 hover:text-white'
                               }`}
                             >
-                              <div className="min-w-0 flex items-center gap-2">
-                                <span
-                                  className={`w-3.5 h-3.5 border flex items-center justify-center shrink-0 ${
-                                    isSelected
-                                      ? 'border-accent-green-dim bg-accent-green/20'
-                                      : 'border-border-default bg-[#0a0a0a]'
-                                  }`}
-                                >
-                                  {isSelected && (
-                                    <span className="w-1.5 h-1.5 bg-accent-green-dim " />
-                                  )}
-                                </span>
-                                <span className="min-w-0 truncate">{tech}</span>
-                              </div>
+                              <span
+                                className={`w-3.5 h-3.5 border flex items-center justify-center shrink-0 ${
+                                  isSelected
+                                    ? 'border-accent-green-dim bg-accent-green/20'
+                                    : 'border-border-default bg-[#0a0a0a]'
+                                }`}
+                              >
+                                {isSelected && (
+                                  <span className="w-1.5 h-1.5 bg-accent-green-dim" />
+                                )}
+                              </span>
+                              <span className="min-w-0 break-words leading-tight flex-1">{tech}</span>
                             </button>
                           );
                         })}
@@ -787,7 +785,7 @@ export const MentorForm: React.FC = () => {
                           </span>
                         )}
                       </div>
-                      <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-2.5">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         {TRACK_CHOICES.map((trk) => {
                           const isSelected = formData.tracks.includes(trk);
                           return (
@@ -795,26 +793,24 @@ export const MentorForm: React.FC = () => {
                               key={trk}
                               type="button"
                               onClick={() => handleToggleTrack(trk)}
-                              className={`py-3 px-3.5 font-mono text-xs text-left transition-all cursor-pointer border relative select-none flex items-center justify-between ${
+                              className={`w-full min-h-[46px] p-3 font-mono text-xs text-left transition-all cursor-pointer border select-none flex items-start gap-2.5 ${
                                 isSelected
-                                  ? 'border-accent-green-dim text-accent-green font-bold'
+                                  ? 'border-accent-green-dim bg-accent-green/10 text-accent-green font-bold'
                                   : 'border-border-default bg-[#050505] text-secondary hover:border-accent-green/50 hover:text-white'
                               }`}
                             >
-                              <div className="flex items-center gap-2.5">
-                                <span
-                                  className={`w-3.5 h-3.5 border flex items-center justify-center shrink-0 ${
-                                    isSelected
-                                      ? 'border-accent-green-dim bg-accent-green/20'
-                                      : 'border-border-default bg-[#0a0a0a]'
-                                  }`}
-                                >
-                                  {isSelected && (
-                                    <span className="w-1.5 h-1.5 bg-accent-green-dim" />
-                                  )}
-                                </span>
-                                <span>{trk}</span>
-                              </div>
+                              <span
+                                className={`w-3.5 h-3.5 mt-0.5 border flex items-center justify-center shrink-0 ${
+                                  isSelected
+                                    ? 'border-accent-green-dim bg-accent-green/20'
+                                    : 'border-border-default bg-[#0a0a0a]'
+                                }`}
+                              >
+                                {isSelected && (
+                                  <span className="w-1.5 h-1.5 bg-accent-green-dim" />
+                                )}
+                              </span>
+                              <span className="min-w-0 leading-snug break-words flex-1">{trk}</span>
                             </button>
                           );
                         })}

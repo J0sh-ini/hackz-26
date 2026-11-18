@@ -7,6 +7,7 @@ import { Footer } from './components/layout/Footer';
 import { BrowserRouter, Route,Routes } from 'react-router-dom';
 import HomePage from './components/pages/HomePage';
 import MentorForm from './components/pages/MentorForm';
+import AmbassadorForm from './components/pages/AmbassadorForm';
 import { VideoLoader } from './components/LoadingScreen/VideoLoader';
 gsap.registerPlugin(ScrollTrigger);
 
@@ -106,6 +107,8 @@ export const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/mentor" element={<MentorForm />} />
+          <Route path="/ambassador" element={<AmbassadorForm />} />
+          <Route path="/ambassador-form" element={<AmbassadorForm />} />
         </Routes>
       <Footer />
       </BrowserRouter>
