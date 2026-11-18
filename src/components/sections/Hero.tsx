@@ -471,7 +471,7 @@ export const Hero: React.FC = () => {
             onClick={() => navigate('/ambassador')}
             className="w-auto max-md:w-3/4"
           >
-            [ AMBASSADOR REGISTER ]
+            [ REGISTER AS AMBASSADOR ]
           </Button>
         </motion.div>
       </div>
