@@ -108,7 +108,6 @@ export const App: React.FC = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/mentor" element={<MentorForm />} />
           <Route path="/ambassador" element={<AmbassadorForm />} />
-          <Route path="/ambassador-form" element={<AmbassadorForm />} />
         </Routes>
       <Footer />
       </BrowserRouter>

@@ -44,7 +44,7 @@ export const Button: React.FC<ButtonProps> = ({
     justifyContent: 'center',
     gap: '10px',
     cursor: 'pointer',
-    width: fullWidth ? '100%' : 'auto',
+    width: fullWidth ? '100%' : undefined,
     minHeight: '48px',
     textDecoration: 'none',
     userSelect: 'none',

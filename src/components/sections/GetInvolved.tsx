@@ -1,23 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { Button } from '../ui/Button';
 import { ScrambleTitle } from '../ui/ScrambleTitle';
 import ScrambleText from '../ui/ScrambleText';
 import { useNavigate } from 'react-router-dom';
-import { GlitchSvg } from '../ui/GlitchSvg';
 
-const EVENT_IMAGES = [
-  '/event1-150kb.jpg',
-  
-  '/event3-150kb.jpg',
-  
-  '/event5-150kb.jpg',
-  '/event6-150kb.jpg',
-  '/event7-150kb.jpg',
-];
-
-const GLITCH_DURATION = 800;
-const GLITCH_DELAY = 3200;
+// const EVENT_IMAGES = [
+//   '/event1-150kb.jpg',
+//   '/event3-150kb.jpg',
+//   '/event5-150kb.jpg',
+//   '/event6-150kb.jpg',
+//   '/event7-150kb.jpg',
+// ];
+// const GLITCH_DURATION = 800;
+// const GLITCH_DELAY = 3200;
 
 interface RoleCardProps {
   roleTag: string;
@@ -144,17 +140,17 @@ const RoleCard: React.FC<RoleCardProps> = ({
 
 export const GetInvolved: React.FC = () => {
   const navigate = useNavigate();
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  // const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimeout(() => {
-        setCurrentImageIndex((prev) => (prev + 1) % EVENT_IMAGES.length);
-      }, 250);
-    }, GLITCH_DURATION + GLITCH_DELAY);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setTimeout(() => {
+  //       setCurrentImageIndex((prev) => (prev + 1) % EVENT_IMAGES.length);
+  //     }, 250);
+  //   }, GLITCH_DURATION + GLITCH_DELAY);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <section

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useNavigate } from "react-router-dom";
 import { MatrixCanvas } from "../ambient/MatrixCanvas";
 import { BlinkingCursor } from "../ambient/BlinkingCursor";
 import { Button } from "../ui/Button";
@@ -13,6 +14,7 @@ const LOGOS = { src: "/isea.png", alt: "ISEA Logo" };
 const temenosLogo = { src: "/temenos.png", alt: "Temenos Logo" };
 
 export const Hero: React.FC = () => {
+  const navigate = useNavigate();
   const [isGlitching, setIsGlitching] = useState<boolean>(true);
  
   useEffect(() => {
@@ -453,26 +455,23 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.7 }}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "16px",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            width: "100%",
-          }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full"
         >
           <Button
             variant="primary"
             href={EVENT_LINKS.registration}
             isExternal
-            className="w-full sm:w-auto"
+            className="w-auto max-md:w-3/4"
           >
             [ REGISTER NOW ]
           </Button>
 
-          <Button variant="outline" href="#about" className="w-full sm:w-auto">
-            EXPLORE DETAILS ↓
+          <Button
+            variant="primary"
+            onClick={() => navigate('/ambassador')}
+            className="w-auto max-md:w-3/4"
+          >
+            [ AMBASSADOR REGISTER ]
           </Button>
         </motion.div>
       </div>
